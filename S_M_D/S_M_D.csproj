@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +47,17 @@
     <Compile Include="Character\CharacterManager.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\OrcWarrior.cs" />
+    <Compile Include="Dungeon\Corridor.cs" />
+    <Compile Include="Dungeon\CorridorGenerator.cs" />
     <Compile Include="Dungeon\DungeonManager.cs" />
+    <Compile Include="Dungeon\EventGenerator.cs" />
+    <Compile Include="Dungeon\ICorridorGenerator.cs" />
+    <Compile Include="Dungeon\IEventGenerator.cs" />
+    <Compile Include="Dungeon\IMapGenerator.cs" />
+    <Compile Include="Dungeon\Map.cs" />
+    <Compile Include="Dungeon\MapGenerator.cs" />
+    <Compile Include="Dungeon\MapItem.cs" />
+    <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
