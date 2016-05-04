@@ -47,6 +47,7 @@
     <Compile Include="Character\CharacterManager.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\OrcWarrior.cs" />
+    <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Dungeon\Corridor.cs" />
     <Compile Include="Dungeon\CorridorGenerator.cs" />
     <Compile Include="Dungeon\DungeonManager.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Dungeon\Map.cs" />
     <Compile Include="Dungeon\MapGenerator.cs" />
     <Compile Include="Dungeon\MapItem.cs" />
+    <Compile Include="Dungeon\PolygonRoom.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,6 +10,8 @@ namespace S_M_D.Dungeon
     public abstract class Room : MapItem
     {
 
+        public abstract void Init(int width, int height);
+
         /// <summary>
         /// Checks whether you can place a room in the map or not. 
         /// You can place a room if there is no room currently occupying the space the new room will take.

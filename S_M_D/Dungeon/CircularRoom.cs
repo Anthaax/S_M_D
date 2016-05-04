@@ -11,6 +11,27 @@ namespace S_M_D.Dungeon
     {
         private int radius;
 
+
+        public CircularRoom()
+        {
+            Random rand = new Random();
+
+            radius = rand.Next(2, 10);
+
+            path = new List<Point>();
+        }
+
+        public override void Init(int width, int height)
+        {
+            Random rand = new Random();
+
+            path.Clear();
+
+            Point center = new Point(rand.Next(radius, width-radius) , rand.Next(radius, height-radius));
+
+            path.Add(center);
+        }
+
         /// <summary>
         /// Use Pythgora to determine if the point is within the circular room
         /// </summary>
