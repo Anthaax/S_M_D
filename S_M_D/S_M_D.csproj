@@ -45,6 +45,8 @@
     <Compile Include="Character\BaseHero.cs" />
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\CharacterManager.cs" />
+    <Compile Include="Character\Heros\PaladinClass.cs" />
+    <Compile Include="Character\Heros\WarriorClass.cs" />
     <Compile Include="Character\Monsters\OrcWarrior.cs" />
     <Compile Include="Dungeon\Corridor.cs" />
     <Compile Include="Dungeon\CorridorGenerator.cs" />
@@ -62,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Camp\" />
-    <Folder Include="Character\Heros\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
