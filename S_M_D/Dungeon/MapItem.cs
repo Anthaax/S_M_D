@@ -15,5 +15,10 @@ namespace S_M_D.Dungeon
 
         public List<Point> Path { get; set; }
         public bool IsCorridor { get; set; }
+
+        public void SetNeighbor( MapItem item)
+        {
+            neighbor.Add(item);
+        }
     }
 }
