@@ -45,7 +45,7 @@
     <Compile Include="Character\BaseHero.cs" />
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\HerosManager.cs" />
-    <Compile Include="Character\Heros\HerosType.cs" />
+    <Compile Include="Character\HerosEnum.cs" />
     <Compile Include="Character\Heros\ILevel.cs" />
     <Compile Include="Character\Heros\PaladinClass.cs" />
     <Compile Include="Character\Heros\WarriorClass.cs" />
@@ -63,6 +63,13 @@
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Psychology\Crazyness.cs" />
+    <Compile Include="Psychology\Psychology.cs" />
+    <Compile Include="Sickness\Diarrhea.cs" />
+    <Compile Include="Sickness\Sickness.cs" />
+    <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
+    <Compile Include="Spell\Spell.cs" />
+    <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Camp\" />
