@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Dungeon
 {
-    public interface IMapGenerator
+    public class PolygonRoom : Room
     {
-        void Generate(Map map);
-
-        void GenerateParts(int width, int height, int x, int y, Map map);
     }
 }
