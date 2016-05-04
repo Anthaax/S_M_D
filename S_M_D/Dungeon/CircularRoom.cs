@@ -19,6 +19,12 @@ namespace S_M_D.Dungeon
             radius = rand.Next(2, 10);
 
             path = new List<Point>();
+
+            center = path[0];
+
+            IsCorridor = false;
+
+            neighbor = new List<MapItem>();
         }
 
         public override void Init(int width, int height)

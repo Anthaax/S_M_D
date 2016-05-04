@@ -8,8 +8,20 @@ namespace S_M_D.Dungeon
 {
     public interface IMapGenerator
     {
+        /// <summary>
+        /// Generates the map (rooms and corridors)
+        /// </summary>
+        /// <param name="map">Map which will be completed.</param>
         void Generate(Map map);
 
+        /// <summary>
+        /// Regenerated map between the given boundaries.
+        /// </summary>
+        /// <param name="width">Width of the rectangle which will be regenerated.</param>
+        /// <param name="height">Height of the rectangle which will be regenerated.</param>
+        /// <param name="x">X coordinate of the rectangle which will be regenerated.</param>
+        /// <param name="y">Y coordinate of the rectangle which will be regenerated.</param>
+        /// <param name="map">Map which will be regenerated.</param>
         void GenerateParts(int width, int height, int x, int y, Map map);
     }
 }

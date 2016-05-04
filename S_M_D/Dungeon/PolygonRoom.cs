@@ -30,8 +30,16 @@ namespace S_M_D.Dungeon
             return false;
         }
 
-        public PolygonRoom(int roomWidth, int roomHeight)
+        public PolygonRoom()
         {
+            path = new List<Point>();
+            IsCorridor = true;
+            neighbor = new List<MapItem>();
+        }
+
+        public override void Init(int roomWidth, int roomHeight)
+        {
+            path.Clear();
             System.Random rand = new System.Random();
             int nbVertices = rand.Next(MIN_VERTICES_NB, MAX_VERTICES_NB);
 
@@ -54,6 +62,17 @@ namespace S_M_D.Dungeon
                 }
                 path.Add(p);
             }
+
+            List<Point> roomCoords = new List<Point>();
+            for (int y = 0; y < roomHeight; y++)
+            {
+                for (int x = 0; x < roomWidth; x++)
+                {
+                    if (pointIsInsideRoom(x, y))
+                        roomCoords.Add(new Point(x, y));
+                }
+            }
+            center = roomCoords[(roomCoords.Count / 2)];
         }
 
         /// <summary>

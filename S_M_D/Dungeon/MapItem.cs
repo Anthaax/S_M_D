@@ -10,5 +10,10 @@ namespace S_M_D.Dungeon
     public abstract class MapItem
     {
         protected List<Point> path;
+        protected List<MapItem> neighbor;
+        protected bool isCorridor;
+
+        public List<Point> Path { get; set; }
+        public bool IsCorridor { get; set; }
     }
 }

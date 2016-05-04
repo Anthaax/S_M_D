@@ -8,5 +8,6 @@ namespace S_M_D.Dungeon
 {
     public interface ICorridorGenerator
     {
+        void Generate(Map map);
     }
 }

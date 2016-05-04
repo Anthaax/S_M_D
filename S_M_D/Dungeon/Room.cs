@@ -9,7 +9,14 @@ namespace S_M_D.Dungeon
 {
     public abstract class Room : MapItem
     {
+        protected Point center;
 
+        public Point Center { get; set; }
+        /// <summary>
+        /// Initializes the room, setting its characteristics (randomly generated).
+        /// </summary>
+        /// <param name="width">Width of the map's grid.</param>
+        /// <param name="height">Height of the map's grid.</param>
         public abstract void Init(int width, int height);
 
         /// <summary>
