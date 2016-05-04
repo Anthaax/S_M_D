@@ -9,7 +9,6 @@ namespace S_M_D.Dungeon
 {
     public abstract class Room : MapItem
     {
-        protected List<Point> points;
 
         /// <summary>
         /// Checks whether you can place a room in the map or not. 
@@ -17,7 +16,18 @@ namespace S_M_D.Dungeon
         /// </summary>
         /// <param name="grid">The grid we will search through to ensure we can place the room.</param>
         /// <returns>True if you can place the room, False if not.</returns>
-        public abstract bool canPlaceRoom(MapItem[,] grid);
+        public bool canPlaceRoom(MapItem[,] grid, int width, int height)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (pointIsInsideRoom(x, y) && grid[y, x] != null)
+                        return false;
+                }
+            }
+            return true;
+        }
 
         /// <summary>
         /// Checks whether a given point is inside the room.
@@ -31,7 +41,17 @@ namespace S_M_D.Dungeon
         /// Place the room on the map's grid.
         /// </summary>
         /// <param name="grid">Grid the room will be placed on.</param>
-        public abstract void placeRoom(MapItem[,] grid);
+        public void placeRoom(MapItem[,] grid, int width, int height)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (pointIsInsideRoom(x, y))
+                        grid[y, x] = this;
+                }
+            }
+        }
 
     }
 }
