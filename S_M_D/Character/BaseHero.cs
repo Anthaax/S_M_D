@@ -8,6 +8,7 @@ namespace S_M_D.Character
 {
     public abstract class BaseHero : BaseCharacter
     {
+        string _characterClassName;
         int _evilness;
         string _sickness;
         string _psycho;

@@ -9,7 +9,6 @@ namespace S_M_D.Character
     public abstract class BaseCharacter
     {
         //Info Character
-        string _characterClassName;
         string _characterName;
         // Character stats
         int _lvl;
