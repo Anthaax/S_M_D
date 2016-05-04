@@ -6,41 +6,81 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class WarriorConfiguration : 
+    public class WarriorConfiguration : HerosType
     {
-        WarriorConfiguration
+        BaseHero _baseHero;
+        public WarriorConfiguration(List<BaseHero> HerosList )
+            :base(HerosList, HerosEnum.Warrior.ToString(), 400, true, "George")
+        {
+            Initialized();
+        }
+
+        public void Initialized()
+        {
+            _baseHero.Lvl = 0;
+            _baseHero.HP = 50;
+            _baseHero.HPmax = 50;
+            _baseHero.Mana = 20;
+            _baseHero.ManaMax = 20;
+            _baseHero.Damage = 11;
+            _baseHero.CritChance = 22;
+            _baseHero.Speed = 5;
+            _baseHero.HitChance = 60;
+            _baseHero.AffectRes = 30;
+            _baseHero.BleedingRes = 45;
+            _baseHero.MagicRes = 20;
+            _baseHero.FireRes = 20;
+            _baseHero.PoisonRes = 20;
+            _baseHero.WaterRes = 20;
+            _baseHero.Defense = 40;
+            _baseHero.DodgeChance = 15;
+            _baseHero.Evilness = 0;
+            _baseHero.Xp = 0;
+            _baseHero.XpMax = 100;
+            _baseHero.Sickness = "";
+            _baseHero.Relation = "";
+            _baseHero.Psycho = "";
+            _baseHero.Equipement[0] = "UNE GROSSE BITE";
+            _baseHero.Equipement[1] = "UN BON GROS STRING MA GUEULE";
+        }
+
+        protected override BaseHero DoCreateHero( List<BaseHero> HerosList )
+        {
+            throw new NotImplementedException();
+        }
     }
     public class WarriorClass : BaseHero, ILevel
     {
 
-        public WarriorClass()
+        public WarriorClass(BaseHero WarriorConfig)
         {
-            CharacterName = "George";
-            Lvl = 0;
-            HP = 50;
-            HPmax = 50;
-            Mana = 20;
-            ManaMax = 20;
-            Damage = 11;
-            CritChance = 22;
-            Speed = 5;
-            HitChance = 60;
-            AffectRes = 30;
-            BleedingRes = 45;
-            MagicRes = 20;
-            FireRes = 20;
-            PoisonRes = 20;
-            WaterRes = 20;
-            Defense = 40;
-            DodgeChance = 15;
-            Evilness = 0;
-            Xp = 0;
-            XpMax = 100;
-            Sickness = "";
-            Relation = "";
-            Psycho = "";
-            Equipement[0] = "UNE GROSSE BITE";
-            Equipement[1] = "UN BON GROS STRING MA GUEULE";
+            CharacterName = WarriorConfig.CharacterName;
+            CharacterClassName = WarriorConfig.CharacterClassName;
+            Lvl = WarriorConfig.Lvl;
+            HP = WarriorConfig.HP;
+            HPmax = WarriorConfig.HPmax;
+            Mana = WarriorConfig.Mana;
+            ManaMax = WarriorConfig.ManaMax;
+            Damage = WarriorConfig.Damage;
+            CritChance = WarriorConfig.CritChance;
+            Speed = WarriorConfig.Speed;
+            HitChance = WarriorConfig.HitChance;
+            AffectRes = WarriorConfig.AffectRes;
+            BleedingRes = WarriorConfig.BleedingRes;
+            MagicRes = WarriorConfig.MagicRes;
+            FireRes = WarriorConfig.FireRes;
+            PoisonRes = WarriorConfig.PoisonRes;
+            WaterRes = WarriorConfig.WaterRes;
+            Defense = WarriorConfig.Defense;
+            DodgeChance = WarriorConfig.DodgeChance;
+            Evilness = WarriorConfig.Evilness;
+            Xp = WarriorConfig.Xp;
+            XpMax = WarriorConfig.XpMax;
+            Sickness = WarriorConfig.Sickness;
+            Relation = WarriorConfig.Relation;
+            Psycho = WarriorConfig.Psycho;
+            Equipement[0] = WarriorConfig.Equipement[0];
+            Equipement[1] = WarriorConfig.Equipement[1];
         }
         public void LevelUp()
         {

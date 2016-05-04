@@ -11,6 +11,7 @@ namespace S_M_D.Character
         public PaladinClass()
         {
             CharacterName = "George";
+            CharacterClassName = "Paladin";
             Lvl = 0;
             HP = 40;
             HPmax = 40;
