@@ -46,7 +46,10 @@
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\CharacterManager.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
-    <Compile Include="Character\Monsters\OrcWarrior.cs" />
+    <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
+    <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
+    <Compile Include="Character\Monsters\Pocos\ElfWarriorPoco.cs" />
+    <Compile Include="Character\Monsters\Pocos\OrcWarriorPoco.cs" />
     <Compile Include="Dungeon\Corridor.cs" />
     <Compile Include="Dungeon\CorridorGenerator.cs" />
     <Compile Include="Dungeon\DungeonManager.cs" />

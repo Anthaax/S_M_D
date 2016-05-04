@@ -11,7 +11,12 @@ namespace S_M_D.Character
     {
         protected int _giveXp;
         protected MonsterType _type;
-        
+
+        public void Die()
+        {
+
+        }
+
 
         public int GiveXp
         {
