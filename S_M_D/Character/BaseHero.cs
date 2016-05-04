@@ -16,6 +16,9 @@ namespace S_M_D.Character
         string[] _equipement = new string[4];
         int _xp;
         int _xpMax;
+        List<Spell> _herosSpells;
+        List<Sickness> _herosSicknesses;
+        
 
         public int Evilness
         {
@@ -107,6 +110,7 @@ namespace S_M_D.Character
                 _xpMax = value;
             }
         }
+
         abstract public void LevelUp();
     }
 }
