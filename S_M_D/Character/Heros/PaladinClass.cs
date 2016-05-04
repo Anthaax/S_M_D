@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S_M_D.Character.Heros
+namespace S_M_D.Character
 {
-    class PaladinClass : BaseHero
+    public class PaladinClass : BaseHero, ILevel
     {
         public PaladinClass()
         {
             CharacterName = "George";
-            CharacterClassName = "Paladin";
             Lvl = 0;
             HP = 40;
             HPmax = 40;
@@ -38,7 +37,7 @@ namespace S_M_D.Character.Heros
             Equipement[0] = "UNE GROSSE BITE";
             Equipement[1] = "UN BON GROS STRING MA GUEULE";
         }
-        public override void LevelUp()
+        public void LevelUp()
         {
             if (XpMax > Xp)
                 throw new ArgumentException("Hero can't level up don't use this function when XpMax > Xp");

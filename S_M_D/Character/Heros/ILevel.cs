@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class CharacterManager
+    public interface ILevel
     {
+        void LevelUp();
     }
 }

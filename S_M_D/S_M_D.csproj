@@ -44,7 +44,9 @@
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHero.cs" />
     <Compile Include="Character\BaseMonster.cs" />
-    <Compile Include="Character\CharacterManager.cs" />
+    <Compile Include="Character\HerosManager.cs" />
+    <Compile Include="Character\Heros\HerosType.cs" />
+    <Compile Include="Character\Heros\ILevel.cs" />
     <Compile Include="Character\Heros\PaladinClass.cs" />
     <Compile Include="Character\Heros\WarriorClass.cs" />
     <Compile Include="Character\Monsters\OrcWarrior.cs" />

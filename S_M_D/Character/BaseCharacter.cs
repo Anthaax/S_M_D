@@ -37,18 +37,6 @@ namespace S_M_D.Character
         int _defense;
         int _dodgeChance;
 
-        public string CharacterClassName
-        {
-            get
-            {
-                return _characterClassName;
-            }
-
-            set
-            {
-                _characterClassName = value;
-            }
-        }
 
         public string CharacterName
         {

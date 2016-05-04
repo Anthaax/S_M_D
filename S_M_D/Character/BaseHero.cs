@@ -107,6 +107,5 @@ namespace S_M_D.Character
                 _xpMax = value;
             }
         }
-        abstract public void LevelUp();
     }
 }
