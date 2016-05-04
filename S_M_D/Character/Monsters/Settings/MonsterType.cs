@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character.Monsters
 {
-    class OrcWarrior
+    public enum MonsterType
     {
+        ORC,
+        ELF
     }
 }

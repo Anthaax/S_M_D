@@ -9,7 +9,6 @@ namespace S_M_D.Character
     public abstract class BaseCharacter
     {
         //Info Character
-        string _characterClassName;
         string _characterName;
         // Character stats
         int _lvl;
@@ -37,19 +36,6 @@ namespace S_M_D.Character
         //Defense stats
         int _defense;
         int _dodgeChance;
-
-        public string CharacterClassName
-        {
-            get
-            {
-                return _characterClassName;
-            }
-
-            set
-            {
-                _characterClassName = value;
-            }
-        }
 
         public string CharacterName
         {
