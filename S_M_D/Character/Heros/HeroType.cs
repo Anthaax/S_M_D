@@ -27,14 +27,14 @@ namespace S_M_D.Character
         public string CharacterName { get { return _characterClassName; } }
         public int Price { get { return _price; } }
         public bool IsMale { get { return _isMale; } }
-
         public BaseHero CreateHero( List<BaseHero> HerosList )
         {
             if (HerosList.Count > 16) throw new InvalidOperationException("You have already 16 hero");
-            BaseHero Hero = DoCreateHero(HerosList);
+            BaseHero Hero = DoCreateHero();
+            HerosList.Add( Hero );
             //Enlever Argent
             return Hero;
         }
-        protected abstract BaseHero DoCreateHero( List<BaseHero> HerosList );
+        protected abstract BaseHero DoCreateHero();
     }
 }

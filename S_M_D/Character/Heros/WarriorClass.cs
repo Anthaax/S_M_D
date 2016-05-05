@@ -6,47 +6,52 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class WarriorConfiguration : HerosType
+    public class WarriorClassConfiguration : HerosType
     {
-        BaseHero _baseHero;
-        public WarriorConfiguration(List<BaseHero> HerosList )
+        readonly BaseHero _baseHero;
+        public WarriorClassConfiguration(List<BaseHero> HerosList )
             :base(HerosList, HerosEnum.Warrior.ToString(), 400, true, "George")
         {
             Initialized();
         }
 
-        public void Initialized()
+        public BaseHero BaseHero
         {
-            _baseHero.Lvl = 0;
-            _baseHero.HP = 50;
-            _baseHero.HPmax = 50;
-            _baseHero.Mana = 20;
-            _baseHero.ManaMax = 20;
-            _baseHero.Damage = 11;
-            _baseHero.CritChance = 22;
-            _baseHero.Speed = 5;
-            _baseHero.HitChance = 60;
-            _baseHero.AffectRes = 30;
-            _baseHero.BleedingRes = 45;
-            _baseHero.MagicRes = 20;
-            _baseHero.FireRes = 20;
-            _baseHero.PoisonRes = 20;
-            _baseHero.WaterRes = 20;
-            _baseHero.Defense = 40;
-            _baseHero.DodgeChance = 15;
-            _baseHero.Evilness = 0;
-            _baseHero.Xp = 0;
-            _baseHero.XpMax = 100;
-            _baseHero.Sickness = "";
-            _baseHero.Relation = "";
-            _baseHero.Psycho = "";
-            _baseHero.Equipement[0] = "UNE GROSSE BITE";
-            _baseHero.Equipement[1] = "UN BON GROS STRING MA GUEULE";
+            get { return _baseHero; }
         }
 
-        protected override BaseHero DoCreateHero( List<BaseHero> HerosList )
+        public void Initialized()
         {
-            throw new NotImplementedException();
+            BaseHero.Lvl = 0;
+            BaseHero.HP = 50;
+            BaseHero.HPmax = 50;
+            BaseHero.Mana = 20;
+            BaseHero.ManaMax = 20;
+            BaseHero.Damage = 11;
+            BaseHero.CritChance = 22;
+            BaseHero.Speed = 5;
+            BaseHero.HitChance = 60;
+            BaseHero.AffectRes = 30;
+            BaseHero.BleedingRes = 45;
+            BaseHero.MagicRes = 20;
+            BaseHero.FireRes = 20;
+            BaseHero.PoisonRes = 20;
+            BaseHero.WaterRes = 20;
+            BaseHero.Defense = 40;
+            BaseHero.DodgeChance = 15;
+            BaseHero.Evilness = 0;
+            BaseHero.Xp = 0;
+            BaseHero.XpMax = 100;
+            BaseHero.Sickness = "";
+            BaseHero.Relation = "";
+            BaseHero.Psycho = "";
+            BaseHero.Equipement[0] = "UNE GROSSE BITE";
+            BaseHero.Equipement[1] = "UN BON GROS STRING MA GUEULE";
+        }
+
+        protected override BaseHero DoCreateHero()
+        {
+            return new WarriorClass( BaseHero );
         }
     }
     public class WarriorClass : BaseHero, ILevel
