@@ -6,61 +6,13 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class PaladinClassConfiguration : HerosType
+    public class PaladinClass : BaseHeros, ILevel
     {
-        readonly BaseHero _baseHero;
-        public PaladinClassConfiguration( List<BaseHero> HerosList )
-            : base( HerosList, HerosEnum.Paladin.ToString(), 400, true, "George" )
-        {
-            Initialized();
-        }
-
-        public BaseHero BaseHero
-        {
-            get { return _baseHero; }
-        }
-
-        public void Initialized()
-        {
-            BaseHero.Lvl = 0;
-            BaseHero.HP = 40;
-            BaseHero.HPmax = 40;
-            BaseHero.Mana = 30;
-            BaseHero.ManaMax = 30;
-            BaseHero.Damage = 7;
-            BaseHero.CritChance = 12;
-            BaseHero.Speed = 8;
-            BaseHero.HitChance = 50;
-            BaseHero.AffectRes = 50;
-            BaseHero.BleedingRes = 40;
-            BaseHero.MagicRes = 30;
-            BaseHero.FireRes = 20;
-            BaseHero.PoisonRes = 40;
-            BaseHero.WaterRes = 20;
-            BaseHero.Defense = 34;
-            BaseHero.DodgeChance = 20;
-            BaseHero.Evilness = 0;
-            BaseHero.Xp = 0;
-            BaseHero.XpMax = 100;
-            BaseHero.Sickness = "";
-            BaseHero.Relation = "";
-            BaseHero.Psycho = "";
-            BaseHero.Equipement[0] = "UNE GROSSE BITE";
-            BaseHero.Equipement[1] = "UN BON GROS STRING MA GUEULE";
-        }
-
-        protected override BaseHero DoCreateHero()
-        {
-            return new PaladinClass( BaseHero );
-        }
-    }
-    public class PaladinClass : BaseHero, ILevel
-    {
-        public PaladinClass(BaseHero PaladinConfig)
+        public PaladinClass(PaladinConfiguration PaladinConfig)
         {
             CharacterName = PaladinConfig.CharacterName;
             CharacterClassName = PaladinConfig.CharacterClassName;
-            Lvl = PaladinConfig.Lvl;
+            Lvl = 0;
             HP = PaladinConfig.HP;
             HPmax = PaladinConfig.HPmax;
             Mana = PaladinConfig.Mana;

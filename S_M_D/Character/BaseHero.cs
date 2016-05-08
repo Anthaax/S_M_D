@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public abstract class BaseHero : BaseCharacter
+    public abstract class BaseHeros : BaseCharacter
     {
         string _characterClassName;
         int _evilness;

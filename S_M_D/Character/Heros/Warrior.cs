@@ -6,62 +6,14 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class WarriorClassConfiguration : HerosType
-    {
-        readonly BaseHero _baseHero;
-        public WarriorClassConfiguration(List<BaseHero> HerosList )
-            :base(HerosList, HerosEnum.Warrior.ToString(), 400, true, "George")
-        {
-            Initialized();
-        }
-
-        public BaseHero BaseHero
-        {
-            get { return _baseHero; }
-        }
-
-        public void Initialized()
-        {
-            BaseHero.Lvl = 0;
-            BaseHero.HP = 50;
-            BaseHero.HPmax = 50;
-            BaseHero.Mana = 20;
-            BaseHero.ManaMax = 20;
-            BaseHero.Damage = 11;
-            BaseHero.CritChance = 22;
-            BaseHero.Speed = 5;
-            BaseHero.HitChance = 60;
-            BaseHero.AffectRes = 30;
-            BaseHero.BleedingRes = 45;
-            BaseHero.MagicRes = 20;
-            BaseHero.FireRes = 20;
-            BaseHero.PoisonRes = 20;
-            BaseHero.WaterRes = 20;
-            BaseHero.Defense = 40;
-            BaseHero.DodgeChance = 15;
-            BaseHero.Evilness = 0;
-            BaseHero.Xp = 0;
-            BaseHero.XpMax = 100;
-            BaseHero.Sickness = "";
-            BaseHero.Relation = "";
-            BaseHero.Psycho = "";
-            BaseHero.Equipement[0] = "UNE GROSSE BITE";
-            BaseHero.Equipement[1] = "UN BON GROS STRING MA GUEULE";
-        }
-
-        protected override BaseHero DoCreateHero()
-        {
-            return new WarriorClass( BaseHero );
-        }
-    }
-    public class WarriorClass : BaseHero, ILevel
+    public class Warrior : BaseHeros, ILevel
     {
 
-        public WarriorClass(BaseHero WarriorConfig)
+        public Warrior(WarriorConfiguration WarriorConfig)
         {
             CharacterName = WarriorConfig.CharacterName;
             CharacterClassName = WarriorConfig.CharacterClassName;
-            Lvl = WarriorConfig.Lvl;
+            Lvl = 0;
             HP = WarriorConfig.HP;
             HPmax = WarriorConfig.HPmax;
             Mana = WarriorConfig.Mana;

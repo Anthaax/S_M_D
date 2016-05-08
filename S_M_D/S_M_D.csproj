@@ -47,9 +47,11 @@
     <Compile Include="Character\HerosManager.cs" />
     <Compile Include="Character\HerosEnum.cs" />
     <Compile Include="Character\Heros\HeroType.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\PaladinConfiguration.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\WarriorConfiguration.cs" />
     <Compile Include="Character\Heros\ILevel.cs" />
-    <Compile Include="Character\Heros\PaladinClass.cs" />
-    <Compile Include="Character\Heros\WarriorClass.cs" />
+    <Compile Include="Character\Heros\Paladin.cs" />
+    <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\OrcWarrior.cs" />
     <Compile Include="Dungeon\Corridor.cs" />
     <Compile Include="Dungeon\CorridorGenerator.cs" />
