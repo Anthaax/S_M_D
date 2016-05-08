@@ -24,7 +24,7 @@ namespace S_M_D.Character
         }
 
         public string CharacterClassName { get { return _characterClassName; } }
-        public string CharacterName { get { return _characterClassName; } }
+        public string CharacterName { get { return _characterName; } }
         public int Price { get { return _price; } }
         public bool IsMale { get { return _isMale; } }
 

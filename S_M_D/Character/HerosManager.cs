@@ -24,7 +24,7 @@ namespace S_M_D.Character
         }
         void RegisterType( HerosType h )
         {
-            _types.Add( h.CharacterName , h );
+            _types.Add( h.CharacterClassName , h );
         }
         public HerosType Find( string name )
         {
