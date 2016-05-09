@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonGenerator
+namespace S_M_D.Dungeon
 {
     public class EventGenerator : IEventGenerator
     {

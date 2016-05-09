@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Dungeon
 {
-    public class MapGenerator : IMapGenerator
+    class CircularRoom : Room
     {
-        public void Generate(Map map)
+        public override bool canPlaceRoom(MapItem[,] grid)
         {
             throw new NotImplementedException();
         }
 
-        public void GenerateParts(int width, int height, int x, int y, Map map)
+        public override void placeRoom(MapItem[,] grid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool pointIsInsideRoom(int x, int y)
         {
             throw new NotImplementedException();
         }

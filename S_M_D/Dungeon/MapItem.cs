@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace DungeonGenerator
+namespace S_M_D.Dungeon
 {
     public abstract class MapItem
     {
