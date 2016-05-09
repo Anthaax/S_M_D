@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public abstract class BaseHero : BaseCharacter
+    public abstract class BaseHeros : BaseCharacter
     {
         string _characterClassName;
+        int _price;
+        bool _isMale;
         int _evilness;
         string _sickness;
         string _psycho;
@@ -16,9 +18,6 @@ namespace S_M_D.Character
         string[] _equipement = new string[4];
         int _xp;
         int _xpMax;
-        List<Spell> _herosSpells;
-        List<Sickness> _herosSicknesses;
-        
 
         public int Evilness
         {
@@ -111,5 +110,43 @@ namespace S_M_D.Character
             }
         }
 
+        public string CharacterClassName
+        {
+            get
+            {
+                return _characterClassName;
+            }
+
+            set
+            {
+                _characterClassName = value;
+            }
+        }
+
+        public bool IsMale
+        {
+            get
+            {
+                return _isMale;
+            }
+
+            set
+            {
+                _isMale = value;
+            }
+        }
+
+        public int Price
+        {
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                _price = value;
+            }
+        }
     }
 }
