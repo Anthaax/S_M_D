@@ -9,7 +9,7 @@ namespace S_M_D.Character
     public abstract class BaseCharacter
     {
         //Info Character
-        string _characterName;
+        readonly string _characterName;
         // Character stats
         int _lvl;
 
@@ -36,7 +36,28 @@ namespace S_M_D.Character
         //Defense stats
         int _defense;
         int _dodgeChance;
-
+        public BaseCharacter( string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes,
+            int magicRes, int fireRes, int poisonRes, int waterRes, int defense, int dodgeChance )
+        {
+            _affectRes = affectRes;
+            _bleedingRes = bleedingRes;
+            _characterName = characterName;
+            _critChance = critChance;
+            _damage = damage;
+            _defense = defense;
+            _dodgeChance = dodgeChance;
+            _fireRes = fireRes;
+            _hitChance = hitChance;
+            _HP = hpMax;
+            _HPmax = hpMax;
+            _lvl = lvl;
+            _magicRes = magicRes;
+            _mana = manaMax;
+            _manaMax = manaMax;
+            _poisonRes = poisonRes;
+            _speed = speed;
+            _waterRes = waterRes;
+        }
         public string CharacterName
         {
             get
@@ -44,10 +65,6 @@ namespace S_M_D.Character
                 return _characterName;
             }
 
-            set
-            {
-                _characterName = value;
-            }
         }
 
         public int Lvl

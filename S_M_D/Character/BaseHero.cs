@@ -8,7 +8,7 @@ namespace S_M_D.Character
 {
     public abstract class BaseHeros : BaseCharacter
     {
-        string _characterClassName;
+        readonly string _characterClassName;
         int _price;
         bool _isMale;
         int _evilness;
@@ -18,6 +18,23 @@ namespace S_M_D.Character
         string[] _equipement = new string[4];
         int _xp;
         int _xpMax;
+
+        public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, string[] equipement, int xp, int xpMax,
+            string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes, int magicRes, int fireRes, 
+            int poisonRes, int waterRes, int defense, int dodgeChance )
+            :base(characterName, lvl, hpMax, manaMax, damage, critChance, hitChance, speed, affectRes, bleedingRes, magicRes, fireRes, poisonRes, waterRes, defense, dodgeChance)
+        {
+            _characterClassName = characterClassName;
+            _price = price;
+            _isMale = isMale;
+            _evilness = evilness;
+            _sickness = sickness;
+            _psycho = psycho;
+            _relation = relation;
+            _equipement = equipement;
+            _xp = xp;
+            _xpMax = xpMax;
+        }
 
         public int Evilness
         {
@@ -115,11 +132,6 @@ namespace S_M_D.Character
             get
             {
                 return _characterClassName;
-            }
-
-            set
-            {
-                _characterClassName = value;
             }
         }
 

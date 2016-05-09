@@ -251,7 +251,7 @@ namespace S_M_D.Character
         }
         protected override BaseHeros DoCreateHero()
         {
-            return new PaladinClass( this );
+            return new Paladin( this );
         }
     }
 }

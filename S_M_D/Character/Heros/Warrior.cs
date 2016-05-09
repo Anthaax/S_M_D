@@ -10,36 +10,12 @@ namespace S_M_D.Character
     {
 
         public Warrior(WarriorConfiguration WarriorConfig)
+            :base(WarriorConfig.CharacterClassName, WarriorConfig.Price, WarriorConfig.IsMale, WarriorConfig.Evilness, WarriorConfig.Sickness, WarriorConfig.Psycho, 
+                 WarriorConfig.Relation, WarriorConfig.Equipement, WarriorConfig.Xp, WarriorConfig.XpMax, WarriorConfig.CharacterName, 0, WarriorConfig.HPmax, WarriorConfig.ManaMax, 
+                 WarriorConfig.Damage, WarriorConfig.CritChance, WarriorConfig.HitChance, WarriorConfig.Speed, WarriorConfig.AffectRes, WarriorConfig.BleedingRes, 
+                 WarriorConfig.MagicRes, WarriorConfig.FireRes, WarriorConfig.PoisonRes, WarriorConfig.WaterRes, WarriorConfig.Defense, WarriorConfig.DodgeChance)
         {
-            CharacterName = WarriorConfig.CharacterName;
-            CharacterClassName = WarriorConfig.CharacterClassName;
-            Price = WarriorConfig.Price;
-            IsMale = WarriorConfig.IsMale;
-            Lvl = 0;
-            HP = WarriorConfig.HP;
-            HPmax = WarriorConfig.HPmax;
-            Mana = WarriorConfig.Mana;
-            ManaMax = WarriorConfig.ManaMax;
-            Damage = WarriorConfig.Damage;
-            CritChance = WarriorConfig.CritChance;
-            Speed = WarriorConfig.Speed;
-            HitChance = WarriorConfig.HitChance;
-            AffectRes = WarriorConfig.AffectRes;
-            BleedingRes = WarriorConfig.BleedingRes;
-            MagicRes = WarriorConfig.MagicRes;
-            FireRes = WarriorConfig.FireRes;
-            PoisonRes = WarriorConfig.PoisonRes;
-            WaterRes = WarriorConfig.WaterRes;
-            Defense = WarriorConfig.Defense;
-            DodgeChance = WarriorConfig.DodgeChance;
-            Evilness = WarriorConfig.Evilness;
-            Xp = WarriorConfig.Xp;
-            XpMax = WarriorConfig.XpMax;
-            Sickness = WarriorConfig.Sickness;
-            Relation = WarriorConfig.Relation;
-            Psycho = WarriorConfig.Psycho;
-            Equipement[0] = WarriorConfig.Equipement[0];
-            Equipement[1] = WarriorConfig.Equipement[1];
+
         }
         public void LevelUp()
         {
