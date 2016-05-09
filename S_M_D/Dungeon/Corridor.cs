@@ -11,18 +11,18 @@ namespace S_M_D.Dungeon
     {
         public Corridor()
         {
-            path = new List<Point>();
+            this.Path = new List<Point>();
             IsCorridor = true;
-            neighbor = new List<MapItem>();
+            this.Neighbor = new List<MapItem>();
         }
 
         public Corridor(Room r1, Room r2)
         {
-            path = new List<Point>();
-            path[0] = r1.Center;
-            path[1] = r2.Center;
+            this.Path = new List<Point>();
+            path.Add(r1.Center);
+            path.Add(r2.Center);
             IsCorridor = true;
-            neighbor = new List<MapItem>();
+            this.Neighbor = new List<MapItem>();
         }
     }
 }

@@ -39,6 +39,7 @@ namespace S_M_D.Dungeon
                     if (r.canPlaceRoom(map.Grid, map.Width, map.Height))
                         roomPlaced = true;
                 }
+                map.Rooms.Add(r);
             }
         }
 

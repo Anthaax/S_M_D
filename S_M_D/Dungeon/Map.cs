@@ -22,11 +22,11 @@ namespace S_M_D.Dungeon
 
         public Map()
         {
-            this.width = 50;
-            this.height = 50;
-            rooms = new List<Room>();
-            corridors = new List<Corridor>();
-            grid = new MapItem[width, height];
+            this.Width = 50;
+            this.Height = 50;
+            this.Rooms = new List<Room>();
+            this.Corridors = new List<Corridor>();
+            this.Grid = new MapItem[this.Height, this.Width];
             IMapGenerator mapGen = new MapGenerator();
             IEventGenerator eventGen = new EventGenerator();
             mapGen.Generate(this);

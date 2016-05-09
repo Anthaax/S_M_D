@@ -72,7 +72,10 @@ namespace S_M_D.Dungeon
                         roomCoords.Add(new Point(x, y));
                 }
             }
-            center = roomCoords[(roomCoords.Count / 2)];
+            if (roomCoords.Count == 0)
+                center = new Point(-1,-1);
+            else
+                center = roomCoords[(roomCoords.Count / 2)];
         }
 
         /// <summary>
