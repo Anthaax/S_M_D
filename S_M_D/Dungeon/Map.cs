@@ -28,9 +28,7 @@ namespace S_M_D.Dungeon
             corridors = new List<Corridor>();
             IMapGenerator mapGen = new MapGenerator();
             IEventGenerator eventGen = new EventGenerator();
-
             mapGen.Generate(this);
-
         }
 
 
