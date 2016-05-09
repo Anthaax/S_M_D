@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class CharacterManager
+    public class Crazyness : Psychology
     {
     }
 }
