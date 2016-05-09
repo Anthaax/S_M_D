@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public abstract class BaseMonster : BaseCharacter
+    public class BaseMonster : BaseCharacter
     {
         protected int _giveXp;
         protected MonsterType _type;

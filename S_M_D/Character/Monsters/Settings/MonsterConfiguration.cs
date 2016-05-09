@@ -8,9 +8,10 @@ namespace S_M_D.Character.Monsters
 {
     public class MonsterConfiguration
     {
-        public BaseMonster CreateMonster(BaseMonster Poco, int level)
+        public BaseMonster CreateMonster(MonsterType type, int level)
         {
-            switch(Poco.Type)
+            BaseMonster Poco = new BaseMonster();
+            switch(type)
             {
                 case MonsterType.ORC:
                     Poco.HPmax = 20+5*level;
