@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camp\BaseBuilding.cs" />
+    <Compile Include="Camp\BuildingType.cs" />
+    <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHero.cs" />
     <Compile Include="Character\BaseMonster.cs" />
@@ -76,9 +79,7 @@
     <Compile Include="Spell\Spell.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Camp\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
