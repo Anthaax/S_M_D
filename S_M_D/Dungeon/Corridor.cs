@@ -19,8 +19,8 @@ namespace S_M_D.Dungeon
         public Corridor(Room r1, Room r2)
         {
             this.Path = new List<Point>();
-            path.Add(r1.Center);
-            path.Add(r2.Center);
+            this.Path.Add(r1.Center);
+            this.Path.Add(r2.Center);
             IsCorridor = true;
             this.Neighbor = new List<MapItem>();
         }
