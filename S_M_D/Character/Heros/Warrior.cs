@@ -13,6 +13,8 @@ namespace S_M_D.Character
         {
             CharacterName = WarriorConfig.CharacterName;
             CharacterClassName = WarriorConfig.CharacterClassName;
+            Price = WarriorConfig.Price;
+            IsMale = WarriorConfig.IsMale;
             Lvl = 0;
             HP = WarriorConfig.HP;
             HPmax = WarriorConfig.HPmax;

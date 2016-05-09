@@ -9,6 +9,8 @@ namespace S_M_D.Character
     public abstract class BaseHeros : BaseCharacter
     {
         string _characterClassName;
+        int _price;
+        bool _isMale;
         int _evilness;
         string _sickness;
         string _psycho;
@@ -118,6 +120,32 @@ namespace S_M_D.Character
             set
             {
                 _characterClassName = value;
+            }
+        }
+
+        public bool IsMale
+        {
+            get
+            {
+                return _isMale;
+            }
+
+            set
+            {
+                _isMale = value;
+            }
+        }
+
+        public int Price
+        {
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                _price = value;
             }
         }
     }

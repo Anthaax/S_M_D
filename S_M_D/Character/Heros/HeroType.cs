@@ -14,12 +14,12 @@ namespace S_M_D.Character
         readonly int _price;
         readonly bool _isMale;
 
-        protected HerosType( List<BaseHeros> heroes, string characterClassName, int price, bool isMale, string characterName )
+        protected HerosType( List<BaseHeros> heroes, string characterClassName, int price, string characterName )
         {
             _heroes = heroes;
             _characterClassName = characterClassName;
             _characterName = characterName;
-            _isMale = isMale;
+            _isMale = ChooseSex();
             _price = price;
         }
 
@@ -34,6 +34,12 @@ namespace S_M_D.Character
             {
                 return _heroes;
             }
+        }
+
+        private bool ChooseSex()
+        {
+            Random rnd = new Random( 1 );
+            return rnd.Next( 2 ) == 0;
         }
 
         public BaseHeros CreateHero()

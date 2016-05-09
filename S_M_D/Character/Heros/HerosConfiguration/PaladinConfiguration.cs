@@ -222,7 +222,7 @@ namespace S_M_D.Character
             }
         }
         public PaladinConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Paladin.ToString(), 400, true, "George" )
+            : base( HerosList, HerosEnum.Paladin.ToString(), 400, "George" )
         {
             _HPmax = 40;
             _HP = 40;

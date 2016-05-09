@@ -12,6 +12,8 @@ namespace S_M_D.Character
         {
             CharacterName = PaladinConfig.CharacterName;
             CharacterClassName = PaladinConfig.CharacterClassName;
+            IsMale = PaladinConfig.IsMale;
+            Price = PaladinConfig.Price;
             Lvl = 0;
             HP = PaladinConfig.HP;
             HPmax = PaladinConfig.HPmax;

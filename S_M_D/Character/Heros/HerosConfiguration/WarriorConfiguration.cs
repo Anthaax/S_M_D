@@ -223,7 +223,7 @@ namespace S_M_D.Character
         }
 
         public WarriorConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Warrior.ToString(), 400, true, "George" )
+            : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
         {
              _HPmax = 50;
              _HP = 50;
