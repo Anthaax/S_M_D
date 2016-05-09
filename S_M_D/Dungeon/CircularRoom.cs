@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace S_M_D.Dungeon
 {
-    class CircularRoom : Room
+    public class CircularRoom : Room
     {
         private int radius;
 
@@ -20,13 +20,18 @@ namespace S_M_D.Dungeon
 
             path = new List<Point>();
 
-            center = path[0];
+            //center = path[0];
 
             IsCorridor = false;
 
             neighbor = new List<MapItem>();
         }
 
+        /// <summary>
+        /// Initialize the Circular Room, place the center of the room within the map borders
+        /// </summary>
+        /// <param name="width">Width of the map</param>
+        /// <param name="height">Height of the map</param>
         public override void Init(int width, int height)
         {
             Random rand = new Random();
@@ -36,6 +41,8 @@ namespace S_M_D.Dungeon
             Point center = new Point(rand.Next(radius, width-radius) , rand.Next(radius, height-radius));
 
             path.Add(center);
+
+            Center = path[0];
         }
 
         /// <summary>
@@ -46,7 +53,14 @@ namespace S_M_D.Dungeon
         /// <returns></returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            return Math.Pow((x - path[0].X), 2) + Math.Pow((y - path[0].Y), 2) <= Math.Pow(radius, 2);
+            if(Math.Pow((x - path[0].X), 2) + Math.Pow((y - path[0].Y), 2) <= Math.Pow(radius, 2))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ namespace S_M_D.Dungeon
             this.height = 50;
             rooms = new List<Room>();
             corridors = new List<Corridor>();
+            grid = new MapItem[width, height];
             IMapGenerator mapGen = new MapGenerator();
             IEventGenerator eventGen = new EventGenerator();
             mapGen.Generate(this);
