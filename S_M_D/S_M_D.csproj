@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingType.cs" />
+    <Compile Include="Camp\ClassConfig\CaravanConfig.cs" />
     <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHero.cs" />
