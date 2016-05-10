@@ -25,13 +25,14 @@ namespace ClassLibrary1
             PolygonRoom testRoom = new PolygonRoom(roomPoints);
 
             // Act
+            testRoom.arrangePoints();
 
             // Assert
             for (int y = 11; y < 20; y++)
             {
                 for (int x = 11; x < 20; x++)
                 {
-                    Assert.True(testRoom.pointIsInsideRoom(x, y));
+                    Assert.True(testRoom.pointIsInsideRoom(x, y), "x = " + x + " y = " + y);
                 }
             }
         }

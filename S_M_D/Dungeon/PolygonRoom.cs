@@ -39,9 +39,65 @@ namespace S_M_D.Dungeon
 
         public PolygonRoom(List<Point> path)
         {
-            this.Path = path;
+            this.Path = new List<Point>(path);
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>();
+        }
+        
+
+        public void arrangePoints()
+        {
+            Point ptTop, ptBot;
+            ptTop = Path[0];
+            ptBot = Path[0];
+            for (int i = 0; i < Path.Count; i++)
+            {
+                if (Path[i].Y > ptTop.Y)
+                    ptTop = Path[i];
+                if (Path[i].Y < ptBot.Y)
+                    ptBot = Path[i];
+            }
+            List<Point> left = new List<Point>();
+            List<Point> right = new List<Point>();
+            List<Point> newPath = new List<Point>();
+            for (int i = 0; i < Path.Count; i++)
+            {
+                if (Path[i].X <= ptBot.X)
+                    left.Add(Path[i]);
+                else
+                    right.Add(Path[i]);
+            }
+            int idx;
+            int value;
+            while (left.Count != 0)
+            {
+                idx = 0; value = left[0].Y;
+                for (int i = 0; i < left.Count; i++)
+                {
+                    if (left[i].Y > value)
+                    {
+                        value = left[i].Y;
+                        idx = i;
+                    }
+                }
+                newPath.Add(left[idx]);
+                left.RemoveAt(idx);
+            }
+            while (right.Count != 0)
+            {
+                idx = 0; value = right[0].Y;
+                for (int i = 0; i < right.Count; i++)
+                {
+                    if (right[i].Y < value)
+                    {
+                        value = right[i].Y;
+                        idx = i;
+                    }
+                }
+                newPath.Add(right[idx]);
+                right.RemoveAt(idx);
+            }
+            this.Path = newPath;
         }
 
         public override void Init(int roomWidth, int roomHeight)
@@ -70,6 +126,8 @@ namespace S_M_D.Dungeon
                 Path.Add(p);
             }
 
+            arrangePoints();
+
             List<Point> roomCoords = new List<Point>();
             for (int y = 0; y < roomHeight; y++)
             {
@@ -81,45 +139,15 @@ namespace S_M_D.Dungeon
             }
             Center = roomCoords[(roomCoords.Count / 2)];
         }
-
-        public bool onSegment(Point p, Point q, Point r)
-        {
-            if (q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X)
-                    && q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y))
-                return true;
-            return false;
-        }
         
-        public int orientation(Point p, Point q, Point r)
+        public int ccw(Point a, Point b, Point c)
         {
-            int val = (q.Y - p.Y) * (r.X - q.X) - (q.X - p.X) * (r.Y - q.Y);
-
-            if (val == 0)
-                return 0;
-
-            return (val > 0) ? 1 : 2;
+            // return a.x*b.y - a.y*b.x + a.y*c.x - a.x*c.y + b.x*c.y - b.y*c.x;
+            double area2 = (b.X - a.X) * (c.Y - a.Y) - (c.X - a.X) * (b.Y - a.Y);
+            if (area2 < 0) return -1;
+            else if (area2 > 0) return +1;
+            else return 0;
         }
-
-        public bool doIntersect(Point p1, Point q1, Point p2, Point q2)
-        {
-            int o1 = orientation(p1, q1, p2);
-            int o2 = orientation(p1, q1, q2);
-            int o3 = orientation(p2, q2, p1);
-            int o4 = orientation(p2, q2, q1);
-
-            if (o1 != o2 && o3 != o4)
-                return true;
-            if (o1 == 0 && onSegment(p1, p2, q1))
-                return true;
-            if (o2 == 0 && onSegment(p1, q2, q1))
-                return true;
-            if (o3 == 0 && onSegment(p2, p1, q2))
-                return true;
-            if (o4 == 0 && onSegment(p2, q1, q2))
-                return true;
-            return false;
-        }
-
 
         /// <summary>
         /// Checks whether a point is inside a polygon
@@ -129,32 +157,17 @@ namespace S_M_D.Dungeon
         /// <returns>True if the point is inside the room, false if not.</returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            int INF = 10000;
-
-            if (Path.Count < 3)
-                return false;
-
-            Point extreme = new Point(INF, y);
+            int winding = 0;
             Point p = new Point(x, y);
-            int count = 0, i = 0;
-            do
+            for (int i = 0; i < Path.Count - 1; i++)
             {
-
-                int next = (i + 1) % Path.Count;
-
-                if (doIntersect(Path[i], Path[next], p, extreme))
-
-                {
-
-                    if (orientation(Path[i], p, Path[next]) == 0)
-                        return onSegment(Path[i],p, Path[next]);
-                    count++;
-                }
-                i = next;
-            } while (i != 0);
-            
-            return (count & 1) == 1 ? true : false;
-
+                int ccw = this.ccw(Path[i], Path[i + 1], p);
+                if (Path[i + 1].Y > p.Y && p.Y >= Path[i].Y)  // upward crossing
+                    if (ccw == +1) winding++;
+                if (Path[i + 1].Y <= p.Y && p.Y < Path[i].Y)  // downward crossing
+                    if (ccw == -1) winding--;
+            }
+            return winding != 0;
             /*
             int i, j;
             bool inside = false;
@@ -162,8 +175,8 @@ namespace S_M_D.Dungeon
             {
                 if (this.Path[j].Y - this.Path[i].Y != 0)
                 {
-                    if (((Path[i].Y > y) != (Path[j].Y > y)) &&
-                     (x < (Path[j].X - Path[i].X) * (y - Path[i].Y) / (Path[j].Y - Path[i].Y) + Path[i].X))
+                    if (((Path[i].Y >= y) != (Path[j].Y >= y)) &&
+                     (x <= (Path[j].X - Path[i].X) * (y - Path[i].Y) / (Path[j].Y - Path[i].Y) + Path[i].X))
                         inside = !inside;
                 }
             }
