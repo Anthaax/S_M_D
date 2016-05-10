@@ -236,9 +236,6 @@ namespace S_M_D.Tests
             warrior.DeletePsycho(testC);
             Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
             Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
-
-
-
         }
     }
 }
