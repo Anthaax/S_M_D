@@ -40,6 +40,10 @@ namespace S_M_D.Character
         readonly int _xp;
         readonly int _xpMax;
 
+        /// <summary>
+        /// Warrior configuration for create a paladin with the good configuration
+        /// </summary>
+        /// <param name="HerosList"> Need a hero list to add the new paladin in this list </param>
         public WarriorConfiguration( List<BaseHeros> HerosList )
             : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
         {
@@ -69,12 +73,18 @@ namespace S_M_D.Character
             _equipement[0] = "UNE GROSSE BITE";
             _equipement[1] = "UN BON GROS STRING MA GUEULE";
         }
-
+        /// <summary>
+        /// Create a warrior and return this one with the good configuration 
+        /// </summary>
+        /// <returns></returns>
         protected override BaseHeros DoCreateHero()
         {
             return new Warrior( this );
         }
-
+        /// <summary>
+        /// Initialize all spell of an warrior
+        /// </summary>
+        /// <param name="hero"> A warrior to initialize spell</param>
         protected override void InitilizedSpell( BaseHeros hero )
         {
             Warrior warrior = hero as Warrior;

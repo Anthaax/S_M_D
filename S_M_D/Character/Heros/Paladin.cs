@@ -17,6 +17,9 @@ namespace S_M_D.Character
         {
             
         }
+        /// <summary>
+        /// Level up a paladin if is xpMax > Xp an exeption was throw
+        /// </summary>
         public void LevelUp()
         {
             if (XpMax > Xp)
