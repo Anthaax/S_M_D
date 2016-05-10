@@ -49,7 +49,7 @@
     <Compile Include="CorridorGeneratorTest.cs" />
     <Compile Include="Dungeon_Circular_Room_Test.cs" />
     <Compile Include="DungonManagerTest.cs" />
-    <Compile Include="EventGenerator.cs" />
+    <Compile Include="EventGeneratorTest.cs" />
     <Compile Include="MapGeneratorTest.cs" />
     <Compile Include="MapItemTest.cs" />
     <Compile Include="MapTest.cs" />

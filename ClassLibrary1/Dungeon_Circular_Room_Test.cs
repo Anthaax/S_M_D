@@ -22,10 +22,8 @@ namespace ClassLibrary1
 
             //Act
 
-
             //Assert
             Assert.AreEqual(true, testRoom.pointIsInsideRoom(testPoint.X, testPoint.Y), testRoom.Center.X + ", " + testRoom.Center.Y);
-  
         }
 
         [Test]
@@ -33,22 +31,17 @@ namespace ClassLibrary1
         {
             //Arrange
             Map testMap = new Map();
-            Room testRoom = null;
-
-            foreach(Room  r  in testMap.Rooms)
-            {
-                if(r is CircularRoom)
-                {
-                    testRoom = r;
-                    break;
-                }
-            }
+            Room testRoom;
+            testRoom = new CircularRoom();
 
             //Act
-            
+            testRoom.Init(testMap.Width, testMap.Height);
+
             //Assert
             Assert.Less(testRoom.Center.X, testMap.Width, "Map width : " + testMap.Width);
             Assert.Less(testRoom.Center.Y, testMap.Height, "Map height : " + testMap.Height);
+            Assert.GreaterOrEqual(testRoom.Center.X, 0);
+            Assert.GreaterOrEqual(testRoom.Center.Y, 0);
         }
 
         [Test]

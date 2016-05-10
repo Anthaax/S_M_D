@@ -12,7 +12,7 @@ namespace S_M_D.Dungeon
         public Corridor()
         {
             this.Path = new List<Point>();
-            IsCorridor = true;
+            this.IsCorridor = true;
             this.Neighbor = new List<MapItem>();
         }
 
@@ -21,7 +21,7 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>();
             this.Path.Add(r1.Center);
             this.Path.Add(r2.Center);
-            IsCorridor = true;
+            this.IsCorridor = true;
             this.Neighbor = new List<MapItem>();
         }
     }

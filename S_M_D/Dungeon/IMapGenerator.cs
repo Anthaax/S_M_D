@@ -15,12 +15,12 @@ namespace S_M_D.Dungeon
         void Generate(Map map);
 
         /// <summary>
-        /// Regenerated map between the given boundaries.
+        /// Regenerates the map between the given boundaries.
         /// </summary>
         /// <param name="width">Width of the rectangle which will be regenerated.</param>
         /// <param name="height">Height of the rectangle which will be regenerated.</param>
-        /// <param name="x">X coordinate of the rectangle which will be regenerated.</param>
-        /// <param name="y">Y coordinate of the rectangle which will be regenerated.</param>
+        /// <param name="x">X coordinate of the rectangle which will be regenerated. (Top left corner)</param>
+        /// <param name="y">Y coordinate of the rectangle which will be regenerated. (Top left corner)(</param>
         /// <param name="map">Map which will be regenerated.</param>
         void GenerateParts(int width, int height, int x, int y, Map map);
     }

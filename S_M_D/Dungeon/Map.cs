@@ -16,9 +16,9 @@ namespace S_M_D.Dungeon
 
         public int Width { get; set; }
         public int Height { get; set; }
-        public MapItem[,] Grid { get; set; }
         public List<Room> Rooms { get; set; }
         public List<Corridor> Corridors { get; set; }
+        public MapItem[,] Grid { get; set; }
 
         public Map()
         {
