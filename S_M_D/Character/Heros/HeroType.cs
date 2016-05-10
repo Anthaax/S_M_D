@@ -23,9 +23,23 @@ namespace S_M_D.Character
         {
             _heroes = heroes;
             _characterClassName = characterClassName;
-            _characterName = characterName;
             _isMale = ChooseSex();
             _price = price;
+            _characterName = ChooseCharacterName();
+        }
+
+        private string ChooseCharacterName()
+        {
+
+            string name;
+            Array valuesM = Enum.GetValues(typeof(HerosFemaleNameEnum));
+            Array valuesF = Enum.GetValues(typeof(HerosMaleNameEnum));
+            Random random = new Random();
+
+            if (_isMale == true) name = valuesM.GetValue(random.Next(valuesM.Length)).ToString();
+            else name = valuesF.GetValue(random.Next(valuesF.Length)).ToString();
+
+            return name;
         }
 
         public string CharacterClassName { get { return _characterClassName; } }
@@ -39,8 +53,11 @@ namespace S_M_D.Character
         /// <returns> Return a bool </returns>
         private bool ChooseSex()
         {
-            Random rnd = new Random( 1 );
-            return rnd.Next( 2 ) == 0;
+            Random rnd = new Random();
+            int result = rnd.Next(1, 3);
+
+            if (result == 1) return true;
+            else return false;
         }
         /// <summary>
         /// Create an hero with is good configuration

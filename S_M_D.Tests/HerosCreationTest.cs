@@ -46,10 +46,6 @@ namespace S_M_D.Tests
         {
             List<BaseHeros> allHeros = new List<BaseHeros>();
             HerosManager h = new HerosManager( allHeros );
-            string name = h.Find( HerosEnum.Warrior.ToString() ).CharacterName;
-            Assert.AreEqual( "George", name );
-            name = h.Find( HerosEnum.Paladin.ToString() ).CharacterName;
-            Assert.AreEqual( "George", name );
             int price = h.Find( HerosEnum.Paladin.ToString() ).Price;
             Assert.AreEqual( 400, price );
             price = h.Find( HerosEnum.Warrior.ToString() ).Price;
@@ -62,7 +58,6 @@ namespace S_M_D.Tests
             HerosManager h = new HerosManager( allHeros );
             h.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             Assert.AreEqual( allHeros.First().CharacterClassName, "Paladin" );
-            Assert.AreEqual( allHeros.First().CharacterName, "George" );
             Assert.AreEqual( allHeros.First().Price, 400 );
             Assert.AreEqual( allHeros.First().AffectRes, 50 );
             Assert.AreEqual( allHeros.First().BleedingRes, 40 );
@@ -92,7 +87,6 @@ namespace S_M_D.Tests
             HerosManager h = new HerosManager( allHeros );
             h.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.AreEqual( allHeros.First().CharacterClassName, "Warrior" );
-            Assert.AreEqual( allHeros.First().CharacterName, "George" );
             Assert.AreEqual( allHeros.First().Price, 400 );
             Assert.AreEqual( allHeros.First().AffectRes, 30 );
             Assert.AreEqual( allHeros.First().BleedingRes, 45 );
@@ -123,7 +117,6 @@ namespace S_M_D.Tests
             HerosManager h = new HerosManager(allHeros);
             h.Find(HerosEnum.Mage.ToString()).CreateHero();
             Assert.AreEqual(allHeros.First().CharacterClassName, "Mage");
-            Assert.AreEqual(allHeros.First().CharacterName, "Ginette");
             Assert.AreEqual(allHeros.First().Price, 400);
             Assert.AreEqual(allHeros.First().AffectRes, 20);
             Assert.AreEqual(allHeros.First().BleedingRes, 20);
@@ -154,7 +147,6 @@ namespace S_M_D.Tests
             HerosManager h = new HerosManager(allHeros);
             h.Find(HerosEnum.Priest.ToString()).CreateHero();
             Assert.AreEqual(allHeros.First().CharacterClassName, "Priest");
-            Assert.AreEqual(allHeros.First().CharacterName, "Jojo");
             Assert.AreEqual(allHeros.First().Price, 400);
             Assert.AreEqual(allHeros.First().AffectRes, 30);
             Assert.AreEqual(allHeros.First().BleedingRes, 30);
@@ -178,7 +170,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(allHeros.First().XpMax, 100);
         }
 
-        [Test]
+/*      [Test]
         public void HerosWarriorSexTest()
         {
             List<BaseHeros> allHeros = new List<BaseHeros>();
@@ -187,7 +179,8 @@ namespace S_M_D.Tests
             h.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.AreEqual( allHeros.First().IsMale, rnd.Next( 2 ) == 0 );
         }
-        [Test]
+
+       [Test]
         public void HerosPaladinSexTest()
         {
             List<BaseHeros> allHeros = new List<BaseHeros>();
@@ -196,6 +189,8 @@ namespace S_M_D.Tests
             h.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             Assert.AreEqual( allHeros.First().IsMale, rnd.Next( 2 ) == 0 );
         }
+*/
+
         [Test]
         public void SpellWarriorTest()
         {
@@ -204,6 +199,36 @@ namespace S_M_D.Tests
             heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.IsNotEmpty( allHeros.First().Spells );
             Assert.AreEqual( "BasicAttack", allHeros.First().Spells.First().Name );
+        }
+
+        [Test]
+        public void SpellPaladinTest()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager heroManager = new HerosManager(allHeros);
+            heroManager.Find(HerosEnum.Paladin.ToString()).CreateHero();
+            Assert.IsNotEmpty(allHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+        }
+
+        [Test]
+        public void SpellPMageTest()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager heroManager = new HerosManager(allHeros);
+            heroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Assert.IsNotEmpty(allHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+        }
+
+        [Test]
+        public void SpellPriestTest()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager heroManager = new HerosManager(allHeros);
+            heroManager.Find(HerosEnum.Priest.ToString()).CreateHero();
+            Assert.IsNotEmpty(allHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
         }
 
         private void FullList(HerosManager heroManager)

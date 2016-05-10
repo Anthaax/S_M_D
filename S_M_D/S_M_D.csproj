@@ -45,8 +45,10 @@
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
+    <Compile Include="Character\HerosFemaleNameEnum.cs" />
     <Compile Include="Character\HerosManager.cs" />
     <Compile Include="Character\HerosEnum.cs" />
+    <Compile Include="Character\HerosMaleNameEnum.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\MageConfiguration.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\PriestConfiguration.cs" />
     <Compile Include="Character\Heros\HeroType.cs" />
