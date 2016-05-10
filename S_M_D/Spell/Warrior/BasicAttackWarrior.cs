@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using S_M_D.Character;
 
 namespace S_M_D.Spell
@@ -16,14 +15,16 @@ namespace S_M_D.Spell
             _warrior = warrior;
         }
 
-        public Warrior Paladin
+        public Warrior Warrior
         {
             get
             {
                 return _warrior;
             }
         }
-
+        /// <summary>
+        /// Use effect of the spell 
+        /// </summary>
         protected override void UseSpell(  )
         {
             

@@ -22,6 +22,16 @@ namespace S_M_D.Tests
             Assert.AreEqual( 2, allHeros.Count );
         }
         [Test]
+        public void CantCreateHerosWhen16HerosInHerosList()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager heroManager = new HerosManager( allHeros );
+            FullList( heroManager );
+            Assert.Throws<InvalidOperationException>( () => heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero());
+            Assert.IsNotEmpty( allHeros.First().Spells );
+            Assert.AreEqual( "BasicAttack", allHeros.First().Spells.First().Name );
+        }
+        [Test]
         public void CreationHeroClassNameTest()
         {
             List<BaseHeros> allHeros = new List<BaseHeros>();
@@ -131,6 +141,26 @@ namespace S_M_D.Tests
             heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.IsNotEmpty( allHeros.First().Spells );
             Assert.AreEqual( "BasicAttack", allHeros.First().Spells.First().Name );
+        }
+
+        private void FullList(HerosManager heroManager)
+        {
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
         }
     }
 }

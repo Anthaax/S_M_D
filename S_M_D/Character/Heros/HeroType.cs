@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
@@ -49,7 +48,7 @@ namespace S_M_D.Character
         /// <returns> the new hero </returns>
         public BaseHeros CreateHero()
         {
-            if (Heroes.Count > 16) throw new InvalidOperationException("You have already 16 hero");
+            if (Heroes.Count >= 16) throw new InvalidOperationException("You have already 16 hero");
             BaseHeros Hero = DoCreateHero();
             InitilizedSpell( Hero );
             Heroes.Add( Hero );
