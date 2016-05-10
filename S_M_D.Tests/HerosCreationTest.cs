@@ -115,6 +115,69 @@ namespace S_M_D.Tests
             Assert.AreEqual( allHeros.First().Xp, 0 );
             Assert.AreEqual( allHeros.First().XpMax, 100 );
         }
+
+        [Test]
+        public void CreationMageStatTest()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager h = new HerosManager(allHeros);
+            h.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Assert.AreEqual(allHeros.First().CharacterClassName, "Mage");
+            Assert.AreEqual(allHeros.First().CharacterName, "Ginette");
+            Assert.AreEqual(allHeros.First().Price, 400);
+            Assert.AreEqual(allHeros.First().AffectRes, 20);
+            Assert.AreEqual(allHeros.First().BleedingRes, 20);
+            Assert.AreEqual(allHeros.First().CritChance, 6);
+            Assert.AreEqual(allHeros.First().Damage, 4);
+            Assert.AreEqual(allHeros.First().Defense, 10);
+            Assert.AreEqual(allHeros.First().DodgeChance, 8);
+            Assert.AreEqual(allHeros.First().Evilness, 0);
+            Assert.AreEqual(allHeros.First().FireRes, 20);
+            Assert.AreEqual(allHeros.First().HitChance, 80);
+            Assert.AreEqual(allHeros.First().HP, 25);
+            Assert.AreEqual(allHeros.First().HPmax, 25);
+            Assert.AreEqual(allHeros.First().Lvl, 0);
+            Assert.AreEqual(allHeros.First().MagicRes, 60);
+            Assert.AreEqual(allHeros.First().Mana, 50);
+            Assert.AreEqual(allHeros.First().ManaMax, 50);
+            Assert.AreEqual(allHeros.First().PoisonRes, 20);
+            Assert.AreEqual(allHeros.First().Speed, 10);
+            Assert.AreEqual(allHeros.First().WaterRes, 20);
+            Assert.AreEqual(allHeros.First().Xp, 0);
+            Assert.AreEqual(allHeros.First().XpMax, 100);
+        }
+
+        [Test]
+        public void CreationPriestStatTest()
+        {
+            List<BaseHeros> allHeros = new List<BaseHeros>();
+            HerosManager h = new HerosManager(allHeros);
+            h.Find(HerosEnum.Priest.ToString()).CreateHero();
+            Assert.AreEqual(allHeros.First().CharacterClassName, "Priest");
+            Assert.AreEqual(allHeros.First().CharacterName, "Jojo");
+            Assert.AreEqual(allHeros.First().Price, 400);
+            Assert.AreEqual(allHeros.First().AffectRes, 30);
+            Assert.AreEqual(allHeros.First().BleedingRes, 30);
+            Assert.AreEqual(allHeros.First().CritChance, 10);
+            Assert.AreEqual(allHeros.First().Damage, 5);
+            Assert.AreEqual(allHeros.First().Defense, 20);
+            Assert.AreEqual(allHeros.First().DodgeChance, 10);
+            Assert.AreEqual(allHeros.First().Evilness, 0);
+            Assert.AreEqual(allHeros.First().FireRes, 30);
+            Assert.AreEqual(allHeros.First().HitChance, 60);
+            Assert.AreEqual(allHeros.First().HP, 30);
+            Assert.AreEqual(allHeros.First().HPmax, 30);
+            Assert.AreEqual(allHeros.First().Lvl, 0);
+            Assert.AreEqual(allHeros.First().MagicRes, 30);
+            Assert.AreEqual(allHeros.First().Mana, 40);
+            Assert.AreEqual(allHeros.First().ManaMax, 40);
+            Assert.AreEqual(allHeros.First().PoisonRes, 30);
+            Assert.AreEqual(allHeros.First().Speed, 8);
+            Assert.AreEqual(allHeros.First().WaterRes, 30);
+            Assert.AreEqual(allHeros.First().Xp, 0);
+            Assert.AreEqual(allHeros.First().XpMax, 100);
+        }
+
         [Test]
         public void HerosWarriorSexTest()
         {

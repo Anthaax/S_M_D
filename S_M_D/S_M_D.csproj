@@ -47,11 +47,15 @@
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\HerosManager.cs" />
     <Compile Include="Character\HerosEnum.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\MageConfiguration.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\PriestConfiguration.cs" />
     <Compile Include="Character\Heros\HeroType.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\PaladinConfiguration.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\WarriorConfiguration.cs" />
     <Compile Include="Character\Heros\ILevel.cs" />
+    <Compile Include="Character\Heros\Mage.cs" />
     <Compile Include="Character\Heros\Paladin.cs" />
+    <Compile Include="Character\Heros\Priest.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
@@ -75,7 +79,9 @@
     <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
+    <Compile Include="Spell\Mage\BasicAttackMage.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
+    <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>

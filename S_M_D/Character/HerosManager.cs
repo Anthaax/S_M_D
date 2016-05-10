@@ -25,6 +25,8 @@ namespace S_M_D.Character
         {
             RegisterType( new WarriorConfiguration( _heros ) );
             RegisterType( new PaladinConfiguration( _heros ) );
+            RegisterType(new MageConfiguration(_heros));
+            RegisterType(new PriestConfiguration(_heros));
         }
         /// <summary>
         /// Add in the dictionary the good name for hero type

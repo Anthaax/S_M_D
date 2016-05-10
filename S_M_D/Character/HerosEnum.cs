@@ -11,6 +11,8 @@ namespace S_M_D.Character
     public enum HerosEnum
     {
         Warrior = 1,
-        Paladin = 2
+        Paladin = 2,
+        Mage = 3,
+        Priest = 4
     }
 }
