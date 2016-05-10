@@ -5,7 +5,23 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public abstract class Sickness
+    public abstract class Sickness 
     {
+        abstract public void effect(BaseHeros heros);
+
+        string name;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
     }
 }

@@ -72,6 +72,7 @@
     <Compile Include="Psychology\Crazyness.cs" />
     <Compile Include="Psychology\Psychology.cs" />
     <Compile Include="Sickness\Diarrhea.cs" />
+    <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
