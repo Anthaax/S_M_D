@@ -14,7 +14,7 @@ namespace S_M_D.Character
                  WarriorConfig.Damage, WarriorConfig.CritChance, WarriorConfig.HitChance, WarriorConfig.Speed, WarriorConfig.AffectRes, WarriorConfig.BleedingRes, 
                  WarriorConfig.MagicRes, WarriorConfig.FireRes, WarriorConfig.PoisonRes, WarriorConfig.WaterRes, WarriorConfig.Defense, WarriorConfig.DodgeChance, WarriorConfig.Spells)
         {
-
+            UpdateHeroStats();
         }
         /// <summary>
         /// Level up a warrior if is xpMax > Xp an exeption was throw

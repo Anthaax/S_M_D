@@ -86,7 +86,8 @@ namespace S_M_D.Character
         protected override void InitilizedSpell(BaseHeros hero)
         {
             Mage mage = hero as Mage;
-            hero.Spells.Add(new BasicAttackMage(mage));
+            hero.Spells[0] = new BasicAttackMage(mage);
+            hero.Spells[1] = new FireBall(mage);
         }
 
         public int HPmax

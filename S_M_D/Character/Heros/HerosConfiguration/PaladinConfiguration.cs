@@ -86,7 +86,7 @@ namespace S_M_D.Character
         protected override void InitilizedSpell( BaseHeros hero )
         {
             Paladin paladin = hero as Paladin;
-            hero.Spells.Add( new BasicAttackPaladin( paladin ) );
+            hero.Spells[0]= new BasicAttackPaladin( paladin  );
         }
 
         public int HPmax

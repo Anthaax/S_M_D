@@ -13,6 +13,7 @@ namespace S_M_D.Character
                  MageConfig.Damage, MageConfig.CritChance, MageConfig.HitChance, MageConfig.Speed, MageConfig.AffectRes, MageConfig.BleedingRes,
                  MageConfig.MagicRes, MageConfig.FireRes, MageConfig.PoisonRes, MageConfig.WaterRes, MageConfig.Defense, MageConfig.DodgeChance, MageConfig.Spells)
         {
+           UpdateHeroStats();
 
         }
         /// <summary>

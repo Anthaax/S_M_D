@@ -25,7 +25,10 @@ namespace S_M_D.Spell
             _manaCost = manaCost;
             _baseCooldown = baseCooldown;
             _damageType = damageType;
+            _lvl = lvl;
         }
+
+        public abstract void levelUp();
         public string Name
         {
             get

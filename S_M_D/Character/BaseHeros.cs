@@ -12,7 +12,7 @@ namespace S_M_D.Character
         int _price;
         bool _isMale;
         int _evilness;
-        readonly List<Spells> _spells;
+        readonly Spells[] _spells;
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
@@ -31,7 +31,6 @@ namespace S_M_D.Character
             _equipement = equipement;
             _xp = xp;
             _xpMax = xpMax;
-            _spells = spells;
             AffectRes = affectRes;
             BleedingRes = bleedingRes;
             CharacterName = characterName;
@@ -50,6 +49,7 @@ namespace S_M_D.Character
             PoisonRes = poisonRes;
             Speed = speed;
             WaterRes = waterRes;
+            _spells = new Spells[8];
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
@@ -233,7 +233,7 @@ namespace S_M_D.Character
             }
         }
 
-        public List<Spells> Spells
+        public Spells[] Spells
         {
             get
             {

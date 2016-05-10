@@ -14,7 +14,7 @@ namespace S_M_D.Character
                  PaladinConfig.Damage, PaladinConfig.CritChance, PaladinConfig.HitChance, PaladinConfig.Speed, PaladinConfig.AffectRes, PaladinConfig.BleedingRes,
                  PaladinConfig.MagicRes, PaladinConfig.FireRes, PaladinConfig.PoisonRes, PaladinConfig.WaterRes, PaladinConfig.Defense, PaladinConfig.DodgeChance, PaladinConfig.Spells )
         {
-            
+            UpdateHeroStats();
         }
         /// <summary>
         /// Level up a paladin if is xpMax > Xp an exeption was throw

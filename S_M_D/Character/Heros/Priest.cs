@@ -13,7 +13,7 @@ namespace S_M_D.Character
                  PriestConfig.Damage, PriestConfig.CritChance, PriestConfig.HitChance, PriestConfig.Speed, PriestConfig.AffectRes, PriestConfig.BleedingRes,
                  PriestConfig.MagicRes, PriestConfig.FireRes, PriestConfig.PoisonRes, PriestConfig.WaterRes, PriestConfig.Defense, PriestConfig.DodgeChance, PriestConfig.Spells)
         {
-
+            UpdateHeroStats();
         }
         /// <summary>
         /// Level up a paladin if is xpMax > Xp an exeption was throw

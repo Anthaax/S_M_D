@@ -219,6 +219,7 @@ namespace S_M_D.Tests
             heroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Assert.IsNotEmpty(allHeros.First().Spells);
             Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+            Assert.AreEqual("FireBall", allHeros.First().Spells[1].Name);
         }
 
         [Test]

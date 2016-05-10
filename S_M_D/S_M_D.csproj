@@ -84,8 +84,10 @@
     <Compile Include="Sickness\Sickness.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
+    <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
+    <Compile Include="Spell\SpellEffect.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>
