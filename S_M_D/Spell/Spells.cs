@@ -7,17 +7,18 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
-    public abstract class Spell
+    public abstract class Spells
     {
         readonly string _name;
         readonly int _price;
         readonly string _description;
         readonly int _manaCost;
         readonly int _baseCooldown;
+        int _lvl;
         readonly DamageTypeEnum _damageType;
         bool _isOnCooldown;
         int _cooldown;
-        public Spell(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType)
+        public Spells(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType, int lvl)
         {
             _name = name;
             _price = price;
@@ -100,6 +101,19 @@ namespace S_M_D.Spell
             }
         }
 
-        protected abstract void UseSpell(BaseMonster target);
+        public int Lvl
+        {
+            get
+            {
+                return _lvl;
+            }
+
+            set
+            {
+                _lvl = value;
+            }
+        }
+
+        protected abstract void UseSpell();
     }
 }

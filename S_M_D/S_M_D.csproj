@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\BaseCharacter.cs" />
-    <Compile Include="Character\BaseHero.cs" />
+    <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\HerosManager.cs" />
     <Compile Include="Character\HerosEnum.cs" />
@@ -72,8 +72,9 @@
     <Compile Include="Psychology\Psychology.cs" />
     <Compile Include="Sickness\Diarrhea.cs" />
     <Compile Include="Sickness\Sickness.cs" />
+    <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
-    <Compile Include="Spell\Spell.cs" />
+    <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>
   <ItemGroup>

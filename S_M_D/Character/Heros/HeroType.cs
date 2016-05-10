@@ -46,10 +46,14 @@ namespace S_M_D.Character
         {
             if (Heroes.Count > 16) throw new InvalidOperationException("You have already 16 hero");
             BaseHeros Hero = DoCreateHero();
+            InitilizedSpell( Hero );
             Heroes.Add( Hero );
             //Enlever Argent
             return Hero;
         }
         protected abstract BaseHeros DoCreateHero();
+
+        protected abstract void InitilizedSpell( BaseHeros hero );
+
     }
 }

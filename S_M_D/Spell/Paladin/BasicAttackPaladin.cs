@@ -8,11 +8,11 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
-    public class BasicAttackPaladin : Spell
+    public class BasicAttackPaladin : Spells
     {
         readonly Paladin _paladin;
         public BasicAttackPaladin(Paladin paladin)
-            :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical)
+            :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical, 1)
         {
             _paladin = paladin;
         }
@@ -25,13 +25,9 @@ namespace S_M_D.Spell
             }
         }
 
-        protected override void UseSpell(BaseMonster target)
+        protected override void UseSpell()
         {
-            Random rnd = new Random();
-            if (rnd.Next(100) <= Paladin.HitChance) 
-            {
-                target.HP -= Paladin.Damage;
-            }   
+             
         }
     }
 }

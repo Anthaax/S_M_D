@@ -123,5 +123,13 @@ namespace S_M_D.Tests
             h.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             Assert.AreEqual( b.First().IsMale, rnd.Next( 2 ) == 0 );
         }
+        [Test]
+        public void SpellWarriorTest()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager( b );
+            h.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Assert.IsNotEmpty( b.First().Spells );
+        }
     }
 }

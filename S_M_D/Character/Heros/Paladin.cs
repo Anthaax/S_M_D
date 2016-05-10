@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -12,7 +13,7 @@ namespace S_M_D.Character
             : base( PaladinConfig.CharacterClassName, PaladinConfig.Price, PaladinConfig.IsMale, PaladinConfig.Evilness, PaladinConfig.Sickness, PaladinConfig.Psycho,
                  PaladinConfig.Relation, PaladinConfig.Equipement, PaladinConfig.Xp, PaladinConfig.XpMax, PaladinConfig.CharacterName, 0, PaladinConfig.HPmax, PaladinConfig.ManaMax,
                  PaladinConfig.Damage, PaladinConfig.CritChance, PaladinConfig.HitChance, PaladinConfig.Speed, PaladinConfig.AffectRes, PaladinConfig.BleedingRes,
-                 PaladinConfig.MagicRes, PaladinConfig.FireRes, PaladinConfig.PoisonRes, PaladinConfig.WaterRes, PaladinConfig.Defense, PaladinConfig.DodgeChance )
+                 PaladinConfig.MagicRes, PaladinConfig.FireRes, PaladinConfig.PoisonRes, PaladinConfig.WaterRes, PaladinConfig.Defense, PaladinConfig.DodgeChance, PaladinConfig.Spells )
         {
             
         }
