@@ -131,5 +131,83 @@ namespace S_M_D.Tests
             h.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.IsNotEmpty( b.First().Spells );
         }
+
+        [Test]
+        public void DiarrheaWariorTest()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager(b);
+            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Warrior warrior = b.First() as Warrior;
+            Diarrhea test = new Diarrhea();
+            warrior.GetSickness(test);
+            Assert.AreEqual(warrior.EffectivDamage, 10);
+            warrior.DeleteSickness(test);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            
+        }
+
+        [Test]
+        public void FeverWariorTest()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager(b);
+            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Warrior warrior = b.First() as Warrior;
+            Fever test = new Fever();
+            warrior.GetSickness(test);
+            Assert.AreEqual(warrior.EffectivDamage, 13);
+            Assert.AreEqual(warrior.EffectivDefense, 32);
+            Assert.Throws<ArgumentException>(() => warrior.GetSickness(test));
+            warrior.DeleteSickness(test);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+
+        }
+
+        [Test]
+        public void CrazynessWarriorTest()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager(b);
+            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Warrior warrior = b.First() as Warrior;
+            Crazyness test = new Crazyness();
+            warrior.GetPsycho(test);
+            Assert.AreEqual(warrior.EffectivDamage, 17);
+            Assert.AreEqual(warrior.EffectCritChance, 30);
+            Assert.AreEqual(warrior.EffectivHitChance, 30);
+            Assert.Throws<ArgumentException>(() => warrior.GetPsycho(test));
+            warrior.DeletePsycho(test);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance);
+            Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance);
+        }
+        [Test]
+        public void WarriorUpdate()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager(b);
+            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Warrior warrior = b.First() as Warrior;
+            Fever testF = new Fever();
+            Diarrhea testD = new Diarrhea();
+            Crazyness testC = new Crazyness();
+            warrior.GetPsycho(testC);
+            warrior.GetSickness(testF);
+            warrior.GetSickness(testD);
+            Assert.AreEqual(warrior.EffectivDamage, 18);
+            Assert.AreEqual(warrior.EffectivDefense, 32);
+            Assert.AreEqual(warrior.EffectCritChance, 30);
+            Assert.AreEqual(warrior.EffectivHitChance, 30);
+            warrior.DeleteSickness(testF);
+            warrior.DeleteSickness(testD);
+            warrior.DeletePsycho(testC);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+
+
+
+        }
     }
 }

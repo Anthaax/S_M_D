@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace S_M_D.Character
 {
-    public class Diarrhea : Sickness
+    public class Fever : Sickness
     {
-        public Diarrhea()
+        public Fever ()
         {
-            base.Name = "Diarrhea";
+            base.Name = "Fever";
         }
+
         override
         public void effect(BaseHeros heros)
         {
-            heros.EffectivDamage -= Convert.ToInt32(heros.Damage * 0.1);
+            heros.EffectivDefense -= Convert.ToInt32(heros.Defense * 0.2);
+            heros.EffectivDamage += Convert.ToInt32(heros.Damage * 0.2);
         }
-
-        
     }
 }

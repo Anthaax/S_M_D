@@ -18,12 +18,18 @@ namespace S_M_D.Character
         int _HP;
         int _manaMax;
         int _mana;
+        int _effectivHPMax;
+        int _effectivManaMax;
 
         // Attacks stats
         int _damage;
         int _critChance;
         int _hitChance;
         int _speed;
+        int _effectivDamage;
+        int _effectCritChance;
+        int _effectivHitChance;
+        int _effectivSpeed;
 
         // Resistances stats
         int _affectRes;
@@ -32,10 +38,18 @@ namespace S_M_D.Character
         int _fireRes;
         int _poisonRes;
         int _waterRes;
+        int _effectivAffectRes;
+        int _effectivBleedingRes;
+        int _effectivMagicRes;
+        int _effectivFireRes;
+        int _effectivPoisonRes;
+        int _effectivWaterRes;
 
         //Defense stats
         int _defense;
         int _dodgeChance;
+        int _effectivDefense;
+        int _effectivDodgeChance;
 
         public string CharacterName
         {
@@ -264,6 +278,188 @@ namespace S_M_D.Character
             set
             {
                 _speed = value;
+            }
+        }
+
+        public int EffectivHPMax
+        {
+            get
+            {
+                return _effectivHPMax;
+            }
+
+            set
+            {
+                _effectivHPMax = value;
+            }
+        }
+
+        public int EffectivManaMax
+        {
+            get
+            {
+                return _effectivManaMax;
+            }
+
+            set
+            {
+                _effectivManaMax = value;
+            }
+        }
+
+        public int EffectivDamage
+        {
+            get
+            {
+                return _effectivDamage;
+            }
+
+            set
+            {
+                _effectivDamage = value;
+            }
+        }
+
+        public int EffectCritChance
+        {
+            get
+            {
+                return _effectCritChance;
+            }
+
+            set
+            {
+                _effectCritChance = value;
+            }
+        }
+
+        public int EffectivSpeed
+        {
+            get
+            {
+                return _effectivSpeed;
+            }
+
+            set
+            {
+                _effectivSpeed = value;
+            }
+        }
+
+        public int EffectivAffectRes
+        {
+            get
+            {
+                return _effectivAffectRes;
+            }
+
+            set
+            {
+                _effectivAffectRes = value;
+            }
+        }
+
+        public int EffectivBleedingRes
+        {
+            get
+            {
+                return _effectivBleedingRes;
+            }
+
+            set
+            {
+                _effectivBleedingRes = value;
+            }
+        }
+
+        public int EffectivMagicRes
+        {
+            get
+            {
+                return _effectivMagicRes;
+            }
+
+            set
+            {
+                _effectivMagicRes = value;
+            }
+        }
+
+        public int EffectivFireRes
+        {
+            get
+            {
+                return _effectivFireRes;
+            }
+
+            set
+            {
+                _effectivFireRes = value;
+            }
+        }
+
+        public int EffectivPoisonRes
+        {
+            get
+            {
+                return _effectivPoisonRes;
+            }
+
+            set
+            {
+                _effectivPoisonRes = value;
+            }
+        }
+
+        public int EffectivWaterRes
+        {
+            get
+            {
+                return _effectivWaterRes;
+            }
+
+            set
+            {
+                _effectivWaterRes = value;
+            }
+        }
+
+        public int EffectivDefense
+        {
+            get
+            {
+                return _effectivDefense;
+            }
+
+            set
+            {
+                _effectivDefense = value;
+            }
+        }
+
+        public int EffectivDodgeChance
+        {
+            get
+            {
+                return _effectivDodgeChance;
+            }
+
+            set
+            {
+                _effectivDodgeChance = value;
+            }
+        }
+
+        public int EffectivHitChance
+        {
+            get
+            {
+                return _effectivHitChance;
+            }
+
+            set
+            {
+                _effectivHitChance = value;
             }
         }
     }
