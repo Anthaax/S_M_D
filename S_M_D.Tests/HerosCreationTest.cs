@@ -224,6 +224,8 @@ namespace S_M_D.Tests
             heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            
+           
         }
 
         [Test]
@@ -277,26 +279,59 @@ namespace S_M_D.Tests
             Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance);
             Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance);
         }
+
+        [Test]
+        public void LoveBetweenWarriorAndMageTest()
+        {
+            List<BaseHeros> b = new List<BaseHeros>();
+            HerosManager h = new HerosManager(b);
+            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            h.Find(HerosEnum.Mage.ToString()).CreateHero();
+
+            Warrior warrior = b.First() as Warrior;
+            Mage mage = b[1] as Mage;
+            Love love = new Love(warrior, mage);
+            warrior.GetRelationship(love);
+            mage.GetRelationship(love);
+            Assert.AreEqual(warrior.EffectivDamage, 12);
+            Assert.AreEqual(warrior.EffectivDefense, 44);
+            Assert.AreEqual(mage.EffectivDamage, 4);
+            Assert.AreEqual(mage.EffectivDefense, 11);
+            mage.DeleteRelationship(love);
+            warrior.DeleteRelationship(love);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+            Assert.AreEqual(mage.EffectivDamage, mage.Damage);
+            Assert.AreEqual(mage.EffectivDefense, mage.Defense);
+        }
+
         [Test]
         public void WarriorUpdate()
         {
             List<BaseHeros> b = new List<BaseHeros>();
             HerosManager h = new HerosManager(b);
             h.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            h.Find(HerosEnum.Mage.ToString()).CreateHero();
             Warrior warrior = b.First() as Warrior;
+            Mage mage = b[1] as Mage;
             Fever testF = new Fever();
             Diarrhea testD = new Diarrhea();
             Crazyness testC = new Crazyness();
+            Love love = new Love(warrior, mage);
             warrior.GetPsycho(testC);
             warrior.GetSickness(testF);
             warrior.GetSickness(testD);
-            Assert.AreEqual(warrior.EffectivDamage, 18);
-            Assert.AreEqual(warrior.EffectivDefense, 32);
+            warrior.GetRelationship(love);
+            mage.GetRelationship(love);
+            Assert.AreEqual(warrior.EffectivDamage, 19);
+            Assert.AreEqual(warrior.EffectivDefense, 36);
             Assert.AreEqual(warrior.EffectCritChance, 30);
             Assert.AreEqual(warrior.EffectivHitChance, 30);
             warrior.DeleteSickness(testF);
             warrior.DeleteSickness(testD);
             warrior.DeletePsycho(testC);
+            warrior.DeleteRelationship(love);
+            mage.DeleteRelationship(love);
             Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
             Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
         }

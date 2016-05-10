@@ -12,10 +12,10 @@ namespace S_M_D.Character
         int _price;
         bool _isMale;
         int _evilness;
-        string _relation;
         readonly List<Spells> _spells;
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
+        readonly List<Relationship> _relationship;
         string[] _equipement = new string[4];
         int _xp;
         int _xpMax;
@@ -28,7 +28,6 @@ namespace S_M_D.Character
             _price = price;
             _isMale = isMale;
             _evilness = evilness;
-            _relation = relation;
             _equipement = equipement;
             _xp = xp;
             _xpMax = xpMax;
@@ -53,6 +52,28 @@ namespace S_M_D.Character
             WaterRes = waterRes;
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
+            _relationship = new List<Relationship>();
+        }
+
+        public void GetRelationship(Relationship relation)
+        {
+            BaseHeros heros1 = relation.HeroDuo[0];
+            BaseHeros heros2 = relation.HeroDuo[1];
+
+            foreach (Relationship relations in _relationship)
+            {
+                if (heros1 == relations.HeroDuo[0] && heros2 == relations.HeroDuo[1]) throw new ArgumentException("dude, they cant have two relation at the same time");
+                if (heros1 == relations.HeroDuo[1] && heros2 == relations.HeroDuo[2]) throw new ArgumentException("dude, they cant have two relation at the same time"); 
+            }
+
+            _relationship.Add(relation);
+            UpdateHeroStats();
+        }
+
+        public void DeleteRelationship(Relationship relation)
+        {
+            _relationship.Remove(relation);
+            UpdateHeroStats();
         }
 
         public void GetSickness(Sickness sickness)
@@ -119,6 +140,11 @@ namespace S_M_D.Character
             {
                 psy.effect(this);
             }
+
+            foreach (Relationship rel in _relationship)
+            {
+                rel.Effect(this);
+            }
         }
 
         public int Evilness
@@ -131,19 +157,6 @@ namespace S_M_D.Character
             set
             {
                 _evilness = value;
-            }
-        }
-
-        public string Relation
-        {
-            get
-            {
-                return _relation;
-            }
-
-            set
-            {
-                _relation = value;
             }
         }
 
@@ -225,6 +238,14 @@ namespace S_M_D.Character
             get
             {
                 return _spells;
+            }
+        }
+
+        public List<Relationship> Relationship
+        {
+            get
+            {
+                return _relationship;
             }
         }
     }
