@@ -45,8 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CorridorTest.cs" />
+    <Compile Include="CorridorGeneratorTest.cs" />
     <Compile Include="Dungeon_Circular_Room_Test.cs" />
+    <Compile Include="DungonManagerTest.cs" />
+    <Compile Include="EventGenerator.cs" />
+    <Compile Include="MapGeneratorTest.cs" />
+    <Compile Include="MapItemTest.cs" />
+    <Compile Include="MapTest.cs" />
+    <Compile Include="PolygonRoomTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S_M_D\S_M_D.csproj">
