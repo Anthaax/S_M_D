@@ -18,7 +18,7 @@ namespace S_M_D.Dungeon
         public List<MapItem> Neighbor { get; set; }
         public void SetNeighbor( MapItem item)
         {
-            neighbor.Add(item);
+            Neighbor.Add(item);
         }
     }
 }

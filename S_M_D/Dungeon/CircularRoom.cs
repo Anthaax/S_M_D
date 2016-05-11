@@ -55,7 +55,7 @@ namespace S_M_D.Dungeon
         /// <returns></returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            if(Math.Pow((x - path[0].X), 2) + Math.Pow((y - path[0].Y), 2) <= Math.Pow(radius, 2))
+            if(Math.Pow((x - Path[0].X), 2) + Math.Pow((y - Path[0].Y), 2) <= Math.Pow(radius, 2))
             {
                 return true;
             }
