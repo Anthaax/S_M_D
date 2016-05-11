@@ -20,15 +20,13 @@ namespace DungeonTest
 
             //Act           
 
-            int tst = testMap.Rooms.Count();
-
             for(int x = 0; x < testMap.Width; x++)
             {
                 for( int y = 0; y < testMap.Height; y++)
                 {
                     foreach(Room r in testMap.Rooms)
                     {
-                        if(testMap.Grid[x,y] == r)
+                        if( testMap.Grid[x,y] != null && testMap.Grid[x,y].Equals(r))
                         {
                             testMap.Rooms.Remove(r);
                             break;
@@ -39,7 +37,7 @@ namespace DungeonTest
             }
 
             //Assert
-            Assert.IsEmpty(testMap.Rooms, testMap.Rooms.Count().ToString());
+            Assert.IsEmpty(testMap.Rooms);
             
         }
 

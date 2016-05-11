@@ -8,11 +8,6 @@ namespace S_M_D.Dungeon
 {
     public class Map
     {
-        private int width;
-        private int height;
-        private List<Room> rooms;
-        private List<Corridor> corridors;
-        private MapItem[,] grid;
 
         public int Width { get; set; }
         public int Height { get; set; }
