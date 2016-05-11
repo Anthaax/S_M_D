@@ -18,5 +18,6 @@ namespace S_M_D.Camp.Class
         {
             // Ajoute le hero choisi a la liste des heros du joueur
         }
+          
     }
 }
