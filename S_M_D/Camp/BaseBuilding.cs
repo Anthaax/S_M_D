@@ -1,4 +1,5 @@
-﻿using System;
+﻿using S_M_D.Camp.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ namespace S_M_D.Camp
 {
     public abstract class BaseBuilding
     {
-        private string _name;
+        private BuildingName _name;
         private int _buildingCost;
         private int _level;
         readonly int _levelMax;
@@ -21,7 +22,7 @@ namespace S_M_D.Camp
         }
 
 
-        public string Name
+        public BuildingName Name
         {
             get
             {

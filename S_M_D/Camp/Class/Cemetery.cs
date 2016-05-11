@@ -7,7 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    class Cemetery : BaseBuilding
+    public class Cemetery : BaseBuilding
     {
         private List<BaseHeros> _herosDispo;
         public Cemetery(CemeteryConfig b) : base(b)

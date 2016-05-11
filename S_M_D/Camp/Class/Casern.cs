@@ -8,7 +8,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    class Casern : BaseBuilding
+    public class Casern : BaseBuilding
     {
         private BaseHeros _hero;
         private Spells _spell;

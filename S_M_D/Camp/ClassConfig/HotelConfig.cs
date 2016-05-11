@@ -1,4 +1,5 @@
-﻿using S_M_D.Character;
+﻿using S_M_D.Camp.Class;
+using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,14 +7,18 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
-    class HotelConfig : BuildingType
+    public class HotelConfig : BuildingType
     {
         private BaseHeros _hero1;
         private BaseHeros _hero2;
-        public HotelConfig(string name, int buildingCost,int level, List<BaseBuilding> buildings, BaseHeros hero1, BaseHeros hero2) : base(name, buildingCost,level, buildings)
+        public HotelConfig(GameContext ctx) : base(Class.BuildingName.Hotel, 1000,0, ctx)
         {
-            this._hero1 = hero1;
-            this._hero2 = hero2;
+            this._hero1 = null;
+            this._hero2 = null;
+        }
+        protected override BaseBuilding DoCreateBuilding()
+        {
+            return new Hotel(this);
         }
         public BaseHeros Hero1
         {

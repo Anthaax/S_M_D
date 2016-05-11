@@ -7,7 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    class Bar : BaseBuilding
+    public class Bar : BaseBuilding
     {
         private BaseHeros _hero1;
         private BaseHeros _hero2;

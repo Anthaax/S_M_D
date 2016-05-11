@@ -1,4 +1,5 @@
-﻿using S_M_D.Character;
+﻿using S_M_D.Camp.Class;
+using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,12 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
-    class ArmoryConfig : BuildingType
+    public class ArmoryConfig : BuildingType
     {
         private BaseHeros _hero;
-        public ArmoryConfig(string name, int buildingCost,int level, List<BaseBuilding> buildings, BaseHeros heros) : base(name, buildingCost,level, buildings)
+        public ArmoryConfig(GameContext ctx) : base(BuildingName.Armory, 600,0,ctx)
         {
-            this._hero = heros;
+            this._hero = null;
         }
         public BaseHeros Hero
         {
@@ -24,6 +25,10 @@ namespace S_M_D.Camp.ClassConfig
             {
                 _hero = value;
             }
+        }
+        protected override BaseBuilding DoCreateBuilding()
+        {
+            return new Armory(this);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using S_M_D.Character;
+﻿using S_M_D.Camp.Class;
+using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,12 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
-    class CemeteryConfig : BuildingType
+    public class CemeteryConfig : BuildingType
     {
         private List<BaseHeros> _herosDispo;
-        public CemeteryConfig(string name, int buildingCost, int level, List<BaseBuilding> buildings, List<BaseHeros> heros) : base(name, buildingCost,level, buildings)
+        public CemeteryConfig(GameContext ctx) : base(BuildingName.Cemetery,0, 1,ctx)
         {
-            this._herosDispo = heros;
+            this._herosDispo = null;
         }
         public List<BaseHeros> HerosDispo
         {
@@ -24,6 +25,10 @@ namespace S_M_D.Camp.ClassConfig
             {
                 _herosDispo = value;
             }
+        }
+        protected override BaseBuilding DoCreateBuilding()
+        {
+            return new Cemetery(this);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using S_M_D.Character;
+﻿using S_M_D.Camp.Class;
+using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace S_M_D.Camp.ClassConfig
     public class HospitalConfig : BuildingType
     {
         private BaseHeros _hero;
-        public HospitalConfig(string name, int buildingCost,int level, List<BaseBuilding> buildings,BaseHeros hero) : base(name, buildingCost,level, buildings)
+        public HospitalConfig(GameContext ctx) : base(BuildingName.Hospital, 1500,0, ctx)
         {
-            this._hero = hero;
+            this._hero = null;
+        }
+        protected override BaseBuilding DoCreateBuilding()
+        {
+            return new Hospital(this);
         }
         public BaseHeros Hero
         {

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    class Armory : BaseBuilding
+    public class Armory : BaseBuilding
     {
         private BaseHeros _hero;
         public Armory(ArmoryConfig b) : base(b)

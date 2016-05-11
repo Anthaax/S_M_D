@@ -1,4 +1,5 @@
-﻿using System;
+﻿using S_M_D.Camp.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,16 @@ namespace S_M_D.Camp
 {
     public abstract class BuildingType
     {
-        readonly string _name;
+        readonly BuildingName _name;
         readonly int _buildingCost;
         readonly int _level;
-        readonly List<BaseBuilding> _buildings;
+        readonly GameContext _ctx;
 
-        protected BuildingType(string name, int buildingCost,int level, List<BaseBuilding> buildings)
+        protected BuildingType(BuildingName name, int buildingCost,int level, GameContext ctx)
         {
             _name = name;
             _buildingCost = buildingCost;
-            _buildings = buildings;
+            _ctx = ctx;
             _level = level;
         }
 
@@ -29,13 +30,17 @@ namespace S_M_D.Camp
             get { return _level; }
         }
 
-        public string Name
+        public BuildingName Name
         {
             get { return _name; }
         }
-        public List<BaseBuilding> Buildings
+        public BaseBuilding CreateBuilding()
         {
-            get { return _buildings; }
+            if (_ctx.PlayerInfo.MyBuildings.Count >=9) throw new InvalidOperationException("You have already 9 buildings");
+            BaseBuilding building = DoCreateBuilding();
+            _ctx.PlayerInfo.MyBuildings.Add(building);
+            return building;
         }
+        protected abstract BaseBuilding DoCreateBuilding();
     }
 }

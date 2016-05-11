@@ -1,4 +1,5 @@
-﻿using S_M_D.Character;
+﻿using S_M_D.Camp.Class;
+using S_M_D.Character;
 using S_M_D.Spell;
 using System;
 using System.Collections.Generic;
@@ -7,14 +8,18 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
-    class CasernConfig : BuildingType
+    public class CasernConfig : BuildingType
     {
         private BaseHeros _hero;
         private Spells _spell;
-        public CasernConfig(string name, int buildingCost,int level, List<BaseBuilding> buildings, BaseHeros heros,Spells spell) : base(name, buildingCost,level, buildings)
+        public CasernConfig(GameContext ctx) : base(BuildingName.Casern, 400,0, ctx)
         {
-            this._hero = heros;
-            this._spell = spell;
+            this._hero = null;
+            this._spell = null;
+        }
+        protected override BaseBuilding DoCreateBuilding()
+        {
+            return new Casern(this);
         }
         public BaseHeros Hero
         {
