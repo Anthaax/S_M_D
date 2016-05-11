@@ -18,13 +18,13 @@ namespace S_M_D.Dungeon
 
             radius = rand.Next(2, 10);
 
-            path = new List<Point>();
+            Path = new List<Point>();
 
             //center = path[0];
 
             IsCorridor = false;
 
-            neighbor = new List<MapItem>();
+            Neighbor = new List<MapItem>();
         }
 
         /// <summary>
