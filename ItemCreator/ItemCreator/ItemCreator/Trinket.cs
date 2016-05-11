@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ItemCreator
 {
@@ -26,18 +27,51 @@ namespace ItemCreator
             {
                 newTrinket = new BaseTrinket();
                 newTrinket.Itemtype = BaseItem.ItemTypes.Trinket;
-                newTrinket.ItemName = "p" + rnd.Next(1, 1000);
                 newTrinket.ItemId = rnd.Next(1, 100000);
                 newTrinket.ItemDescription = "my new trinket";
                 ChooseTrinketType();
                 ChooseTrinketQuality();
                 ChooseTrinketBonus();
                 newTrinket.Stats = BaseStatItem.stats.hp;
+                ChooseTrinketName(newTrinket.Quality);
                 listOfTrinket.Add(newTrinket);
             }
             WriteXMLTrinket(listOfTrinket);
         }
 
+        private void ChooseTrinketName(BaseStatItem.quality quality)
+        {
+            if (quality == BaseStatItem.quality.legendary)
+            {
+                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/LegendaryTrinketNames.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newTrinket.ItemName = tab[x];
+                }
+            }
+            else if (quality == BaseStatItem.quality.epic)
+            {
+                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/EpicTrinketNames.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newTrinket.ItemName = tab[x];
+                }
+            }
+            else
+            {
+                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/BaseTrinketNames.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newTrinket.ItemName = tab[x];
+                }
+            }
+        }
         private void ChooseTrinketType()
         {
             int randomTemp = rnd.Next(1, 2);
@@ -178,7 +212,7 @@ namespace ItemCreator
 
         public static void WriteXMLTrinket(List<BaseTrinket> trinket)
         {
-            using (FileStream myFileStream = new FileStream("Trinket.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("Trinkets/Trinket.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseTrinket>));
@@ -188,7 +222,7 @@ namespace ItemCreator
 
         public void ReadXMLTrinket()
         {
-            using (FileStream myFileStream = new FileStream("Trinket.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("Trinkets/Trinket.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
                 List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);

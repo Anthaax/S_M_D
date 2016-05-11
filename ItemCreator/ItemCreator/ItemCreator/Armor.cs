@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ItemCreator
 {
@@ -25,13 +26,13 @@ namespace ItemCreator
             {
                 newArmor = new BaseArmor();
                 newArmor.Itemtype = BaseItem.ItemTypes.Armor;
-                newArmor.ItemName = "A" + rnd.Next(1, 1000);
                 newArmor.ItemId = rnd.Next(1, 1000000);
                 newArmor.ItemDescription = "my new armor";
                 ChooseArmorType();
                 ChooseArmorQuality();
                 ChooseArmorBonus();
                 newArmor.Stats = BaseStatItem.stats.hp;
+                ChooseArmorName(newArmor.Quality);
                 listOfArmor.Add(newArmor);
             }
 
@@ -121,7 +122,39 @@ namespace ItemCreator
                 }
             }
         }
-
+        private void ChooseArmorName(BaseStatItem.quality quality)
+        {
+            if (quality == BaseStatItem.quality.legendary)
+            {
+                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/LegendaryArmor.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newArmor.ItemName = tab[x];
+                }
+            }
+            else if (quality == BaseStatItem.quality.epic)
+            {
+                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/EpicArmor.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newArmor.ItemName = tab[x];
+                }
+            }
+            else
+            {
+                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/BaseArmor.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newArmor.ItemName = tab[x];
+                }
+            }
+        }
         private int AddBonusStatsA(int y)
         {
             int result = 0;
@@ -179,7 +212,7 @@ namespace ItemCreator
 
         public static void WriteXMLArmor(List<BaseArmor> armor)
         {
-            using (FileStream myFileStream = new FileStream("Armors.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("Armors/Armors.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseArmor>));
@@ -189,7 +222,7 @@ namespace ItemCreator
 
         public void ReadXMLArmor()
         {
-            using (FileStream myFileStream = new FileStream("Armors.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("Armors/Armors.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
                 List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);

@@ -9,26 +9,18 @@ namespace S_M_D.Spell
     public class BasicAttackWarrior : Spells
     {
         readonly Warrior _warrior;
-        readonly SpellEffect _spellEffect;
+        BasicDamagePhysical _spellEffect;
+        int[] damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
         public BasicAttackWarrior( Warrior warrior )
             :base("BasicAttack", 400, "Attaque basique du warrior : inflige " + warrior.Damage + " dégat à un ennemi", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
         {
             _warrior = warrior;
-            _spellEffect = new SpellEffect();
-            updateSpell();
+            SpellEffect = new BasicDamagePhysical(_warrior.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
         public override void updateSpell()
         {
-            _spellEffect.Damage = _warrior.Damage;
-            _spellEffect.CritChance = _warrior.CritChance;
-            _spellEffect.HitChance = _warrior.HitChance;
-        }
-
-        public override void levelUp()
-        {
-            _spellEffect.Damage = Convert.ToInt32(Warrior.Damage * 1.1);
-            Lvl += 1;
+            SpellEffect = new BasicDamagePhysical(_warrior.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
         public Warrior Warrior
@@ -39,20 +31,17 @@ namespace S_M_D.Spell
             }
         }
 
-        public SpellEffect SpeelEffect
+        internal BasicDamagePhysical SpellEffect
         {
             get
             {
                 return _spellEffect;
             }
-        }
 
-        /// <summary>
-        /// Use effect of the spell 
-        /// </summary>
-        public override SpellEffect UseSpell()
-        {
-            return _spellEffect;
+            set
+            {
+                _spellEffect = value;
+            }
         }
     }
 }

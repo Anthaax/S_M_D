@@ -34,11 +34,11 @@ namespace S_M_D.Spell
         }
 
         public abstract void updateSpell();
-        public abstract void levelUp();
-        /// <summary>
-        /// Use effect of the spell 
-        /// </summary>
-        public abstract SpellEffect UseSpell();
+        public  void levelUp()
+        {
+            Lvl += 1;
+        }
+
 
         public string Name
         {

@@ -17,7 +17,7 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
-        readonly BaseItem[] _equipement;
+        BaseItem[] _equipement;
         int _xp;
         int _xpMax;
 
@@ -50,7 +50,7 @@ namespace S_M_D.Character
             Speed = speed;
             WaterRes = waterRes;
             _spells = new Spells[8];
-            _equipement = new BaseItem[4];
+            Equipement = new BaseItem[4];
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
@@ -73,13 +73,18 @@ namespace S_M_D.Character
                 if (Equipement[2] == null) Equipement[2] = item;
                 else throw new ArgumentException("You already have a Trinket!");
             }
-            else if (item.Itemtype == BaseItem.ItemTypes.Potion)
-            {
-                if (Equipement[3] == null) Equipement[3] = item;
-                else throw new ArgumentException("You already have a Potion!");
-            }
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
+        }
+
+        public void RemoveItem(BaseItem item)
+        {
+
+            int x = 0;
+            foreach (BaseItem equip in Equipement)
+            {
+                if (equip == item) Equipement[x] = null;
+            }
         }
 
         public void AddItemStats(BaseItem item)
@@ -202,7 +207,7 @@ namespace S_M_D.Character
 
             }
 
-            foreach (BaseItem item in _equipement)
+            foreach (BaseItem item in Equipement)
             {
                 if (item != null)
                 {
@@ -307,6 +312,11 @@ namespace S_M_D.Character
             get
             {
                 return _equipement;
+            }
+
+            set
+            {
+                _equipement = value;
             }
         }
     }

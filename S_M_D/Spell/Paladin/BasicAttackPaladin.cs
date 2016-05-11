@@ -10,7 +10,8 @@ namespace S_M_D.Spell
     public class BasicAttackPaladin : Spells
     {
         readonly Paladin _paladin;
-        readonly SpellEffect _spellEffect;
+        BasicDamagePhysical _spellEffect;
+        int[] damageRatioByLvl = new int[4] { 1, 2, 3, 4 };
         /// <summary>
         /// 
         /// </summary>
@@ -19,21 +20,14 @@ namespace S_M_D.Spell
             :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
         {
             _paladin = paladin;
-            _spellEffect = new SpellEffect();
-            updateSpell();
+            SpellEffect = new BasicDamagePhysical(paladin.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
         public override void updateSpell()
         {
-            _spellEffect.Damage = _paladin.Damage;
-            _spellEffect.CritChance = _paladin.CritChance;
-            _spellEffect.HitChance = _paladin.HitChance;
+            SpellEffect = new BasicDamagePhysical(_paladin.EffectivDamage, damageRatioByLvl[Lvl]);
         }
-        public override void levelUp()
-        {
-            _spellEffect.Damage = Convert.ToInt32(Paladin.Damage * 1.1);
-            Lvl += 1;
-        }
+
 
         public Paladin Paladin
         {
@@ -43,9 +37,18 @@ namespace S_M_D.Spell
             }
         }
 
-        public override SpellEffect UseSpell()
+        internal BasicDamagePhysical SpellEffect
         {
-            return _spellEffect;
+            get
+            {
+                return _spellEffect;
+            }
+
+            set
+            {
+                _spellEffect = value;
+            }
         }
+
     }
 }

@@ -15,7 +15,7 @@ namespace S_M_D.Character
         override
         public void effect(BaseHeros heros)
         {
-            heros.EffectivHPMax -= Convert.ToInt32(heros.HPmax * 0.1);
+            heros.EffectivHPMax -= 8;
         }
     }
 }

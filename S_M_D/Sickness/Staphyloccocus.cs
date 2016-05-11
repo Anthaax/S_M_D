@@ -15,7 +15,7 @@ namespace S_M_D.Character
         override
         public void effect(BaseHeros heros)
         {
-            heros.EffectivSpeed -= Convert.ToInt32(heros.Speed * 0.5);
+            heros.EffectivSpeed -= 5;
         }
     }
 }

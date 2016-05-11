@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HerosCreationTest.cs" />
+    <Compile Include="HerosModificationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spells.Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

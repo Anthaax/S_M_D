@@ -5,7 +5,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    class Fragil : Psychology
+    public class Fragil : Psychology
     {
         public Fragil()
         {
@@ -14,7 +14,7 @@ namespace S_M_D.Character
                     override
             public void effect(BaseHeros heros)
         {
-            heros.EffectivDefense -= 4;
+            heros.EffectivDefense -= 10;
         }
     }
 }

@@ -11,35 +11,23 @@ namespace S_M_D.Spell
         int[] fireValueByLvl = new int[4] { 2, 4, 8, 10 };
         int[] damageRatioByLvl = new int[4] { 2, 3, 4, 5 };
         readonly Mage _mage;
-        readonly SpellEffect _spellEffect;
+         FireOnTime _spellEffect;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public ChaosBolt(Mage mage)
-            : base("FireBall", 400, "Boule de feu", 20, 0, DamageTypeEnum.Magical, 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true })
+            : base("ChaosBolt", 400, "Boule de feu", 20, 0, DamageTypeEnum.Magical, 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true })
         {
             _mage = mage;
-            _spellEffect = new SpellEffect();
-            updateSpell();
+            SpellEffect = new FireOnTime(mage.EffectivDamage,damageRatioByLvl[Lvl],fireValueByLvl[Lvl],2);
 
         }
 
         public override void updateSpell()
         {
-            _spellEffect.Damage = _mage.Damage * damageRatioByLvl[Lvl];
-            _spellEffect.CritChance = _mage.CritChance;
-            _spellEffect.HitChance = _mage.HitChance;
-            _spellEffect.Fireing = true;
-            _spellEffect.FireValue = fireValueByLvl[Lvl];
-            _spellEffect.FireTime = 2;
-            _spellEffect.Effect = true;
-            _spellEffect.EffectValue = 2;
+           SpellEffect = new FireOnTime(mage.EffectivDamage, damageRatioByLvl[Lvl], fireValueByLvl[Lvl], 2);
 
-        }
-        public override void levelUp()
-        {
-            Lvl += 1;
         }
 
 
@@ -51,9 +39,17 @@ namespace S_M_D.Spell
             }
         }
 
-        public override SpellEffect UseSpell()
+        internal FireOnTime SpellEffect
         {
-            return _spellEffect;
+            get
+            {
+                return _spellEffect;
+            }
+
+            set
+            {
+                _spellEffect = value;
+            }
         }
     }
 }
