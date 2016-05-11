@@ -5,11 +5,11 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public class Crazyness : Psychology
+    public class Agressivity : Psychology
     {
-        public Crazyness()
+        public Agressivity()
         {
-            Name = "Crazyness";
+            Name = "Agressivity";
         }
         override
             public void effect(BaseHeros heros)

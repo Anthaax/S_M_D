@@ -17,7 +17,10 @@ namespace S_M_D.Spell
         readonly DamageTypeEnum _damageType;
         bool _isOnCooldown;
         int _cooldown;
-        public Spells(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType, int lvl)
+        int _radius;
+        bool [] _positionToAttack = new bool [4];
+        bool[] _PositionTakingAttack = new bool[4];
+        public Spells(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType, int lvl, bool[] positionToAttack, bool[] positionTakingAttack)
         {
             _name = name;
             _price = price;
@@ -26,9 +29,17 @@ namespace S_M_D.Spell
             _baseCooldown = baseCooldown;
             _damageType = damageType;
             _lvl = lvl;
+            _positionToAttack = positionToAttack;
+            _PositionTakingAttack = positionTakingAttack;
         }
 
+        public abstract void updateSpell();
         public abstract void levelUp();
+        /// <summary>
+        /// Use effect of the spell 
+        /// </summary>
+        public abstract SpellEffect UseSpell();
+
         public string Name
         {
             get
@@ -115,9 +126,6 @@ namespace S_M_D.Spell
                 _lvl = value;
             }
         }
-        /// <summary>
-        /// Use effect of the spell 
-        /// </summary>
-        protected abstract void UseSpell();
+        
     }
 }

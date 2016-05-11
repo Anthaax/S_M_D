@@ -35,7 +35,7 @@ namespace S_M_D.Character
         readonly string _psycho;
         readonly string _relation;
         readonly string[] _equipement = new string[4];
-        readonly List<Spells> _spells = new List<Spells>();
+        readonly Spells[] _spells;
         readonly int _xp;
         readonly int _xpMax;
 
@@ -44,7 +44,7 @@ namespace S_M_D.Character
         /// </summary>
         /// <param name="HerosList"> Need a hero list to add the new mage in this list</param>
         public MageConfiguration(List<BaseHeros> HerosList)
-            : base( HerosList, HerosEnum.Mage.ToString(), 400, "Ginette" )
+            : base(HerosList, HerosEnum.Mage.ToString(), 400, "Ginette")
         {
             _HPmax = 25;
             _HP = 25;
@@ -68,6 +68,7 @@ namespace S_M_D.Character
             _sickness = "";
             _relation = "";
             _psycho = "";
+            _spells = new Spells[8];
             _equipement[0] = "UNE GROSSE BITE";
             _equipement[1] = "UN BON GROS STRING MA GUEULE";
         }
@@ -88,6 +89,7 @@ namespace S_M_D.Character
             Mage mage = hero as Mage;
             hero.Spells[0] = new BasicAttackMage(mage);
             hero.Spells[1] = new FireBall(mage);
+            hero.Spells[2] = new ChaosBolt(mage);
         }
 
         public int HPmax
@@ -274,7 +276,7 @@ namespace S_M_D.Character
             }
         }
 
-        public List<Spells> Spells
+        public Spells[] Spells
         {
             get
             {

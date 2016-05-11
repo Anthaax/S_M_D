@@ -10,24 +10,28 @@ namespace S_M_D.Spell
     public class BasicAttackPriest : Spells
     {
         readonly Priest _priest;
-        readonly SpellEffect spellEffect;
+        readonly SpellEffect _spellEffect;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public BasicAttackPriest(Priest priest)
-            : base("BasicAttack", 400, "Attaque basique du priest", 0, 0, DamageTypeEnum.Physical, 1)
+            : base("BasicAttack", 400, "Attaque basique du priest", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
         {
             _priest = priest;
-            SpellEffect spellEffect = new SpellEffect();
-            spellEffect.Damage = priest.Damage;
-            spellEffect.CritChance = priest.CritChance;
-            spellEffect.HitChance = priest.HitChance;
+            _spellEffect = new SpellEffect();
+            updateSpell();
         }
 
+        public override void updateSpell()
+        {
+            _spellEffect.Damage = _priest.Damage;
+            _spellEffect.CritChance = _priest.CritChance;
+            _spellEffect.HitChance = _priest.HitChance;
+        }
         public override void levelUp()
         {
-            spellEffect.Damage = Convert.ToInt32(priest.Damage * 1.1);
+            _spellEffect.Damage = Convert.ToInt32(priest.Damage * 1.1);
             Lvl += 1;
         }
 
@@ -39,9 +43,9 @@ namespace S_M_D.Spell
             }
         }
 
-        protected override void UseSpell()
+        public override SpellEffect UseSpell()
         {
-
+            return _spellEffect;
         }
     }
 }
