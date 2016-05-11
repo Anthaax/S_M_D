@@ -126,7 +126,7 @@ namespace ItemCreator
         {
             if (quality == BaseStatItem.quality.legendary)
             {
-                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/LegendaryArmor.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Armors/ArmorsName/LegendaryArmor.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -136,7 +136,7 @@ namespace ItemCreator
             }
             else if (quality == BaseStatItem.quality.epic)
             {
-                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/EpicArmor.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Armors/ArmorsName/EpicArmor.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -146,7 +146,7 @@ namespace ItemCreator
             }
             else
             {
-                using (StreamReader myFileStream = new StreamReader("Armors/ArmorsName/BaseArmor.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Armors/ArmorsName/BaseArmor.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -212,7 +212,7 @@ namespace ItemCreator
 
         public static void WriteXMLArmor(List<BaseArmor> armor)
         {
-            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Armors.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/Items/Armors.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseArmor>));
@@ -222,7 +222,7 @@ namespace ItemCreator
 
         public void ReadXMLArmor()
         {
-            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Armors.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/Items/Armors.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
                 List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);

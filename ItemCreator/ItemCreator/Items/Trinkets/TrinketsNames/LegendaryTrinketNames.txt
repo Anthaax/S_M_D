@@ -1,0 +1,10 @@
+Dementia Mask,
+Annihilation Disc,
+Maniacal Robes,
+Healing Sword,
+Healing Ark,
+Chest of Malevolence,
+Statue of Acrimony,
+Robes of the Scourge,
+Shield of Eternal Health,
+Gem of Dementia

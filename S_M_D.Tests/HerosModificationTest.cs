@@ -199,7 +199,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/bin/debug/Weapons.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
@@ -229,7 +229,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/bin/debug/Weapons.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
@@ -248,7 +248,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/bin/debug/Armors.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
                 List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
@@ -279,7 +279,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/bin/debug/Trinket.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Trinket.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
                 List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
