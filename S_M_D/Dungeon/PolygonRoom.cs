@@ -131,7 +131,7 @@ namespace S_M_D.Dungeon
             this.Path = newPath;
         }
 
-        public override void Init(int roomWidth, int roomHeight)
+        public override bool Init(int roomWidth, int roomHeight)
         {
             Path.Clear();
             System.Random rand = new System.Random();
@@ -168,7 +168,10 @@ namespace S_M_D.Dungeon
                         roomCoords.Add(new Point(x, y));
                 }
             }
+            if (roomCoords.Count == 0)
+                return false;
             Center = roomCoords[(roomCoords.Count / 2)];
+            return true;
         }
         
         /// <summary>

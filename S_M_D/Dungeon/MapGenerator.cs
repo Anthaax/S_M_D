@@ -35,8 +35,8 @@ namespace S_M_D.Dungeon
                 bool roomPlaced = false;
                 while (!roomPlaced)
                 {
-                    r.Init(map.Width, map.Height);
-                    if (r.canPlaceRoom(map.Grid, map.Width, map.Height))
+                    bool correct = r.Init(map.Width, map.Height);
+                    if (correct && r.canPlaceRoom(map.Grid, map.Width, map.Height))
                         roomPlaced = true;
                 }
                 map.Rooms.Add(r);
