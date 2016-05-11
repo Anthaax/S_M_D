@@ -169,27 +169,31 @@ namespace S_M_D.Tests
             Assert.AreEqual(allHeros.First().Xp, 0);
             Assert.AreEqual(allHeros.First().XpMax, 100);
         }
-
-/*      [Test]
-        public void HerosWarriorSexTest()
-        {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager( allHeros );
-            Random rnd = new Random( 1 );
-            h.Find( HerosEnum.Warrior.ToString() ).CreateHero();
-            Assert.AreEqual( allHeros.First().IsMale, rnd.Next( 2 ) == 0 );
-        }
-
        [Test]
-        public void HerosPaladinSexTest()
+        public void HerosSexTest()
         {
             List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager( allHeros );
+            HerosManager heroManager = new HerosManager( allHeros );
             Random rnd = new Random( 1 );
-            h.Find( HerosEnum.Paladin.ToString() ).CreateHero();
-            Assert.AreEqual( allHeros.First().IsMale, rnd.Next( 2 ) == 0 );
+            FullList(heroManager);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[0].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[1].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[2].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[3].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[4].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[5].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[6].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[7].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[8].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[9].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[10].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[11].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[12].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[13].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[14].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, allHeros[15].IsMale);
         }
-*/
+
 
         [Test]
         public void SpellWarriorTest()
