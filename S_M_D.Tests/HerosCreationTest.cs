@@ -381,7 +381,6 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
             using (FileStream myFileStream = new FileStream("Weapons.xml", FileMode.Open))
@@ -389,10 +388,54 @@ namespace S_M_D.Tests
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
                 warrior.GetNewItem(overview.First());
+                Assert.AreEqual(overview.First(), warrior.Equipement[0]);
+                Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += overview.First().CritChance);
+                Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += overview.First().AffectRes);
+                Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += overview.First().BleedingRes);
+                Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += overview.First().Damage);
+                Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += overview.First().Defense);
+                Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += overview.First().DodgeChance);
+                Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += overview.First().FireRes);
+                Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += overview.First().HitChance);
+                Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += overview.First().HP);
+                Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += overview.First().MagicRes);
+                Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += overview.First().Mana);
+                Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += overview.First().PoisonRes);
+                Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += overview.First().Speed);
+                Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += overview.First().WaterRes);
+            }            
+        }
 
+         [Test]
+        public void GetItemArmorTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+
+            using (FileStream myFileStream = new FileStream("Armors.xml", FileMode.Open))
+            {
+                XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
+                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
+                warrior.GetNewItem(overview.First());
+                Assert.AreEqual(overview.First(), warrior.Equipement[1]);
+                Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += overview.First().CritChance);
+                Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += overview.First().AffectRes);
+                Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += overview.First().BleedingRes);
+                Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += overview.First().Damage);
+                Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += overview.First().Defense);
+                Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += overview.First().DodgeChance);
+                Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += overview.First().FireRes);
+                Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += overview.First().HitChance);
+                Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += overview.First().HP);
+                Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += overview.First().MagicRes);
+                Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += overview.First().Mana);
+                Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += overview.First().PoisonRes);
+                Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += overview.First().Speed);
+                Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += overview.First().WaterRes);
             }
-            
 
         }
+       
     }
 }

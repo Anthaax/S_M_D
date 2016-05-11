@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ItemCreator
 {
@@ -24,13 +25,14 @@ namespace ItemCreator
             for (int x = 0; x < 200; x++)
             {
                 newWeapon = new BaseWeapon();
-                newWeapon.Itemtype = BaseItem.ItemTypes.Armor;
+                newWeapon.Itemtype = BaseItem.ItemTypes.Weapon;
                 newWeapon.ItemName = "A" + rnd.Next(1, 1000);
                 newWeapon.ItemId = rnd.Next(1, 1000000);
                 newWeapon.ItemDescription = "my new armor";
                 ChooseWeaponType();
                 ChooseWeaponQuality();
                 ChooseWeaponBonus();
+                ChooseWeaponName(newWeapon.Quality);
                 newWeapon.Stats = BaseStatItem.stats.hp;
                 listOfWeapon.Add(newWeapon);
             }
@@ -47,13 +49,37 @@ namespace ItemCreator
             if (randomTemp == 3) newWeapon.WeaponType1 = BaseWeapon.WeaponType.Staff;
         }
 
+        private void ChooseWeaponName(BaseStatItem.quality quality)
+        {
+            if (quality == BaseStatItem.quality.legendary)
+            {
+                using (StreamReader myFileStream = new StreamReader("Weapons/LegendaryWeaponName.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newWeapon.ItemName = tab[x];
+                }
+            }
+            else if (quality == BaseStatItem.quality.epic)
+            {
+                using (StreamReader myFileStream = new StreamReader("Weapons/EpicWeaponName.txt"))
+                {
+                    string test = myFileStream.ReadToEnd();
+                    var tab = Regex.Split(test, ",");
+                    int x = rnd.Next(0, tab.Length);
+                    newWeapon.ItemName = tab[x];
+                }
+            }
+        }
+
         private void ChooseWeaponQuality()
         {
             int randomTemp = rnd.Next(1, 101);
             if (randomTemp <= 30) newWeapon.Quality = BaseStatItem.quality.useless;
             if (randomTemp > 30 && randomTemp <= 60) newWeapon.Quality = BaseStatItem.quality.common;
             if (randomTemp > 60 && randomTemp <= 85) newWeapon.Quality = BaseStatItem.quality.rare;
-            if (randomTemp < 85 && randomTemp >= 95) newWeapon.Quality = BaseStatItem.quality.epic;
+            if (randomTemp > 85 && randomTemp <= 95) newWeapon.Quality = BaseStatItem.quality.epic;
             if (randomTemp > 95) newWeapon.Quality = BaseStatItem.quality.legendary;
         }
 
@@ -189,7 +215,7 @@ namespace ItemCreator
 
         public void ReadXMLArmor()
         {
-            using (FileStream myFileStream = new FileStream("Weaponss.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);

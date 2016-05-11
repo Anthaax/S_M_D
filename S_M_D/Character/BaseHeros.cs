@@ -79,7 +79,29 @@ namespace S_M_D.Character
                 else throw new ArgumentException("You already have a Potion!");
             }
             else throw new ArgumentException("Type of item non reconize!");
+            UpdateHeroStats();
         }
+
+        public void AddItemStats(BaseItem item)
+        {
+            EffectivHPMax += item.HP;
+            EffectivManaMax += item.Mana;
+            EffectCritChance += item.CritChance;
+            EffectivAffectRes += item.AffectRes;
+            EffectivBleedingRes += item.BleedingRes;
+            EffectivDamage += item.Damage;
+            EffectivDefense += item.Defense;
+            EffectivDodgeChance += item.DodgeChance;
+            EffectivFireRes += item.FireRes;
+            EffectivHitChance += item.HitChance;
+            EffectivMagicRes += item.MagicRes;
+            EffectivPoisonRes += item.PoisonRes;
+            EffectivSpeed += item.Speed;
+            EffectivWaterRes += item.WaterRes;
+        }
+
+        
+
         public void GetRelationship(Relationship relation)
         {
             BaseHeros heros1 = relation.HeroDuo[0];
@@ -178,6 +200,14 @@ namespace S_M_D.Character
                     spellToUpdate.updateSpell();
                 }
 
+            }
+
+            foreach (BaseItem item in _equipement)
+            {
+                if (item != null)
+                {
+                    AddItemStats(item);
+                }
             }
 
         }
