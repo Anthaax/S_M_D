@@ -10,12 +10,14 @@ namespace S_M_D.Camp
         private string _name;
         private int _buildingCost;
         private int _level;
+        readonly int _levelMax;
 
-        public BaseBuilding(string name, int buildingCost, int level)
+        public BaseBuilding(BuildingType b, int level)
         {
-            _name = name;
-            _buildingCost = buildingCost;
+            _name = b.Name;
+            _buildingCost = b.BuildingCost;
             _level = level;
+            _levelMax = 4;
         }
 
 

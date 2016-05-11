@@ -46,6 +46,8 @@
     <Compile Include="Camp\BuildingType.cs" />
     <Compile Include="Camp\ClassConfig\CaravanConfig.cs" />
     <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
+    <Compile Include="Camp\Class\Caravan.cs" />
+    <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
