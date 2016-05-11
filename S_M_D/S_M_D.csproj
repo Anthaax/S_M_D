@@ -74,6 +74,7 @@
     <Compile Include="Dungeon\MapItem.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="PlayerInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Psychology\Crazyness.cs" />
     <Compile Include="Psychology\Psychology.cs" />
