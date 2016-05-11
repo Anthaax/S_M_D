@@ -215,7 +215,7 @@ namespace ItemCreator
 
         public static void WriteXMLWeapon(List<BaseWeapon> weapon)
         {
-            using (FileStream myFileStream = new FileStream("Weapons/Weapons.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Weapons.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseWeapon>));
@@ -225,7 +225,7 @@ namespace ItemCreator
 
         public void ReadXMLArmor()
         {
-            using (FileStream myFileStream = new FileStream("Weapons/Weapons.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);

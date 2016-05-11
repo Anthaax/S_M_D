@@ -212,7 +212,7 @@ namespace ItemCreator
 
         public static void WriteXMLArmor(List<BaseArmor> armor)
         {
-            using (FileStream myFileStream = new FileStream("Armors/Armors.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Armors.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseArmor>));
@@ -222,7 +222,7 @@ namespace ItemCreator
 
         public void ReadXMLArmor()
         {
-            using (FileStream myFileStream = new FileStream("Armors/Armors.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Armors.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
                 List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
