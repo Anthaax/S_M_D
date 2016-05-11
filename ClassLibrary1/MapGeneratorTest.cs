@@ -20,22 +20,24 @@ namespace DungeonTest
 
             //Act           
 
-            bool roomDetected = false;
-
             for(int x = 0; x < testMap.Width; x++)
             {
                 for( int y = 0; y < testMap.Height; y++)
                 {
-                    if(testMap.Grid[x,y] is Room)
+                    foreach(Room r in testMap.Rooms)
                     {
-                        roomDetected = true;
+                        if( testMap.Grid[x,y] != null && testMap.Grid[x,y].Equals(r))
+                        {
+                            testMap.Rooms.Remove(r);
+                            break;
+                        }
                     }
 
                 }
             }
 
             //Assert
-            Assert.IsTrue(roomDetected);
+            Assert.IsEmpty(testMap.Rooms);
             
         }
 
