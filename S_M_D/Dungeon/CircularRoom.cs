@@ -36,13 +36,13 @@ namespace S_M_D.Dungeon
         {
             Random rand = new Random();
 
-            path.Clear();
+            Path.Clear();
 
             Point center = new Point(rand.Next(radius, width-radius) , rand.Next(radius, height-radius));
 
-            path.Add(center);
+            Path.Add(center);
 
-            Center = path[0];
+            Center = Path[0];
 
             return true;
         }
@@ -55,7 +55,7 @@ namespace S_M_D.Dungeon
         /// <returns></returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            if(Math.Pow((x - path[0].X), 2) + Math.Pow((y - path[0].Y), 2) <= Math.Pow(radius, 2))
+            if(Math.Pow((x - Path[0].X), 2) + Math.Pow((y - Path[0].Y), 2) <= Math.Pow(radius, 2))
             {
                 return true;
             }
