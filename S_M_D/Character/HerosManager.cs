@@ -11,11 +11,11 @@ namespace S_M_D.Character
     public class HerosManager
     {
         readonly Dictionary<string, HerosType> _types;
-        readonly List<BaseHeros> _heros;
-        public HerosManager( List<BaseHeros> heros)
+        readonly GameContext _ctx;
+        public HerosManager( GameContext ctx)
         {
             _types = new Dictionary<string, HerosType>();
-            _heros = heros;
+            _ctx = ctx;
             Initialize();
         }
         /// <summary>
@@ -23,10 +23,10 @@ namespace S_M_D.Character
         /// </summary>
         void Initialize()
         {
-            RegisterType( new WarriorConfiguration( _heros ) );
-            RegisterType( new PaladinConfiguration( _heros ) );
-            RegisterType(new MageConfiguration(_heros));
-            RegisterType(new PriestConfiguration(_heros));
+            RegisterType( new WarriorConfiguration( _ctx ) );
+            RegisterType( new PaladinConfiguration( _ctx ) );
+            RegisterType( new MageConfiguration( _ctx ) );
+            RegisterType( new PriestConfiguration( _ctx ) );
         }
         /// <summary>
         /// Add in the dictionary the good name for hero type

@@ -22,7 +22,7 @@ namespace S_M_D.Character
 
         public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, string[] equipement, int xp, int xpMax,
             string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes, int magicRes, int fireRes, 
-            int poisonRes, int waterRes, int defense, int dodgeChance, List<Spells> spells)
+            int poisonRes, int waterRes, int defense, int dodgeChance, Spells[] spells)
         {
             _characterClassName = characterClassName;
             _price = price;
@@ -145,6 +145,16 @@ namespace S_M_D.Character
             {
                 rel.Effect(this);
             }
+
+            foreach (Spells spellToUpdate in _spells)
+            {
+                if (spellToUpdate != null)
+                {
+                    spellToUpdate.updateSpell();
+                }
+
+            }
+
         }
 
         public int Evilness

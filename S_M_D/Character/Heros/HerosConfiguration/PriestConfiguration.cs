@@ -35,7 +35,7 @@ namespace S_M_D.Character
         readonly string _psycho;
         readonly string _relation;
         readonly string[] _equipement = new string[4];
-        readonly List<Spells> _spells = new List<Spells>();
+        readonly Spells[] _spells;
         readonly int _xp;
         readonly int _xpMax;
 
@@ -43,8 +43,8 @@ namespace S_M_D.Character
         /// Priest configuration for create a mage with the good configuration
         /// </summary>
         /// <param name="HerosList"> Need a hero list to add the new priest in this list</param>
-        public PriestConfiguration (List<BaseHeros> HerosList)
-            : base(HerosList, HerosEnum.Priest.ToString(), 400, "Jojo")
+        public PriestConfiguration (GameContext ctx)
+            : base(ctx, HerosEnum.Priest.ToString(), 400, "Jojo")
         {
             _HPmax = 30;
             _HP = 30;
@@ -68,6 +68,7 @@ namespace S_M_D.Character
             _sickness = "";
             _relation = "";
             _psycho = "";
+            _spells = new Spells[8];
             _equipement[0] = "UNE GROSSE BITE";
             _equipement[1] = "UN BON GROS STRING MA GUEULE";
         }
@@ -273,7 +274,7 @@ namespace S_M_D.Character
             }
         }
 
-        public List<Spells> Spells
+        public Spells[] Spells
         {
             get
             {

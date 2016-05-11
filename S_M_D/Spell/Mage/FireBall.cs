@@ -8,28 +8,34 @@ namespace S_M_D.Spell
 {
     public class FireBall : Spells
     {
+        int[] fireValueByLvl = new int[4] { 2, 4, 8, 10 };
+        int[] damageRatioByLvl = new int[4] { 2, 3, 4, 5 };
         readonly Mage _mage;
-        readonly SpellEffect spellEffect;
+        readonly SpellEffect _spellEffect;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public FireBall(Mage mage)
-            : base("FireBall", 400, "Boule de feu", 5, 0, DamageTypeEnum.Magical, 1)
+            : base("FireBall", 400, "Boule de feu", 5, 0, DamageTypeEnum.Magical, 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true })
         {
             _mage = mage;
-            SpellEffect spellEffect = new SpellEffect();
-            spellEffect.Damage = mage.Damage*2;
-            spellEffect.CritChance = mage.CritChance;
-            spellEffect.HitChance = mage.HitChance;
-            spellEffect.Fireing = true;
-            spellEffect.FireValue = 2;
-            spellEffect.FireTime = 2;
+            _spellEffect = new SpellEffect();
+            updateSpell();
+            
         }
 
+        public override void  updateSpell()
+        {
+            _spellEffect.Damage = _mage.Damage * damageRatioByLvl[Lvl];
+            _spellEffect.CritChance = _mage.CritChance;
+            _spellEffect.HitChance = _mage.HitChance;
+            _spellEffect.Fireing = true;
+            _spellEffect.FireValue = fireValueByLvl[Lvl];
+            _spellEffect.FireTime = 2;
+        }
         public override void levelUp()
         {
-            spellEffect.Damage = Convert.ToInt32(mage.Damage * 2.5);
             Lvl += 1;
         }
 
@@ -42,9 +48,9 @@ namespace S_M_D.Spell
             }
         }
 
-        protected override void UseSpell()
+        public override SpellEffect UseSpell()
         {
-
+            return _spellEffect;
         }
     }
 }

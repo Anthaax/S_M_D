@@ -10,24 +10,28 @@ namespace S_M_D.Spell
     public class BasicAttackPaladin : Spells
     {
         readonly Paladin _paladin;
-        readonly SpellEffect spellEffect;
+        readonly SpellEffect _spellEffect;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public BasicAttackPaladin(Paladin paladin)
-            :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical, 1)
+            :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
         {
             _paladin = paladin;
-            SpellEffect spellEffect = new SpellEffect();
-            spellEffect.Damage = paladin.Damage;
-            spellEffect.CritChance = paladin.CritChance;
-            spellEffect.HitChance = paladin.HitChance;
+            _spellEffect = new SpellEffect();
+            updateSpell();
         }
 
+        public override void updateSpell()
+        {
+            _spellEffect.Damage = _paladin.Damage;
+            _spellEffect.CritChance = _paladin.CritChance;
+            _spellEffect.HitChance = _paladin.HitChance;
+        }
         public override void levelUp()
         {
-            spellEffect.Damage = Convert.ToInt32(Paladin.Damage * 1.1);
+            _spellEffect.Damage = Convert.ToInt32(Paladin.Damage * 1.1);
             Lvl += 1;
         }
 
@@ -39,9 +43,9 @@ namespace S_M_D.Spell
             }
         }
 
-        protected override void UseSpell()
+        public override SpellEffect UseSpell()
         {
-             
+            return _spellEffect;
         }
     }
 }

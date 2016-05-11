@@ -35,7 +35,7 @@ namespace S_M_D.Character
         readonly string _psycho;
         readonly string _relation;
         readonly string[] _equipement = new string[4];
-        readonly List<Spells> _spells;
+        readonly Spells[] _spells;
         readonly int _xp;
         readonly int _xpMax;
 
@@ -43,8 +43,8 @@ namespace S_M_D.Character
         /// Warrior configuration for create a paladin with the good configuration
         /// </summary>
         /// <param name="HerosList"> Need a hero list to add the new paladin in this list </param>
-        public WarriorConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
+        public WarriorConfiguration( GameContext ctx )
+            : base( ctx, HerosEnum.Warrior.ToString(), 400, "George" )
         {
             _HPmax = 50;
             _HP = 50;
@@ -68,7 +68,7 @@ namespace S_M_D.Character
             _sickness = "";
             _relation = "";
             _psycho = "";
-            _spells = new List<Spells>();
+            _spells = new Spells[8];
             _equipement[0] = "UNE GROSSE BITE";
             _equipement[1] = "UN BON GROS STRING MA GUEULE";
         }
@@ -274,7 +274,7 @@ namespace S_M_D.Character
             }
         }
 
-        public List<Spells> Spells
+        public Spells[] Spells
         {
             get
             {
