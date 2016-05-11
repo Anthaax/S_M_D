@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Character;
+using S_M_D.Camp;
+using S_M_D.Camp.ClassConfig;
 
 namespace S_M_D
 {
@@ -10,10 +12,12 @@ namespace S_M_D
     {
         readonly GameContext _ctx;
         readonly List<BaseHeros> _myHeros;
+        readonly List<BaseBuilding> _myBuildings;
         public PlayerInformation(GameContext ctx)
         {
             _ctx = ctx;
             _myHeros = new List<BaseHeros>();
+            _myBuildings = new List<BaseBuilding>();
         }
 
         public GameContext Ctx
@@ -30,6 +34,18 @@ namespace S_M_D
             {
                 return _myHeros;
             }
+        }
+        public List<BaseBuilding> MyBuildings
+        {
+            get
+            {
+                return _myBuildings;
+
+            }
+        }
+        private void InitializedBuilding()
+        {
+            _ctx.BuildingManager.Find(Camp.Class.BuildingName.Townhall).CreateBuilding();
         }
     }
 }

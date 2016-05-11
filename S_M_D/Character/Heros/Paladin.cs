@@ -6,7 +6,7 @@ using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
-    public class Paladin : BaseHeros, ILevel
+    public class Paladin : BaseHeros
     {
         public Paladin(PaladinConfiguration PaladinConfig)
             : base( PaladinConfig.CharacterClassName, PaladinConfig.Price, PaladinConfig.IsMale, PaladinConfig.Evilness, PaladinConfig.Sickness, PaladinConfig.Psycho,
@@ -19,19 +19,19 @@ namespace S_M_D.Character
         /// <summary>
         /// Level up a paladin if is xpMax > Xp an exeption was throw
         /// </summary>
-        public void LevelUp()
+        public override void LevelUp()
         {
             if (XpMax > Xp)
-                throw new ArgumentException("Hero can't level up don't use this function when XpMax > Xp");
+                throw new ArgumentException( "Hero can't level up don't use this function when XpMax > Xp" );
             Lvl++;
             Xp = Xp - XpMax;
             XpMax = XpMax * 2;
 
-            HPmax += 15;
-            ManaMax += 6;
-            Damage += 4;
-            HitChance += 20;
-            DodgeChance += 5;
-        } 
+            HPmax += 10;
+            ManaMax += 10;
+            Damage += 2;
+            HitChance += 30;
+            DodgeChance += 3;
+        }
     }
 }

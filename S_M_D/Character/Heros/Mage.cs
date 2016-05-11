@@ -5,7 +5,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public class Mage : BaseHeros, ILevel
+    public class Mage : BaseHeros
     {
         public Mage(MageConfiguration MageConfig)
             : base(MageConfig.CharacterClassName, MageConfig.Price, MageConfig.IsMale, MageConfig.Evilness, MageConfig.Sickness, MageConfig.Psycho,
@@ -16,13 +16,11 @@ namespace S_M_D.Character
            UpdateHeroStats();
 
         }
-        /// <summary>
-        /// Level up a paladin if is xpMax > Xp an exeption was throw
-        /// </summary>
-        public void LevelUp()
+
+        public override void LevelUp()
         {
             if (XpMax > Xp)
-                throw new ArgumentException("Hero can't level up don't use this function when XpMax > Xp");
+                throw new ArgumentException( "Hero can't level up don't use this function when XpMax > Xp" );
             Lvl++;
             Xp = Xp - XpMax;
             XpMax = XpMax * 2;

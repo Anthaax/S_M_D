@@ -214,6 +214,76 @@ namespace S_M_D.Tests
             rnd.Next();
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[15].IsMale);
         }
+        [Test]
+        public void MageLevelUpTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros.First().LevelUp() );
+            ctx.PlayerInfo.MyHeros.First().Xp = ctx.PlayerInfo.MyHeros.First().XpMax;
+            ctx.PlayerInfo.MyHeros.First().LevelUp();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Lvl + 1, ctx.PlayerInfo.MyHeros.First().Lvl );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax + 10, ctx.PlayerInfo.MyHeros.First().HPmax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].ManaMax + 10, ctx.PlayerInfo.MyHeros.First().ManaMax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Damage + 2, ctx.PlayerInfo.MyHeros.First().Damage );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].DodgeChance + 3, ctx.PlayerInfo.MyHeros.First().DodgeChance );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HitChance + 30, ctx.PlayerInfo.MyHeros.First().HitChance );
+
+        }
+        [Test]
+        public void WarriorLevelUpTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros.First().LevelUp() );
+            ctx.PlayerInfo.MyHeros.First().Xp = ctx.PlayerInfo.MyHeros.First().XpMax;
+            ctx.PlayerInfo.MyHeros.First().LevelUp();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Lvl + 1, ctx.PlayerInfo.MyHeros.First().Lvl );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax + 10, ctx.PlayerInfo.MyHeros.First().HPmax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].ManaMax + 10, ctx.PlayerInfo.MyHeros.First().ManaMax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Damage + 2, ctx.PlayerInfo.MyHeros.First().Damage );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].DodgeChance + 3, ctx.PlayerInfo.MyHeros.First().DodgeChance );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HitChance + 30, ctx.PlayerInfo.MyHeros.First().HitChance );
+
+        }
+
+        [Test]
+        public void PreistLevelUpTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros.First().LevelUp() );
+            ctx.PlayerInfo.MyHeros.First().Xp = ctx.PlayerInfo.MyHeros.First().XpMax;
+            ctx.PlayerInfo.MyHeros.First().LevelUp();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Lvl + 1, ctx.PlayerInfo.MyHeros.First().Lvl );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax + 10, ctx.PlayerInfo.MyHeros.First().HPmax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].ManaMax + 10, ctx.PlayerInfo.MyHeros.First().ManaMax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Damage + 2, ctx.PlayerInfo.MyHeros.First().Damage );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].DodgeChance + 3, ctx.PlayerInfo.MyHeros.First().DodgeChance );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HitChance + 30, ctx.PlayerInfo.MyHeros.First().HitChance );
+
+        }
+
+        [Test]
+        public void PaladinLevelUpTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros.First().LevelUp() );
+            ctx.PlayerInfo.MyHeros.First().Xp = ctx.PlayerInfo.MyHeros.First().XpMax;
+            ctx.PlayerInfo.MyHeros.First().LevelUp();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Lvl + 1, ctx.PlayerInfo.MyHeros.First().Lvl );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax + 10, ctx.PlayerInfo.MyHeros.First().HPmax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].ManaMax + 10, ctx.PlayerInfo.MyHeros.First().ManaMax );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Damage + 2, ctx.PlayerInfo.MyHeros.First().Damage );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].DodgeChance + 3, ctx.PlayerInfo.MyHeros.First().DodgeChance );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HitChance + 30, ctx.PlayerInfo.MyHeros.First().HitChance );
+
+        }
 
         private void FullList(HerosManager heroManager)
         {

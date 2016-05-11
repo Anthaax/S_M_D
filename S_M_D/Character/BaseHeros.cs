@@ -216,7 +216,7 @@ namespace S_M_D.Character
             }
 
         }
-
+        public abstract void LevelUp();
         public int Evilness
         {
             get

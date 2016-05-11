@@ -10,6 +10,6 @@ namespace S_M_D.Character
         /// <summary>
         /// Level up a hero if is xpMax > Xp an exeption was throw
         /// </summary>
-        void LevelUp();
+        public void LevelUp();
     }
 }

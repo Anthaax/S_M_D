@@ -7,13 +7,23 @@ namespace S_M_D.Character.Monsters.Settings
 {
     public class MonsterManager
     {
-        public List<BaseMonster> DeleteDeadMonster(List<BaseMonster> list)
+        public void DeleteDeadMonster(List<BaseMonster> list)
         {
-            foreach(BaseMonster monster in list)
+            for(int i = 0; i < list.Count; i++)
             {
-                if (monster.HP <= 0) list.Remove(monster);
+                if (list[i].HP <= 0)
+                {
+                    list.RemoveAt(i);
+                }
             }
-            return list;
+        }
+
+        public void printList(List<BaseMonster> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i].Type.ToString() + " : " + list[i].HP);
+            }
         }
     }
 }

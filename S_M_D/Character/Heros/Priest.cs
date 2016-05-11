@@ -5,7 +5,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public class Priest : BaseHeros, ILevel
+    public class Priest : BaseHeros
     {
         public Priest(PriestConfiguration PriestConfig)
             : base(PriestConfig.CharacterClassName, PriestConfig.Price, PriestConfig.IsMale, PriestConfig.Evilness, PriestConfig.Sickness, PriestConfig.Psycho,
@@ -18,10 +18,10 @@ namespace S_M_D.Character
         /// <summary>
         /// Level up a paladin if is xpMax > Xp an exeption was throw
         /// </summary>
-        public void LevelUp()
+        public override void LevelUp()
         {
             if (XpMax > Xp)
-                throw new ArgumentException("Hero can't level up don't use this function when XpMax > Xp");
+                throw new ArgumentException( "Hero can't level up don't use this function when XpMax > Xp" );
             Lvl++;
             Xp = Xp - XpMax;
             XpMax = XpMax * 2;
@@ -31,7 +31,6 @@ namespace S_M_D.Character
             Damage += 2;
             HitChance += 30;
             DodgeChance += 3;
-
         }
     }
 }
