@@ -36,9 +36,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -109,12 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Camp\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ItemCreator\ItemCreator\ItemCreator.csproj">
-      <Project>{a0edb2b8-66fa-4e1b-aadf-3e47a88f787a}</Project>
-      <Name>ItemCreator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

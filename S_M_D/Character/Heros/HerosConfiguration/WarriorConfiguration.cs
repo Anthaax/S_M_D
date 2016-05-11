@@ -34,7 +34,7 @@ namespace S_M_D.Character
         readonly string _sickness;
         readonly string _psycho;
         readonly string _relation;
-        readonly string[] _equipement = new string[4];
+        readonly BaseItem[] _equipement;
         readonly Spells[] _spells;
         readonly int _xp;
         readonly int _xpMax;
@@ -69,8 +69,8 @@ namespace S_M_D.Character
             _relation = "";
             _psycho = "";
             _spells = new Spells[8];
-            _equipement[0] = "UNE GROSSE BITE";
-            _equipement[1] = "UN BON GROS STRING MA GUEULE";
+            _equipement = new BaseItem[4];
+
         }
         /// <summary>
         /// Create a warrior and return this one with the good configuration 
@@ -250,13 +250,6 @@ namespace S_M_D.Character
             }
         }
 
-        public string[] Equipement
-        {
-            get
-            {
-                return _equipement;
-            }
-        }
 
         public int Xp
         {
@@ -279,6 +272,14 @@ namespace S_M_D.Character
             get
             {
                 return _spells;
+            }
+        }
+
+        public BaseItem[] Equipement
+        {
+            get
+            {
+                return _equipement;
             }
         }
     }

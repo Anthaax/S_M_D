@@ -31,6 +31,7 @@ namespace S_M_D.Character
             Damage += 2;
             HitChance += 30;
             DodgeChance += 3;
+
         }
     }
 }

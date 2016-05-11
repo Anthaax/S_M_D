@@ -376,14 +376,20 @@ namespace S_M_D.Tests
             Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
         }
 
-        [Test]
+         [Test]
         public void GetItemWeaponTest()
         {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
 
             using (FileStream myFileStream = new FileStream("Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
                 List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
+                warrior.GetNewItem(overview.First());
+
             }
             
 

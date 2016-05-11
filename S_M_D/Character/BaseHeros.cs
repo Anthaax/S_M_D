@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Spell;
-using ItemCreator;
+
 
 namespace S_M_D.Character
 {
@@ -17,11 +17,11 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
-        BaseItem[] _equipement = new BaseItem[4];
+        readonly BaseItem[] _equipement;
         int _xp;
         int _xpMax;
 
-        public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, string[] equipement, int xp, int xpMax,
+        public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, BaseItem[] equipement, int xp, int xpMax,
             string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes, int magicRes, int fireRes, 
             int poisonRes, int waterRes, int defense, int dodgeChance, Spells[] spells)
         {
@@ -29,7 +29,6 @@ namespace S_M_D.Character
             _price = price;
             _isMale = isMale;
             _evilness = evilness;
-            _equipement = equipement;
             _xp = xp;
             _xpMax = xpMax;
             AffectRes = affectRes;
@@ -51,6 +50,7 @@ namespace S_M_D.Character
             Speed = speed;
             WaterRes = waterRes;
             _spells = new Spells[8];
+            _equipement = new BaseItem[4];
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
@@ -60,22 +60,22 @@ namespace S_M_D.Character
         {
             if (item.Itemtype == BaseItem.ItemTypes.Weapon)
             {
-                if (_equipement[0] != null) _equipement[0] = item;
+                if (Equipement[0] == null) Equipement[0] = item;
                 else throw new ArgumentException("You already have an armor!");
             }
-            if (item.Itemtype == BaseItem.ItemTypes.Armor)
+            else if (item.Itemtype == BaseItem.ItemTypes.Armor)
             {
-                if (_equipement[1] != null) _equipement[1] = item;
+                if (Equipement[1] == null) Equipement[1] = item;
                 else throw new ArgumentException("You already have a weapon!");
             }
-            if (item.Itemtype == BaseItem.ItemTypes.Trinket)
+            else if (item.Itemtype == BaseItem.ItemTypes.Trinket)
             {
-                if (_equipement[2] != null) _equipement[2] = item;
+                if (Equipement[2] == null) Equipement[2] = item;
                 else throw new ArgumentException("You already have a Trinket!");
             }
-            if (item.Itemtype == BaseItem.ItemTypes.Potion)
+            else if (item.Itemtype == BaseItem.ItemTypes.Potion)
             {
-                if (_equipement[3] != null) _equipement[3] = item;
+                if (Equipement[3] == null) Equipement[3] = item;
                 else throw new ArgumentException("You already have a Potion!");
             }
             else throw new ArgumentException("Type of item non reconize!");
@@ -195,18 +195,6 @@ namespace S_M_D.Character
             }
         }
 
-        public string[] Equipement
-        {
-            get
-            {
-                return _equipement;
-            }
-
-            set
-            {
-                _equipement = value;
-            }
-        }
 
         public int Xp
         {
@@ -281,6 +269,14 @@ namespace S_M_D.Character
             get
             {
                 return _relationship;
+            }
+        }
+
+        public BaseItem[] Equipement
+        {
+            get
+            {
+                return _equipement;
             }
         }
     }
