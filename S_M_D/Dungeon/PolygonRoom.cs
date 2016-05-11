@@ -105,7 +105,7 @@ namespace S_M_D.Dungeon
                 idx = 0; value = left[0].Y;
                 for (int i = 0; i < left.Count; i++)
                 {
-                    if (left[i].Y > value)
+                    if (left[i].Y < value)
                     {
                         value = left[i].Y;
                         idx = i;
@@ -119,7 +119,7 @@ namespace S_M_D.Dungeon
                 idx = 0; value = right[0].Y;
                 for (int i = 0; i < right.Count; i++)
                 {
-                    if (right[i].Y < value)
+                    if (right[i].Y > value)
                     {
                         value = right[i].Y;
                         idx = i;

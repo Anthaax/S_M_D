@@ -36,5 +36,30 @@ namespace DungeonTest
                 }
             }
         }
+
+        [Test]
+        public void Arrange_Points_Reorders_Correctly_A_Rectangle()
+        {
+            // Arrange
+            List<Point> testRoomPts = new List<Point>();
+            Point pt1 = new Point(10, 10);
+            Point pt2 = new Point(10, 20);
+            Point pt3 = new Point(20, 10);
+            Point pt4 = new Point(20, 20);
+            testRoomPts.Add(pt1);
+            testRoomPts.Add(pt2);
+            testRoomPts.Add(pt3);
+            testRoomPts.Add(pt4);
+            PolygonRoom testRoom = new PolygonRoom(testRoomPts);
+
+            // Act
+            testRoom.arrangePoints();
+
+            // Assert
+            Assert.AreEqual(pt1, testRoom.Path[0]);
+            Assert.AreEqual(pt2, testRoom.Path[1]);
+            Assert.AreEqual(pt4, testRoom.Path[2]);
+            Assert.AreEqual(pt3, testRoom.Path[3]);
+        }
     }
 }
