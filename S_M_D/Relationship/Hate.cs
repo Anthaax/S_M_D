@@ -5,11 +5,11 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public class Love : Relationship
+    public class Hate : Relationship
     {
-        public Love(BaseHeros first, BaseHeros second)
+        public Hate(BaseHeros first, BaseHeros second)
         {
-            Name = "love";
+            Name = "hate";
             HeroDuo = new BaseHeros[2];
             HeroDuo[0] = first;
             HeroDuo[1] = second;
@@ -18,8 +18,8 @@ namespace S_M_D.Character
         override
             public void Effect(BaseHeros heros)
         {
-            heros.EffectivDamage += Convert.ToInt32(heros.Damage * 0.1);
-            heros.EffectivDefense += Convert.ToInt32(heros.Defense * 0.1);
+            heros.EffectivDamage += Convert.ToInt32(heros.Damage * 0.5);
+            heros.EffectivDefense += Convert.ToInt32(heros.Defense * 0.5);
         }
 
         public override void EffectOnDeath()
