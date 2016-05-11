@@ -53,11 +53,10 @@ namespace S_M_D.Character
         /// <returns> Return a bool </returns>
         private bool ChooseSex()
         {
-            Random rnd = new Random();
-            int result = rnd.Next(1, 3);
+            Random rnd = new Random(1);
 
-            if (result == 1) return true;
-            else return false;
+            return rnd.Next(2) == 0;
+
         }
         /// <summary>
         /// Create an hero with is good configuration
