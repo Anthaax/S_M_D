@@ -7,11 +7,11 @@ namespace S_M_D.Character
 {
     public abstract class HerosType
     {
-        readonly List<BaseHeros> _heroes;
+        readonly GameContext _ctx;
         readonly string _characterClassName;
-        readonly string _characterName;
+        string _characterName;
         readonly int _price;
-        readonly bool _isMale;
+        bool _isMale;
         /// <summary>
         /// Type of a Hero with all of is information and methode for the creation of him
         /// </summary>
@@ -19,13 +19,11 @@ namespace S_M_D.Character
         /// <param name="characterClassName"></param>
         /// <param name="price"></param>
         /// <param name="characterName"></param>
-        protected HerosType( List<BaseHeros> heroes, string characterClassName, int price, string characterName )
+        protected HerosType( GameContext ctx, string characterClassName, int price, string characterName )
         {
-            _heroes = heroes;
+            _ctx = ctx;
             _characterClassName = characterClassName;
-            _isMale = ChooseSex();
             _price = price;
-            _characterName = ChooseCharacterName();
         }
 
         private string ChooseCharacterName()
@@ -34,10 +32,9 @@ namespace S_M_D.Character
             string name;
             Array valuesM = Enum.GetValues(typeof(HerosFemaleNameEnum));
             Array valuesF = Enum.GetValues(typeof(HerosMaleNameEnum));
-            Random random = new Random();
 
-            if (_isMale == true) name = valuesM.GetValue(random.Next(valuesM.Length)).ToString();
-            else name = valuesF.GetValue(random.Next(valuesF.Length)).ToString();
+            if (_isMale == true) name = valuesM.GetValue(_ctx.Rnd.Next(valuesM.Length)).ToString();
+            else name = valuesF.GetValue(_ctx.Rnd.Next(valuesF.Length)).ToString();
 
             return name;
         }
@@ -46,16 +43,14 @@ namespace S_M_D.Character
         public string CharacterName { get { return _characterName; } }
         public int Price { get { return _price; } }
         public bool IsMale { get { return _isMale; } }
-        public List<BaseHeros> Heroes { get { return _heroes; } }
+        public GameContext GameContext { get { return _ctx; } }
         /// <summary>
         /// CHoose randomly if the hero is a male or a female
         /// </summary>
         /// <returns> Return a bool </returns>
         private bool ChooseSex()
         {
-            Random rnd = new Random(1);
-
-            return rnd.Next(2) == 0;
+            return _ctx.Rnd.Next(2) == 0;
 
         }
         /// <summary>
@@ -64,10 +59,12 @@ namespace S_M_D.Character
         /// <returns> the new hero </returns>
         public BaseHeros CreateHero()
         {
-            if (Heroes.Count >= 16) throw new InvalidOperationException("You have already 16 hero");
+            if (_ctx.PlayerInfo.MyHeros.Count >= 16) throw new InvalidOperationException("You have already 16 hero");
+            _isMale = ChooseSex();
+            _characterName = ChooseCharacterName();
             BaseHeros Hero = DoCreateHero();
             InitilizedSpell( Hero );
-            Heroes.Add( Hero );
+            _ctx.PlayerInfo.MyHeros.Add( Hero );
             //Enlever Argent
             return Hero;
         }

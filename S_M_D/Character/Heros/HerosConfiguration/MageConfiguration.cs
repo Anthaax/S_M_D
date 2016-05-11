@@ -43,8 +43,8 @@ namespace S_M_D.Character
         /// Mage configuration for create a mage with the good configuration
         /// </summary>
         /// <param name="HerosList"> Need a hero list to add the new mage in this list</param>
-        public MageConfiguration(List<BaseHeros> HerosList)
-            : base(HerosList, HerosEnum.Mage.ToString(), 400, "Ginette")
+        public MageConfiguration(GameContext ctx)
+            : base( ctx, HerosEnum.Mage.ToString(), 400, "Ginette" )
         {
             _HPmax = 25;
             _HP = 25;

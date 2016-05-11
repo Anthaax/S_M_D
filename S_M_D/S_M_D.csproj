@@ -80,6 +80,7 @@
     <Compile Include="Item\BaseStatItem.cs" />
     <Compile Include="Item\BaseTrinket.cs" />
     <Compile Include="Item\BaseWeapon.cs" />
+    <Compile Include="PlayerInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Psychology\Agressivity.cs" />
     <Compile Include="Psychology\Arrogant.cs" />

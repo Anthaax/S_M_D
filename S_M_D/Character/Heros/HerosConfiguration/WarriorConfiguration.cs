@@ -43,8 +43,8 @@ namespace S_M_D.Character
         /// Warrior configuration for create a paladin with the good configuration
         /// </summary>
         /// <param name="HerosList"> Need a hero list to add the new paladin in this list </param>
-        public WarriorConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
+        public WarriorConfiguration( GameContext ctx )
+            : base( ctx, HerosEnum.Warrior.ToString(), 400, "George" )
         {
             _HPmax = 50;
             _HP = 50;

@@ -17,257 +17,268 @@ namespace S_M_D.Tests
         [Test]
         public void CreationHeroAddIntoListTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Assert.IsNotEmpty(allHeros);
-            h.Find(HerosEnum.Paladin.ToString()).CreateHero();
-            Assert.AreEqual(2, allHeros.Count);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros );
+            ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            Assert.AreEqual( 2, ctx.PlayerInfo.MyHeros.Count );
+            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            Assert.AreEqual( 3, ctx.PlayerInfo.MyHeros.Count );
+            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            Assert.AreEqual( 4, ctx.PlayerInfo.MyHeros.Count );
         }
         [Test]
         public void CantCreateHerosWhen16HerosInHerosList()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
-            FullList(heroManager);
-            Assert.Throws<InvalidOperationException>(() => heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero());
-            Assert.IsNotEmpty(allHeros.First().Spells);
-            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+            GameContext ctx = GameContext.CreateNewGame();
+            FullList( ctx.HeroManager );
+            Assert.Throws<InvalidOperationException>( () => ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero());
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros.First().Spells );
+            Assert.AreEqual( "BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name );
         }
         [Test]
         public void CreationHeroClassNameTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            string name = h.Find(HerosEnum.Warrior.ToString()).CreateHero().CharacterClassName;
+            GameContext ctx = GameContext.CreateNewGame();
+            string name = ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero().CharacterClassName;
             Assert.AreEqual(HerosEnum.Warrior.ToString(), name);
-            name = h.Find(HerosEnum.Paladin.ToString()).CreateHero().CharacterClassName;
+            name = ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero().CharacterClassName;
             Assert.AreEqual(HerosEnum.Paladin.ToString(), name);
+            name = ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero().CharacterClassName;
+            Assert.AreEqual( HerosEnum.Mage.ToString(), name );
+            name = ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero().CharacterClassName;
+            Assert.AreEqual( HerosEnum.Priest.ToString(), name );
         }
         [Test]
         public void CreationHeroClassPrimaryInformationStatTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            int price = h.Find(HerosEnum.Paladin.ToString()).Price;
+            GameContext ctx = GameContext.CreateNewGame();
+            int price = ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).Price;
             Assert.AreEqual(400, price);
-            price = h.Find(HerosEnum.Warrior.ToString()).Price;
+            price = ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).Price;
+            Assert.AreEqual( 400, price );
+            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            Assert.AreEqual( 400, price );
+            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             Assert.AreEqual(400, price);
         }
         [Test]
         public void CreationPaladinStatTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            h.Find(HerosEnum.Paladin.ToString()).CreateHero();
-            Assert.AreEqual(allHeros.First().CharacterClassName, "Paladin");
-            Assert.AreEqual(allHeros.First().Price, 400);
-            Assert.AreEqual(allHeros.First().AffectRes, 50);
-            Assert.AreEqual(allHeros.First().BleedingRes, 40);
-            Assert.AreEqual(allHeros.First().CritChance, 12);
-            Assert.AreEqual(allHeros.First().Damage, 7);
-            Assert.AreEqual(allHeros.First().Defense, 40);
-            Assert.AreEqual(allHeros.First().DodgeChance, 15);
-            Assert.AreEqual(allHeros.First().Evilness, 0);
-            Assert.AreEqual(allHeros.First().FireRes, 20);
-            Assert.AreEqual(allHeros.First().HitChance, 50);
-            Assert.AreEqual(allHeros.First().HP, 40);
-            Assert.AreEqual(allHeros.First().HPmax, 40);
-            Assert.AreEqual(allHeros.First().Lvl, 0);
-            Assert.AreEqual(allHeros.First().MagicRes, 30);
-            Assert.AreEqual(allHeros.First().Mana, 30);
-            Assert.AreEqual(allHeros.First().ManaMax, 30);
-            Assert.AreEqual(allHeros.First().PoisonRes, 40);
-            Assert.AreEqual(allHeros.First().Speed, 8);
-            Assert.AreEqual(allHeros.First().WaterRes, 20);
-            Assert.AreEqual(allHeros.First().Xp, 0);
-            Assert.AreEqual(allHeros.First().XpMax, 100);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().CharacterClassName, "Paladin" );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Price, 400 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().AffectRes, 50 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().BleedingRes, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().CritChance, 12 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Damage, 7 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Defense, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().DodgeChance, 15 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Evilness, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().FireRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HitChance, 50 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HP, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HPmax, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Lvl, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().MagicRes, 30 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Mana, 30 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().ManaMax, 30 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().PoisonRes, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Speed, 8 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().WaterRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Xp, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().XpMax, 100 );
         }
         [Test]
         public void CreationWarriorStatTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Assert.AreEqual(allHeros.First().CharacterClassName, "Warrior");
-            Assert.AreEqual(allHeros.First().Price, 400);
-            Assert.AreEqual(allHeros.First().AffectRes, 30);
-            Assert.AreEqual(allHeros.First().BleedingRes, 45);
-            Assert.AreEqual(allHeros.First().CritChance, 20);
-            Assert.AreEqual(allHeros.First().Damage, 11);
-            Assert.AreEqual(allHeros.First().Defense, 40);
-            Assert.AreEqual(allHeros.First().DodgeChance, 15);
-            Assert.AreEqual(allHeros.First().Evilness, 0);
-            Assert.AreEqual(allHeros.First().FireRes, 20);
-            Assert.AreEqual(allHeros.First().HitChance, 60);
-            Assert.AreEqual(allHeros.First().HP, 50);
-            Assert.AreEqual(allHeros.First().HPmax, 50);
-            Assert.AreEqual(allHeros.First().Lvl, 0);
-            Assert.AreEqual(allHeros.First().MagicRes, 20);
-            Assert.AreEqual(allHeros.First().Mana, 20);
-            Assert.AreEqual(allHeros.First().ManaMax, 20);
-            Assert.AreEqual(allHeros.First().PoisonRes, 20);
-            Assert.AreEqual(allHeros.First().Speed, 5);
-            Assert.AreEqual(allHeros.First().WaterRes, 20);
-            Assert.AreEqual(allHeros.First().Xp, 0);
-            Assert.AreEqual(allHeros.First().XpMax, 100);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().CharacterClassName, "Warrior" );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Price, 400 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().AffectRes, 30 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().BleedingRes, 45 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().CritChance, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Damage, 11 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Defense, 40 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().DodgeChance, 15 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Evilness, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().FireRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HitChance, 60 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HP, 50 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().HPmax, 50 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Lvl, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().MagicRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Mana, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().ManaMax, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().PoisonRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Speed, 5 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().WaterRes, 20 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Xp, 0 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().XpMax, 100 );
         }
 
         [Test]
         public void CreationMageStatTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            h.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Assert.AreEqual(allHeros.First().CharacterClassName, "Mage");
-            Assert.AreEqual(allHeros.First().Price, 400);
-            Assert.AreEqual(allHeros.First().AffectRes, 20);
-            Assert.AreEqual(allHeros.First().BleedingRes, 20);
-            Assert.AreEqual(allHeros.First().CritChance, 6);
-            Assert.AreEqual(allHeros.First().Damage, 4);
-            Assert.AreEqual(allHeros.First().Defense, 10);
-            Assert.AreEqual(allHeros.First().DodgeChance, 8);
-            Assert.AreEqual(allHeros.First().Evilness, 0);
-            Assert.AreEqual(allHeros.First().FireRes, 20);
-            Assert.AreEqual(allHeros.First().HitChance, 80);
-            Assert.AreEqual(allHeros.First().HP, 25);
-            Assert.AreEqual(allHeros.First().HPmax, 25);
-            Assert.AreEqual(allHeros.First().Lvl, 0);
-            Assert.AreEqual(allHeros.First().MagicRes, 60);
-            Assert.AreEqual(allHeros.First().Mana, 50);
-            Assert.AreEqual(allHeros.First().ManaMax, 50);
-            Assert.AreEqual(allHeros.First().PoisonRes, 20);
-            Assert.AreEqual(allHeros.First().Speed, 10);
-            Assert.AreEqual(allHeros.First().WaterRes, 20);
-            Assert.AreEqual(allHeros.First().Xp, 0);
-            Assert.AreEqual(allHeros.First().XpMax, 100);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().CharacterClassName, "Mage");
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Price, 400);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().AffectRes, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().BleedingRes, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().CritChance, 6);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Damage, 4);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Defense, 10);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().DodgeChance, 8);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Evilness, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().FireRes, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HitChance, 80);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HP, 25);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HPmax, 25);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Lvl, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().MagicRes, 60);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Mana, 50);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().ManaMax, 50);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().PoisonRes, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Speed, 10);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().WaterRes, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Xp, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().XpMax, 100);
         }
 
         [Test]
         public void CreationPriestStatTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager h = new HerosManager(allHeros);
-            h.Find(HerosEnum.Priest.ToString()).CreateHero();
-            Assert.AreEqual(allHeros.First().CharacterClassName, "Priest");
-            Assert.AreEqual(allHeros.First().Price, 400);
-            Assert.AreEqual(allHeros.First().AffectRes, 30);
-            Assert.AreEqual(allHeros.First().BleedingRes, 30);
-            Assert.AreEqual(allHeros.First().CritChance, 10);
-            Assert.AreEqual(allHeros.First().Damage, 5);
-            Assert.AreEqual(allHeros.First().Defense, 20);
-            Assert.AreEqual(allHeros.First().DodgeChance, 10);
-            Assert.AreEqual(allHeros.First().Evilness, 0);
-            Assert.AreEqual(allHeros.First().FireRes, 30);
-            Assert.AreEqual(allHeros.First().HitChance, 60);
-            Assert.AreEqual(allHeros.First().HP, 30);
-            Assert.AreEqual(allHeros.First().HPmax, 30);
-            Assert.AreEqual(allHeros.First().Lvl, 0);
-            Assert.AreEqual(allHeros.First().MagicRes, 30);
-            Assert.AreEqual(allHeros.First().Mana, 40);
-            Assert.AreEqual(allHeros.First().ManaMax, 40);
-            Assert.AreEqual(allHeros.First().PoisonRes, 30);
-            Assert.AreEqual(allHeros.First().Speed, 8);
-            Assert.AreEqual(allHeros.First().WaterRes, 30);
-            Assert.AreEqual(allHeros.First().Xp, 0);
-            Assert.AreEqual(allHeros.First().XpMax, 100);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Priest.ToString()).CreateHero();
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().CharacterClassName, "Priest");
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Price, 400);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().AffectRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().BleedingRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().CritChance, 10);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Damage, 5);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Defense, 20);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().DodgeChance, 10);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Evilness, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().FireRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HitChance, 60);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HP, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().HPmax, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Lvl, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().MagicRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Mana, 40);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().ManaMax, 40);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().PoisonRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Speed, 8);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().WaterRes, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Xp, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().XpMax, 100);
         }
         [Test]
         public void HerosSexTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
+            GameContext ctx = GameContext.CreateNewGame();
+            FullList(ctx.HeroManager);
             Random rnd = new Random(1);
-            FullList(heroManager);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[0].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[1].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[2].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[3].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[4].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[5].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[6].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[7].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[8].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[9].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[10].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[11].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[12].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[13].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[14].IsMale);
-            Assert.AreEqual(rnd.Next(2) == 0, allHeros[15].IsMale);
+            Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[0].IsMale);
+            rnd.Next();
+            Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[1].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[2].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[3].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[4].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[5].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[6].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[7].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[8].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[9].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[10].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[11].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[12].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[13].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[14].IsMale);
+            rnd.Next();
+            Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[15].IsMale);
         }
 
 
         [Test]
         public void SpellWarriorTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Assert.IsNotEmpty(allHeros.First().Spells);
-            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros.First().Spells );
+            Assert.AreEqual( "BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name );
         }
 
         [Test]
         public void SpellPaladinTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
-            heroManager.Find(HerosEnum.Paladin.ToString()).CreateHero();
-            Assert.IsNotEmpty(allHeros.First().Spells);
-            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Paladin.ToString()).CreateHero();
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
         }
 
         [Test]
         public void SpellPMageTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
-            heroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Assert.IsNotEmpty(allHeros.First().Spells);
-            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
-            Assert.AreEqual("FireBall", allHeros.First().Spells[1].Name);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
+            Assert.AreEqual("FireBall", ctx.PlayerInfo.MyHeros.First().Spells[1].Name);
         }
 
         [Test]
         public void SpellPriestTest()
         {
-            List<BaseHeros> allHeros = new List<BaseHeros>();
-            HerosManager heroManager = new HerosManager(allHeros);
-            heroManager.Find(HerosEnum.Priest.ToString()).CreateHero();
-            Assert.IsNotEmpty(allHeros.First().Spells);
-            Assert.AreEqual("BasicAttack", allHeros.First().Spells.First().Name);
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            Assert.IsNotEmpty( ctx.PlayerInfo.MyHeros.First().Spells);
+            Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
         }
 
         private void FullList(HerosManager heroManager)
         {
             heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-
-
+            heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
         }
 
         [Test]
         public void DiarrheaWariorTest()
         {
-            List<BaseHeros> b = new List<BaseHeros>();
-            HerosManager h = new HerosManager(b);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = b.First() as Warrior;
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Diarrhea test = new Diarrhea();
             warrior.GetSickness(test);
             Assert.AreEqual(warrior.EffectivDamage, 10);
@@ -279,10 +290,9 @@ namespace S_M_D.Tests
         [Test]
         public void FeverWariorTest()
         {
-            List<BaseHeros> b = new List<BaseHeros>();
-            HerosManager h = new HerosManager(b);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = b.First() as Warrior;
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Fever test = new Fever();
             warrior.GetSickness(test);
             Assert.AreEqual(warrior.EffectivDamage, 13);
@@ -297,10 +307,9 @@ namespace S_M_D.Tests
         [Test]
         public void CrazynessWarriorTest()
         {
-            List<BaseHeros> b = new List<BaseHeros>();
-            HerosManager h = new HerosManager(b);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = b.First() as Warrior;
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Crazyness test = new Crazyness();
             warrior.GetPsycho(test);
             Assert.AreEqual(warrior.EffectivDamage, 17);
@@ -316,13 +325,12 @@ namespace S_M_D.Tests
         [Test]
         public void LoveBetweenWarriorAndMageTest()
         {
-            List<BaseHeros> b = new List<BaseHeros>();
-            HerosManager h = new HerosManager(b);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            h.Find(HerosEnum.Mage.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
 
-            Warrior warrior = b.First() as Warrior;
-            Mage mage = b[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Love love = new Love(warrior, mage);
             warrior.GetRelationship(love);
             mage.GetRelationship(love);
@@ -341,12 +349,11 @@ namespace S_M_D.Tests
         [Test]
         public void WarriorUpdate()
         {
-            List<BaseHeros> b = new List<BaseHeros>();
-            HerosManager h = new HerosManager(b);
-            h.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            h.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Warrior warrior = b.First() as Warrior;
-            Mage mage = b[1] as Mage;
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Fever testF = new Fever();
             Diarrhea testD = new Diarrhea();
             Crazyness testC = new Crazyness();
