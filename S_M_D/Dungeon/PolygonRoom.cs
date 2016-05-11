@@ -44,7 +44,38 @@ namespace S_M_D.Dungeon
             this.Neighbor = new List<MapItem>();
         }
         
-
+        /// <summary>
+        /// Reorders the points of the path in order to create a viable polygon.
+        /// <remarks>
+        /// Given the polygon:
+        ///          x (1)          x(3)
+        ///          
+        /// 
+        /// 
+        ///          x (2)          x(4)
+        /// If the points are not reorders, the following polygon will be created:
+        ///         x     x
+        ///         |    /|
+        ///         |   / |
+        ///         |  /  |
+        ///         | /   |
+        ///         x     x
+        ///  It is not really viable, as there is no point inside the polygon.
+        ///  This method will reorder the points like that:
+        ///         x (1)          x (4)
+        ///         
+        /// 
+        /// 
+        ///         x (2)          x (3)
+        ///   Which will give the following polygon:
+        ///         x            x
+        ///         |            |
+        ///         |            |
+        ///         |            |
+        ///         x------------x
+        ///   We obtain a viable rectangle.
+        /// </remarks>
+        /// </summary>
         public void arrangePoints()
         {
             Point ptTop, ptBot;
@@ -140,35 +171,17 @@ namespace S_M_D.Dungeon
             Center = roomCoords[(roomCoords.Count / 2)];
         }
         
-        public int ccw(Point a, Point b, Point c)
-        {
-            // return a.x*b.y - a.y*b.x + a.y*c.x - a.x*c.y + b.x*c.y - b.y*c.x;
-            double area2 = (b.X - a.X) * (c.Y - a.Y) - (c.X - a.X) * (b.Y - a.Y);
-            if (area2 < 0) return -1;
-            else if (area2 > 0) return +1;
-            else return 0;
-        }
-
         /// <summary>
-        /// Checks whether a point is inside a polygon
+        /// Checks whether a given point is inside the room.
         /// </summary>
+        /// <remarks>
+        /// Uses Jordan's Curve's theorem. Raycasting a point by increasing the x.
+        /// </remarks>
         /// <param name="x">X coordinate of the tested point.</param>
         /// <param name="y">Y coordinate of the tested point.</param>
         /// <returns>True if the point is inside the room, false if not.</returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            int winding = 0;
-            Point p = new Point(x, y);
-            for (int i = 0; i < Path.Count - 1; i++)
-            {
-                int ccw = this.ccw(Path[i], Path[i + 1], p);
-                if (Path[i + 1].Y > p.Y && p.Y >= Path[i].Y)  // upward crossing
-                    if (ccw == +1) winding++;
-                if (Path[i + 1].Y <= p.Y && p.Y < Path[i].Y)  // downward crossing
-                    if (ccw == -1) winding--;
-            }
-            return winding != 0;
-            /*
             int i, j;
             bool inside = false;
             for (i = 0, j = this.Path.Count - 1; i < this.Path.Count; j = i++)
@@ -181,7 +194,6 @@ namespace S_M_D.Dungeon
                 }
             }
             return inside;
-            */
         }
     }
 }
