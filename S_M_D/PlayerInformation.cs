@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using S_M_D.Character;
 using S_M_D.Camp;
+using S_M_D.Camp.ClassConfig;
 
 namespace S_M_D
 {
@@ -16,6 +17,7 @@ namespace S_M_D
         {
             _ctx = ctx;
             _myHeros = new List<BaseHeros>();
+            _myBuildings = new List<BaseBuilding>();
         }
 
         public GameContext Ctx
@@ -38,7 +40,12 @@ namespace S_M_D
             get
             {
                 return _myBuildings;
+
             }
+        }
+        private void InitializedBuilding()
+        {
+            _ctx.BuildingManager.Find(Camp.Class.BuildingName.Townhall).CreateBuilding();
         }
     }
 }
