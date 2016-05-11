@@ -8,6 +8,8 @@ namespace S_M_D.Character.Monsters
     public enum MonsterType
     {
         ORC,
-        ELF
+        ELF,
+        GOBELIN,
+        TROLL
     }
 }
