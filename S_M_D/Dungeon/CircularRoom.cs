@@ -32,7 +32,7 @@ namespace S_M_D.Dungeon
         /// </summary>
         /// <param name="width">Width of the map</param>
         /// <param name="height">Height of the map</param>
-        public override void Init(int width, int height)
+        public override bool Init(int width, int height)
         {
             Random rand = new Random();
 
@@ -43,6 +43,8 @@ namespace S_M_D.Dungeon
             path.Add(center);
 
             Center = path[0];
+
+            return true;
         }
 
         /// <summary>
