@@ -74,6 +74,12 @@
     <Compile Include="Dungeon\MapItem.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Item\BaseArmor.cs" />
+    <Compile Include="Item\BaseItem.cs" />
+    <Compile Include="Item\BasePotion.cs" />
+    <Compile Include="Item\BaseStatItem.cs" />
+    <Compile Include="Item\BaseTrinket.cs" />
+    <Compile Include="Item\BaseWeapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Psychology\Agressivity.cs" />
     <Compile Include="Psychology\Arrogant.cs" />
@@ -102,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Camp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ItemCreator\ItemCreator\ItemCreator.csproj">
+      <Project>{a0edb2b8-66fa-4e1b-aadf-3e47a88f787a}</Project>
+      <Name>ItemCreator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

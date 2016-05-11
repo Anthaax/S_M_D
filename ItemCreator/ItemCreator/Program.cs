@@ -12,8 +12,10 @@ namespace ItemCreator
         {
             Random rand = new Random();
             ItemManager createNewItem = new ItemManager();
-            createNewItem.createTrinket();
-            createNewItem.createPotion();
+            createNewItem.CreateWeapon();
+            createNewItem.CreateTrinket();
+            createNewItem.CreatePotion();
+            createNewItem.CreateArmor();
 
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Spell;
+using ItemCreator;
 
 namespace S_M_D.Character
 {
@@ -16,7 +17,7 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
-        string[] _equipement = new string[4];
+        BaseItem[] _equipement = new BaseItem[4];
         int _xp;
         int _xpMax;
 
@@ -55,6 +56,30 @@ namespace S_M_D.Character
             _relationship = new List<Relationship>();
         }
 
+        public void GetNewItem (BaseItem item)
+        {
+            if (item.Itemtype == BaseItem.ItemTypes.Weapon)
+            {
+                if (_equipement[0] != null) _equipement[0] = item;
+                else throw new ArgumentException("You already have an armor!");
+            }
+            if (item.Itemtype == BaseItem.ItemTypes.Armor)
+            {
+                if (_equipement[1] != null) _equipement[1] = item;
+                else throw new ArgumentException("You already have a weapon!");
+            }
+            if (item.Itemtype == BaseItem.ItemTypes.Trinket)
+            {
+                if (_equipement[2] != null) _equipement[2] = item;
+                else throw new ArgumentException("You already have a Trinket!");
+            }
+            if (item.Itemtype == BaseItem.ItemTypes.Potion)
+            {
+                if (_equipement[3] != null) _equipement[3] = item;
+                else throw new ArgumentException("You already have a Potion!");
+            }
+            else throw new ArgumentException("Type of item non reconize!");
+        }
         public void GetRelationship(Relationship relation)
         {
             BaseHeros heros1 = relation.HeroDuo[0];
