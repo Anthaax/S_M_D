@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -35,8 +35,60 @@ namespace S_M_D.Character
         readonly string _psycho;
         readonly string _relation;
         readonly string[] _equipement = new string[4];
+        readonly List<Spells> _spells;
         readonly int _xp;
         readonly int _xpMax;
+
+        /// <summary>
+        /// Warrior configuration for create a paladin with the good configuration
+        /// </summary>
+        /// <param name="HerosList"> Need a hero list to add the new paladin in this list </param>
+        public WarriorConfiguration( List<BaseHeros> HerosList )
+            : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
+        {
+            _HPmax = 50;
+            _HP = 50;
+            _manaMax = 20;
+            _mana = 20;
+            _damage = 11;
+            _critChance = 20;
+            _hitChance = 60;
+            _speed = 5;
+            _affectRes = 30;
+            _bleedingRes = 45;
+            _magicRes = 20;
+            _fireRes = 20;
+            _poisonRes = 20;
+            _waterRes = 20;
+            _defense = 40;
+            _dodgeChance = 15;
+            _evilness = 0;
+            _xp = 0;
+            _xpMax = 100;
+            _sickness = "";
+            _relation = "";
+            _psycho = "";
+            _spells = new List<Spells>();
+            _equipement[0] = "UNE GROSSE BITE";
+            _equipement[1] = "UN BON GROS STRING MA GUEULE";
+        }
+        /// <summary>
+        /// Create a warrior and return this one with the good configuration 
+        /// </summary>
+        /// <returns></returns>
+        protected override BaseHeros DoCreateHero()
+        {
+            return new Warrior( this );
+        }
+        /// <summary>
+        /// Initialize all spell of an warrior
+        /// </summary>
+        /// <param name="hero"> A warrior to initialize spell</param>
+        protected override void InitilizedSpell( BaseHeros hero )
+        {
+            Warrior warrior = hero as Warrior;
+            hero.Spells[0] =  new BasicAttackWarrior( warrior  );
+        }
 
         public int HPmax
         {
@@ -222,37 +274,12 @@ namespace S_M_D.Character
             }
         }
 
-        public WarriorConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Warrior.ToString(), 400, "George" )
+        public List<Spells> Spells
         {
-             _HPmax = 50;
-             _HP = 50;
-             _manaMax = 20;
-             _mana = 20;
-             _damage = 11;
-             _critChance = 20;
-             _hitChance = 60;
-             _speed = 5;
-             _affectRes = 30;
-             _bleedingRes = 45;
-             _magicRes = 20;
-             _fireRes = 20;
-             _poisonRes = 20;
-             _waterRes = 20;
-             _defense = 40;
-             _dodgeChance = 15;
-            _evilness = 0;
-            _xp = 0;
-            _xpMax = 100;
-            _sickness = "";
-            _relation = "";
-            _psycho = "";
-            _equipement[0] = "UNE GROSSE BITE";
-            _equipement[1] = "UN BON GROS STRING MA GUEULE";
-        }
-        protected override BaseHeros DoCreateHero()
-        {
-            return new Warrior( this );
+            get
+            {
+                return _spells;
+            }
         }
     }
 }

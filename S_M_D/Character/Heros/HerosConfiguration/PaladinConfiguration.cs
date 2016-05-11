@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -35,8 +35,59 @@ namespace S_M_D.Character
         readonly string _psycho;
         readonly string _relation;
         readonly string[] _equipement = new string[4];
+        readonly List<Spells> _spells = new List<Spells>();
         readonly int _xp;
         readonly int _xpMax;
+
+        /// <summary>
+        /// Paladin configuration for create a paladin with the good configuration
+        /// </summary>
+        /// <param name="HerosList"> Need a hero list to add the new paladin in this list</param>
+        public PaladinConfiguration( List<BaseHeros> HerosList )
+            : base( HerosList, HerosEnum.Paladin.ToString(), 400, "George" )
+        {
+            _HPmax = 40;
+            _HP = 40;
+            _manaMax = 30;
+            _mana = 30;
+            _damage = 7;
+            _critChance = 12;
+            _hitChance = 50;
+            _speed = 8;
+            _affectRes = 50;
+            _bleedingRes = 40;
+            _magicRes = 30;
+            _fireRes = 20;
+            _poisonRes = 40;
+            _waterRes = 20;
+            _defense = 40;
+            _dodgeChance = 15;
+            _evilness = 0;
+            _xp = 0;
+            _xpMax = 100;
+            _sickness = "";
+            _relation = "";
+            _psycho = "";
+            _equipement[0] = "UNE GROSSE BITE";
+            _equipement[1] = "UN BON GROS STRING MA GUEULE";
+        }
+        /// <summary>
+        /// Create a paladin and return this one with the good configuration 
+        /// </summary>
+        /// <returns></returns>
+        protected override BaseHeros DoCreateHero()
+        {
+            return new Paladin( this );
+        }
+        /// <summary>
+        /// Initialize all spell of an paladin
+        /// </summary>
+        /// <param name="hero"> A paladin to initialize spell</param>
+        protected override void InitilizedSpell( BaseHeros hero )
+        {
+            Paladin paladin = hero as Paladin;
+            hero.Spells[0]= new BasicAttackPaladin( paladin  );
+        }
 
         public int HPmax
         {
@@ -221,37 +272,13 @@ namespace S_M_D.Character
                 return _xpMax;
             }
         }
-        public PaladinConfiguration( List<BaseHeros> HerosList )
-            : base( HerosList, HerosEnum.Paladin.ToString(), 400, "George" )
+
+        public List<Spells> Spells
         {
-            _HPmax = 40;
-            _HP = 40;
-            _manaMax = 30;
-            _mana = 30;
-            _damage = 7;
-            _critChance = 12;
-            _hitChance = 50;
-            _speed = 8;
-            _affectRes = 50;
-            _bleedingRes = 40;
-            _magicRes = 30;
-            _fireRes = 20;
-            _poisonRes = 40;
-            _waterRes = 20;
-            _defense = 40;
-            _dodgeChance = 15;
-            _evilness = 0;
-            _xp = 0;
-            _xpMax = 100;
-            _sickness = "";
-            _relation = "";
-            _psycho = "";
-            _equipement[0] = "UNE GROSSE BITE";
-            _equipement[1] = "UN BON GROS STRING MA GUEULE";
-        }
-        protected override BaseHeros DoCreateHero()
-        {
-            return new PaladinClass( this );
+            get
+            {
+                return _spells;
+            }
         }
     }
 }

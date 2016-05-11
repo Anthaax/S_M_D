@@ -2,44 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
-    public class PaladinClass : BaseHeros, ILevel
+    public class Paladin : BaseHeros, ILevel
     {
-        public PaladinClass(PaladinConfiguration PaladinConfig)
+        public Paladin(PaladinConfiguration PaladinConfig)
+            : base( PaladinConfig.CharacterClassName, PaladinConfig.Price, PaladinConfig.IsMale, PaladinConfig.Evilness, PaladinConfig.Sickness, PaladinConfig.Psycho,
+                 PaladinConfig.Relation, PaladinConfig.Equipement, PaladinConfig.Xp, PaladinConfig.XpMax, PaladinConfig.CharacterName, 0, PaladinConfig.HPmax, PaladinConfig.ManaMax,
+                 PaladinConfig.Damage, PaladinConfig.CritChance, PaladinConfig.HitChance, PaladinConfig.Speed, PaladinConfig.AffectRes, PaladinConfig.BleedingRes,
+                 PaladinConfig.MagicRes, PaladinConfig.FireRes, PaladinConfig.PoisonRes, PaladinConfig.WaterRes, PaladinConfig.Defense, PaladinConfig.DodgeChance, PaladinConfig.Spells )
         {
-            CharacterName = PaladinConfig.CharacterName;
-            CharacterClassName = PaladinConfig.CharacterClassName;
-            IsMale = PaladinConfig.IsMale;
-            Price = PaladinConfig.Price;
-            Lvl = 0;
-            HP = PaladinConfig.HP;
-            HPmax = PaladinConfig.HPmax;
-            Mana = PaladinConfig.Mana;
-            ManaMax = PaladinConfig.ManaMax;
-            Damage = PaladinConfig.Damage;
-            CritChance = PaladinConfig.CritChance;
-            Speed = PaladinConfig.Speed;
-            HitChance = PaladinConfig.HitChance;
-            AffectRes = PaladinConfig.AffectRes;
-            BleedingRes = PaladinConfig.BleedingRes;
-            MagicRes = PaladinConfig.MagicRes;
-            FireRes = PaladinConfig.FireRes;
-            PoisonRes = PaladinConfig.PoisonRes;
-            WaterRes = PaladinConfig.WaterRes;
-            Defense = PaladinConfig.Defense;
-            DodgeChance = PaladinConfig.DodgeChance;
-            Evilness = PaladinConfig.Evilness;
-            Xp = PaladinConfig.Xp;
-            XpMax = PaladinConfig.XpMax;
-            Sickness = PaladinConfig.Sickness;
-            Relation = PaladinConfig.Relation;
-            Psycho = PaladinConfig.Psycho;
-            Equipement[0] = PaladinConfig.Equipement[0];
-            Equipement[1] = PaladinConfig.Equipement[1];
+            UpdateHeroStats();
         }
+        /// <summary>
+        /// Level up a paladin if is xpMax > Xp an exeption was throw
+        /// </summary>
         public void LevelUp()
         {
             if (XpMax > Xp)

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>S_M_D</RootNamespace>
     <AssemblyName>S_M_D</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,15 +47,21 @@
     <Compile Include="Camp\ClassConfig\CaravanConfig.cs" />
     <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
-    <Compile Include="Character\BaseHero.cs" />
+    <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
+    <Compile Include="Character\HerosFemaleNameEnum.cs" />
     <Compile Include="Character\HerosManager.cs" />
     <Compile Include="Character\HerosEnum.cs" />
+    <Compile Include="Character\HerosMaleNameEnum.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\MageConfiguration.cs" />
+    <Compile Include="Character\Heros\HerosConfiguration\PriestConfiguration.cs" />
     <Compile Include="Character\Heros\HeroType.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\PaladinConfiguration.cs" />
     <Compile Include="Character\Heros\HerosConfiguration\WarriorConfiguration.cs" />
     <Compile Include="Character\Heros\ILevel.cs" />
+    <Compile Include="Character\Heros\Mage.cs" />
     <Compile Include="Character\Heros\Paladin.cs" />
+    <Compile Include="Character\Heros\Priest.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
@@ -74,10 +81,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Psychology\Crazyness.cs" />
     <Compile Include="Psychology\Psychology.cs" />
+    <Compile Include="Relationship\Love.cs" />
+    <Compile Include="Relationship\Relationship.cs" />
     <Compile Include="Sickness\Diarrhea.cs" />
+    <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
+    <Compile Include="Spell\DamageTypeEnum.cs" />
+    <Compile Include="Spell\Mage\BasicAttackMage.cs" />
+    <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
-    <Compile Include="Spell\Spell.cs" />
+    <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
+    <Compile Include="Spell\SpellEffect.cs" />
+    <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
   </ItemGroup>
   <ItemGroup />
