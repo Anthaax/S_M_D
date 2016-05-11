@@ -7,16 +7,16 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Caravan : BaseBuilding
+    class Cemetery : BaseBuilding
     {
         private List<BaseHeros> _herosDispo;
-        public Caravan(CaravanConfig b) : base(b)
+        public Cemetery(CemeteryConfig b) : base(b)
         {
             _herosDispo = b.HerosDispo;
         }
         public void buyHero()
         {
-           // Ajoute le hero choisi a la liste des heros du joueur
+            // Ajoute le hero choisi a la liste des heros du joueur
         }
     }
 }

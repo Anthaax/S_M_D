@@ -9,7 +9,7 @@ namespace S_M_D.Camp.Class
     public class TownHall : BaseBuilding
     {
         
-        public TownHall(TownHallConfig b, int level) : base(b, level)
+        public TownHall(TownHallConfig b) : base(b)
         {
             
         }

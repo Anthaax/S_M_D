@@ -44,9 +44,23 @@
   <ItemGroup>
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingType.cs" />
+    <Compile Include="Camp\ClassConfig\ArmoryConfig.cs" />
+    <Compile Include="Camp\ClassConfig\BarConfig.cs" />
     <Compile Include="Camp\ClassConfig\CaravanConfig.cs" />
+    <Compile Include="Camp\ClassConfig\CasernConfig.cs" />
+    <Compile Include="Camp\ClassConfig\CemeteryConfig.cs" />
+    <Compile Include="Camp\ClassConfig\HospitalConfig.cs" />
+    <Compile Include="Camp\ClassConfig\HotelConfig.cs" />
+    <Compile Include="Camp\ClassConfig\MentalHospitalConfig.cs" />
     <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
+    <Compile Include="Camp\Class\Armory.cs" />
+    <Compile Include="Camp\Class\Bar.cs" />
     <Compile Include="Camp\Class\Caravan.cs" />
+    <Compile Include="Camp\Class\Casern.cs" />
+    <Compile Include="Camp\Class\Cemetery.cs" />
+    <Compile Include="Camp\Class\Hospital.cs" />
+    <Compile Include="Camp\Class\Hotel.cs" />
+    <Compile Include="Camp\Class\MentalHospital.cs" />
     <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
     <Compile Include="Character\BaseHeros.cs" />
