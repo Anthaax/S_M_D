@@ -43,7 +43,7 @@ namespace ItemCreator
         {
             if (quality == BaseStatItem.quality.legendary)
             {
-                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/LegendaryTrinketNames.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Trinkets/TrinketsNames/LegendaryTrinketNames.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -53,7 +53,7 @@ namespace ItemCreator
             }
             else if (quality == BaseStatItem.quality.epic)
             {
-                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/EpicTrinketNames.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Trinkets/TrinketsNames/EpicTrinketNames.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -63,7 +63,7 @@ namespace ItemCreator
             }
             else
             {
-                using (StreamReader myFileStream = new StreamReader("Trinkets/TrinketsNames/BaseTrinketNames.txt"))
+                using (StreamReader myFileStream = new StreamReader("../../Items/Trinkets/TrinketsNames/BaseTrinketNames.txt"))
                 {
                     string test = myFileStream.ReadToEnd();
                     var tab = Regex.Split(test, ",");
@@ -212,7 +212,7 @@ namespace ItemCreator
 
         public static void WriteXMLTrinket(List<BaseTrinket> trinket)
         {
-            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Trinket.xml", FileMode.Create))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/Items/Trinket.xml", FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseTrinket>));
@@ -222,7 +222,7 @@ namespace ItemCreator
 
         public void ReadXMLTrinket()
         {
-            using (FileStream myFileStream = new FileStream("../../../../S_M_D/bin/debug/Trinket.xml", FileMode.Open))
+            using (FileStream myFileStream = new FileStream("../../../../S_M_D/Items/Trinket.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
                 List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
