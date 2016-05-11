@@ -215,9 +215,6 @@ namespace S_M_D.Tests
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[15].IsMale);
         }
 
-
-
-
         private void FullList(HerosManager heroManager)
         {
             heroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
