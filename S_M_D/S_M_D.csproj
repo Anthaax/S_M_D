@@ -124,9 +124,11 @@
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\SpellEffect\BasicDamageMagical.cs" />
     <Compile Include="Spell\SpellEffect\BasicDamagePhysical.cs" />
+    <Compile Include="Spell\SpellEffect\DamageAndEffect.cs" />
     <Compile Include="Spell\SpellEffect\FireOnTime.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
+    <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

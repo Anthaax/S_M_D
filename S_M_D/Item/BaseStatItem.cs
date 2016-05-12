@@ -19,7 +19,6 @@ namespace S_M_D.Character
             epic,
             legendary
         }
-        quality _quality;
 
         public enum stats
         {
@@ -38,7 +37,6 @@ namespace S_M_D.Character
             defense = 13,
             dodgeChance = 14,
         }
-        private stats stats1;
 
 
     }

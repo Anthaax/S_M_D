@@ -10,7 +10,7 @@ namespace S_M_D.Spell
     public class BasicAttackPaladin : Spells
     {
         readonly Paladin _paladin;
-        BasicDamagePhysical _spellEffect;
+
         int[] damageRatioByLvl = new int[4] { 1, 2, 3, 4 };
         /// <summary>
         /// 
@@ -20,12 +20,12 @@ namespace S_M_D.Spell
             :base("BasicAttack", 400, "Attaque basique du paladin", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
         {
             _paladin = paladin;
-            SpellEffect = new BasicDamagePhysical(paladin.EffectivDamage, damageRatioByLvl[Lvl]);
+            BasicDamagePhysical = new BasicDamagePhysical(paladin.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
         public override void updateSpell()
         {
-            SpellEffect = new BasicDamagePhysical(_paladin.EffectivDamage, damageRatioByLvl[Lvl]);
+            BasicDamagePhysical = new BasicDamagePhysical(_paladin.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
 
@@ -34,19 +34,6 @@ namespace S_M_D.Spell
             get
             {
                 return _paladin;
-            }
-        }
-
-        internal BasicDamagePhysical SpellEffect
-        {
-            get
-            {
-                return _spellEffect;
-            }
-
-            set
-            {
-                _spellEffect = value;
             }
         }
 

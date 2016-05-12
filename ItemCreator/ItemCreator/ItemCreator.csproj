@@ -45,12 +45,10 @@
   <ItemGroup>
     <Compile Include="BaseArmor.cs" />
     <Compile Include="BaseItem.cs" />
-    <Compile Include="BasePotion.cs" />
     <Compile Include="BaseStatItem.cs" />
     <Compile Include="BaseTrinket.cs" />
     <Compile Include="BaseWeapon.cs" />
     <Compile Include="ItemCreator\Armor.cs" />
-    <Compile Include="ItemCreator\Potion.cs" />
     <Compile Include="ItemCreator\Trinket.cs" />
     <Compile Include="ItemCreator\Weapon.cs" />
     <Compile Include="ItemManager.cs" />

@@ -88,6 +88,7 @@ namespace S_M_D.Character
         {
             Warrior warrior = hero as Warrior;
             hero.Spells[0] =  new BasicAttackWarrior( warrior  );
+            hero.Spells[1] = new ShieldRush(warrior);
         }
 
         public int HPmax
