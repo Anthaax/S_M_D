@@ -11,7 +11,6 @@ namespace S_M_D.Spell
         int[] fireValueByLvl = new int[4] { 2, 4, 8, 10 };
         int[] damageRatioByLvl = new int[4] { 2, 3, 4, 5 };
         readonly Mage _mage;
-         FireOnTime _spellEffect;
         /// <summary>
         /// 
         /// </summary>
@@ -20,13 +19,13 @@ namespace S_M_D.Spell
             : base("ChaosBolt", 400, "Boule de feu", 20, 0, DamageTypeEnum.Magical, 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true })
         {
             _mage = mage;
-            SpellEffect = new FireOnTime(mage.EffectivDamage,damageRatioByLvl[Lvl],fireValueByLvl[Lvl],2);
+            FireOnTime = new FireOnTime(mage.EffectivDamage,damageRatioByLvl[Lvl],fireValueByLvl[Lvl],2,true);
 
         }
 
         public override void updateSpell()
         {
-           SpellEffect = new FireOnTime(mage.EffectivDamage, damageRatioByLvl[Lvl], fireValueByLvl[Lvl], 2);
+           FireOnTime = new FireOnTime(mage.EffectivDamage, damageRatioByLvl[Lvl], fireValueByLvl[Lvl], 2,true);
 
         }
 
@@ -36,19 +35,6 @@ namespace S_M_D.Spell
             get
             {
                 return _mage;
-            }
-        }
-
-        internal FireOnTime SpellEffect
-        {
-            get
-            {
-                return _spellEffect;
-            }
-
-            set
-            {
-                _spellEffect = value;
             }
         }
     }

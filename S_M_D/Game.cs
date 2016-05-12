@@ -19,6 +19,7 @@ namespace S_M_D
             _rnd = gameContext.Rnd;
             _playerInfo = gameContext.PlayerInfo;
             _herosManager = gameContext.HeroManager;
+            _buildingManager = gameContext.BuildingManager;
         }
 
         GameContext()

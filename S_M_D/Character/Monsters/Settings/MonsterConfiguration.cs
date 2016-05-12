@@ -57,7 +57,7 @@ namespace S_M_D.Character.Monsters
                     Poco.HPmax = 20 + 1 * level;
                     Poco.HP = 20 + 1 * level;
                     Poco.ManaMax = 40 + 5 * level;
-                    Poco.Mana = 40 + 2 * level;
+                    Poco.Mana = 40 + 5 * level;
                     Poco.Damage = 2 + 2 * level;
                     Poco.CritChance = 0;
                     Poco.HitChance = 80;

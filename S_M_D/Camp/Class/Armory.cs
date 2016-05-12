@@ -14,6 +14,14 @@ namespace S_M_D.Camp.Class
         {
             _hero = b.Hero;
         }
+        public void SetHero(BaseHeros h)
+        {
+            _hero = h;
+        }
+        public void deleteHero()
+        {
+            _hero = null;
+        }
         public void buyItemToHero(BaseHeros hero)
         {
             //ajoute l itam au héro selectionné

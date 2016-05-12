@@ -16,6 +16,7 @@ namespace S_M_D.Camp
         {
             _ctx = ctx;
             _buildingTypes = new Dictionary<BuildingName, BuildingType>();
+            Initialized();
         }
 
         private void Initialized()
