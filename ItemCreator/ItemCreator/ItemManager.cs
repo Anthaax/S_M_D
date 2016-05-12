@@ -24,11 +24,6 @@ namespace ItemCreator
 
         }
 
-        public void CreatePotion()
-        {
-            Potion potion = new Potion();
-        }
-
         public void CreateWeapon()
         {
             Weapon weapon = new Weapon();

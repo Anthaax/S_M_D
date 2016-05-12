@@ -29,8 +29,8 @@ namespace S_M_D.Spell
             _baseCooldown = baseCooldown;
             _damageType = damageType;
             _lvl = lvl;
-            _positionToAttack = positionToAttack;
-            _PositionTakingAttack = positionTakingAttack;
+            PositionToAttack = positionToAttack;
+            PositionTakingAttack = positionTakingAttack;
         }
 
         public abstract void updateSpell();
@@ -126,6 +126,31 @@ namespace S_M_D.Spell
                 _lvl = value;
             }
         }
-        
+
+        public bool[] PositionToAttack
+        {
+            get
+            {
+                return _positionToAttack;
+            }
+
+            set
+            {
+                _positionToAttack = value;
+            }
+        }
+
+        public bool[] PositionTakingAttack
+        {
+            get
+            {
+                return _PositionTakingAttack;
+            }
+
+            set
+            {
+                _PositionTakingAttack = value;
+            }
+        }
     }
 }

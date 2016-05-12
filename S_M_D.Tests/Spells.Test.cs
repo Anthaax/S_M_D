@@ -18,6 +18,12 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Assert.IsNotEmpty(ctx.PlayerInfo.MyHeros.First().Spells);
             Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Cooldown, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Description, "Attaque basique du warrior : inflige " + ctx.PlayerInfo.MyHeros.First().Damage + " dégat à un ennemi");
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Price, 400);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().ManaCost, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionTakingAttack,new bool[4] { true, true, false, false });
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionToAttack, new bool[4] { true, true, false, false });
         }
 
         [Test]
@@ -27,6 +33,12 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Paladin.ToString()).CreateHero();
             Assert.IsNotEmpty(ctx.PlayerInfo.MyHeros.First().Spells);
             Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Cooldown, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Description, "Attaque basique du paladin");
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Price, 400);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().ManaCost, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionTakingAttack, new bool[4] { true, true, false, false });
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionToAttack, new bool[4] { true, true, false, false });
         }
 
         [Test]
@@ -48,6 +60,12 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Priest.ToString()).CreateHero();
             Assert.IsNotEmpty(ctx.PlayerInfo.MyHeros.First().Spells);
             Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Cooldown, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Description, "Attaque basique du priest");
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().Price, 400);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().ManaCost, 0);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionTakingAttack, new bool[4] { true, true, false, false });
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First().Spells.First().PositionToAttack, new bool[4] { true, true, false, false });
         }
     }
 }

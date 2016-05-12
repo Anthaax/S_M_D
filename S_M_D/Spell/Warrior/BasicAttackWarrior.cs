@@ -10,6 +10,7 @@ namespace S_M_D.Spell
     {
         readonly Warrior _warrior;
         BasicDamagePhysical _spellEffect;
+        
         int[] damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
         public BasicAttackWarrior( Warrior warrior )
             :base("BasicAttack", 400, "Attaque basique du warrior : inflige " + warrior.Damage + " dégat à un ennemi", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
