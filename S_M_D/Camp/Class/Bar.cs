@@ -16,7 +16,16 @@ namespace S_M_D.Camp.Class
             _hero1 = b.Hero1;
             _hero2 = b.Hero2;
         }
-
+        public void setHero(BaseHeros h)
+        {
+            if (_hero1 == null) _hero1 = h;
+            else if (_hero2 == null) _hero2 = h;
+        }
+        public void deleteHeros()
+        {
+            _hero1 = null;
+            _hero2 = null;
+        }
         public void CreateRelationHero()
         {
             //creer relation entre hero1 / hero2

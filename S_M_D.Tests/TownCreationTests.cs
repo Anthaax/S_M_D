@@ -17,91 +17,82 @@ namespace S_M_D.Tests
         public void CreationTownHallTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            TownHallConfig townHallConfig = new TownHallConfig( ctx );
-            TownHall townHall = new TownHall( townHallConfig );
-            Assert.AreEqual( 500, townHall.BuildingCost );
-            Assert.AreEqual( 1, townHall.Level );
-            Assert.AreEqual( "Townhall", townHall.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
+            Assert.AreEqual( 500, ctx.PlayerInfo.MyBuildings.First().BuildingCost );
+            Assert.AreEqual( 1, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Townhall", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationArmoryTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ArmoryConfig townHallConfig = new ArmoryConfig( ctx );
-            Armory bat = new Armory( townHallConfig );
-            Assert.AreEqual( 600, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Armory", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Armory).CreateBuilding();
+            Assert.AreEqual( 600, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Armory", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationBarTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            BarConfig Config = new BarConfig( ctx );
-            Bar bat = new Bar( Config );
-            Assert.AreEqual( 900, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Bar", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Bar).CreateBuilding();
+            Assert.AreEqual( 900, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Bar", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationCaravanTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            CaravanConfig Config = new CaravanConfig( ctx );
-            Caravan bat = new Caravan( Config );
-            Assert.AreEqual( 500, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Caravan", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Caravan).CreateBuilding();
+            Assert.AreEqual( 500, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 1, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Caravan", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationCasernTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            CasernConfig Config = new CasernConfig( ctx );
-            Casern bat = new Casern( Config );
-            Assert.AreEqual( 400, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Casern", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Casern).CreateBuilding();
+            Assert.AreEqual( 400, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Casern", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationCemeteryTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            CemeteryConfig Config = new CemeteryConfig( ctx );
-            Cemetery bat = new Cemetery( Config );
-            Assert.AreEqual( 0, bat.BuildingCost );
-            Assert.AreEqual( 1, bat.Level );
-            Assert.AreEqual( "Cemetery", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 1, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Cemetery", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationHospitalTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            HospitalConfig Config = new HospitalConfig( ctx );
-            Hospital bat = new Hospital( Config );
-            Assert.AreEqual( 1500, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Hospital", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Hospital).CreateBuilding();
+            Assert.AreEqual( 1500, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Hospital", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationHotelTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            HotelConfig Config = new HotelConfig( ctx );
-            Hotel bat = new Hotel( Config );
-            Assert.AreEqual( 1000, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "Hotel", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.Hotel).CreateBuilding();
+            Assert.AreEqual( 1000, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "Hotel", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
         [Test]
         public void CreationMentalHospitalTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            MentalHospitalConfig Config = new MentalHospitalConfig( ctx );
-            MentalHospital bat = new MentalHospital( Config );
-            Assert.AreEqual( 500, bat.BuildingCost );
-            Assert.AreEqual( 0, bat.Level );
-            Assert.AreEqual( "MentalHospital", bat.Name.ToString() );
+            ctx.BuildingManager.Find(BuildingName.MentalHospital).CreateBuilding();
+            Assert.AreEqual( 500, ctx.PlayerInfo.MyBuildings.First().BuildingCost);
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyBuildings.First().Level);
+            Assert.AreEqual( "MentalHospital", ctx.PlayerInfo.MyBuildings.First().Name.ToString());
         }
     }
 }

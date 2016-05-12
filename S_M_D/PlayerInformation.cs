@@ -5,6 +5,7 @@ using System.Text;
 using S_M_D.Character;
 using S_M_D.Camp;
 using S_M_D.Camp.ClassConfig;
+using S_M_D.Camp.Class;
 
 namespace S_M_D
 {
@@ -42,6 +43,10 @@ namespace S_M_D
                 return _myBuildings;
 
             }
+        }
+        public BaseBuilding GetBuilding(BuildingName name)
+        {
+            return _myBuildings.Find(t => t.Name == name);
         }
         private void InitializedBuilding()
         {

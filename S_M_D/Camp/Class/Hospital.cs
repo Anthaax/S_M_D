@@ -14,7 +14,14 @@ namespace S_M_D.Camp.Class
         {
             _hero = b.Hero;
         }
-
+        public void setHero(BaseHeros h)
+        {
+            _hero = h;
+        }
+        public void deleteHeros()
+        {
+            _hero = null;
+        }
         public void HealHero(Sickness sickness)
         {
             _hero.DeleteSickness(sickness);

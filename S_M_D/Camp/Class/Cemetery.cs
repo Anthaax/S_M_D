@@ -14,9 +14,9 @@ namespace S_M_D.Camp.Class
         {
             _herosDispo = b.HerosDispo;
         }
-        public void buyHero()
+        public void AddDeadHero(BaseHeros h)
         {
-            // Ajoute le hero choisi a la liste des heros du joueur
+            _herosDispo.Add(h);
         }
           
     }
