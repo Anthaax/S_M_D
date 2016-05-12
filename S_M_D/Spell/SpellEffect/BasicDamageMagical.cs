@@ -5,7 +5,7 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
-    class BasicDamageMagical
+    public class BasicDamageMagical
     {
         int _damage;
         DamageTypeEnum _type;

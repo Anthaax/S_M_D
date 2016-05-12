@@ -10,7 +10,7 @@ namespace S_M_D.Spell
     public class BasicAttackMage : Spells
     {
         readonly Mage _mage;
-        BasicDamageMagical _spellEffect;
+
         int[] damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
         /// <summary>
         /// 
@@ -22,13 +22,13 @@ namespace S_M_D.Spell
             
             _mage = mage;
             
-            SpellEffect = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
+            BasicDamageMagical = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
 
         }
 
         public override void updateSpell()
         {
-            SpellEffect = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
+            BasicDamageMagical = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
         }
 
 
@@ -37,19 +37,6 @@ namespace S_M_D.Spell
             get
             {
                 return _mage;
-            }
-        }
-
-        internal BasicDamageMagical SpellEffect
-        {
-            get
-            {
-                return _spellEffect;
-            }
-
-            set
-            {
-                _spellEffect = value;
             }
         }
     }

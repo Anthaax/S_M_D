@@ -5,17 +5,19 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
-    class FireOnTime
+    public class FireOnTime
     {
         int _damage;
         int _damagePerTurn;
         int _turn;
+        bool _canBeStop;
 
-        public FireOnTime(int damage, int rate, int damagePerTurn, int turn)
+        public FireOnTime(int damage, int rate, int damagePerTurn, int turn, bool canBestop)
         {
             Damage = damage * rate;
             DamagePerTurn = damagePerTurn;
             Turn = turn;
+            CanBeStop = canBestop;
         }
 
         public int Damage
@@ -54,6 +56,19 @@ namespace S_M_D.Spell
             set
             {
                 _turn = value;
+            }
+        }
+
+        public bool CanBeStop
+        {
+            get
+            {
+                return _canBeStop;
+            }
+
+            set
+            {
+                _canBeStop = value;
             }
         }
     }

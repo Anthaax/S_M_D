@@ -14,7 +14,6 @@ namespace ItemCreator
             ItemManager createNewItem = new ItemManager();
             createNewItem.CreateWeapon();
             createNewItem.CreateTrinket();
-            createNewItem.CreatePotion();
             createNewItem.CreateArmor();
 
         }

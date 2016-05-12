@@ -20,6 +20,10 @@ namespace S_M_D.Spell
         int _radius;
         bool [] _positionToAttack = new bool [4];
         bool[] _PositionTakingAttack = new bool[4];
+        BasicDamagePhysical _basicDamagePhysical;
+        BasicDamageMagical _basicDamageMagical;
+        DamageAndEffect _damageAndEffect;
+        FireOnTime _fireOnTime;
         public Spells(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType, int lvl, bool[] positionToAttack, bool[] positionTakingAttack)
         {
             _name = name;
@@ -150,6 +154,58 @@ namespace S_M_D.Spell
             set
             {
                 _PositionTakingAttack = value;
+            }
+        }
+
+        public BasicDamagePhysical BasicDamagePhysical
+        {
+            get
+            {
+                return _basicDamagePhysical;
+            }
+
+            set
+            {
+                _basicDamagePhysical = value;
+            }
+        }
+
+        public BasicDamageMagical BasicDamageMagical
+        {
+            get
+            {
+                return _basicDamageMagical;
+            }
+
+            set
+            {
+                _basicDamageMagical = value;
+            }
+        }
+
+        public DamageAndEffect DamageAndEffect
+        {
+            get
+            {
+                return _damageAndEffect;
+            }
+
+            set
+            {
+                _damageAndEffect = value;
+            }
+        }
+
+        public FireOnTime FireOnTime
+        {
+            get
+            {
+                return _fireOnTime;
+            }
+
+            set
+            {
+                _fireOnTime = value;
             }
         }
     }
