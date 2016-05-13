@@ -8,7 +8,7 @@ namespace S_M_D.Camp
 {
     public abstract class BaseBuilding
     {
-        private BuildingName _name;
+        readonly BuildingName _name;
         private int _buildingCost;
         private int _level;
         readonly int _levelMax;
@@ -21,17 +21,11 @@ namespace S_M_D.Camp
             _levelMax = 4;
         }
 
-
         public BuildingName Name
         {
             get
             {
                 return _name;
-            }
-
-            set
-            {
-                _name = value;
             }
         }
 

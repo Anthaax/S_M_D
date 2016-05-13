@@ -44,12 +44,9 @@ namespace S_M_D.Camp
             return b;
         }
 
-        public Dictionary<BuildingName, BuildingType> BuildingTypes
+        public IEnumerable<BuildingType> AllTypes
         {
-            get
-            {
-                return _buildingTypes;
-            }
+            get { return _buildingTypes.Values; }
         }
     }
 }
