@@ -59,6 +59,7 @@
     <Compile Include="Dungeon\Map.cs" />
     <Compile Include="Dungeon\MapGenerator.cs" />
     <Compile Include="Dungeon\MapItem.cs" />
+    <Compile Include="Dungeon\Point.cs" />
     <Compile Include="Dungeon\PolygonRoom.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />

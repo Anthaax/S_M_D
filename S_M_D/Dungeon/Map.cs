@@ -56,7 +56,7 @@ namespace S_M_D.Dungeon
         }
 
 
-        List<Point> leeAlgorithm(Point posA, Point posB)
+        public List<Point> leeAlgorithm(Point posA, Point posB)
         {
             List<Point> cells = new List<Point>();
 
@@ -154,6 +154,26 @@ namespace S_M_D.Dungeon
                 targetPoint--;
             }
             return cells;
+        }
+
+        public void addNeighborsToNotVisited(MapItem room)
+        {
+            for (int i = 0; i < room.Neighbor.Count; i++)
+            {
+                if (!isVisited((room.Neighbor[i])))
+                {
+                    this.NotVisited.Add(room.Neighbor[i]);
+                }
+            }
+        }
+
+        public void removeRoomFromNotVisited(MapItem room)
+        {
+            for (int i = NotVisited.Count - 1; i >= 0; i--)
+            {
+                if (NotVisited[i] == room)
+                    NotVisited.RemoveAt(i);
+            }
         }
     }
 }

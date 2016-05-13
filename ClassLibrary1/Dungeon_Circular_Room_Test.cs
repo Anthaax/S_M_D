@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using S_M_D.Dungeon;
-using System.Drawing;
+//using System.Drawing;
 
 namespace DungeonTest
 {
