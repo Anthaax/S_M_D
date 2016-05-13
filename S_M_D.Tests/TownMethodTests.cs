@@ -22,36 +22,25 @@ namespace S_M_D.Tests
         public void InitialisationBuildingTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
-            ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
-            ctx.BuildingManager.Find(BuildingName.Caravan).CreateBuilding();
-            Assert.AreEqual(3, ctx.PlayerInfo.MyBuildings.Count());
+            Assert.AreEqual(9, ctx.PlayerInfo.MyBuildings.Count());
         }
         [Test]
         public void UpgradeBuildingTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
-            ctx.BuildingManager.Find(BuildingName.Caravan).CreateBuilding();
+
+            Assert.AreEqual(1, ctx.PlayerInfo.GetBuilding(BuildingName.Caravan).Level);
             TownHall townhall = ctx.PlayerInfo.GetBuilding(BuildingName.Townhall) as TownHall;
-            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
+            townhall.UpgradeBuilding(ctx.PlayerInfo.GetBuilding(BuildingName.Caravan));
 
-            Assert.AreEqual(1, caravan.Level);
-            townhall.UpgradeBuilding(caravan);
-
-            Assert.AreEqual(2,caravan.Level);
-
-            Caravan caravan2 = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
-            Assert.AreEqual(2, caravan.Level);
+            Assert.AreEqual(2, ctx.PlayerInfo.GetBuilding(BuildingName.Caravan).Level);
         }
         [Test]
         public void PutAndDeleteAnHeroInArmory()
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
-            ctx.BuildingManager.Find(BuildingName.Armory).CreateBuilding();
-            Armory armory = ctx.PlayerInfo.MyBuildings[1] as Armory;
+            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
             armory.SetHero(ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
             armory.deleteHero();
@@ -63,8 +52,7 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-            ctx.BuildingManager.Find(BuildingName.Bar).CreateBuilding();
-            Bar bar = ctx.PlayerInfo.MyBuildings[0] as Bar;
+            Bar bar = ctx.PlayerInfo.GetBuilding(BuildingName.Bar) as Bar;
             bar.setHero(ctx.PlayerInfo.MyHeros.First());
             bar.setHero(ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), bar.Hero1);
@@ -76,18 +64,17 @@ namespace S_M_D.Tests
         /**
         *Cemetery
         */
-        /*
+        
         [Test]
         public void AddDeadHeroTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
             Cemetery cemetery = ctx.PlayerInfo.GetBuilding(BuildingName.Cemetery) as Cemetery;
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
             cemetery.AddDeadHero(hero);
-            Assert.AreEqual(1, cemetery.GetDeadHeros().Count());
+            Assert.AreEqual(1, cemetery.GetDeadHeros.Count());
         }
-        */
+        
     }
 }

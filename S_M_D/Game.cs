@@ -17,17 +17,19 @@ namespace S_M_D
             :this()
         {
             _rnd = gameContext.Rnd;
-            _playerInfo = gameContext.PlayerInfo;
             _herosManager = gameContext.HeroManager;
             _buildingManager = gameContext.BuildingManager;
+            _playerInfo = gameContext.PlayerInfo;
         }
 
         GameContext()
         {
             _rnd = new Random( 1 );
-            _playerInfo = new PlayerInformation( this );
-            _herosManager = new HerosManager( this );
+            _herosManager = new HerosManager(this);
             _buildingManager = new BuildingManager(this);
+            _playerInfo = new PlayerInformation( this );
+            _playerInfo.InitializedBuilding();
+
         }
         public static GameContext CreateNewGame()
         {

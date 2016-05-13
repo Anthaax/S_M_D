@@ -48,9 +48,21 @@ namespace S_M_D
         {
             return _myBuildings.Find(t => t.Name == name);
         }
-        private void InitializedBuilding()
+        //public BaseHeros GetHeros(HerosEnum classHerosName)
+        //{
+        //    return _myHeros.Find(t => t.CharacterClassName == classHerosName.ToString());
+        //}
+        public void InitializedBuilding()
         {
-            _ctx.BuildingManager.Find(Camp.Class.BuildingName.Townhall).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Armory).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Bar).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Caravan).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Casern).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Hospital).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.Hotel).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingName.MentalHospital).CreateBuilding();
         }
     }
 }

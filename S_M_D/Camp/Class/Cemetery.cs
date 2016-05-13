@@ -18,9 +18,9 @@ namespace S_M_D.Camp.Class
         {
             _herosDispo.Add(h);
         }
-        public List<BaseHeros> GetDeadHeros()
+        public List<BaseHeros> GetDeadHeros
         {
-            return _herosDispo;
+            get { return _herosDispo; }
         }
     }
 }
