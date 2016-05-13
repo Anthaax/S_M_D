@@ -18,20 +18,26 @@ namespace S_M_D
             :this()
         {
             _rnd = gameContext.Rnd;
-            _playerInfo = gameContext.PlayerInfo;
             _herosManager = gameContext.HeroManager;
             _moneyManager = gameContext.MoneyManager;
             _buildingManager = gameContext.BuildingManager;
+            _playerInfo = gameContext.PlayerInfo;
         }
 
         GameContext()
         {
             _rnd = new Random( 1 );
-            _playerInfo = new PlayerInformation( this );
-            _herosManager = new HerosManager( this );
+            _herosManager = new HerosManager(this);
             _moneyManager = new MoneyManager( this );
             _buildingManager = new BuildingManager(this);
+            _playerInfo = new PlayerInformation( this );
+            _playerInfo.InitializedBuilding();
+
         }
+        /// <summary>
+        /// Create a new game context
+        /// </summary>
+        /// <returns> Retur the new game context </returns>
         public static GameContext CreateNewGame()
         {
             return new GameContext();

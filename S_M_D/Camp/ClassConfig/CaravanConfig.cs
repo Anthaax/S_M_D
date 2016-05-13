@@ -12,7 +12,7 @@ namespace S_M_D.Camp.ClassConfig
         private List<BaseHeros> _herosDispo;
         public CaravanConfig(GameContext ctx) : base(BuildingName.Caravan,500,1, ctx)
         {
-            this._herosDispo = null;
+            this._herosDispo = new List<BaseHeros>();
         }
         public List<BaseHeros> HerosDispo
         {

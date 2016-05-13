@@ -10,13 +10,38 @@ namespace S_M_D.Camp.Class
     public class Caravan : BaseBuilding
     {
         private List<BaseHeros> _herosDispo;
+
+        public List<BaseHeros> HerosDispo
+        {
+            get
+            {
+                return _herosDispo;
+            }
+
+            set
+            {
+                _herosDispo = value;
+            }
+        }
+
         public Caravan(CaravanConfig b) : base(b)
         {
-            _herosDispo = b.HerosDispo;
+            HerosDispo = b.HerosDispo;
         }
-        public void buyHero()
+
+        public void Initialized()
         {
-           // Ajoute le hero choisi a la liste des heros du joueur
+            for (int i = 0; i < 4; i++)
+            {
+                int heroEnum = Ctx.Rnd.Next(1, 5);
+                HerosEnum hero = (HerosEnum)heroEnum;
+                HerosDispo.Add(Ctx.HeroManager.Find(hero.ToString()).CreateHeroToBuy());
+            }
+        }
+
+        public void BuyHero(BaseHeros hero)
+        {
+            Ctx.PlayerInfo.MyHeros.Add(hero);
         }
     }
 }

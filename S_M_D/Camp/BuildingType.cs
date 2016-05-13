@@ -34,11 +34,20 @@ namespace S_M_D.Camp
         {
             get { return _name; }
         }
+
+        public GameContext Ctx
+        {
+            get
+            {
+                return _ctx;
+            }
+        }
+
         public BaseBuilding CreateBuilding()
         {
-            if (_ctx.PlayerInfo.MyBuildings.Count >=9) throw new InvalidOperationException("You have already 9 buildings");
+            if (Ctx.PlayerInfo.MyBuildings.Count >=9) throw new InvalidOperationException("You have already 9 buildings");
             BaseBuilding building = DoCreateBuilding();
-            _ctx.PlayerInfo.MyBuildings.Add(building);
+            Ctx.PlayerInfo.MyBuildings.Add(building);
             return building;
         }
         protected abstract BaseBuilding DoCreateBuilding();

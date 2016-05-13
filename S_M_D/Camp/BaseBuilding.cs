@@ -12,13 +12,14 @@ namespace S_M_D.Camp
         private int _buildingCost;
         private int _level;
         readonly int _levelMax;
-
+        readonly GameContext _ctx;
         public BaseBuilding(BuildingType b)
         {
             _name = b.Name;
             _buildingCost = b.BuildingCost;
             _level = b.Level;
             _levelMax = 4;
+            _ctx = b.Ctx;
         }
 
         public BuildingName Name
@@ -52,6 +53,14 @@ namespace S_M_D.Camp
             set
             {
                 _level = value;
+            }
+        }
+
+        public GameContext Ctx
+        {
+            get
+            {
+                return _ctx;
             }
         }
     }
