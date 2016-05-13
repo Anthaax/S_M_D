@@ -86,5 +86,16 @@ namespace S_M_D.Tests
             caravan.Initialized();
             Assert.AreEqual(4, caravan.HerosDispo.Count());
         }
+        [Test]
+        public void BuyHeroTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
+            //ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            caravan.Initialized();
+            caravan.BuyHero(caravan.HerosDispo.First());
+            Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.Count());
+        }
+
     }
 }
