@@ -75,6 +75,16 @@ namespace S_M_D.Tests
             cemetery.AddDeadHero(hero);
             Assert.AreEqual(1, cemetery.GetDeadHeros.Count());
         }
-        
+        /*
+        *caravane
+        */
+        [Test]
+        public void InitTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
+            caravan.Initialized();
+            Assert.AreEqual(4, caravan.HerosDispo.Count());
+        }
     }
 }

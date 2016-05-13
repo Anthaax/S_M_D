@@ -69,6 +69,20 @@ namespace S_M_D.Character
             return Hero;
         }
         /// <summary>
+        /// Create an hero with is good configuration
+        /// </summary>
+        /// <returns> the new hero </returns>
+        public BaseHeros CreateHeroToBuy()
+        {
+            if (_ctx.PlayerInfo.MyHeros.Count >= 16) throw new InvalidOperationException("You have already 16 hero");
+            _isMale = ChooseSex();
+            _characterName = ChooseCharacterName();
+            BaseHeros Hero = DoCreateHero();
+            InitilizedSpell(Hero);
+            //Enlever Argent
+            return Hero;
+        }
+        /// <summary>
         /// Create a hero and return this one with the good configuration 
         /// </summary>
         /// <returns> Return the new hero </returns>

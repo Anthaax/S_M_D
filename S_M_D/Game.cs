@@ -31,6 +31,10 @@ namespace S_M_D
             _playerInfo.InitializedBuilding();
 
         }
+        /// <summary>
+        /// Create a new game context
+        /// </summary>
+        /// <returns> Retur the new game context </returns>
         public static GameContext CreateNewGame()
         {
             return new GameContext();
