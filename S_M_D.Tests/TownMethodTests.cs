@@ -2,6 +2,7 @@
 using S_M_D.Camp;
 using S_M_D.Camp.Class;
 using S_M_D.Camp.ClassConfig;
+using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,21 @@ namespace S_M_D.Tests
             Assert.AreEqual(2, caravan.Level);
 
         }
+        /**
+        *Cemetery
+        */
+        /*
+        [Test]
+        public void AddDeadHeroTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
+            Cemetery cemetery = ctx.PlayerInfo.GetBuilding(BuildingName.Cemetery) as Cemetery;
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
+            cemetery.AddDeadHero(hero);
+            Assert.AreEqual(1, cemetery.GetDeadHeros().Count());
+        }
+        */
     }
 }
