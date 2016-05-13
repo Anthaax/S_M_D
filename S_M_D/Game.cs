@@ -13,12 +13,14 @@ namespace S_M_D
         readonly PlayerInformation _playerInfo;
         readonly HerosManager _herosManager;
         readonly BuildingManager _buildingManager;
+        readonly MoneyManager _moneyManager;
         GameContext(GameContext gameContext)
             :this()
         {
             _rnd = gameContext.Rnd;
             _playerInfo = gameContext.PlayerInfo;
             _herosManager = gameContext.HeroManager;
+            _moneyManager = gameContext.MoneyManager;
             _buildingManager = gameContext.BuildingManager;
         }
 
@@ -27,6 +29,7 @@ namespace S_M_D
             _rnd = new Random( 1 );
             _playerInfo = new PlayerInformation( this );
             _herosManager = new HerosManager( this );
+            _moneyManager = new MoneyManager( this );
             _buildingManager = new BuildingManager(this);
         }
         public static GameContext CreateNewGame()
@@ -43,6 +46,14 @@ namespace S_M_D
             get
             {
                 return _buildingManager;
+            }
+        }
+
+        public MoneyManager MoneyManager
+        {
+            get
+            {
+                return _moneyManager;
             }
         }
     }
