@@ -5,11 +5,12 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public class BaseItem 
+    public abstract class BaseItem 
     {
-        string itemName;
-        string itemDescription;
-        int itemId;
+        string _itemName;
+        string _itemDescription;
+        int _itemId;
+        int _lvl;
         // Stat HP and Mana 
         int _HP;
         int _mana;
@@ -41,17 +42,18 @@ namespace S_M_D.Character
         }
         ItemTypes itemtype;
 
+        protected abstract void LevelUp();
 
         public string ItemName
         {
             get
             {
-                return itemName;
+                return _itemName;
             }
 
             set
             {
-                itemName = value;
+                _itemName = value;
             }
         }
 
@@ -59,12 +61,12 @@ namespace S_M_D.Character
         {
             get
             {
-                return itemDescription;
+                return _itemDescription;
             }
 
             set
             {
-                itemDescription = value;
+                _itemDescription = value;
             }
         }
 
@@ -72,12 +74,12 @@ namespace S_M_D.Character
         {
             get
             {
-                return itemId;
+                return _itemId;
             }
 
             set
             {
-                itemId = value;
+                _itemId = value;
             }
         }
 

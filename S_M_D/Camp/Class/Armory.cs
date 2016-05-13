@@ -22,7 +22,7 @@ namespace S_M_D.Camp.Class
         {
             Hero = null;
         }
-        public void buyItemToHero(BaseHeros hero)
+        public void UpgrateItemToHero(BaseItem HeroItem)
         {
             //ajoute l itam au héro selectionné
         }

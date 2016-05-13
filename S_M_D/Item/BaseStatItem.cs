@@ -7,10 +7,8 @@ using System.Text;
 namespace S_M_D.Character
 {
 
-    public class BaseStatItem : BaseItem
-    {
-
-        
+    public abstract class BaseStatItem : BaseItem
+    {   
         public enum quality
         {
             useless,
