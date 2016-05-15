@@ -21,7 +21,7 @@ namespace S_M_D
         }
         public void Buy(int cost)
         {
-            if (cost > _money)
+            if (cost <= _money)
                 _money -= cost;
         }
         public int Money
