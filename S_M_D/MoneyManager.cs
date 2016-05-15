@@ -9,7 +9,8 @@ namespace S_M_D
     {
         private GameContext _gameContext;
         private int _money;
-        public MoneyManager( GameContext gameContext )
+
+        public MoneyManager(GameContext gameContext)
         {
             _gameContext = gameContext;
             _money = 10000;
@@ -18,10 +19,17 @@ namespace S_M_D
         {
             return costItem <= _money;
         }
-        public void Buy( int cost )
+        public void Buy(int cost)
         {
-            if(cost > _money)
-            _money -= cost;
+            if (cost > _money)
+                _money -= cost;
+        }
+        public int Money
+        {
+            get
+            {
+                return _money;
+            }
         }
     }
 }

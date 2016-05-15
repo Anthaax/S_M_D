@@ -137,8 +137,6 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Love love = new Love(warrior, mage);
-            warrior.GetRelationship(love);
-            mage.GetRelationship(love);
             Assert.AreEqual(warrior.EffectivDamage, 12);
             Assert.AreEqual(warrior.EffectivDefense, 44);
             Assert.AreEqual(mage.EffectivDamage, 4);
@@ -160,9 +158,10 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Hate hate = new Hate(warrior, mage);
-            warrior.GetRelationship(hate);
-            mage.GetRelationship(hate);
-
+            Assert.AreEqual(warrior.Damage += Convert.ToInt32(warrior.Damage * 0.5), warrior.EffectivDamage);
+            Assert.AreEqual(warrior.Defense += Convert.ToInt32(warrior.Defense * 0.5), warrior.EffectivDefense);
+            Assert.AreEqual(mage.Damage += Convert.ToInt32(mage.Damage * 0.5), mage.EffectivDamage);
+            Assert.AreEqual(mage.Defense += Convert.ToInt32(mage.Defense * 0.5), mage.EffectivDefense);
         }
 
         [Test]
@@ -175,8 +174,8 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Desir desir = new Desir(warrior, mage);
-            warrior.GetRelationship(desir);
-            mage.GetRelationship(desir);
+            Assert.AreEqual(warrior.HitChance - 2, warrior.EffectivHitChance);
+            Assert.AreEqual(mage.EffectivHitChance, mage.HitChance-2);
         }
 
         [Test]
@@ -189,8 +188,8 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
             Friendship friendship = new Friendship(warrior, mage);
-            warrior.GetRelationship(friendship);
-            mage.GetRelationship(friendship);
+            Assert.AreEqual(warrior.Damage + 2, warrior.EffectivDamage);
+            Assert.AreEqual(mage.Damage + 2, mage.EffectivDamage);
         }
         [Test]
         public void GetItemWeaponTest()
@@ -318,8 +317,6 @@ namespace S_M_D.Tests
             warrior.GetPsycho(testC);
             warrior.GetSickness(testF);
             warrior.GetSickness(testD);
-            warrior.GetRelationship(love);
-            mage.GetRelationship(love);
             Assert.AreEqual(warrior.EffectivDamage, 19);
             Assert.AreEqual(warrior.EffectivDefense, 36);
             Assert.AreEqual(warrior.EffectCritChance, 30);

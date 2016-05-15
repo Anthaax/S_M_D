@@ -29,5 +29,10 @@ namespace S_M_D.Character
                 trinketTYpe = value;
             }
         }
+
+        public override void LevelUp()
+        {
+            Lvl++;
+        }
     }
 }

@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace S_M_D.Tests
 {
@@ -41,22 +43,37 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
-            armory.SetHero(ctx.PlayerInfo.MyHeros.First());
+            armory.Hero = ctx.PlayerInfo.MyHeros.First();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
             armory.deleteHero();
             Assert.IsNull(armory.Hero);
         }
         [Test]
-        public void PutAndDeleteAnHeroInBar()
+        public void UseEffectAnHeroInArmory()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
+            armory.Hero = ctx.PlayerInfo.MyHeros.First();
+            putItemInAHero(armory.Hero);
+            armory.UpgrateItemOfAnHero(armory.Hero.Equipement[1]);
+            Assert.AreEqual(1, armory.Hero.Equipement[1].Lvl);
+            armory.deleteHero();
+            Assert.IsNull(armory.Hero);
+        }
+        [Test]
+        public void PutAndDeleteAnHeroInBarAndGiveThemARelation()
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Bar bar = ctx.PlayerInfo.GetBuilding(BuildingName.Bar) as Bar;
-            bar.setHero(ctx.PlayerInfo.MyHeros.First());
-            bar.setHero(ctx.PlayerInfo.MyHeros[1]);
+            bar.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), bar.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], bar.Hero2);
+            bar.CreateRelationHero();
+            Assert.AreEqual(1,ctx.PlayerInfo.MyHeros.First().Relationship.Count);
+            Assert.AreEqual(1,ctx.PlayerInfo.MyHeros[1].Relationship.Count);
             bar.deleteHeros();
             Assert.IsNull(bar.Hero1);
             Assert.IsNull(bar.Hero2);
@@ -91,11 +108,41 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
-            //ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             caravan.Initialized();
             caravan.BuyHero(caravan.HerosDispo.First());
             Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.Count());
         }
 
+        private void putItemInAHero(BaseHeros hero)
+        {
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
+            {
+                XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
+                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
+                hero.GetNewItem(overview.First());
+                Assert.AreEqual(overview.First(), hero.Equipement[1]);
+                Assert.AreEqual(hero.EffectCritChance, hero.CritChance += overview.First().CritChance);
+                Assert.AreEqual(hero.EffectivAffectRes, hero.AffectRes += overview.First().AffectRes);
+                Assert.AreEqual(hero.EffectivBleedingRes, hero.BleedingRes += overview.First().BleedingRes);
+                Assert.AreEqual(hero.EffectivDamage, hero.Damage += overview.First().Damage);
+                Assert.AreEqual(hero.EffectivDefense, hero.Defense += overview.First().Defense);
+                Assert.AreEqual(hero.EffectivDodgeChance, hero.DodgeChance += overview.First().DodgeChance);
+                Assert.AreEqual(hero.EffectivFireRes, hero.FireRes += overview.First().FireRes);
+                Assert.AreEqual(hero.EffectivHitChance, hero.HitChance += overview.First().HitChance);
+                Assert.AreEqual(hero.EffectivHPMax, hero.HPmax += overview.First().HP);
+                Assert.AreEqual(hero.EffectivMagicRes, hero.MagicRes += overview.First().MagicRes);
+                Assert.AreEqual(hero.EffectivManaMax, hero.ManaMax += overview.First().Mana);
+                Assert.AreEqual(hero.EffectivPoisonRes, hero.PoisonRes += overview.First().PoisonRes);
+                Assert.AreEqual(hero.EffectivSpeed, hero.Speed += overview.First().Speed);
+                Assert.AreEqual(hero.EffectivWaterRes, hero.WaterRes += overview.First().WaterRes);
+            }
+        }
+        private void UseRndMultipleTime(Random rnd, int nbTime)
+        {
+            for (int i = 0; i < nbTime; i++)
+            {
+                rnd.Next();
+            }
+        }
     }
 }

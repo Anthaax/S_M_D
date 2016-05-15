@@ -42,7 +42,7 @@ namespace S_M_D.Character
         }
         ItemTypes itemtype;
 
-        protected abstract void LevelUp();
+        public abstract void LevelUp();
 
         public string ItemName
         {
@@ -275,6 +275,19 @@ namespace S_M_D.Character
             set
             {
                 _dodgeChance = value;
+            }
+        }
+
+        public int Lvl
+        {
+            get
+            {
+                return _lvl;
+            }
+
+            set
+            {
+                _lvl = value;
             }
         }
     }

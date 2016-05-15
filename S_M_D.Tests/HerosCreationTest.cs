@@ -57,9 +57,9 @@ namespace S_M_D.Tests
             Assert.AreEqual(400, price);
             price = ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).Price;
             Assert.AreEqual( 400, price );
-            ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            price = ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).Price;
             Assert.AreEqual( 400, price );
-            ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            price = ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).Price;
             Assert.AreEqual(400, price);
         }
         [Test]

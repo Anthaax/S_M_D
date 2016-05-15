@@ -11,19 +11,6 @@ namespace S_M_D.Camp.Class
     {
         private List<BaseHeros> _herosDispo;
 
-        public List<BaseHeros> HerosDispo
-        {
-            get
-            {
-                return _herosDispo;
-            }
-
-            set
-            {
-                _herosDispo = value;
-            }
-        }
-
         public Caravan(CaravanConfig b) : base(b)
         {
             HerosDispo = b.HerosDispo;
@@ -42,6 +29,22 @@ namespace S_M_D.Camp.Class
         public void BuyHero(BaseHeros hero)
         {
             Ctx.PlayerInfo.MyHeros.Add(hero);
+        }
+        public void SuppresAnHero(BaseHeros hero)
+        {
+            Ctx.PlayerInfo.MyHeros.Remove(hero);
+        }
+        public List<BaseHeros> HerosDispo
+        {
+            get
+            {
+                return _herosDispo;
+            }
+
+            set
+            {
+                _herosDispo = value;
+            }
         }
     }
 }

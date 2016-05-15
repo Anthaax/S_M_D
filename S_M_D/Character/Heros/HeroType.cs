@@ -60,6 +60,7 @@ namespace S_M_D.Character
         public BaseHeros CreateHero()
         {
             if (_ctx.PlayerInfo.MyHeros.Count >= 16) throw new InvalidOperationException("You have already 16 hero");
+            if (!_ctx.MoneyManager.CanBuy(Price)) throw new InvalidOperationException("Pls check money before buy an hero");
             _isMale = ChooseSex();
             _characterName = ChooseCharacterName();
             BaseHeros Hero = DoCreateHero();

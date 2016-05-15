@@ -10,21 +10,19 @@ namespace S_M_D.Camp.Class
     public class Armory : BaseBuilding
     {
         private BaseHeros _hero;
+        GameContext _ctx;
         public Armory(ArmoryConfig b) : base(b)
         {
             _hero = b.Hero;
-        }
-        public void SetHero(BaseHeros h)
-        {
-            Hero = h;
+            _ctx = b.Ctx;
         }
         public void deleteHero()
         {
             Hero = null;
         }
-        public void UpgrateItemToHero(BaseItem HeroItem)
+        public void UpgrateItemOfAnHero(BaseItem HeroItem)
         {
-            //ajoute l itam au héro selectionné
+            HeroItem.LevelUp();  
         }
         public BaseHeros Hero
         {

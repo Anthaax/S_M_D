@@ -30,5 +30,10 @@ namespace S_M_D.Character
                 weaponType = value;
             }
         }
+
+        public override void LevelUp()
+        {
+            Lvl++;
+        }
     }
 }

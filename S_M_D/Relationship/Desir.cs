@@ -13,6 +13,8 @@ namespace S_M_D.Character
             HeroDuo = new BaseHeros[2];
             HeroDuo[0] = first;
             HeroDuo[1] = second;
+            first.GetRelationship(this);
+            second.GetRelationship(this);
         }
 
         override
