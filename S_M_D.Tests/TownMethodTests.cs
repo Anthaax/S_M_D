@@ -37,6 +37,7 @@ namespace S_M_D.Tests
 
             Assert.AreEqual(2, ctx.PlayerInfo.GetBuilding(BuildingName.Caravan).Level);
         }
+        //ARMORY
         [Test]
         public void PutAndDeleteAnHeroInArmory()
         {
@@ -61,6 +62,7 @@ namespace S_M_D.Tests
             armory.deleteHero();
             Assert.IsNull(armory.Hero);
         }
+        //BAR
         [Test]
         public void PutAndDeleteAnHeroInBarAndGiveThemARelation()
         {
@@ -78,10 +80,64 @@ namespace S_M_D.Tests
             Assert.IsNull(bar.Hero1);
             Assert.IsNull(bar.Hero2);
         }
+        //Hotel
+        [Test]
+        public void PutAndDeleteAnHeroInHotelAndGiveThemARelation()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
+            Hotel h = ctx.PlayerInfo.GetBuilding(BuildingName.Hotel) as Hotel;
+            h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero1);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], h.Hero2);
+            h.CreateRelationHero();
+            Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.First().Relationship.Count);
+            Assert.AreEqual(1, ctx.PlayerInfo.MyHeros[1].Relationship.Count);
+            h.deleteHeros();
+            Assert.IsNull(h.Hero1);
+            Assert.IsNull(h.Hero2);
+        }
+        //Caserne
+        [Test]
+        public void PutAndDeleteAnHeroInCasern()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Casern casern = ctx.PlayerInfo.GetBuilding(BuildingName.Casern) as Casern;
+            casern.Hero = ctx.PlayerInfo.MyHeros.First();
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), casern.Hero);
+            casern.deleteHero();
+            Assert.IsNull(casern.Hero);
+        }
+        //Hospital
+        [Test]
+        public void PutAndDeleteAnHeroInHospital()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            Hospital h = ctx.PlayerInfo.GetBuilding(BuildingName.Hospital) as Hospital;
+            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
+            h.deleteHero();
+            Assert.IsNull(h.Hero);
+        }
+        //MentalHospital
+        [Test]
+        public void PutAndDeleteAnHeroInMentalHospital()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingName.MentalHospital) as MentalHospital;
+            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
+            h.deleteHero();
+            Assert.IsNull(h.Hero);
+        }
         /**
         *Cemetery
         */
-        
+
         [Test]
         public void AddDeadHeroTest()
         {

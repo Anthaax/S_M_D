@@ -14,11 +14,19 @@ namespace S_M_D.Camp.Class
         {
             _hero = b.Hero;
         }
-        public void setHero(BaseHeros h)
+        public BaseHeros Hero
         {
-            _hero = h;
+            get
+            {
+                return _hero;
+            }
+
+            set
+            {
+                _hero = value;
+            }
         }
-        public void deleteHeros()
+        public void deleteHero()
         {
             _hero = null;
         }
