@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonTest
+namespace S_M_D.Dungeon.Tests
 {
-    class DungonManagerTest
+    class CorridorTest
     {
     }
 }

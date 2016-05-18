@@ -7,7 +7,7 @@ using NUnit.Framework;
 using S_M_D.Dungeon;
 //using System.Drawing;
 
-namespace DungeonTest
+namespace S_M_D.Dungeon.Tests
 {
     [TestFixture]
     class RoomTest
@@ -79,7 +79,7 @@ namespace DungeonTest
             testRoom1Pts.Add(new Point(20, 10));
             testRoom1Pts.Add(new Point(20, 20));
             PolygonRoom testRoom1 = new PolygonRoom(testRoom1Pts);
-            
+
             MapItem[,] grid = new MapItem[50, 50];
 
             // Act

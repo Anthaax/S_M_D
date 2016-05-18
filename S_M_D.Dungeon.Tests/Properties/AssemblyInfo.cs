@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Combat")]
+[assembly: AssemblyTitle("S_M_D.Dungeon.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Combat")]
+[assembly: AssemblyProduct("S_M_D.Dungeon.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("1daabbc1-f42d-4e1e-bdf4-fb72af7975b9")]
+[assembly: Guid("d66aa327-b9d1-46ad-af1b-258a42e2b415")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //

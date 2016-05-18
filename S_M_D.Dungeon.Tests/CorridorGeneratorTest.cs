@@ -7,7 +7,7 @@ using NUnit.Framework;
 using S_M_D.Dungeon;
 //using System.Drawing;
 
-namespace DungeonTest
+namespace S_M_D.Dungeon.Tests
 {
     [TestFixture]
     class CorridorGeneratorTest
@@ -196,9 +196,9 @@ namespace DungeonTest
                 Assert.AreEqual(listCorridors[1], testMap.Grid[i, 20]);
             }
             for (int i = 20; i < 25; i++)
-             {
-                 Assert.AreEqual(listCorridors[1], testMap.Grid[25, i]);
-             }
+            {
+                Assert.AreEqual(listCorridors[1], testMap.Grid[25, i]);
+            }
             Assert.AreEqual(rBotRight, testMap.Grid[25, 25]);
         }
     }

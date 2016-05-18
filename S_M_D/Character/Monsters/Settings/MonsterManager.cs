@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace S_M_D.Character.Monsters.Settings
+namespace S_M_D.Character.Monsters
 {
     public class MonsterManager
     {
         public void DeleteDeadMonster(List<BaseMonster> list)
         {
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].HP <= 0)
                 {

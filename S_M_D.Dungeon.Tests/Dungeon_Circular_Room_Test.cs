@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using S_M_D.Dungeon;
 //using System.Drawing;
-
-namespace DungeonTest
+namespace S_M_D.Dungeon.Tests
 {
     [TestFixture]
     public class Dungeon_Circular_Room_Test

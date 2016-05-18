@@ -80,6 +80,7 @@
     <Compile Include="Character\Heros\Priest.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
+    <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
     <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
     <Compile Include="Combat\CombatManager.cs" />
