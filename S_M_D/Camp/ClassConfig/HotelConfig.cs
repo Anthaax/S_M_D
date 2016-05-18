@@ -26,22 +26,12 @@ namespace S_M_D.Camp.ClassConfig
             {
                 return _hero1;
             }
-
-            set
-            {
-                _hero1 = value;
-            }
         }
         public BaseHeros Hero2
         {
             get
             {
                 return _hero2;
-            }
-
-            set
-            {
-                _hero2 = value;
             }
         }
     }

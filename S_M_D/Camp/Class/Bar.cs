@@ -36,18 +36,22 @@ namespace S_M_D.Camp.Class
                 case RelationEnum.Desir:
                     Desir desir = new Desir(_hero1, _hero2);
                     desir.Effect(_hero1);
+                    desir.Effect( _hero2 );
                     break;
                 case RelationEnum.Friendship:
                     Friendship friend = new Friendship(_hero1, _hero2);
                     friend.Effect(_hero1);
+                    friend.Effect( _hero2 );
                     break;
                 case RelationEnum.Hate:
                     Hate hate = new Hate(_hero1, _hero2);
                     hate.Effect(_hero1);
+                    hate.Effect( _hero2 );
                     break;
                 case RelationEnum.Love:
                     Love love = new Love(_hero1, _hero2);
                     love.Effect(_hero1);
+                    love.Effect( _hero2 );
                     break;
                 default:
                     break;
