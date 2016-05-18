@@ -49,7 +49,7 @@ namespace S_M_D.Dungeon
         {
             for (int i = 0; i < this.Visited.Count; i++)
             {
-                if (room.Equals(this.Visited[i]))
+                if (room == this.Visited[i])
                     return true;
             }
             return false;
