@@ -130,7 +130,7 @@ namespace CodeCake
                 {
                     Cake.OpenCover(
                         c => c.NUnit("*.Tests/bin/" + configuration + "/*.Tests.dll", new NUnitSettings { Framework = "v4.5" } ),
-                        new FilePath( releasesDir.Path + "/CoverageResult.txt" ),
+                        new FilePath( "/CoverageResult.txt" ),
                         new OpenCoverSettings()
                             .WithFilter( "+[S_M_D]*" ) );
                 }
