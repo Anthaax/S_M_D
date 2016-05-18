@@ -319,5 +319,21 @@ namespace S_M_D.Character
                 _equipement = value;
             }
         }
+
+        public List<Sickness> Sicknesses
+        {
+            get
+            {
+                return _sicknesses;
+            }
+        }
+
+        public List<Psychology> Psycho
+        {
+            get
+            {
+                return _psycho;
+            }
+        }
     }
 }
