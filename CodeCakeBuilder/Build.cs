@@ -28,7 +28,6 @@ namespace CodeCake
     // the first one finds the nuget.exe that bootstrap.ps1 downloads and uses, 
     // the second one enables to find tools that can be installed as NuGet packages in a solution.
     // You may keep this sample AddPath since unexisting paths are actually ignored.
-    [AddPath( "%LOCALAPPDATA%/My-Marvelous-Tools" )]
     public class Build : CodeCakeHost
     {
         public Build()
@@ -130,7 +129,11 @@ namespace CodeCake
                 .IsDependentOn( "Unit-Testing" )
                 .Does( () =>
                 {
-                    //Cake.OpenCover();
+                    Cake.OpenCover(
+                        c => c.NUnit("*.Tests/bin/" + configuration + "/*.Tests.dll", new NUnitSettings { Framework = "v4.5" } ),
+                        new FilePath( releasesDir.Path + "/CoverageResult.txt" ),
+                        new OpenCoverSettings()
+                            .WithFilter( "+[S_M_D]*" ) );
                 }
                 );
 
@@ -181,7 +184,7 @@ namespace CodeCake
             //        }
             //    } );
 
-            //Task( "Default" ).IsDependentOn( "Push-NuGet-Packages" );
+            Task( "Default" ).IsDependentOn( "Code-Coverage" );
 
         }
     }

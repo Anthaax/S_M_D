@@ -202,7 +202,7 @@ namespace S_M_D.Character
             {
                 if (spellToUpdate != null)
                 {
-                    spellToUpdate.updateSpell();
+                    spellToUpdate.UpdateSpell();
                 }
 
             }

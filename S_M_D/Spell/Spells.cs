@@ -12,37 +12,29 @@ namespace S_M_D.Spell
         readonly int _price;
         readonly string _description;
         readonly int _manaCost;
-        readonly int _baseCooldown;
+        KindOfEffect _kindOfEffect;
+        TargetManager _targetManager;
+        CooldownManager _cooldownManager;
         int _lvl;
-        readonly DamageTypeEnum _damageType;
-        bool _isOnCooldown;
-        int _cooldown;
-        int _radius;
-        bool [] _positionToAttack = new bool [4];
-        bool[] _PositionTakingAttack = new bool[4];
-        BasicDamagePhysical _basicDamagePhysical;
-        BasicDamageMagical _basicDamageMagical;
-        DamageAndEffect _damageAndEffect;
-        FireOnTime _fireOnTime;
-        public Spells(string name, int price, string descrpition, int manaCost, int baseCooldown, DamageTypeEnum damageType, int lvl, bool[] positionToAttack, bool[] positionTakingAttack)
+        bool _isBuy;
+        bool _isEquiped;
+        public Spells(string name, int price, string descrpition, int manaCost, int lvl, bool isBuy, bool isEquiped)
         {
             _name = name;
             _price = price;
             _description = descrpition;
             _manaCost = manaCost;
-            _baseCooldown = baseCooldown;
-            _damageType = damageType;
             _lvl = lvl;
-            PositionToAttack = positionToAttack;
-            PositionTakingAttack = positionTakingAttack;
+            _isBuy = isBuy;
+            _isEquiped = isEquiped;
         }
-
-        public abstract void updateSpell();
-        public  void levelUp()
+        public abstract void UpdateSpell();
+        public void LevelUp()
         {
-            Lvl += 1;
+            if (Lvl <= 4) throw new InvalidOperationException( "The Spell cannot be upgrate more than 3 time" );
+            Lvl++;
+            UpdateSpell();
         }
-
 
         public string Name
         {
@@ -75,49 +67,6 @@ namespace S_M_D.Spell
                 return _manaCost;
             }
         }
-
-        public int BaseCooldown
-        {
-            get
-            {
-                return _baseCooldown;
-            }
-        }
-
-        public bool IsOnCooldown
-        {
-            get
-            {
-                return _isOnCooldown;
-            }
-
-            set
-            {
-                _isOnCooldown = value;
-            }
-        }
-
-        public int Cooldown
-        {
-            get
-            {
-                return _cooldown;
-            }
-
-            set
-            {
-                _cooldown = value;
-            }
-        }
-
-        public DamageTypeEnum DamageType
-        {
-            get
-            {
-                return _damageType;
-            }
-        }
-
         public int Lvl
         {
             get
@@ -130,82 +79,68 @@ namespace S_M_D.Spell
                 _lvl = value;
             }
         }
-
-        public bool[] PositionToAttack
+        public bool IsBuy
         {
             get
             {
-                return _positionToAttack;
+                return _isBuy;
             }
 
             set
             {
-                _positionToAttack = value;
+                _isBuy = value;
             }
         }
 
-        public bool[] PositionTakingAttack
+        public bool IsEquiped
         {
             get
             {
-                return _PositionTakingAttack;
+                return _isEquiped;
             }
 
             set
             {
-                _PositionTakingAttack = value;
+                _isEquiped = value;
             }
         }
 
-        public BasicDamagePhysical BasicDamagePhysical
+        public KindOfEffect KindOfEffect
         {
             get
             {
-                return _basicDamagePhysical;
+                return _kindOfEffect;
             }
 
             set
             {
-                _basicDamagePhysical = value;
+                _kindOfEffect = value;
             }
         }
 
-        public BasicDamageMagical BasicDamageMagical
+        public CooldownManager CooldownManager
         {
             get
             {
-                return _basicDamageMagical;
+                return _cooldownManager;
             }
 
             set
             {
-                _basicDamageMagical = value;
+                _cooldownManager = value;
             }
         }
 
-        public DamageAndEffect DamageAndEffect
+        public TargetManager TargetManager
         {
             get
             {
-                return _damageAndEffect;
+                return _targetManager;
             }
 
             set
             {
-                _damageAndEffect = value;
-            }
-        }
-
-        public FireOnTime FireOnTime
-        {
-            get
-            {
-                return _fireOnTime;
-            }
-
-            set
-            {
-                _fireOnTime = value;
+                _targetManager = value;
             }
         }
     }

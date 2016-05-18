@@ -10,25 +10,25 @@ namespace S_M_D.Spell
     public class BasicAttackPriest : Spells
     {
         readonly Priest _priest;
-        int[] damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
+        int[] _damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public BasicAttackPriest(Priest priest)
-            : base("BasicAttack", 400, "Attaque basique du priest", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
+            : base("BasicAttack", 400, "Attaque basique du priest", 0, 0, true, true)
         {
             _priest = priest;
-            BasicDamagePhysical = new BasicDamagePhysical(_priest.EffectivDamage, damageRatioByLvl[Lvl]);
+            CooldownManager = new CooldownManager( 1 );
+            TargetManager = new TargetManager( 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false } );
+            KindOfEffect = new KindOfEffect( Priest.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _damageRatioByLvl[Lvl] );
         }
 
-        public override void updateSpell()
+        public override void UpdateSpell()
         {
-            BasicDamagePhysical = new BasicDamagePhysical(_priest.EffectivDamage, damageRatioByLvl[Lvl]);
+            KindOfEffect.Damage = Convert.ToInt32( Priest.EffectivDamage * _damageRatioByLvl[Lvl] );
         }
-
-
-        public Priest priest
+        public Priest Priest
         {
             get
             {

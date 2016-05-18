@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle\BattleManager.cs" />
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingManager.cs" />
     <Compile Include="Camp\BuildingType.cs" />
@@ -117,17 +118,16 @@
     <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
     <Compile Include="Sickness\Staphyloccocus.cs" />
+    <Compile Include="Spell\CooldownManager.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
-    <Compile Include="Spell\SpellEffect\BasicDamageMagical.cs" />
-    <Compile Include="Spell\SpellEffect\BasicDamagePhysical.cs" />
-    <Compile Include="Spell\SpellEffect\DamageAndEffect.cs" />
-    <Compile Include="Spell\SpellEffect\FireOnTime.cs" />
+    <Compile Include="Spell\KindOfEffect.cs" />
     <Compile Include="Spell\Spells.cs" />
+    <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>

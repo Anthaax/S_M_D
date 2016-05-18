@@ -10,6 +10,11 @@ namespace S_M_D.Spell
     public enum DamageTypeEnum
     {
         Physical = 1,
-        Magical = 2
+        Magical = 2,
+        Bleeding = 3,
+        Poison = 4,
+        Fire = 5,
+        Affect = 6,
+        Water = 7
     }
 }
