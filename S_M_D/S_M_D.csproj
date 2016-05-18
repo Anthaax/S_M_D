@@ -80,7 +80,7 @@
     <Compile Include="Character\Heros\Priest.cs" />
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
-    <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
+    <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
     <Compile Include="Combat\CombatManager.cs" />
     <Compile Include="Combat\Reward.cs" />
@@ -94,6 +94,8 @@
     <Compile Include="Dungeon\Map.cs" />
     <Compile Include="Dungeon\MapGenerator.cs" />
     <Compile Include="Dungeon\MapItem.cs" />
+    <Compile Include="Dungeon\Point.cs" />
+    <Compile Include="Dungeon\PolygonRoom.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Item\BaseArmor.cs" />
