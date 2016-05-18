@@ -20,11 +20,6 @@ namespace S_M_D.Camp.ClassConfig
             {
                 return _hero;
             }
-
-            set
-            {
-                _hero = value;
-            }
         }
         protected override BaseBuilding DoCreateBuilding()
         {

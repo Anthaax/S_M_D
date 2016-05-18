@@ -9,18 +9,20 @@ namespace S_M_D.Spell
     class ShieldRush : Spells
     {
         readonly Warrior _warrior;
-        int[] _damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
+        float[] _damageRatioByLvl = new float[4] { 1.2f, 1.5f, 1.8f, 2.1f };
 
         public ShieldRush(Warrior warrior)
-            :base("ShieldRush", 400, "Donne un coup de bouclier", 0, 0, DamageTypeEnum.Physical, 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false })
+            :base("ShieldRush", 400, "Donne un coup de bouclier", 0, 0, true, true)
         {
             _warrior = warrior;
-            DamageAndEffect = new DamageAndEffect(2,true, _warrior.EffectivDamage, _damageRatioByLvl[Lvl]);
+            CooldownManager = new CooldownManager( 1 );
+            TargetManager = new TargetManager( 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false });
+            KindOfEffect = new KindOfEffect( warrior.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _damageRatioByLvl[Lvl] );
         }
 
-        public override void updateSpell()
+        public override void UpdateSpell()
         {
-            DamageAndEffect = new DamageAndEffect(2,true,_warrior.EffectivDamage, _damageRatioByLvl[Lvl]);
+            KindOfEffect.Damage = Convert.ToInt32( Warrior.EffectivDamage * _damageRatioByLvl[Lvl] );
         }
 
         public Warrior Warrior
@@ -28,19 +30,6 @@ namespace S_M_D.Spell
             get
             {
                 return _warrior;
-            }
-        }
-
-        public int[] DamageRatioByLvl
-        {
-            get
-            {
-                return _damageRatioByLvl;
-            }
-
-            set
-            {
-                _damageRatioByLvl = value;
             }
         }
     }
