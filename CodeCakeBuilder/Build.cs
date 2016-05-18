@@ -8,6 +8,7 @@ using Cake.Core;
 using Cake.Common.Diagnostics;
 using Cake.Common.Text;
 using Cake.Common.Tools.NuGet.Pack;
+using Cake.Common.Tools.OpenCover;
 using System;
 using System.Linq;
 using Cake.Core.Diagnostics;
@@ -125,6 +126,13 @@ namespace CodeCake
                      );
 
                  } );
+            Task( "Code-Coverage" )
+                .IsDependentOn( "Unit-Testing" )
+                .Does( () =>
+                {
+                    //Cake.OpenCover();
+                }
+                );
 
             //Task( "Create-NuGet-Packages" )
             //    .IsDependentOn( "Build" )
