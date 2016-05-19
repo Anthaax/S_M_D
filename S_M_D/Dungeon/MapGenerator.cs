@@ -74,13 +74,16 @@ namespace S_M_D.Dungeon
             }
         }
 
-
         public void Generate(Map map)
         {
             this.generateRooms(map);
 
             ICorridorGenerator corGen = new CorridorGenerator();
+            IEventGenerator eventGen = new EventGenerator( );
+
             corGen.Generate(map);
+            eventGen.Generate( map );
+
             this.setNeighbors(map);
         }
 

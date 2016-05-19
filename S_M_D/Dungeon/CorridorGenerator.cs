@@ -318,7 +318,6 @@ namespace S_M_D.Dungeon
             }
         }
 
-
         public void Generate(Map map)
         {
             List<WeightedEdge> wEdges = connectEverySummit(map.Rooms);

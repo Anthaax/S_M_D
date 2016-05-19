@@ -10,6 +10,7 @@ namespace S_M_D.Dungeon
     {
         protected Point center;
         public Point Center { get; set; }
+        public List<string> events { get; set; }
 
         /// <summary>
         /// Initializes the room, setting its characteristics (randomly generated).

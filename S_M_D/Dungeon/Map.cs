@@ -55,7 +55,6 @@ namespace S_M_D.Dungeon
             return false;
         }
 
-
         public List<Point> leeAlgorithm(Point posA, Point posB)
         {
             List<Point> cells = new List<Point>();

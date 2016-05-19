@@ -10,7 +10,6 @@ namespace S_M_D.Dungeon
     {
         private int radius;
 
-
         public CircularRoom()
         {
             Random rand = new Random();
