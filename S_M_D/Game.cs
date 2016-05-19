@@ -32,6 +32,7 @@ namespace S_M_D
             _buildingManager = new BuildingManager(this);
             _playerInfo = new PlayerInformation( this );
             _playerInfo.InitializedBuilding();
+            _playerInfo.InitializedHeros();
 
         }
         /// <summary>

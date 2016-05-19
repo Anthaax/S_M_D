@@ -18,7 +18,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Diarrhea test = new Diarrhea();
             warrior.GetSickness(test);
             Assert.AreEqual(warrior.EffectivDamage, 10);
@@ -32,7 +32,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Fever test = new Fever();
             warrior.GetSickness(test);
             Assert.AreEqual(warrior.EffectivDamage, 13);
@@ -49,7 +49,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Cancer cancer = new Cancer();
             warrior.GetSickness(cancer);
             Assert.AreEqual(warrior.EffectivHPMax, 42);
@@ -62,7 +62,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Staphyloccocus stap = new Staphyloccocus();
             warrior.GetSickness(stap);
             Assert.AreEqual(warrior.EffectivSpeed, 0);
@@ -75,7 +75,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Crazyness test = new Crazyness();
             warrior.GetPsycho(test);
             Assert.AreEqual(warrior.EffectivDamage, 17);
@@ -93,7 +93,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Fragil fragil = new Fragil();
             warrior.GetPsycho(fragil);
             Assert.AreEqual(warrior.EffectivDefense, 30);
@@ -106,7 +106,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Arrogant arrogant = new Arrogant();
             warrior.GetPsycho(arrogant);
             Assert.AreEqual(warrior.EffectCritChance, 30);
@@ -118,8 +118,7 @@ namespace S_M_D.Tests
         public void AgressivityWarriorTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Agressivity agressivity = new Agressivity();
             warrior.GetPsycho(agressivity);
             Assert.AreEqual(warrior.EffectivDamage, 17);
@@ -132,10 +131,8 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Love love = new Love(warrior, mage);
             Assert.AreEqual(warrior.EffectivDamage, 12);
             Assert.AreEqual(warrior.EffectivDefense, 44);
@@ -155,8 +152,8 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
 
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Hate hate = new Hate(warrior, mage);
             Assert.AreEqual(warrior.Damage += Convert.ToInt32(warrior.Damage * 0.5), warrior.EffectivDamage);
             Assert.AreEqual(warrior.Defense += Convert.ToInt32(warrior.Defense * 0.5), warrior.EffectivDefense);
@@ -171,8 +168,8 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
 
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Desir desir = new Desir(warrior, mage);
             Assert.AreEqual(warrior.HitChance - 2, warrior.EffectivHitChance);
             Assert.AreEqual(mage.EffectivHitChance, mage.HitChance-2);
@@ -185,8 +182,8 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
 
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Friendship friendship = new Friendship(warrior, mage);
             Assert.AreEqual(warrior.Damage + 2, warrior.EffectivDamage);
             Assert.AreEqual(mage.Damage + 2, mage.EffectivDamage);
@@ -196,8 +193,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
@@ -226,7 +222,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
 
             using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
             {
@@ -245,7 +241,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
 
             using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
             {
@@ -276,7 +272,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
 
             using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Trinket.xml", FileMode.Open))
             {
@@ -308,8 +304,8 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Warrior warrior = ctx.PlayerInfo.MyHeros.First() as Warrior;
-            Mage mage = ctx.PlayerInfo.MyHeros[1] as Mage;
+            Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Fever testF = new Fever();
             Diarrhea testD = new Diarrhea();
             Crazyness testC = new Crazyness();

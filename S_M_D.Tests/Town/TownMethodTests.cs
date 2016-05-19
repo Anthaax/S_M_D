@@ -40,7 +40,6 @@ namespace S_M_D.Tests
         public void PutAndDeleteAnHeroInArmory()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
@@ -51,7 +50,6 @@ namespace S_M_D.Tests
         public void UseEffectAnHeroInArmory()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
             putItemInAHero(armory.Hero);
@@ -64,8 +62,6 @@ namespace S_M_D.Tests
         public void PutAndDeleteAnHeroInBarAndGiveThemARelation()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Bar bar = ctx.PlayerInfo.GetBuilding(BuildingName.Bar) as Bar;
             bar.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), bar.Hero1);
@@ -86,7 +82,6 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             Cemetery cemetery = ctx.PlayerInfo.GetBuilding(BuildingName.Cemetery) as Cemetery;
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
             cemetery.AddDeadHero(hero);
             Assert.AreEqual(1, cemetery.GetDeadHeros.Count());
@@ -109,7 +104,7 @@ namespace S_M_D.Tests
             Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
             caravan.Initialized();
             caravan.BuyHero(caravan.HerosDispo.First());
-            Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.Count());
+            Assert.AreEqual(5, ctx.PlayerInfo.MyHeros.Count());
         }
 
         private void putItemInAHero(BaseHeros hero)
