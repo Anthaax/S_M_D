@@ -302,9 +302,9 @@ namespace S_M_D.Tests
         public void WarriorUpdate()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
+            Priest priest = ctx.PlayerInfo.MyHeros[2] as Priest;
+            Paladin paladin = ctx.PlayerInfo.MyHeros[1] as Paladin;
             Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Fever testF = new Fever();
             Diarrhea testD = new Diarrhea();
@@ -313,6 +313,9 @@ namespace S_M_D.Tests
             warrior.GetPsycho(testC);
             warrior.GetSickness(testF);
             warrior.GetSickness(testD);
+            priest.UpdateHeroStats();
+            paladin.UpdateHeroStats();
+            mage.UpdateHeroStats();
             Assert.AreEqual(warrior.EffectivDamage, 19);
             Assert.AreEqual(warrior.EffectivDefense, 36);
             Assert.AreEqual(warrior.EffectCritChance, 30);
