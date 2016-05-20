@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -49,6 +50,34 @@ namespace S_M_D.Character
         int _dodgeChance;
         int _effectivDefense;
         int _effectivDodgeChance;
+
+        public int Resist(DamageTypeEnum damageType)
+        {
+            int resitChance;
+            switch (damageType)
+            {
+                case DamageTypeEnum.Magical:
+                    resitChance = _effectivMagicRes;
+                    return resitChance;
+                case DamageTypeEnum.Bleeding:
+                    resitChance = _effectivBleedingRes;
+                    return resitChance;
+                case DamageTypeEnum.Poison:
+                    resitChance = _effectivPoisonRes;
+                    return resitChance;
+                case DamageTypeEnum.Fire:
+                    resitChance = _effectivFireRes;
+                    return resitChance;
+                case DamageTypeEnum.Affect:
+                    resitChance = _effectivAffectRes;
+                    return resitChance;
+                case DamageTypeEnum.Water:
+                    resitChance = _effectivWaterRes;
+                    return resitChance;
+                default:
+                    return 0;
+            }
+        } 
 
         public string CharacterName
         {

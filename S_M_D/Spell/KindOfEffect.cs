@@ -18,7 +18,7 @@ namespace S_M_D.Spell
             _damageType = damageType;
             _damagePerTurn = damagePerTurn;
             _turn = turn;
-            if (_damageType == (DamageTypeEnum)1) _canBeBlock = false;
+            if (_damageType == (DamageTypeEnum)1 || _damageType == (DamageTypeEnum)8) _canBeBlock = false;
             else _canBeBlock = true;
         }
         public int Damage

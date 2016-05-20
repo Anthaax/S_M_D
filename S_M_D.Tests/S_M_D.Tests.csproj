@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Combat\CombatManagerTest.cs" />
     <Compile Include="Dungeon\CorridorGeneratorTest.cs" />
     <Compile Include="Dungeon\CorridorTest.cs" />
     <Compile Include="Dungeon\Dungeon_Circular_Room_Test.cs" />

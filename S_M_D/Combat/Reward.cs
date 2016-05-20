@@ -17,12 +17,21 @@ namespace S_M_D.Combat
         {
             _gameContext = gameContext;
             _xp = getXP(monsters);
-            _item = getItem();
+            _item = getItem("");
             _money = _gameContext.Rnd.Next(10000);
 
         }
+        public Reward( BaseMonster[] monsters, GameContext gameContext , string path)
+            :base()
+        {
+            _gameContext = gameContext;
+            _xp = getXP( monsters );
+            _item = getItem( path );
+            _money = _gameContext.Rnd.Next( 10000 );
+        }
 
-        private BaseItem getItem()
+
+        private BaseItem getItem(string prePath)
         {
             string path;
             int rand = _gameContext.Rnd.Next(30);
@@ -32,7 +41,7 @@ namespace S_M_D.Combat
             {
                 if (rand > 19)
                 {
-                    path = "Items/Weapons.xml";
+                    path = prePath + "Items/Weapons.xml";
                     using (FileStream myFileStream = new FileStream(path, FileMode.Open))
                     {
                         XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
@@ -43,7 +52,7 @@ namespace S_M_D.Combat
                 }
                 else if (rand > 9)
                 {
-                    path = "Items/Armors.xml";
+                    path = prePath + "Items/Armors.xml";
                     using (FileStream myFileStream = new FileStream(path, FileMode.Open))
                     {
                         XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
@@ -55,7 +64,7 @@ namespace S_M_D.Combat
                 }
                 else
                 {
-                    path = "Items/Trinkets.xml";
+                    path = prePath + "Items/Trinket.xml";
                     using (FileStream myFileStream = new FileStream(path, FileMode.Open))
                     {
                         XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));

@@ -140,12 +140,5 @@ namespace S_M_D.Tests
                 hero.GetNewItem( overview.First() );
             }
         }
-        private void UseRndMultipleTime(Random rnd, int nbTime)
-        {
-            for (int i = 0; i < nbTime; i++)
-            {
-                rnd.Next();
-            }
-        }
     }
 }
