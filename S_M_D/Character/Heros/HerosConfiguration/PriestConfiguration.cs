@@ -87,6 +87,9 @@ namespace S_M_D.Character
         {
             Priest priest = hero as Priest;
             hero.Spells[0] = new BasicAttackPriest(priest);
+            hero.Spells[1] = new ChurchSanction( priest );
+            hero.Spells[2] = new DarknessEradication( priest );
+            hero.Spells[3] = new HeartPurification( priest );
         }
 
         public int HPmax

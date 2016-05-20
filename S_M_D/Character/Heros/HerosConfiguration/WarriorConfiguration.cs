@@ -87,8 +87,10 @@ namespace S_M_D.Character
         protected override void InitilizedSpell( BaseHeros hero )
         {
             Warrior warrior = hero as Warrior;
-            hero.Spells[0] =  new BasicAttackWarrior( warrior  );
+            hero.Spells[0] = new BasicAttackWarrior( warrior );
             hero.Spells[1] = new ShieldRush(warrior);
+            hero.Spells[2] = new HearthAttack( warrior );
+            hero.Spells[3] = new MultipleHit( warrior );
         }
 
         public int HPmax

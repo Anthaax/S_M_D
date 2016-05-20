@@ -127,13 +127,22 @@
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
+    <Compile Include="Spell\Mage\CockStorm.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
+    <Compile Include="Spell\Paladin\GodDivination.cs" />
+    <Compile Include="Spell\Paladin\GodHelp.cs" />
+    <Compile Include="Spell\Paladin\JusticeHammer.cs" />
+    <Compile Include="Spell\Priest\ChurchSanction.cs" />
+    <Compile Include="Spell\Priest\DarknessEradication.cs" />
+    <Compile Include="Spell\Priest\HeartPurification.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\KindOfEffect.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
+    <Compile Include="Spell\Warrior\HearthAttack.cs" />
+    <Compile Include="Spell\Warrior\MultipleHit.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup>

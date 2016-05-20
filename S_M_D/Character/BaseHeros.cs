@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Spell;
+using S_M_D.Camp;
 
 
 namespace S_M_D.Character
@@ -17,6 +18,7 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
+        BaseBuilding _inBuilding;
         BaseItem[] _equipement;
         int _xp;
         int _xpMax;
@@ -49,6 +51,7 @@ namespace S_M_D.Character
             PoisonRes = poisonRes;
             Speed = speed;
             WaterRes = waterRes;
+            _inBuilding = null;
             _spells = new Spells[8];
             Equipement = new BaseItem[4];
             _sicknesses = new List<Sickness>();
@@ -71,7 +74,8 @@ namespace S_M_D.Character
             else if (item.Itemtype == BaseItem.ItemTypes.Trinket)
             {
                 if (Equipement[2] == null) Equipement[2] = item;
-                else throw new ArgumentException("You already have a Trinket!");
+                else if (Equipement[3] == null) Equipement[3] = item;
+                else throw new ArgumentException( "You already have a Trinket!" );
             }
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
@@ -216,6 +220,9 @@ namespace S_M_D.Character
             }
 
         }
+        public void Die()
+        { 
+}
         public abstract void LevelUp();
         public int Evilness
         {
@@ -333,6 +340,19 @@ namespace S_M_D.Character
             get
             {
                 return _psycho;
+            }
+        }
+
+        public BaseBuilding InBuilding
+        {
+            get
+            {
+                return _inBuilding;
+            }
+
+            set
+            {
+                _inBuilding = value;
             }
         }
     }

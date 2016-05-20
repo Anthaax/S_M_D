@@ -48,10 +48,10 @@ namespace S_M_D
         {
             return _myBuildings.Find(t => t.Name == name);
         }
-        //public BaseHeros GetHeros(HerosEnum classHerosName)
-        //{
-        //    return _myHeros.Find(t => t.CharacterClassName == classHerosName.ToString());
-        //}
+        public BaseHeros GetHeros( string name )
+        {
+            return _myHeros.Find( t => t.CharacterName == name );
+        }
         public void InitializedBuilding()
         {
             _ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
@@ -63,6 +63,13 @@ namespace S_M_D
             _ctx.BuildingManager.Find(BuildingName.Hospital).CreateBuilding();
             _ctx.BuildingManager.Find(BuildingName.Hotel).CreateBuilding();
             _ctx.BuildingManager.Find(BuildingName.MentalHospital).CreateBuilding();
+        }
+        public void InitializedHeros()
+        {
+            _ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
         }
     }
 }

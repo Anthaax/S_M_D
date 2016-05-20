@@ -15,6 +15,7 @@ namespace S_M_D.Spell
         Poison = 4,
         Fire = 5,
         Affect = 6,
-        Water = 7
+        Water = 7,
+        Heal = 8
     }
 }
