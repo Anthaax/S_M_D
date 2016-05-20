@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="S_M_D.Character.BaseCharacter" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhhwAELQUCQUAIokSCVMCQGBYCRUBAgQHAgwKwCAAIE=</HashCode>
+      <FileName>Character\BaseCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.BaseHeros" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="_characterClassName" Hidden="true" />
+      <Field Name="_equipement" Hidden="true" />
+      <Field Name="_evilness" Hidden="true" />
+      <Field Name="_isMale" Hidden="true" />
+      <Field Name="_price" Hidden="true" />
+      <Field Name="_psycho" Hidden="true" />
+      <Field Name="_relationship" Hidden="true" />
+      <Field Name="_sicknesses" Hidden="true" />
+      <Field Name="_spells" Hidden="true" />
+      <Field Name="_xp" Hidden="true" />
+      <Field Name="_xpMax" Hidden="true" />
+      <Method Name="AddItemStats" Hidden="true" />
+      <Method Name="BaseHeros" Hidden="true" />
+      <Method Name="DeletePsycho" Hidden="true" />
+      <Method Name="DeleteRelationship" Hidden="true" />
+      <Method Name="DeleteSickness" Hidden="true" />
+      <Method Name="GetNewItem" Hidden="true" />
+      <Method Name="GetPsycho" Hidden="true" />
+      <Method Name="GetRelationship" Hidden="true" />
+      <Method Name="GetSickness" Hidden="true" />
+      <Method Name="LevelUp" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="UpdateHeroStats" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QggACAAMAQAAAQABAAAcJGyBAAAAiIAEAAARAAhACBQ=</HashCode>
+      <FileName>Character\BaseHeros.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Relationship" />
+      <Property Name="Psycho" />
+      <Property Name="Sicknesses" />
+      <Property Name="Spells" />
+      <Property Name="Equipement" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="S_M_D.Character.BaseMonster" Collapsed="true">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAASAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Character\BaseMonster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.HerosType" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IggAAAAAAUAEAQgEACAAAAIAAABBkAAAAAAAAAAACAA=</HashCode>
+      <FileName>Character\Heros\HeroType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Warrior" Collapsed="true">
+    <Position X="4.25" Y="5" Width="1.5" />
+    <Members>
+      <Method Name="LevelUp" Hidden="true" />
+      <Method Name="Warrior" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Character\Heros\Warrior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.WarriorConfiguration" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RhBAAADYECQQAAIECCBcLSABYChEjIAABAgQIghAAAE=</HashCode>
+      <FileName>Character\Heros\HerosConfiguration\WarriorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.HerosManager" Collapsed="true">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAEAAAAAAAAQQAAAAAAAAAAAAJAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Character\HerosManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllTypes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="S_M_D.Character.Monsters.MonsterConfiguration" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Character\Monsters\Settings\MonsterConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Desir" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Relationship\Desir.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Agressivity" Collapsed="true">
+    <Position X="11" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Psychology\Agressivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Cancer" Collapsed="true">
+    <Position X="11" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sickness\Cancer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Relationship" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAABAgCAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Relationship\Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Psychology" Collapsed="true">
+    <Position X="8.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Psychology\Psychology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.Sickness" Collapsed="true">
+    <Position X="8.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sickness\Sickness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Spell.Spells" Collapsed="true">
+    <Position X="8.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DgCEIAAAQQBgCoAkAEAAAEQyAAEAAQAgAEIAAwogQAA=</HashCode>
+      <FileName>Spell\Spells.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Spell.ShieldRush" Collapsed="true">
+    <Position X="11" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAQAAAAACIAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Spell\Warrior\ShieldRush.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Spell.BasicAttackWarrior" Collapsed="true">
+    <Position X="11" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Spell\Warrior\BasicAttackWarrior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Character.BaseItem" Collapsed="true">
+    <Position X="8.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhBEAADQEARQAAIkiAAWCQABYiBDBAAABAgAIwAAAAE=</HashCode>
+      <FileName>Item\BaseItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="S_M_D.Character.HerosEnum" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAIAAAA=</HashCode>
+      <FileName>Character\HerosEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="S_M_D.Character.HerosFemaleNameEnum" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAgAAAAEAQAAAAAAAAAAACIAACAAABAAAAA=</HashCode>
+      <FileName>Character\HerosFemaleNameEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="S_M_D.Character.HerosMaleNameEnum" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAJQAAAAAAAAAAgAAAAEAAAAAFAAA=</HashCode>
+      <FileName>Character\HerosMaleNameEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="S_M_D.Character.Monsters.MonsterType" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Character\Monsters\Settings\MonsterType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

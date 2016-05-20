@@ -15,6 +15,7 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+coverage/
 x64/
 x86/
 bld/
@@ -234,3 +235,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+Codecoverage.txt
