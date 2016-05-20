@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using S_M_D.Combat;
 using S_M_D.Character.Monsters;
+using S_M_D.Spell;
 
 namespace S_M_D.Tests.Combat
 {
@@ -35,6 +36,10 @@ namespace S_M_D.Tests.Combat
             cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells.First(), 0 );
             Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.Damage, cbt.Monsters.First().HP );
             Assert.AreEqual( true, ctx.PlayerInfo.MyHeros.First().Spells.First().CooldownManager.IsOnCooldown );
+            Assert.Throws<ArgumentException>( () => cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
+            cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+            Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage, cbt.Monsters[1].HP );
+            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].KindOfEffect.DamageType );
         }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {

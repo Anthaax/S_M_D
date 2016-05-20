@@ -20,7 +20,7 @@ namespace S_M_D.Spell
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 1 );
-            TargetManager = new TargetManager( 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true } );
+            TargetManager = new TargetManager( 1, new bool[4] { true, false, true, true }, new bool[4] { false, true, true, true } );
             KindOfEffect = new KindOfEffect( mage.EffectivDamage, DamageTypeEnum.Fire, _fireValueByLvl[0], 2, _damageRatioByLvl[Lvl] );
 
         }

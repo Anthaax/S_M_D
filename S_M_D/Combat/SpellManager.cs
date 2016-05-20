@@ -28,7 +28,9 @@ namespace S_M_D.Combat
                     monster.HP -= spell.KindOfEffect.Damage;
                     Spells damageOnTimeSpell = null;
                     _combatManager.DamageOnTime.TryGetValue( monster, out damageOnTimeSpell );
-                    if (spell.KindOfEffect.DamageType == damageOnTimeSpell.KindOfEffect.DamageType)
+                    if (damageOnTimeSpell == null)
+                        _combatManager.DamageOnTime[monster] = spell;
+                    else if (spell.KindOfEffect.DamageType == damageOnTimeSpell.KindOfEffect.DamageType)
                         spell.KindOfEffect.DamagePerTurn += damageOnTimeSpell.KindOfEffect.DamagePerTurn;
                     _combatManager.DamageOnTime[monster] = spell;
                 }
@@ -52,7 +54,9 @@ namespace S_M_D.Combat
                 {
                     Spells damageOnTimeSpell = null;
                     _combatManager.DamageOnTime.TryGetValue( hero, out damageOnTimeSpell );
-                    if (spell.KindOfEffect.DamageType == damageOnTimeSpell.KindOfEffect.DamageType)
+                    if (damageOnTimeSpell == null)
+                        _combatManager.DamageOnTime[hero] = spell;
+                    else if (spell.KindOfEffect.DamageType == damageOnTimeSpell.KindOfEffect.DamageType)
                         spell.KindOfEffect.DamagePerTurn += damageOnTimeSpell.KindOfEffect.DamagePerTurn;
                     _combatManager.DamageOnTime[hero] = spell;
                 }
