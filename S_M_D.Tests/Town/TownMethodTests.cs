@@ -3,7 +3,6 @@ using S_M_D.Camp;
 using S_M_D.Character;
 using S_M_D.Camp.Class;
 using S_M_D.Camp.ClassConfig;
-using S_M_D.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;

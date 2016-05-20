@@ -10,28 +10,25 @@ namespace S_M_D.Spell
     public class BasicAttackMage : Spells
     {
         readonly Mage _mage;
-
-        int[] damageRatioByLvl = new int[4] { 1, 1, 1, 1 };
+        float[] _damageRatioByLvl = new float[4] { 1, 1, 1, 1 };
         /// <summary>
         /// 
         /// </summary>
         /// <param name="paladin"></param>
         public BasicAttackMage(Mage mage)
-            : base("BasicAttack", 400, "Attaque basique du priest", 0, 0, DamageTypeEnum.Physical, 1,new bool[4] { true, true, false, false } , new bool[4] { true, true, false, false } )
+            : base("BasicAttack", 400, "Attaque basique du mage", 0, 0, true, true)
         {
             
             _mage = mage;
-            
-            BasicDamageMagical = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
-
+            CooldownManager = new CooldownManager( 1 );
+            TargetManager = new TargetManager( 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, false, false } );
+            KindOfEffect = new KindOfEffect( mage.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _damageRatioByLvl[Lvl] );
         }
 
-        public override void updateSpell()
+        public override void UpdateSpell()
         {
-            BasicDamageMagical = new BasicDamageMagical(mage.EffectivDamage, damageRatioByLvl[Lvl]);
+            KindOfEffect.Damage = Convert.ToInt32(_mage.EffectivDamage * _damageRatioByLvl[Lvl]);
         }
-
-
         public Mage mage
         {
             get

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle\BattleManager.cs" />
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingManager.cs" />
     <Compile Include="Camp\BuildingType.cs" />
@@ -80,7 +81,10 @@
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
+    <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
+    <Compile Include="Combat\CombatManager.cs" />
+    <Compile Include="Combat\Reward.cs" />
     <Compile Include="Dungeon\Corridor.cs" />
     <Compile Include="Dungeon\CorridorGenerator.cs" />
     <Compile Include="Dungeon\DungeonManager.cs" />
@@ -91,6 +95,8 @@
     <Compile Include="Dungeon\Map.cs" />
     <Compile Include="Dungeon\MapGenerator.cs" />
     <Compile Include="Dungeon\MapItem.cs" />
+    <Compile Include="Dungeon\Point.cs" />
+    <Compile Include="Dungeon\PolygonRoom.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Item\BaseArmor.cs" />
@@ -117,21 +123,22 @@
     <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
     <Compile Include="Sickness\Staphyloccocus.cs" />
+    <Compile Include="Spell\CooldownManager.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
-    <Compile Include="Spell\SpellEffect\BasicDamageMagical.cs" />
-    <Compile Include="Spell\SpellEffect\BasicDamagePhysical.cs" />
-    <Compile Include="Spell\SpellEffect\DamageAndEffect.cs" />
-    <Compile Include="Spell\SpellEffect\FireOnTime.cs" />
+    <Compile Include="Spell\KindOfEffect.cs" />
     <Compile Include="Spell\Spells.cs" />
+    <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DiagramHeros.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

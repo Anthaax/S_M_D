@@ -14,7 +14,7 @@ namespace S_M_D
         readonly HerosManager _herosManager;
         readonly BuildingManager _buildingManager;
         readonly MoneyManager _moneyManager;
-        GameContext(GameContext gameContext)
+        public GameContext(GameContext gameContext)
             :this()
         {
             _rnd = gameContext.Rnd;
@@ -24,7 +24,7 @@ namespace S_M_D
             _playerInfo = gameContext.PlayerInfo;
         }
 
-        GameContext()
+        public GameContext()
         {
             _rnd = new Random( 1 );
             _herosManager = new HerosManager(this);

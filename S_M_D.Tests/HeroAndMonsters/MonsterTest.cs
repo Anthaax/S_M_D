@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using S_M_D.Character;
 using S_M_D.Character.Monsters;
-using S_M_D.Character.Monsters.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

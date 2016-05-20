@@ -202,7 +202,7 @@ namespace S_M_D.Character
             {
                 if (spellToUpdate != null)
                 {
-                    spellToUpdate.updateSpell();
+                    spellToUpdate.UpdateSpell();
                 }
 
             }
@@ -317,6 +317,22 @@ namespace S_M_D.Character
             set
             {
                 _equipement = value;
+            }
+        }
+
+        public List<Sickness> Sicknesses
+        {
+            get
+            {
+                return _sicknesses;
+            }
+        }
+
+        public List<Psychology> Psycho
+        {
+            get
+            {
+                return _psycho;
             }
         }
     }
