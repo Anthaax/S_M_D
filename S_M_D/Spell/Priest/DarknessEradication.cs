@@ -12,7 +12,7 @@ namespace S_M_D.Spell
         float[] _damageRatioByLvl = new float[4] { 6, 12f, 18f, 24f };
 
         public DarknessEradication( Priest priest )
-            : base( "GodDivination", 1000, "Eradique les ténèbres", 10, 0, true, true)
+            : base( "DarknessEradication", 1000, "Eradique les ténèbres", 10, 0, true, true)
         {
             _priest = priest;
             CooldownManager = new CooldownManager( 1 );

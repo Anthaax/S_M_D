@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="priest"></param>
         public ChurchSanction( Priest priest)
-            : base( "JusticeHammer", 400, "Inflige un terrible poison venu de l'église", 10, 0, true, true)
+            : base( "ChurchSanction", 400, "Inflige un terrible poison venu de l'église", 10, 0, true, true)
         {
             _priest = priest;
             CooldownManager = new CooldownManager( 2 );
