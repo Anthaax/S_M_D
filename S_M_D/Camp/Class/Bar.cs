@@ -18,10 +18,15 @@ namespace S_M_D.Camp.Class
             _hero2 = b.Hero2;
             _ctx = b.Ctx;
         }
-        public void setHeros(BaseHeros hero1, BaseHeros hero2)
+        public void setHeros1(BaseHeros hero1)
         {
             _hero1 = hero1;
-            _hero2 = hero2;
+            _hero1.InBuilding = this;
+        }
+        public void setHeros2(BaseHeros hero2)
+        {
+            _hero1 = hero2;
+            _hero1.InBuilding = this;
         }
         public void deleteHeros()
         {

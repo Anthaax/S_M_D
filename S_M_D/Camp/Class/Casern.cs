@@ -27,6 +27,7 @@ namespace S_M_D.Camp.Class
             set
             {
                 _hero = value;
+                _hero.InBuilding = this;
             }
         }
         public void deleteHero()

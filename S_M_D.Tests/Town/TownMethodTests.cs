@@ -71,7 +71,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             Bar bar = ctx.PlayerInfo.GetBuilding(BuildingName.Bar) as Bar;
-            bar.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
+            //bar.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), bar.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], bar.Hero2);
             bar.CreateRelationHero();
@@ -89,7 +89,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Hotel h = ctx.PlayerInfo.GetBuilding(BuildingName.Hotel) as Hotel;
-            h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
+            //h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], h.Hero2);
             h.CreateRelationHero();
