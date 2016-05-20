@@ -15,7 +15,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="warrior"></param>
         public MultipleHit( Warrior warrior)
-            : base( "JusticeHammer", 400, "Frappe avec le marteau de la justice", 5, 0, true, true)
+            : base( "MultipleHit", 400, "Frappe avec le marteau de la justice", 5, 0, true, true)
         {
             _warrior = warrior;
             CooldownManager = new CooldownManager( 1 );

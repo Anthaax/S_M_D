@@ -25,7 +25,8 @@ namespace S_M_D.Character
 
         public override void EffectOnDeath()
         {
-            throw new NotImplementedException();
+            HeroDuo[0].DeleteRelationship( this );
+            HeroDuo[1].DeleteRelationship( this );
         }
     }
 }

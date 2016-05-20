@@ -52,9 +52,15 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
-            putItemInAHero(armory.Hero);
+            PutAnArmorInAHero(armory.Hero);
+            PutATrinketInAHero( armory.Hero );
+            PutAWeaponInAHero( armory.Hero );
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[1]);
+            armory.UpgrateItemOfAnHero(armory.Hero.Equipement[0]);
+            armory.UpgrateItemOfAnHero(armory.Hero.Equipement[2]);
             Assert.AreEqual(1, armory.Hero.Equipement[1].Lvl);
+            Assert.AreEqual(1, armory.Hero.Equipement[2].Lvl);
+            Assert.AreEqual(1, armory.Hero.Equipement[0].Lvl);
             armory.deleteHero();
             Assert.IsNull(armory.Hero);
         }
@@ -107,28 +113,31 @@ namespace S_M_D.Tests
             Assert.AreEqual(5, ctx.PlayerInfo.MyHeros.Count());
         }
 
-        private void putItemInAHero(BaseHeros hero)
+        private void PutAnArmorInAHero(BaseHeros hero)
         {
             using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
                 List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
                 hero.GetNewItem(overview.First());
-                Assert.AreEqual(overview.First(), hero.Equipement[1]);
-                Assert.AreEqual(hero.EffectCritChance, hero.CritChance += overview.First().CritChance);
-                Assert.AreEqual(hero.EffectivAffectRes, hero.AffectRes += overview.First().AffectRes);
-                Assert.AreEqual(hero.EffectivBleedingRes, hero.BleedingRes += overview.First().BleedingRes);
-                Assert.AreEqual(hero.EffectivDamage, hero.Damage += overview.First().Damage);
-                Assert.AreEqual(hero.EffectivDefense, hero.Defense += overview.First().Defense);
-                Assert.AreEqual(hero.EffectivDodgeChance, hero.DodgeChance += overview.First().DodgeChance);
-                Assert.AreEqual(hero.EffectivFireRes, hero.FireRes += overview.First().FireRes);
-                Assert.AreEqual(hero.EffectivHitChance, hero.HitChance += overview.First().HitChance);
-                Assert.AreEqual(hero.EffectivHPMax, hero.HPmax += overview.First().HP);
-                Assert.AreEqual(hero.EffectivMagicRes, hero.MagicRes += overview.First().MagicRes);
-                Assert.AreEqual(hero.EffectivManaMax, hero.ManaMax += overview.First().Mana);
-                Assert.AreEqual(hero.EffectivPoisonRes, hero.PoisonRes += overview.First().PoisonRes);
-                Assert.AreEqual(hero.EffectivSpeed, hero.Speed += overview.First().Speed);
-                Assert.AreEqual(hero.EffectivWaterRes, hero.WaterRes += overview.First().WaterRes);
+            }
+        }
+        private void PutATrinketInAHero( BaseHeros hero )
+        {
+            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Trinket.xml", FileMode.Open))
+            {
+                XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
+                List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
+                hero.GetNewItem(overview.First());
+            }
+        }
+        private void PutAWeaponInAHero( BaseHeros hero )
+        {
+            using (FileStream myFileStream = new FileStream( "../../../S_M_D/Items/Weapons.xml", FileMode.Open ))
+            {
+                XmlSerializer reader = new XmlSerializer( typeof( List<BaseWeapon> ) );
+                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize( myFileStream );
+                hero.GetNewItem( overview.First() );
             }
         }
         private void UseRndMultipleTime(Random rnd, int nbTime)

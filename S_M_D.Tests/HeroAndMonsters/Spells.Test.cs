@@ -98,7 +98,6 @@ namespace S_M_D.Tests
             Assert.AreEqual("BasicAttack", ctx.PlayerInfo.MyHeros.First().Spells.First().Name);
             Assert.AreEqual("FireBall", ctx.PlayerInfo.MyHeros.First().Spells[1].Name);
             Assert.AreEqual("ChaosBolt", ctx.PlayerInfo.MyHeros.First().Spells[2].Name);
-
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().CooldownManager.BaseCooldown, 1 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().CooldownManager.Cooldown, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().CooldownManager.IsOnCooldown, false );

@@ -142,7 +142,7 @@
     <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
     <Compile Include="Spell\Warrior\HearthAttack.cs" />
-    <Compile Include="Spell\Warrior\JusticeHammer.cs" />
+    <Compile Include="Spell\Warrior\MultipleHit.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup>

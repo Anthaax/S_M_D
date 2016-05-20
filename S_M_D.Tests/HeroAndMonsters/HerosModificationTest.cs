@@ -173,6 +173,8 @@ namespace S_M_D.Tests
             Desir desir = new Desir(warrior, mage);
             Assert.AreEqual(warrior.HitChance - 2, warrior.EffectivHitChance);
             Assert.AreEqual(mage.EffectivHitChance, mage.HitChance-2);
+            desir.EffectOnDeath();
+            Assert.IsEmpty( warrior.Relationship );
         }
 
         [Test]
