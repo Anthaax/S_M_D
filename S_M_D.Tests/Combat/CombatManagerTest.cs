@@ -39,7 +39,36 @@ namespace S_M_D.Tests.Combat
             Assert.Throws<ArgumentException>( () => cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
             cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage, cbt.Monsters[1].HP );
-            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].KindOfEffect.DamageType );
+            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
+        }
+        [Test]
+        public void MultipleEffectOnOneMonster()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
+            cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+            cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+            Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage*2, cbt.Monsters[1].HP );
+            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn * 2, cbt.DamageOnTime[cbt.Monsters[1]].EffectiveDamagePerTurn );
+            cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 2 );
+            Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage, cbt.Monsters[2].HP );
+            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn, cbt.DamageOnTime[cbt.Monsters[2]].EffectiveDamagePerTurn );
+        }
+        [Test]
+        public void HealHeroOrMonster()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            ctx.PlayerInfo.MyHeros[1].HP -= 5;
+            Assert.Throws<ArgumentException>( () => cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
+            cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax, cbt.Heros[1].HP );
+            ctx.PlayerInfo.MyHeros[1].HP -= 22;
+            cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax -1, cbt.Heros[1].HP );
         }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {

@@ -29,6 +29,13 @@ namespace S_M_D.Spell
             KindOfEffect.Damage = Convert.ToInt32( Mage.EffectivDamage * _damageRatioByLvl[Lvl] );
             KindOfEffect.DamagePerTurn = Convert.ToInt32( _fireValueByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Fire, _fireValueByLvl[Lvl], 2, _damageRatioByLvl[Lvl] );
+
+        }
+
         public Mage Mage
         {
             get

@@ -27,6 +27,12 @@ namespace S_M_D.Spell
         {
             KindOfEffect.Damage = Convert.ToInt32( Priest.EffectivDamage * _healRatioByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Priest.EffectivDamage, DamageTypeEnum.Heal, 0, 0, _healRatioByLvl[Lvl] );
+        }
+
         public Priest Priest
         {
             get

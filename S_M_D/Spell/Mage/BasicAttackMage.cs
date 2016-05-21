@@ -29,7 +29,13 @@ namespace S_M_D.Spell
         {
             KindOfEffect.Damage = Convert.ToInt32(_mage.EffectivDamage * _damageRatioByLvl[Lvl]);
         }
-        public Mage mage
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return KindOfEffect = new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _damageRatioByLvl[Lvl] );
+        }
+
+        public Mage Mage
         {
             get
             {

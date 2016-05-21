@@ -10,6 +10,7 @@ namespace S_M_D.Spell
         int _damage;
         readonly DamageTypeEnum _damageType;
         int _damagePerTurn;
+        int _effectiveDamagePerTurn;
         readonly int _turn;
         readonly bool _canBeBlock;
         public KindOfEffect(int damage, DamageTypeEnum damageType, int damagePerTurn, int turn, float rate)
@@ -17,6 +18,7 @@ namespace S_M_D.Spell
             _damage = Convert.ToInt32(damage * rate);
             _damageType = damageType;
             _damagePerTurn = damagePerTurn;
+            _effectiveDamagePerTurn = DamagePerTurn;
             _turn = turn;
             if (_damageType == (DamageTypeEnum)1 || _damageType == (DamageTypeEnum)8) _canBeBlock = false;
             else _canBeBlock = true;
@@ -61,6 +63,19 @@ namespace S_M_D.Spell
             get
             {
                 return _canBeBlock;
+            }
+        }
+
+        public int EffectiveDamagePerTurn
+        {
+            get
+            {
+                return _effectiveDamagePerTurn;
+            }
+
+            set
+            {
+                _effectiveDamagePerTurn = value;
             }
         }
     }

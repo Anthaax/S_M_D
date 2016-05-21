@@ -28,6 +28,12 @@ namespace S_M_D.Spell
             KindOfEffect.DamagePerTurn = Convert.ToInt32( _poisonValueByLvl[Lvl] );
 
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Poison, _poisonValueByLvl[Lvl], 3, _damageRatioByLvl[Lvl] );
+        }
+
         public Mage Mage
         {
             get

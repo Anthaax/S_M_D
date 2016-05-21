@@ -29,6 +29,12 @@ namespace S_M_D.Spell
             KindOfEffect.Damage = Convert.ToInt32(Priest.EffectivDamage * _damageRatioByLvl[Lvl]);
             KindOfEffect.DamagePerTurn = Convert.ToInt32( _poisonValueByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Priest.EffectivDamage, DamageTypeEnum.Poison, _poisonValueByLvl[Lvl], 3, _damageRatioByLvl[Lvl] );
+        }
+
         public Priest Priest
         {
             get

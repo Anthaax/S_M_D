@@ -14,7 +14,7 @@ namespace S_M_D.Combat
         readonly BaseMonster[] _monsters;
         readonly BaseHeros[] _heros;
         readonly List<BaseCharacter> _characterOrderAttack;
-        readonly Dictionary<BaseCharacter, Spells> _damageOnTime;
+        readonly Dictionary<BaseCharacter, KindOfEffect> _damageOnTime;
         readonly SpellManager _spellManager;
         readonly GameContext _gameContext;
         readonly Reward _reward;
@@ -31,7 +31,7 @@ namespace S_M_D.Combat
             _characterOrderAttack = new List<BaseCharacter>();
             InitializedOderAttack();
 
-            _damageOnTime = new Dictionary<BaseCharacter, Spells>();
+            _damageOnTime = new Dictionary<BaseCharacter, KindOfEffect>();
             InitiliazedDictionary();
             _spellManager = new SpellManager( this );
             _reward = new Reward(_monsters, _gameContext);
@@ -51,7 +51,7 @@ namespace S_M_D.Combat
             _characterOrderAttack = new List<BaseCharacter>();
             InitializedOderAttack();
 
-            _damageOnTime = new Dictionary<BaseCharacter, Spells>();
+            _damageOnTime = new Dictionary<BaseCharacter, KindOfEffect>();
             InitiliazedDictionary();
             _spellManager = new SpellManager( this );
             _reward = new Reward( _monsters, _gameContext, rewardPath );
@@ -121,7 +121,7 @@ namespace S_M_D.Combat
             }
         }
 
-        public Dictionary<BaseCharacter, Spells> DamageOnTime
+        public Dictionary<BaseCharacter, KindOfEffect> DamageOnTime
         {
             get
             {
