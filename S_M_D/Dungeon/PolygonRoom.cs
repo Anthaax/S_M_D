@@ -197,5 +197,16 @@ namespace S_M_D.Dungeon
             }
             return inside;
         }
+
+        public override string ToString()
+        {
+            string s = "PolygonRoom" + '\n' + Path.Count.ToString() + '\n';
+            for (int i = 0; i < Path.Count; i++)
+            {
+                s += Path[i].X.ToString() + ' ' + Path[i].Y.ToString() + '\n';
+            }
+            s += Center.X.ToString() + ' ' + Center.Y.ToString() + '\n';
+            return s;
+        }
     }
 }
