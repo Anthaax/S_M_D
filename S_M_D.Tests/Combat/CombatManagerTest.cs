@@ -70,6 +70,31 @@ namespace S_M_D.Tests.Combat
             cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax -1, cbt.Heros[1].HP );
         }
+        [Test]
+        public void ChangeTurn()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.GetCharacterTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[7], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[7], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
+        }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {
             for (int i = 0; i < nbTime; i++)

@@ -90,6 +90,16 @@ namespace S_M_D.Combat
             }
         }
 
+        public BaseCharacter NextTurn()
+        {
+            _turn++;
+            return GetCharacterTurn();
+        }
+        public BaseCharacter GetCharacterTurn()
+        {
+            return CharacterOrderAttack[_turn % 8];
+        }
+
         public Reward Reward
         {
             get
