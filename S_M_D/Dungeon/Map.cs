@@ -81,7 +81,7 @@ namespace S_M_D.Dungeon
                     List<Point> pts = new List<Point>( );
 
                     string[ ] coords = desc[ idx + 1 ].Split( ' ' );
-                    Point center = new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
+                    Point center = new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) );
                     for (int i = 0; i < 4; i++ )
                     {
                         coords = desc[ idx + 2 + i ].Split( ' ' );
