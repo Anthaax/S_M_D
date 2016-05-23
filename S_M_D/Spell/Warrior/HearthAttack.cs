@@ -29,6 +29,12 @@ namespace S_M_D.Spell
             KindOfEffect.Damage = Convert.ToInt32(Warrior.EffectivDamage * _damageRatioByLvl[Lvl]);
             KindOfEffect.DamagePerTurn = Convert.ToInt32( _poisonValueByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Warrior.EffectivDamage, DamageTypeEnum.Bleeding, _poisonValueByLvl[Lvl], 4, _damageRatioByLvl[Lvl] );
+        }
+
         public Warrior Warrior
         {
             get

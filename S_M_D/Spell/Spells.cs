@@ -35,6 +35,7 @@ namespace S_M_D.Spell
             Lvl++;
             UpdateSpell();
         }
+        public abstract KindOfEffect OnLaunchSpell();
 
         public string Name
         {

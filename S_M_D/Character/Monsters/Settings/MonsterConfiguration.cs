@@ -41,7 +41,7 @@ namespace S_M_D.Character.Monsters
                     Poco.Damage = 2 + 5 * level;
                     Poco.CritChance = 0;
                     Poco.HitChance = 80;
-                    Poco.Speed = 10;
+                    Poco.Speed = 9;
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;
                     Poco.MagicRes = 0;
@@ -61,7 +61,7 @@ namespace S_M_D.Character.Monsters
                     Poco.Damage = 2 + 2 * level;
                     Poco.CritChance = 0;
                     Poco.HitChance = 80;
-                    Poco.Speed = 10;
+                    Poco.Speed = 9;
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;
                     Poco.MagicRes = 0;

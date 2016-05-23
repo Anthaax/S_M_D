@@ -64,6 +64,7 @@
     <Compile Include="Camp\Class\MentalHospital.cs" />
     <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
+    <Compile Include="Character\BaseCharacterComparer.cs" />
     <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\HerosFemaleNameEnum.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
+    <Compile Include="Combat\SpellManager.cs" />
     <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
     <Compile Include="Combat\CombatManager.cs" />
