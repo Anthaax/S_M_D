@@ -27,7 +27,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().TargetManager.HeroPosition ,new bool[4] { true, true, false, false });
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().TargetManager.CanBeTargetable, new bool[4] { true, true, false, false });
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().TargetManager.Radius, 1);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().KindOfEffect.Damage, 11);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().KindOfEffect.Damage, ctx.PlayerInfo.MyHeros[3].EffectivDamage );
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().KindOfEffect.CanBeBlock, false );
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().KindOfEffect.DamagePerTurn, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[3].Spells.First().KindOfEffect.DamageType, DamageTypeEnum.Physical);
@@ -43,7 +43,7 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].TargetManager.HeroPosition, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].TargetManager.CanBeTargetable, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].TargetManager.Radius, 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].KindOfEffect.Damage, Convert.ToInt32( 11 * 1.2f ) );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].KindOfEffect.Damage, Convert.ToInt32( ctx.PlayerInfo.MyHeros[3].EffectivDamage * 1.2f ) );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].KindOfEffect.CanBeBlock, false );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].KindOfEffect.DamagePerTurn, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[1].KindOfEffect.DamageType, DamageTypeEnum.Physical );
@@ -59,7 +59,7 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].TargetManager.HeroPosition, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].TargetManager.CanBeTargetable, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].TargetManager.Radius, 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].KindOfEffect.Damage, Convert.ToInt32( 11 * 1.5f ) );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].KindOfEffect.Damage, Convert.ToInt32( ctx.PlayerInfo.MyHeros[3].EffectivDamage * 1.5f ) );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].KindOfEffect.CanBeBlock, true );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].KindOfEffect.DamagePerTurn, 3 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[3].Spells[2].KindOfEffect.DamageType, DamageTypeEnum.Bleeding );
@@ -82,7 +82,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().TargetManager.HeroPosition ,new bool[4] { true, true, false, false });
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().TargetManager.CanBeTargetable, new bool[4] { true, true, false, false });
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().TargetManager.Radius, 1);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().KindOfEffect.Damage, 7);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().KindOfEffect.Damage, ctx.PlayerInfo.MyHeros[1].EffectivDamage);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().KindOfEffect.CanBeBlock, false );
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().KindOfEffect.DamagePerTurn, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1].Spells.First().KindOfEffect.DamageType, DamageTypeEnum.Physical);
@@ -107,7 +107,7 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().TargetManager.HeroPosition, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().TargetManager.CanBeTargetable, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().TargetManager.Radius, 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.Damage, 4 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.Damage, ctx.PlayerInfo.MyHeros[0].EffectivDamage);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.CanBeBlock, false );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.DamagePerTurn, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.DamageType, DamageTypeEnum.Physical );
@@ -131,7 +131,7 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().TargetManager.HeroPosition, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().TargetManager.CanBeTargetable, new bool[4] { true, true, false, false } );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().TargetManager.Radius, 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().KindOfEffect.Damage, 5 );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().KindOfEffect.Damage, ctx.PlayerInfo.MyHeros[2].EffectivDamage);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().KindOfEffect.CanBeBlock, false );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().KindOfEffect.DamagePerTurn, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[2].Spells.First().KindOfEffect.DamageType, DamageTypeEnum.Physical );

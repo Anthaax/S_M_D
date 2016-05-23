@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using S_M_D.Combat;
 using S_M_D.Character.Monsters;
+using S_M_D.Character;
 using S_M_D.Spell;
 
 namespace S_M_D.Tests.Combat
@@ -16,8 +17,8 @@ namespace S_M_D.Tests.Combat
         [Test]
         public void CombatManagerMonsterInitializationTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx , "../../../S_M_D/" );
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             Assert.AreEqual( 4, cbt.Heros.Count() );
             Assert.AreEqual( 4, cbt.Monsters.Count() );
             Random rnd = new Random( 1 );
@@ -30,8 +31,8 @@ namespace S_M_D.Tests.Combat
         [Test]
         public void LauchSpellTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
             cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells.First(), 0 );
             Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells.First().KindOfEffect.Damage, cbt.Monsters.First().HP );
@@ -44,8 +45,8 @@ namespace S_M_D.Tests.Combat
         [Test]
         public void MultipleEffectOnOneMonster()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
             cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             cbt.SpellManager.LaunchDamageSpellOnMonster( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
@@ -60,21 +61,21 @@ namespace S_M_D.Tests.Combat
         [Test]
         public void HealHeroOrMonster()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             ctx.PlayerInfo.MyHeros[1].HP -= 5;
             Assert.Throws<ArgumentException>( () => cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
             cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax, cbt.Heros[1].HP );
-            ctx.PlayerInfo.MyHeros[1].HP -= 22;
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].EffectivHPMax, cbt.Heros[1].HP );
+            ctx.PlayerInfo.MyHeros[1].HP = 1;
             cbt.SpellManager.LaunchHealOnHero( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].HPmax -1, cbt.Heros[1].HP );
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1, cbt.Heros[1].HP );
         }
         [Test]
         public void ChangeTurn()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx, "../../../S_M_D/" );
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.GetCharacterTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
@@ -94,6 +95,41 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
+        }
+        [Test]
+        public void EndOfCombat()
+        {
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
+            Assert.AreEqual( false, cbt.CheckIfTheCombatWasOver() );
+            ctx.PlayerInfo.MyHeros.Where( c => c.CharacterClassName != HerosEnum.Mage.ToString() ).ToList().ForEach( c => c.HP = 0 );
+            cbt.SpellManager.LaunchDamageSpellOnHero( ctx.PlayerInfo.MyHeros.First().Spells[3], 1 );
+            ctx.PlayerInfo.MyHeros.ForEach( c => c.HP = 0 );
+            cbt.SpellManager.LaunchDamageSpellOnHero( ctx.PlayerInfo.MyHeros.First().Spells[0], 0 );
+            Assert.AreEqual( true, cbt.CheckIfTheCombatWasOver() );
+
+        }
+        [Test]
+        public void RemoveDieHero()
+        {
+            GameContext ctx = GameContext.CreateNewGame(1);
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
+            ctx.PlayerInfo.MyHeros.Where( c => c.CharacterClassName != HerosEnum.Mage.ToString() ).ToList().ForEach(c => c.HP = 0);
+            cbt.SpellManager.LaunchDamageSpellOnHero( ctx.PlayerInfo.MyHeros.First().Spells[3], 1 );
+            Assert.AreEqual( 5, cbt.CharacterOrderAttack.Count );
+            Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros.Count );
+            Assert.AreEqual( null, cbt.Heros[1] );
+            Assert.AreEqual( null, cbt.Heros[2] );
+            Assert.AreEqual( null, cbt.Heros[3] );
+        }
+
+        [Test]
+        public void RewardTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
+            cbt.ApplyRewward();
+            Assert.AreEqual( ctx.PlayerInfo.MyHeros[0].Xp, cbt.Reward.Xp / 4 );
         }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {

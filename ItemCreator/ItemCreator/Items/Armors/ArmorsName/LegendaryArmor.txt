@@ -1,10 +1,1 @@
-Armor of Doomed Fire,
-Armor of Blind Dreams,
-Demon Tunic of Ominous Dreams,
-Scaled Armor of Blind Wars,
-Fearful Adamantite Chestguard,
-Roaring Skeletal Armor,
-Malignant Breastplate of Glory,
-Vest of Mists,
-Defense of Lost Comrades,
-Legacy of Extinction
+Armor of Doomed Fire,Armor of Blind Dreams,Demon Tunic of Ominous Dreams,Scaled Armor of Blind Wars,Fearful Adamantite Chestguard,Roaring Skeletal Armor,Malignant Breastplate of Glory,Vest of Mists,Defense of Lost Comrades,Legacy of Extinction

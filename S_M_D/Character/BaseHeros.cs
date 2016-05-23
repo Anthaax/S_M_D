@@ -61,12 +61,12 @@ namespace S_M_D.Character
 
         public void GetNewItem (BaseItem item)
         {
-            if (item.Itemtype == BaseItem.ItemTypes.Weapon)
+            if (item.Itemtype == BaseItem.ItemTypes.Armor)
             {
                 if (Equipement[0] == null) Equipement[0] = item;
                 else throw new ArgumentException("You already have an armor!");
             }
-            else if (item.Itemtype == BaseItem.ItemTypes.Armor)
+            else if (item.Itemtype == BaseItem.ItemTypes.Weapon)
             {
                 if (Equipement[1] == null) Equipement[1] = item;
                 else throw new ArgumentException("You already have a weapon!");
@@ -88,28 +88,45 @@ namespace S_M_D.Character
             foreach (BaseItem equip in Equipement)
             {
                 if (equip == item) Equipement[x] = null;
+                x++;
             }
         }
 
         public void AddItemStats(BaseItem item)
         {
             EffectivHPMax += item.HP;
+            HP += item.HP;
+            if (EffectivHPMax <= 1) EffectivHPMax = 1;
             EffectivManaMax += item.Mana;
+            Mana += item.Mana;
+            if (EffectivManaMax <= 1) EffectivManaMax = 1;
             EffectCritChance += item.CritChance;
+            if (EffectCritChance <= 0) EffectCritChance = 0;
             EffectivAffectRes += item.AffectRes;
+            if (EffectivAffectRes <= 0) EffectivAffectRes = 0;
             EffectivBleedingRes += item.BleedingRes;
+            if (EffectivBleedingRes <= 0) EffectivBleedingRes = 0;
             EffectivDamage += item.Damage;
+            if (EffectivDamage <= 0) EffectivDamage = 0;
             EffectivDefense += item.Defense;
+            if (EffectivDefense <= 0) EffectivDefense = 0;
             EffectivDodgeChance += item.DodgeChance;
+            if (EffectivDodgeChance <= 0) EffectivDodgeChance = 0;
             EffectivFireRes += item.FireRes;
+            if (EffectivFireRes <= 0) EffectivFireRes = 0;
             EffectivHitChance += item.HitChance;
+            if (EffectivHitChance <= 0) EffectivHitChance = 0;
             EffectivMagicRes += item.MagicRes;
+            if (EffectivMagicRes <= 0) EffectivMagicRes = 0;
             EffectivPoisonRes += item.PoisonRes;
+            if (EffectivPoisonRes <= 0) EffectivPoisonRes = 0;
             EffectivSpeed += item.Speed;
+            if (EffectivSpeed <= 0) EffectivSpeed = 0;
             EffectivWaterRes += item.WaterRes;
+            if (EffectivWaterRes <= 0) EffectivWaterRes = 0;
         }
 
-        
+
 
         public void GetRelationship(Relationship relation)
         {
@@ -172,6 +189,7 @@ namespace S_M_D.Character
 
         public void UpdateHeroStats()
         {
+            HP = HPmax;
             EffectivHPMax = HPmax;
             EffectivManaMax = ManaMax;
             EffectCritChance = CritChance;
@@ -220,9 +238,6 @@ namespace S_M_D.Character
             }
 
         }
-        public void Die()
-        { 
-}
         public abstract void LevelUp();
         public int Evilness
         {

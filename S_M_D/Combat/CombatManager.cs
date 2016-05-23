@@ -38,27 +38,6 @@ namespace S_M_D.Combat
 
             _turn = 0;
         }
-        public CombatManager( BaseHeros[] heros, GameContext gameContext, string rewardPath )
-            :base()
-        {
-            _gameContext = gameContext;
-            _heros = heros;
-            //Initialization of monsters
-            _monsters = new BaseMonster[4];
-            MonsterConfiguration monsterCreation = new MonsterConfiguration();
-            createMonster( monsterCreation );
-            //Initialization of character order of attack
-            _characterOrderAttack = new List<BaseCharacter>();
-            InitializedOderAttack();
-
-            _damageOnTime = new Dictionary<BaseCharacter, KindOfEffect>();
-            InitiliazedDictionary();
-            _spellManager = new SpellManager( this );
-            _reward = new Reward( _monsters, _gameContext, rewardPath );
-
-            _turn = 0;
-        }
-
         private void createMonster(MonsterConfiguration monsterCreation)
         {
             for (int x = 0; x < 4; x++)
@@ -81,7 +60,8 @@ namespace S_M_D.Combat
         {
             for (int i = 0; i < _heros.Length; i++)
             {
-                _damageOnTime.Add( _heros[i], null );
+                if(_heros[i] != null)
+               _damageOnTime.Add( _heros[i], null );
             }
             for (int i = 0; i < _monsters.Length; i++)
             {
@@ -95,64 +75,57 @@ namespace S_M_D.Combat
             _turn++;
             return GetCharacterTurn();
         }
+
+        public bool CheckIfTheCombatWasOver()
+        {
+            return _heros.Where(c => c == null).Count() == 4 || _monsters.Where(c => c == null).Count() == 4;
+        }
+
         public BaseCharacter GetCharacterTurn()
         {
-            return CharacterOrderAttack[_turn % 8];
+            return CharacterOrderAttack[_turn % _characterOrderAttack.Count];
+        }
+        public void ApplyRewward()
+        {
+            foreach (var hero in Heros)
+            {
+                hero.Xp += Reward.Xp / Heros.Where( c => c.HP > 0 ).Count();
+            }
+            _gameContext.MoneyManager.ReciveMoney( Reward.Money );
         }
 
         public Reward Reward
         {
-            get
-            {
-                return _reward;
-            }
+            get { return _reward; }
         }
 
         public BaseHeros[] Heros
         {
-            get
-            {
-                return _heros;
-            }
+            get { return _heros; }
         }
 
         public BaseMonster[] Monsters
         {
-            get
-            {
-                return _monsters;
-            }
+            get { return _monsters; }
         }
         public GameContext GameContext
         {
-            get
-            {
-                return _gameContext;
-            }
+            get { return _gameContext; }
         }
 
         public Dictionary<BaseCharacter, KindOfEffect> DamageOnTime
         {
-            get
-            {
-                return _damageOnTime;
-            }
+            get { return _damageOnTime; }
         }
 
         public SpellManager SpellManager
         {
-            get
-            {
-                return _spellManager;
-            }
+            get { return _spellManager; }
         }
 
         public List<BaseCharacter> CharacterOrderAttack
         {
-            get
-            {
-                return _characterOrderAttack;
-            }
+            get { return _characterOrderAttack; }
         }
     }
 }

@@ -1,10 +1,1 @@
-King's Legacy,
-Cataclysm,
-Fury,
-Tormented Sword,
-Mage's Mageblade,
-Sorrow's Diamond Mageblade,
-Vindication Steel Deflector,
-Chaos, Rapier of Infinite Trials,
-Reign, Legacy of Perdition,
-Darkheart, Mageblade of the Daywalker
+King's Legacy,Cataclysm,Fury,Tormented Sword,Mage's Mageblade,Sorrow's Diamond Mageblade,Vindication Steel Deflector,Chaos, Rapier of Infinite Trials,Reign, Legacy of Perdition,Darkheart, Mageblade of the Daywalker

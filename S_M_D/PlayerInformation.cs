@@ -14,11 +14,13 @@ namespace S_M_D
         readonly GameContext _ctx;
         readonly List<BaseHeros> _myHeros;
         readonly List<BaseBuilding> _myBuildings;
+        readonly List<BaseItem> _myItems;
         public PlayerInformation(GameContext ctx)
         {
             _ctx = ctx;
             _myHeros = new List<BaseHeros>();
             _myBuildings = new List<BaseBuilding>();
+            _myItems = new List<BaseItem>();
         }
 
         public GameContext Ctx
@@ -44,6 +46,15 @@ namespace S_M_D
 
             }
         }
+
+        public List<BaseItem> MyItems
+        {
+            get
+            {
+                return _myItems;
+            }
+        }
+
         public BaseBuilding GetBuilding(BuildingName name)
         {
             return _myBuildings.Find(t => t.Name == name);

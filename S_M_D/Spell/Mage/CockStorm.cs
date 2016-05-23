@@ -18,7 +18,7 @@ namespace S_M_D.Spell
 
             _mage = mage;
             CooldownManager = new CooldownManager( 3 );
-            TargetManager = new TargetManager( 2, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true } );
+            TargetManager = new TargetManager( 3, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true } );
             KindOfEffect = new KindOfEffect( mage.EffectivDamage, DamageTypeEnum.Poison, _poisonValueByLvl[0], 3, _damageRatioByLvl[Lvl] );
         }
 

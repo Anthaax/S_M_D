@@ -17,20 +17,20 @@ namespace S_M_D.Tests
         [Test]
         public void CreationHeroAddIntoListTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Assert.AreEqual( 4, ctx.PlayerInfo.MyHeros.Count );
         }
         [Test]
         public void CantCreateHerosWhen16HerosInHerosList()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             FullList( ctx.HeroManager );
             Assert.Throws<InvalidOperationException>( () => ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero());
         }
         [Test]
         public void CreationHeroClassNameTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             string name = ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero().CharacterClassName;
             Assert.AreEqual(HerosEnum.Warrior.ToString(), name);
             name = ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero().CharacterClassName;
@@ -43,7 +43,7 @@ namespace S_M_D.Tests
         [Test]
         public void CreationHeroClassPrimaryInformationStatTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             int price = ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).Price;
             Assert.AreEqual(400, price);
             price = ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).Price;
@@ -56,7 +56,7 @@ namespace S_M_D.Tests
         [Test]
         public void CreationPaladinStatTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].CharacterClassName, "Paladin" );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Price, 400 );
@@ -69,11 +69,11 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Evilness, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].FireRes, 20 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HitChance, 50 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, 40 );
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivHPMax);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HPmax, 40 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Lvl, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].MagicRes, 30 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, 30 );
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivManaMax);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].ManaMax, 30 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].PoisonRes, 40 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Speed, 8 );
@@ -84,7 +84,7 @@ namespace S_M_D.Tests
         [Test]
         public void CreationWarriorStatTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].CharacterClassName, "Warrior" );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Price, 400 );
@@ -97,11 +97,11 @@ namespace S_M_D.Tests
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Evilness, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].FireRes, 20 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HitChance, 60 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, 50 );
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivHPMax);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HPmax, 50 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Lvl, 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].MagicRes, 20 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, 20 );
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivManaMax);
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].ManaMax, 20 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].PoisonRes, 20 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Speed, 5 );
@@ -113,7 +113,7 @@ namespace S_M_D.Tests
         [Test]
         public void CreationMageStatTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].CharacterClassName, "Mage");
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Price, 400);
@@ -126,11 +126,11 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Evilness, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].FireRes, 20);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HitChance, 80);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, 25);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivHPMax);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HPmax, 25);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Lvl, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].MagicRes, 60);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, 50);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivManaMax);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].ManaMax, 50);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].PoisonRes, 20);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Speed, 10);
@@ -142,7 +142,7 @@ namespace S_M_D.Tests
         [Test]
         public void CreationPriestStatTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Priest.ToString()).CreateHero();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].CharacterClassName, "Priest");
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Price, 400);
@@ -155,11 +155,11 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Evilness, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].FireRes, 30);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HitChance, 60);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, 30);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HP, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivHPMax);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].HPmax, 30);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Lvl, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].MagicRes, 30);
-            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, 40);
+            Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Mana, ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count - 1].EffectivManaMax);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].ManaMax, 40);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].PoisonRes, 30);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Speed, 8);
@@ -170,45 +170,45 @@ namespace S_M_D.Tests
         [Test]
         public void HerosSexTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             FullList(ctx.HeroManager);
             Random rnd = new Random(1);
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[0].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[1].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[2].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[3].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[4].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[5].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[6].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[7].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[8].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[9].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[10].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[11].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[12].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[13].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[14].IsMale);
-            rnd.Next();
+            UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[15].IsMale);
         }
         [Test]
         public void MageLevelUpTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
             Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros.First().LevelUp() );
             ctx.PlayerInfo.MyHeros.First().Xp = ctx.PlayerInfo.MyHeros.First().XpMax;
@@ -224,7 +224,7 @@ namespace S_M_D.Tests
         [Test]
         public void WarriorLevelUpTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
             Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros[3].LevelUp() );
             ctx.PlayerInfo.MyHeros[3].Xp = ctx.PlayerInfo.MyHeros[3].XpMax;
@@ -241,7 +241,7 @@ namespace S_M_D.Tests
         [Test]
         public void PreistLevelUpTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros[2].LevelUp() );
@@ -259,7 +259,7 @@ namespace S_M_D.Tests
         [Test]
         public void PaladinLevelUpTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             Assert.Throws<ArgumentException>( () => ctx.PlayerInfo.MyHeros[1].LevelUp() );
@@ -288,6 +288,13 @@ namespace S_M_D.Tests
             heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+        }
+        private void UseRndMultipleTime( Random rnd, int nbTime )
+        {
+            for (int i = 0; i < nbTime; i++)
+            {
+                rnd.Next();
+            }
         }
     }
 }

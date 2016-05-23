@@ -16,163 +16,203 @@ namespace S_M_D.Tests
         [Test]
         public void DiarrheaWariorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Diarrhea test = new Diarrhea();
             warrior.GetSickness(test);
-            Assert.AreEqual(warrior.EffectivDamage, 10);
+            int equipementValueDmg = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmg += c.Damage );
+            Assert.AreEqual(warrior.EffectivDamage, 10 + equipementValueDmg);
             warrior.DeleteSickness(test);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
 
         }
 
         [Test]
         public void FeverWariorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Fever test = new Fever();
             warrior.GetSickness(test);
-            Assert.AreEqual(warrior.EffectivDamage, 13);
-            Assert.AreEqual(warrior.EffectivDefense, 32);
+            int equipementValueDmg = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmg += c.Damage );
+            Assert.AreEqual(warrior.EffectivDamage, 13 + equipementValueDmg);
+            int equipementValueDef = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDef += c.Defense );
+            Assert.AreEqual(warrior.EffectivDefense, 32 + equipementValueDef );
             Assert.Throws<ArgumentException>(() => warrior.GetSickness(test));
             warrior.DeleteSickness(test);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
-            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense + equipementValueDef);
 
         }
 
         [Test]
         public void CancerWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Cancer cancer = new Cancer();
             warrior.GetSickness(cancer);
-            Assert.AreEqual(warrior.EffectivHPMax, 42);
+            int equipementValueHp = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueHp += c.HP );
+            Assert.AreEqual(warrior.EffectivHPMax, 42 + equipementValueHp);
             warrior.DeleteSickness(cancer);
-            Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax);
+            Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax + equipementValueHp);
         }
 
         [Test]
         public void WarriorStaphyloccocusTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Staphyloccocus stap = new Staphyloccocus();
             warrior.GetSickness(stap);
-            Assert.AreEqual(warrior.EffectivSpeed, 0);
+            int equipementValueSpeed = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueSpeed += c.Speed );
+            Assert.AreEqual(warrior.EffectivSpeed, 0 + equipementValueSpeed);
             warrior.DeleteSickness(stap);
-            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed);
+            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed + equipementValueSpeed);
         }
 
         [Test]
         public void CrazynessWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Crazyness test = new Crazyness();
             warrior.GetPsycho(test);
-            Assert.AreEqual(warrior.EffectivDamage, 17);
-            Assert.AreEqual(warrior.EffectCritChance, 30);
-            Assert.AreEqual(warrior.EffectivHitChance, 30);
+            int equipementValueDmg = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmg += c.Damage );
+            Assert.AreEqual(warrior.EffectivDamage, 17 + equipementValueDmg);
+            int equipementValueCrit = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueCrit += c.CritChance );
+            Assert.AreEqual(warrior.EffectCritChance, 30 + equipementValueCrit);
+            int equipementValueHitChance = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueHitChance += c.HitChance );
+            Assert.AreEqual(warrior.EffectivHitChance, 30 +equipementValueHitChance);
             Assert.Throws<ArgumentException>(() => warrior.GetPsycho(test));
             warrior.DeletePsycho(test);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
-            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance);
-            Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance + equipementValueCrit);
+            Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance + equipementValueHitChance);
         }
 
         [Test]
         public void FragilWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Fragil fragil = new Fragil();
             warrior.GetPsycho(fragil);
-            Assert.AreEqual(warrior.EffectivDefense, 30);
+            int equipementValueDefense = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDefense += c.Defense );
+            Assert.AreEqual(warrior.EffectivDefense, 30 + equipementValueDefense);
             warrior.DeletePsycho(fragil);
-            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense + equipementValueDefense);
         }
 
         [Test]
         public void ArrogantWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Arrogant arrogant = new Arrogant();
             warrior.GetPsycho(arrogant);
-            Assert.AreEqual(warrior.EffectCritChance, 30);
+            int equipementValueCrit = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueCrit += c.CritChance );
+            Assert.AreEqual(warrior.EffectCritChance, 30 + equipementValueCrit);
             warrior.DeletePsycho(arrogant);
-            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance);
+            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance + equipementValueCrit);
         }
 
         [Test]
         public void AgressivityWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Agressivity agressivity = new Agressivity();
             warrior.GetPsycho(agressivity);
-            Assert.AreEqual(warrior.EffectivDamage, 17);
-            Assert.AreEqual(warrior.EffectCritChance, 30);
+            int equipementValueDmg = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmg += c.Damage );
+            int equipementValueCrit = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueCrit += c.CritChance );
+            Assert.AreEqual(warrior.EffectivDamage, 17 + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectCritChance, 30 + equipementValueCrit);
             warrior.DeletePsycho(agressivity);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance + equipementValueCrit);
         }
         [Test]
         public void LoveBetweenWarriorAndMageTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Love love = new Love(warrior, mage);
-            Assert.AreEqual(warrior.EffectivDamage, 12);
-            Assert.AreEqual(warrior.EffectivDefense, 44);
-            Assert.AreEqual(mage.EffectivDamage, 4);
-            Assert.AreEqual(mage.EffectivDefense, 11);
+            int equipementValueDmgWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmgWarrior += c.Damage );
+            int equipementValueDefWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDefWarrior += c.Defense );
+            int equipementValueDmgMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueDmgMage += c.Damage );
+            int equipementValueDefMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueDefMage += c.Defense );
+            Assert.AreEqual(warrior.EffectivDamage, 12 + equipementValueDmgWarrior);
+            Assert.AreEqual(warrior.EffectivDefense, 44 + equipementValueDefWarrior);
+            Assert.AreEqual(mage.EffectivDamage, 4 + equipementValueDmgMage);
+            Assert.AreEqual(mage.EffectivDefense, 11 + equipementValueDefMage);
             mage.DeleteRelationship(love);
             warrior.DeleteRelationship(love);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
-            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
-            Assert.AreEqual(mage.EffectivDamage, mage.Damage);
-            Assert.AreEqual(mage.EffectivDefense, mage.Defense);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmgWarrior);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense+ equipementValueDefWarrior);
+            Assert.AreEqual(mage.EffectivDamage, mage.Damage + equipementValueDmgMage);
+            Assert.AreEqual(mage.EffectivDefense, mage.Defense + equipementValueDefMage);
         }
         [Test]
-        public void HateBetweenTwoWarriorTest ()
+        public void HateBetweenWarriorAndMageTest ()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Hate hate = new Hate(warrior, mage);
-            Assert.AreEqual(warrior.Damage += Convert.ToInt32(warrior.Damage * 0.5), warrior.EffectivDamage);
-            Assert.AreEqual(warrior.Defense += Convert.ToInt32(warrior.Defense * 0.5), warrior.EffectivDefense);
-            Assert.AreEqual(mage.Damage += Convert.ToInt32(mage.Damage * 0.5), mage.EffectivDamage);
-            Assert.AreEqual(mage.Defense += Convert.ToInt32(mage.Defense * 0.5), mage.EffectivDefense);
+            int equipementValueDmgWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmgWarrior += c.Damage );
+            int equipementValueDefWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDefWarrior += c.Defense );
+            int equipementValueDmgMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueDmgMage += c.Damage );
+            int equipementValueDefMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueDefMage += c.Defense );
+            int exepted = warrior.Damage += Convert.ToInt32( warrior.Damage * 0.5 );
+            Assert.AreEqual(exepted + equipementValueDmgWarrior, warrior.EffectivDamage);
+            exepted = warrior.Defense += Convert.ToInt32( warrior.Defense * 0.5 );
+            Assert.AreEqual(exepted + equipementValueDefWarrior, warrior.EffectivDefense);
+            exepted = mage.Damage += Convert.ToInt32( mage.Damage * 0.5 );
+            Assert.AreEqual(exepted + equipementValueDmgMage, mage.EffectivDamage);
+            exepted = mage.Defense += Convert.ToInt32( mage.Defense * 0.5 );
+            Assert.AreEqual( exepted + equipementValueDefMage, mage.EffectivDefense);
         }
 
         [Test]
         public void DesirBetweenTwoWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Desir desir = new Desir(warrior, mage);
-            Assert.AreEqual(warrior.HitChance - 2, warrior.EffectivHitChance);
-            Assert.AreEqual(mage.EffectivHitChance, mage.HitChance-2);
+            int equipementValueHitChanceWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueHitChanceWarrior += c.HitChance );
+            int equipementValueHitChanceMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueHitChanceMage += c.HitChance );
+            Assert.AreEqual(warrior.HitChance - 2 + equipementValueHitChanceWarrior, warrior.EffectivHitChance);
+            Assert.AreEqual(mage.EffectivHitChance, mage.HitChance-2 + equipementValueHitChanceMage);
             desir.EffectOnDeath();
             Assert.IsEmpty( warrior.Relationship );
         }
@@ -180,130 +220,122 @@ namespace S_M_D.Tests
         [Test]
         public void FriendshipBetweenTwooWarriorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Mage mage = ctx.PlayerInfo.MyHeros[0] as Mage;
             Friendship friendship = new Friendship(warrior, mage);
-            Assert.AreEqual(warrior.Damage + 2, warrior.EffectivDamage);
-            Assert.AreEqual(mage.Damage + 2, mage.EffectivDamage);
+            int equipementValueHitChanceWarrior = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueHitChanceWarrior += c.Damage );
+            int equipementValueHitChanceMage = 0;
+            mage.Equipement.ToList().ForEach( c => equipementValueHitChanceMage += c.Damage );
+            Assert.AreEqual(warrior.Damage + 2 + equipementValueHitChanceWarrior, warrior.EffectivDamage);
+            Assert.AreEqual(mage.Damage + 2 + equipementValueHitChanceMage, mage.EffectivDamage);
         }
         [Test]
-        public void GetItemWeaponTest()
+        public void GetArmorTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
-                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
-                warrior.GetNewItem(overview.First());
-                Assert.AreEqual(overview.First(), warrior.Equipement[0]);
-                Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += overview.First().CritChance);
-                Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += overview.First().AffectRes);
-                Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += overview.First().BleedingRes);
-                Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += overview.First().Damage);
-                Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += overview.First().Defense);
-                Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += overview.First().DodgeChance);
-                Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += overview.First().FireRes);
-                Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += overview.First().HitChance);
-                Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += overview.First().HP);
-                Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += overview.First().MagicRes);
-                Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += overview.First().Mana);
-                Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += overview.First().PoisonRes);
-                Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += overview.First().Speed);
-                Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += overview.First().WaterRes);
-            }
+            BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Armor);
+            Assert.Throws<ArgumentException>(() => warrior.GetNewItem(item));
+            warrior.RemoveItem( warrior.Equipement[0] );
+            warrior.RemoveItem( warrior.Equipement[1] );
+            warrior.RemoveItem( warrior.Equipement[2] );
+            warrior.RemoveItem( warrior.Equipement[3] );
+            warrior.GetNewItem( item );
+            Assert.AreEqual(item, warrior.Equipement[0]);
+            Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += item.CritChance);
+            Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += item.AffectRes);
+            Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += item.BleedingRes);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += item.Damage);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += item.Defense);
+            Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += item.DodgeChance);
+            Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += item.FireRes);
+            Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += item.HitChance);
+            Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += item.HP);
+            Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += item.MagicRes);
+            Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += item.Mana);
+            Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += item.PoisonRes);
+            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += item.Speed);
+            Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += item.WaterRes);
         }
 
         [Test]
         public void RemoveItemTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
-
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Weapons.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
-                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
-                warrior.GetNewItem(overview.First());
-                warrior.RemoveItem(overview.First());
-                warrior.GetNewItem(overview.Last());
-                
-            }
-
+            BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Armor );
+            Assert.Throws<ArgumentException>(() => warrior.GetNewItem(item));
+            warrior.RemoveItem( warrior.Equipement[0] );
+            Assert.AreEqual( null, warrior.Equipement[0] );
         }
 
         [Test]
-        public void GetItemArmorTest()
+        public void GetWeaponTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
-
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
-                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
-                warrior.GetNewItem(overview.First());
-                Assert.AreEqual(overview.First(), warrior.Equipement[1]);
-                Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += overview.First().CritChance);
-                Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += overview.First().AffectRes);
-                Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += overview.First().BleedingRes);
-                Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += overview.First().Damage);
-                Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += overview.First().Defense);
-                Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += overview.First().DodgeChance);
-                Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += overview.First().FireRes);
-                Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += overview.First().HitChance);
-                Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += overview.First().HP);
-                Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += overview.First().MagicRes);
-                Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += overview.First().Mana);
-                Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += overview.First().PoisonRes);
-                Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += overview.First().Speed);
-                Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += overview.First().WaterRes);
-            }
+            BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Weapon );
+            Assert.Throws<ArgumentException>( () => warrior.GetNewItem( item ) );
+            warrior.RemoveItem( warrior.Equipement[0] );
+            warrior.RemoveItem( warrior.Equipement[1] );
+            warrior.RemoveItem( warrior.Equipement[2] );
+            warrior.RemoveItem( warrior.Equipement[3] );
+            warrior.GetNewItem( item );
+            Assert.AreEqual( item, warrior.Equipement[1] );
+            Assert.AreEqual( warrior.EffectCritChance, warrior.CritChance += item.CritChance );
+            Assert.AreEqual( warrior.EffectivAffectRes, warrior.AffectRes += item.AffectRes );
+            Assert.AreEqual( warrior.EffectivBleedingRes, warrior.BleedingRes += item.BleedingRes );
+            Assert.AreEqual( warrior.EffectivDamage, warrior.Damage += item.Damage );
+            Assert.AreEqual( warrior.EffectivDefense, warrior.Defense += item.Defense );
+            Assert.AreEqual( warrior.EffectivDodgeChance, warrior.DodgeChance += item.DodgeChance );
+            Assert.AreEqual( warrior.EffectivFireRes, warrior.FireRes += item.FireRes );
+            Assert.AreEqual( warrior.EffectivHitChance, warrior.HitChance += item.HitChance );
+            Assert.AreEqual( warrior.EffectivHPMax, warrior.HPmax += item.HP );
+            Assert.AreEqual( warrior.EffectivMagicRes, warrior.MagicRes += item.MagicRes );
+            Assert.AreEqual( warrior.EffectivManaMax, warrior.ManaMax += item.Mana );
+            Assert.AreEqual( warrior.EffectivPoisonRes, warrior.PoisonRes += item.PoisonRes );
+            Assert.AreEqual( warrior.EffectivSpeed, warrior.Speed += item.Speed );
+            Assert.AreEqual( warrior.EffectivWaterRes, warrior.WaterRes += item.WaterRes );
 
         }
 
         [Test]
         public void GetItemTrinketTest()
         {
-            GameContext ctx = GameContext.CreateNewGame();
-            ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
-
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Trinket.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
-                List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
-                warrior.GetNewItem(overview.First());
-                Assert.AreEqual(overview.First(), warrior.Equipement[2]);
-                Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += overview.First().CritChance);
-                Assert.AreEqual(warrior.EffectivAffectRes, warrior.AffectRes += overview.First().AffectRes);
-                Assert.AreEqual(warrior.EffectivBleedingRes, warrior.BleedingRes += overview.First().BleedingRes);
-                Assert.AreEqual(warrior.EffectivDamage, warrior.Damage += overview.First().Damage);
-                Assert.AreEqual(warrior.EffectivDefense, warrior.Defense += overview.First().Defense);
-                Assert.AreEqual(warrior.EffectivDodgeChance, warrior.DodgeChance += overview.First().DodgeChance);
-                Assert.AreEqual(warrior.EffectivFireRes, warrior.FireRes += overview.First().FireRes);
-                Assert.AreEqual(warrior.EffectivHitChance, warrior.HitChance += overview.First().HitChance);
-                Assert.AreEqual(warrior.EffectivHPMax, warrior.HPmax += overview.First().HP);
-                Assert.AreEqual(warrior.EffectivMagicRes, warrior.MagicRes += overview.First().MagicRes);
-                Assert.AreEqual(warrior.EffectivManaMax, warrior.ManaMax += overview.First().Mana);
-                Assert.AreEqual(warrior.EffectivPoisonRes, warrior.PoisonRes += overview.First().PoisonRes);
-                Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed += overview.First().Speed);
-                Assert.AreEqual(warrior.EffectivWaterRes, warrior.WaterRes += overview.First().WaterRes);
-            }
+            BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Trinket );
+            Assert.Throws<ArgumentException>(() => warrior.GetNewItem(item));
+            warrior.RemoveItem( warrior.Equipement[0] );
+            warrior.RemoveItem( warrior.Equipement[1] );
+            warrior.RemoveItem( warrior.Equipement[2] );
+            warrior.RemoveItem( warrior.Equipement[3] );
+            warrior.GetNewItem( item );
+            Assert.AreEqual( item, warrior.Equipement[2] );
+            Assert.AreEqual( warrior.EffectCritChance, warrior.CritChance += item.CritChance );
+            Assert.AreEqual( warrior.EffectivAffectRes, warrior.AffectRes += item.AffectRes );
+            Assert.AreEqual( warrior.EffectivBleedingRes, warrior.BleedingRes += item.BleedingRes );
+            Assert.AreEqual( warrior.EffectivDamage, warrior.Damage += item.Damage );
+            Assert.AreEqual( warrior.EffectivDefense, warrior.Defense += item.Defense );
+            Assert.AreEqual( warrior.EffectivDodgeChance, warrior.DodgeChance += item.DodgeChance );
+            Assert.AreEqual( warrior.EffectivFireRes, warrior.FireRes += item.FireRes );
+            Assert.AreEqual( warrior.EffectivHitChance, warrior.HitChance += item.HitChance );
+            Assert.AreEqual( warrior.EffectivHPMax, warrior.HPmax += item.HP );
+            Assert.AreEqual( warrior.EffectivMagicRes, warrior.MagicRes += item.MagicRes );
+            Assert.AreEqual( warrior.EffectivManaMax, warrior.ManaMax += item.Mana );
+            Assert.AreEqual( warrior.EffectivPoisonRes, warrior.PoisonRes += item.PoisonRes );
+            Assert.AreEqual( warrior.EffectivSpeed, warrior.Speed += item.Speed );
+            Assert.AreEqual( warrior.EffectivWaterRes, warrior.WaterRes += item.WaterRes );
 
         }
 
         [Test]
         public void WarriorUpdate()
         {
-            GameContext ctx = GameContext.CreateNewGame();
+            GameContext ctx = GameContext.CreateNewGame(1);
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             Priest priest = ctx.PlayerInfo.MyHeros[2] as Priest;
             Paladin paladin = ctx.PlayerInfo.MyHeros[1] as Paladin;
@@ -315,20 +347,28 @@ namespace S_M_D.Tests
             warrior.GetPsycho(testC);
             warrior.GetSickness(testF);
             warrior.GetSickness(testD);
+            int equipementValueHitChance = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueHitChance += c.HitChance );
+            int equipementValueDmg = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDmg += c.Damage );
+            int equipementValueDef = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueDef += c.Defense );
+            int equipementValueCrit = 0;
+            warrior.Equipement.ToList().ForEach( c => equipementValueCrit += c.CritChance );
             priest.UpdateHeroStats();
             paladin.UpdateHeroStats();
             mage.UpdateHeroStats();
-            Assert.AreEqual(warrior.EffectivDamage, 19);
-            Assert.AreEqual(warrior.EffectivDefense, 36);
-            Assert.AreEqual(warrior.EffectCritChance, 30);
-            Assert.AreEqual(warrior.EffectivHitChance, 30);
+            Assert.AreEqual(warrior.EffectivDamage, 19 + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectivDefense, 36 + equipementValueDef);
+            Assert.AreEqual(warrior.EffectCritChance, 30 + equipementValueCrit);
+            Assert.AreEqual(warrior.EffectivHitChance, 30 + equipementValueHitChance);
             warrior.DeleteSickness(testF);
             warrior.DeleteSickness(testD);
             warrior.DeletePsycho(testC);
             warrior.DeleteRelationship(love);
             mage.DeleteRelationship(love);
-            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage);
-            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense);
+            Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
+            Assert.AreEqual(warrior.EffectivDefense, warrior.Defense + equipementValueDef);
         }
 
     }
