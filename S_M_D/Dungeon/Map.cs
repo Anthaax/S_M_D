@@ -75,6 +75,22 @@ namespace S_M_D.Dungeon
                     idx += 3 + nbPoint;
                     this.Rooms.Add(pr);
                 }
+                else if (desc[idx] == "RectangularRoom" )
+                {
+
+                    List<Point> pts = new List<Point>( );
+
+                    string[ ] coords = desc[ idx + 1 ].Split( ' ' );
+                    Point center = new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
+                    for (int i = 0; i < 4; i++ )
+                    {
+                        coords = desc[ idx + 2 + i ].Split( ' ' );
+                        pts.Add( new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
+                    }
+                    RectangularRoom rectroom = new RectangularRoom( pts );
+                    rectroom.Center = center;
+
+                }
                 else
                     idx++;
             }

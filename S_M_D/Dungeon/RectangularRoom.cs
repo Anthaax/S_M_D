@@ -18,6 +18,12 @@ namespace S_M_D.Dungeon
             this.Neighbor = new List<MapItem>( );
         }
 
+        public RectangularRoom( List<Point> pts )
+        {
+            this.Path = new List<Point>( path );
+            this.IsCorridor = false;
+            this.Neighbor = new List<MapItem>( );
+        }
 
         public override bool Init( int roomWidth, int roomHeight )
         {
@@ -42,6 +48,16 @@ namespace S_M_D.Dungeon
             this.center = new Point( begin.X + width / 2, begin.Y + height / 2 );
 
             return true;
+        }
+
+        public override string ToString( )
+        {
+            string s = "RectangularRoom" + '\n' + Center.X.ToString() + " " + Center.Y.ToString() + '\n';
+            for ( int i = 0; i < Path.Count; i++ )
+            {
+                s += Path[ i ].X.ToString( ) + ' ' + Path[ i ].Y.ToString( ) + '\n';
+            }
+            return s;
         }
 
     }
