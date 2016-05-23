@@ -45,7 +45,7 @@ namespace S_M_D.Dungeon
             Path.Add( p2 );
             Path.Add( p3 );
 
-            this.center = new Point( begin.X + width / 2, begin.Y + height / 2 );
+            this.Center = new Point( begin.X + width / 2, begin.Y + height / 2 );
 
             return true;
         }
