@@ -29,7 +29,7 @@ namespace S_M_D.Dungeon
                 }
                 else
                 {
-                    r = new PolygonRoom();
+                    r = new RectangularRoom();
                 }
                 bool roomPlaced = false;
                 while (!roomPlaced)
