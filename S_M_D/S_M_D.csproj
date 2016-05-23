@@ -97,6 +97,7 @@
     <Compile Include="Dungeon\MapItem.cs" />
     <Compile Include="Dungeon\Point.cs" />
     <Compile Include="Dungeon\PolygonRoom.cs" />
+    <Compile Include="Dungeon\RectangularRoom.cs" />
     <Compile Include="Dungeon\Room.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Item\BaseArmor.cs" />
