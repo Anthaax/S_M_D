@@ -27,7 +27,7 @@ namespace S_M_D.Dungeon
 
         public override bool Init( int roomWidth, int roomHeight )
         {
-            path.Clear( );
+            Path.Clear( );
 
             Random rand = new Random( );
 
@@ -40,10 +40,10 @@ namespace S_M_D.Dungeon
             Point p2 = new Point( begin.X + width, begin.Y + height );
             Point p3 = new Point( begin.X, begin.Y + height );
 
-            path.Add( begin );
-            path.Add( p1 );
-            path.Add( p2 );
-            path.Add( p3 );
+            Path.Add( begin );
+            Path.Add( p1 );
+            Path.Add( p2 );
+            Path.Add( p3 );
 
             this.center = new Point( begin.X + width / 2, begin.Y + height / 2 );
 
