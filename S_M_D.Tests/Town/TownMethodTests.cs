@@ -53,9 +53,6 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
-            PutAnArmorInAHero(armory.Hero);
-            PutATrinketInAHero( armory.Hero );
-            PutAWeaponInAHero( armory.Hero );
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[1]);
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[0]);
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[2]);
@@ -167,34 +164,6 @@ namespace S_M_D.Tests
             caravan.Initialized();
             caravan.BuyHero(caravan.HerosDispo.First());
             Assert.AreEqual(5, ctx.PlayerInfo.MyHeros.Count());
-        }
-
-        private void PutAnArmorInAHero(BaseHeros hero)
-        {
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Armors.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
-                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
-                hero.GetNewItem(overview.First());
-            }
-        }
-        private void PutATrinketInAHero( BaseHeros hero )
-        {
-            using (FileStream myFileStream = new FileStream("../../../S_M_D/Items/Trinket.xml", FileMode.Open))
-            {
-                XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
-                List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
-                hero.GetNewItem(overview.First());
-            }
-        }
-        private void PutAWeaponInAHero( BaseHeros hero )
-        {
-            using (FileStream myFileStream = new FileStream( "../../../S_M_D/Items/Weapons.xml", FileMode.Open ))
-            {
-                XmlSerializer reader = new XmlSerializer( typeof( List<BaseWeapon> ) );
-                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize( myFileStream );
-                hero.GetNewItem( overview.First() );
-            }
         }
     }
 }

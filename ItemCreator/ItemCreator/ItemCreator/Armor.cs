@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace ItemCreator
 {
@@ -212,7 +213,9 @@ namespace ItemCreator
 
         public static void WriteXMLArmor(List<BaseArmor> armor)
         {
-            using (FileStream myFileStream = new FileStream("../../../../S_M_D/Items/Armors.xml", FileMode.Create))
+            string path = Path.GetDirectoryName( Path.GetDirectoryName( Path.GetDirectoryName( Path.GetDirectoryName( Path.GetDirectoryName( Assembly.GetExecutingAssembly().CodeBase ) ) ) ) );
+            var realPath = new Uri( path + @"/S_M_D.Tests/bin/Debug/Armors.xml" );
+            using (FileStream myFileStream = new FileStream(realPath.LocalPath, FileMode.Create))
             {
 
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseArmor>));

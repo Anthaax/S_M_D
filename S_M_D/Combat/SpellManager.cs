@@ -18,19 +18,34 @@ namespace S_M_D.Combat
         {
             return spell.TargetManager.WhoCanBeTargetable( position );
         }
-        public void LaunchDamageSpellOnMonster(Spells spell, int position)
+        public void HeroLaunchSpell( Spells spell, int position )
+        {
+            if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
+                LaunchHealOnHero( spell, position );
+            else
+                LaunchDamageSpellOnMonster( spell, position );
+        }
+        public void MonsterLaunchSpell( Spells spell, int position )
+        {
+            if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
+                LaunchHealOnMonster( spell, position );
+            else
+                LaunchDamageSpellOnHero( spell, position );
+        }
+        private void LaunchDamageSpellOnMonster(Spells spell, int position)
         {
             ApplyDamage<BaseMonster>( spell, position );
         }
-        public void LaunchDamageSpellOnHero( Spells spell, int postition )
+        private void LaunchDamageSpellOnHero( Spells spell, int postition )
         {
             ApplyDamage<BaseHeros>( spell, postition );
         }
-        public void LaunchHealOnHero( Spells spell, int position)
+        private void LaunchHealOnHero( Spells spell, int position)
         {
+            if (spell.KindOfEffect.DamageType != DamageTypeEnum.Heal) throw new ArgumentException( "Impossible Heal with damageSpell" );
             ApplyHeal<BaseHeros>( spell, position );
         }
-        public void LaunchHealOnMonster( Spells spell, int position )
+        private void LaunchHealOnMonster( Spells spell, int position )
         {
             if (spell.KindOfEffect.DamageType != DamageTypeEnum.Heal) throw new ArgumentException( "Impossible Heal with damageSpell" );
             ApplyHeal<BaseMonster>( spell, position );
@@ -43,26 +58,29 @@ namespace S_M_D.Combat
             int i = 0;
             spell.CooldownManager.SpellsWasUsed();
             KindOfEffect spellEffect = spell.OnLaunchSpell();
-            while (i < spell.TargetManager.Radius & i + position < _combatManager.Heros.Count())
+            while (i < spell.TargetManager.Radius & i + position <= _combatManager.Heros.Count())
             {
-                character = GetTheCharacter( typeOfT, position );
-                character.HP -= spellEffect.Damage;
-                if (spell.KindOfEffect.CanBeBlock && _combatManager.GameContext.Rnd.Next( 100 ) >= character.Resist( spell.KindOfEffect.DamageType ))
+                character = GetTheCharacter( typeOfT, position + i );
+                if( character != null)
                 {
-                    KindOfEffect existentSpellEffect = null;
-                    _combatManager.DamageOnTime.TryGetValue( character, out existentSpellEffect );
-                    if (existentSpellEffect == null)
-                        _combatManager.DamageOnTime[character] = spellEffect;
-                    else if (spellEffect.DamageType == existentSpellEffect.DamageType)
-                        existentSpellEffect.EffectiveDamagePerTurn += spellEffect.DamagePerTurn;
-                    else
-                        _combatManager.DamageOnTime[character] = spellEffect;
+                    character.HP -= spellEffect.Damage;
+                    if (spell.KindOfEffect.CanBeBlock && _combatManager.GameContext.Rnd.Next( 100 ) >= character.Resist( spell.KindOfEffect.DamageType ))
+                    {
+                        KindOfEffect existentSpellEffect = null;
+                        _combatManager.DamageOnTime.TryGetValue( character, out existentSpellEffect );
+                        if (existentSpellEffect == null)
+                            _combatManager.DamageOnTime[character] = spellEffect;
+                        else if (spellEffect.DamageType == existentSpellEffect.DamageType)
+                            existentSpellEffect.EffectiveDamagePerTurn += spellEffect.DamagePerTurn;
+                        else
+                            _combatManager.DamageOnTime[character] = spellEffect;
+                    }
+                    else if (spell.KindOfEffect.CanBeBlock)
+                        character.HP += spellEffect.Damage;
+                    suppresDeadCharacter<T>( i + position );
                 }
-                else if(spell.KindOfEffect.CanBeBlock)
-                character.HP += spellEffect.Damage;
                 i++;
             }
-            
         }
         private void ApplyHeal<T>( Spells spell, int position )
         {
@@ -90,6 +108,20 @@ namespace S_M_D.Combat
             else
                 character = _combatManager.Monsters[position];
             return character;
+        }
+        private void suppresDeadCharacter<T>(int position)
+        {
+            Type typeOfT = typeof( T );
+            BaseCharacter charac = GetTheCharacter(typeOfT,position);
+            if(charac.HP <= 0)
+            {
+                if (typeOfT == typeof( BaseHeros ))
+                    _combatManager.Heros[position] = null;
+                else
+                    _combatManager.Monsters[position] = null;
+            }
+            _combatManager.CharacterOrderAttack.RemoveAll( c => c.HP <= 0 );
+            _combatManager.GameContext.PlayerInfo.MyHeros.RemoveAll( c => c.HP <= 0 );
         }
     }
 }

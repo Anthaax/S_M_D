@@ -1,10 +1,1 @@
-Elemental Canopic Chest,
-Resolution Door,
-Aethereal Sandals,
-Hell's Tiara,
-Kismet Statue,
-Ark of Revival,
-Shard of Scorching,
-Tablet of Misfortune,
-Fleece of Massacres,
-Boots of Divinity
+Elemental Canopic Chest,Resolution Door,Aethereal Sandals,Hell's Tiara,Kismet Statue,Ark of Revival,Shard of Scorching,Tablet of Misfortune,Fleece of Massacres,Boots of Divinity
