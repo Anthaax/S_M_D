@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using S_M_D.Character;
 
 namespace S_M_D.Dungeon
 {
@@ -10,6 +11,8 @@ namespace S_M_D.Dungeon
     {
         protected Point center;
         public Point Center { get; set; }
+        public List<string> events { get; set; }
+        public List<BaseItem> chest { get; set; }
 
         /// <summary>
         /// Initializes the room, setting its characteristics (randomly generated).

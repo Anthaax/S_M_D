@@ -34,6 +34,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>();
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         public PolygonRoom(List<Point> path)
@@ -41,6 +45,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>(path);
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
         
         /// <summary>
@@ -196,6 +204,17 @@ namespace S_M_D.Dungeon
                 }
             }
             return inside;
+        }
+
+        public override string ToString()
+        {
+            string s = "PolygonRoom" + '\n' + Path.Count.ToString() + '\n';
+            for (int i = 0; i < Path.Count; i++)
+            {
+                s += Path[i].X.ToString() + ' ' + Path[i].Y.ToString() + '\n';
+            }
+            s += Center.X.ToString() + ' ' + Center.Y.ToString() + '\n';
+            return s;
         }
     }
 }
