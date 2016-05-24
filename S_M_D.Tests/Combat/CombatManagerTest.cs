@@ -59,13 +59,19 @@ namespace S_M_D.Tests.Combat
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
+            cbt.Monsters[1].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            cbt.Monsters[1].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            cbt.Monsters[2].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            cbt.Monsters[2].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            cbt.Monsters[3].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            cbt.Monsters[3].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
-            Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage*2, cbt.Monsters[1].HP );
+            Assert.AreEqual( cbt.Monsters[1].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage*2), cbt.Monsters[1].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn * 2, cbt.DamageOnTime[cbt.Monsters[1]].EffectiveDamagePerTurn );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 2 );
-            Assert.AreEqual( cbt.Monsters.First().HPmax - ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.Damage, cbt.Monsters[2].HP );
+            Assert.AreEqual( cbt.Monsters[2].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage), cbt.Monsters[2].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn, cbt.DamageOnTime[cbt.Monsters[2]].EffectiveDamagePerTurn );
         }
@@ -78,11 +84,11 @@ namespace S_M_D.Tests.Combat
             Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].EffectivHPMax, cbt.Heros[1].HP );
-            ctx.PlayerInfo.MyHeros[1].HP = 1;
+            ctx.PlayerInfo.MyHeros[1].HP -= ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1;
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1, cbt.Heros[1].HP );
+            Assert.AreEqual( cbt.Heros[1].EffectivHPMax - 1, cbt.Heros[1].HP );
             cbt.Monsters[0].HP = 1;
-            cbt.Monsters[0].EffectivHPMax = 32;
+            cbt.Monsters[0].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 2;
             cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1, cbt.Monsters[0].HP );
             cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );

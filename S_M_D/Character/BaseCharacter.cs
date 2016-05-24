@@ -82,6 +82,7 @@ namespace S_M_D.Character
         {
             HP = HPmax;
             EffectivHPMax = HPmax;
+            Mana = ManaMax;
             EffectivManaMax = ManaMax;
             EffectCritChance = CritChance;
             EffectivAffectRes = AffectRes;
