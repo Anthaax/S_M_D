@@ -221,6 +221,13 @@ namespace ItemCreator
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseArmor>));
                 serialiser.Serialize(myFileStream, armor);
             }
+            realPath = new Uri( path + @"/CodeCakeBuilder/bin/Debug/Armors.xml" );
+            using (FileStream myFileStream = new FileStream( realPath.LocalPath, FileMode.Create ))
+            {
+
+                XmlSerializer serialiser = new XmlSerializer( typeof( List<BaseArmor> ) );
+                serialiser.Serialize( myFileStream, armor );
+            }
         }
 
         public void ReadXMLArmor()

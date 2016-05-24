@@ -221,6 +221,13 @@ namespace ItemCreator
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseTrinket>));
                 serialiser.Serialize(myFileStream, trinket);
             }
+            realPath = new Uri( path + @"/CodeCakeBuilder/bin/Debug/Trinket.xml" );
+            using (FileStream myFileStream = new FileStream( realPath.LocalPath, FileMode.Create ))
+            {
+
+                XmlSerializer serialiser = new XmlSerializer( typeof( List<BaseTrinket> ) );
+                serialiser.Serialize( myFileStream, trinket );
+            }
         }
 
         public void ReadXMLTrinket()

@@ -224,6 +224,13 @@ namespace ItemCreator
                 XmlSerializer serialiser = new XmlSerializer(typeof(List<BaseWeapon>));
                 serialiser.Serialize(myFileStream, weapon);
             }
+            realPath = new Uri( path + @"/CodeCakeBuilder/bin/Debug/Weapons.xml" );
+            using (FileStream myFileStream = new FileStream( realPath.LocalPath, FileMode.Create ))
+            {
+
+                XmlSerializer serialiser = new XmlSerializer( typeof( List<BaseWeapon> ) );
+                serialiser.Serialize( myFileStream, weapon );
+            }
         }
 
         public void ReadXMLArmor()
