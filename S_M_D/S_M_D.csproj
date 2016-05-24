@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\BattleManager.cs" />
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingManager.cs" />
     <Compile Include="Camp\BuildingType.cs" />

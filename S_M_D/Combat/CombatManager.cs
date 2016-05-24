@@ -92,6 +92,7 @@ namespace S_M_D.Combat
                 hero.Xp += Reward.Xp / Heros.Where( c => c.HP > 0 ).Count();
             }
             _gameContext.MoneyManager.ReciveMoney( Reward.Money );
+            _gameContext.PlayerInfo.MyItems.Add( _reward.Item );
         }
 
         public Reward Reward

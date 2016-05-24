@@ -189,22 +189,7 @@ namespace S_M_D.Character
 
         public void UpdateHeroStats()
         {
-            HP = HPmax;
-            EffectivHPMax = HPmax;
-            EffectivManaMax = ManaMax;
-            EffectCritChance = CritChance;
-            EffectivAffectRes = AffectRes;
-            EffectivBleedingRes = BleedingRes;
-            EffectivDamage = Damage;
-            EffectivDefense = Defense;
-            EffectivDodgeChance = DodgeChance;
-            EffectivFireRes = FireRes;
-            EffectivHitChance = HitChance;
-            EffectivMagicRes = MagicRes;
-            EffectivPoisonRes = PoisonRes;
-            EffectivSpeed = Speed;
-            EffectivWaterRes = WaterRes;
-
+            InitializedEffectiveStats();
             foreach (Sickness sick in _sicknesses)
             {
                 sick.effect(this);

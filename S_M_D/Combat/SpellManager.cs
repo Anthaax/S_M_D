@@ -18,19 +18,34 @@ namespace S_M_D.Combat
         {
             return spell.TargetManager.WhoCanBeTargetable( position );
         }
-        public void LaunchDamageSpellOnMonster(Spells spell, int position)
+        public void HeroLaunchSpell( Spells spell, int position )
+        {
+            if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
+                LaunchHealOnHero( spell, position );
+            else
+                LaunchDamageSpellOnMonster( spell, position );
+        }
+        public void MonsterLaunchSpell( Spells spell, int position )
+        {
+            if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
+                LaunchHealOnMonster( spell, position );
+            else
+                LaunchDamageSpellOnHero( spell, position );
+        }
+        private void LaunchDamageSpellOnMonster(Spells spell, int position)
         {
             ApplyDamage<BaseMonster>( spell, position );
         }
-        public void LaunchDamageSpellOnHero( Spells spell, int postition )
+        private void LaunchDamageSpellOnHero( Spells spell, int postition )
         {
             ApplyDamage<BaseHeros>( spell, postition );
         }
-        public void LaunchHealOnHero( Spells spell, int position)
+        private void LaunchHealOnHero( Spells spell, int position)
         {
+            if (spell.KindOfEffect.DamageType != DamageTypeEnum.Heal) throw new ArgumentException( "Impossible Heal with damageSpell" );
             ApplyHeal<BaseHeros>( spell, position );
         }
-        public void LaunchHealOnMonster( Spells spell, int position )
+        private void LaunchHealOnMonster( Spells spell, int position )
         {
             if (spell.KindOfEffect.DamageType != DamageTypeEnum.Heal) throw new ArgumentException( "Impossible Heal with damageSpell" );
             ApplyHeal<BaseMonster>( spell, position );

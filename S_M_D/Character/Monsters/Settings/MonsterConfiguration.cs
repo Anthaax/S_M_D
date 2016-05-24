@@ -31,6 +31,7 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 0;
                     Poco.GiveXp = 2;
                     Poco.Type = MonsterType.ORC;
+                    Poco.InitializedEffectiveStats();
                     return Poco;
 
                 case MonsterType.ELF:
@@ -52,6 +53,7 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 40;
                     Poco.GiveXp = 2;
                     Poco.Type = MonsterType.ELF;
+                    Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.GOBELIN:
                     Poco.HPmax = 20 + 1 * level;
@@ -72,6 +74,7 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 60;
                     Poco.GiveXp = 1;
                     Poco.Type = MonsterType.GOBELIN;
+                    Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.TROLL:
                     Poco.HPmax = 20 + 8 * level;
@@ -92,6 +95,7 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 10;
                     Poco.GiveXp = 8;
                     Poco.Type = MonsterType.TROLL;
+                    Poco.InitializedEffectiveStats();
                     return Poco;
 
                 default:

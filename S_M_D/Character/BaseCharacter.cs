@@ -77,6 +77,24 @@ namespace S_M_D.Character
                 default:
                     return 0;
             }
+        }
+        public void InitializedEffectiveStats()
+        {
+            HP = HPmax;
+            EffectivHPMax = HPmax;
+            EffectivManaMax = ManaMax;
+            EffectCritChance = CritChance;
+            EffectivAffectRes = AffectRes;
+            EffectivBleedingRes = BleedingRes;
+            EffectivDamage = Damage;
+            EffectivDefense = Defense;
+            EffectivDodgeChance = DodgeChance;
+            EffectivFireRes = FireRes;
+            EffectivHitChance = HitChance;
+            EffectivMagicRes = MagicRes;
+            EffectivPoisonRes = PoisonRes;
+            EffectivSpeed = Speed;
+            EffectivWaterRes = WaterRes;
         } 
 
         public string CharacterName

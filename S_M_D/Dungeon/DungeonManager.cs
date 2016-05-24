@@ -42,10 +42,24 @@ namespace S_M_D
                 return _mapCatalogue;
             }
         }
-        private void InitializedCatalogue()
+
+        public CombatManager CbtManager
+        {
+            get
+            {
+                return _cbtManager;
+            }
+
+            set
+            {
+                _cbtManager = value;
+            }
+        }
+
+        public void InitializedCatalogue()
         {
             _mapCatalogue.Clear();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
                 _mapCatalogue.Add( new Map() );
             }
