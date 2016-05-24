@@ -48,6 +48,7 @@
     <Compile Include="Dungeon\CorridorTest.cs" />
     <Compile Include="Dungeon\Dungeon_Circular_Room_Test.cs" />
     <Compile Include="Dungeon\DungonManagerTest.cs" />
+    <Compile Include="Dungeon\EventGeneratorTest.cs" />
     <Compile Include="Dungeon\MapGeneratorTest.cs" />
     <Compile Include="Dungeon\MapItemTest.cs" />
     <Compile Include="Dungeon\MapTest.cs" />

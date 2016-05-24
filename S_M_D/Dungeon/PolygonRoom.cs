@@ -34,6 +34,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>();
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         public PolygonRoom(List<Point> path)
@@ -41,6 +45,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>(path);
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
         
         /// <summary>

@@ -16,6 +16,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>( );
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>( );
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         public RectangularRoom( List<Point> pts )
@@ -23,6 +27,10 @@ namespace S_M_D.Dungeon
             this.Path = new List<Point>( path );
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>( );
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         public override bool Init( int roomWidth, int roomHeight )

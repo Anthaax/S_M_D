@@ -23,37 +23,49 @@ namespace S_M_D.Dungeon
             return selection;
         }
 
-        private void FillChest( )
+        private BaseItem FillChest( )
         {
             Random rand = new Random( );
             int item = rand.Next( 200 );
             string path;
-            Character.BaseItem result;
+            Character.BaseItem result = null;
 
-            int selection = rand.Next( 1, 2 );
+            int selection = rand.Next( 1, 3 );
 
-            if(selection == 1)
+            switch(selection)
             {
-                path = "Items/Armors.xml";
-                using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
-                {
-                    XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseArmor> ) );
-                    List<Character.BaseArmor> overview = ( List<Character.BaseArmor> ) reader.Deserialize( myFileStream );
-                    result = overview[ item ];
+                case 1 :
+                    path = "Items/Armors.xml";
+                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
+                    {
+                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseArmor> ) );
+                        List<Character.BaseArmor> overview = ( List<Character.BaseArmor> ) reader.Deserialize( myFileStream );
+                        result = overview[ item ];
+                    }
+                    break;
 
-                }
-            }
-            else
-            {
-                path = "Items/Weapons.xml";
-                using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
-                {
-                    XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseWeapon> ) );
-                    List<Character.BaseWeapon> overview = ( List<Character.BaseWeapon> ) reader.Deserialize( myFileStream );
-                    result = overview[ item ];
+                case 2 :
+                    path = "Items/Weapons.xml";
+                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
+                    {
+                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseWeapon> ) );
+                        List<Character.BaseWeapon> overview = ( List<Character.BaseWeapon> ) reader.Deserialize( myFileStream );
+                        result = overview[ item ];
+                    }
+                    break;
 
-                }
+                case 3 :
+                    path = "Items/Trinkets.xml";
+                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
+                    {
+                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseTrinket> ) );
+                        List<Character.BaseTrinket> overview = ( List<Character.BaseTrinket> ) reader.Deserialize( myFileStream );
+                        result = overview[ item ];
+                    }
+                    break;
             }
+
+            return result;
         }
 
         public void Generate(Map map)
@@ -61,12 +73,21 @@ namespace S_M_D.Dungeon
             foreach(Room r in map.Rooms)
             {
                 AttachEvent( r );
+                if(r.events.Contains("Chest"))
+                {
+                    r.chest.Add( FillChest( ) );
+                }
             }
         }
 
         public void AttachEvent( Room selectedRoom )
         {
             selectedRoom.events.Add( SelectEvent( ) );
+        }
+
+        public void AttachChestEvent(Room selectedRoom)
+        {
+            selectedRoom.events.Add( eventName[ 0 ] );
         }
 
     }

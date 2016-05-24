@@ -23,6 +23,10 @@ namespace S_M_D.Dungeon
             IsCorridor = false;
 
             Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         /// <summary>
