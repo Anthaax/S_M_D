@@ -89,7 +89,8 @@ namespace S_M_D.Dungeon
                     }
                     RectangularRoom rectroom = new RectangularRoom( pts );
                     rectroom.Center = center;
-
+                    this.Rooms.Add(rectroom);
+                    idx += 4;
                 }
                 else
                     idx++;

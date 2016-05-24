@@ -24,7 +24,7 @@ namespace S_M_D.Dungeon
 
         public RectangularRoom( List<Point> pts )
         {
-            this.Path = new List<Point>( path );
+            this.Path = new List<Point>( pts );
             this.IsCorridor = false;
             this.Neighbor = new List<MapItem>( );
 
