@@ -12,12 +12,12 @@ namespace S_M_D.Dungeon
     public class EventGenerator : IEventGenerator
     {
 
-        private string[] eventName = { "Chest", "Combat", "NoEvent", "Trap" };
+        private string[] eventName = { "Trap", "Combat", "NoEvent", "Chest" };
+
+        Random rand = new Random( );
 
         private string SelectEvent()
         {
-            Random rand = new Random( );
-
             string selection = eventName[ rand.Next( 0, eventName.Length ) ];
 
             return selection;
@@ -25,7 +25,6 @@ namespace S_M_D.Dungeon
 
         private BaseItem FillChest( )
         {
-            Random rand = new Random( );
             int item = rand.Next( 200 );
             string path;
             Character.BaseItem result = null;

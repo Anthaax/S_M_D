@@ -82,7 +82,7 @@ namespace S_M_D.Dungeon
             IEventGenerator eventGen = new EventGenerator( );
 
             corGen.Generate(map);
-            //eventGen.Generate( map );
+            eventGen.Generate( map );
 
             this.setNeighbors(map);
         }
