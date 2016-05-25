@@ -25,8 +25,8 @@ namespace S_M_D.Camp.Class
         }
         public void setHeros2(BaseHeros hero2)
         {
-            _hero1 = hero2;
-            _hero1.InBuilding = this;
+            _hero2 = hero2;
+            _hero2.InBuilding = this;
         }
         public void deleteHeros()
         {
