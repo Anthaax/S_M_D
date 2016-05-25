@@ -7,18 +7,19 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Caravan : BaseBuilding
+    public class Caravan : BaseBuilding, ILevelUP
     {
         private List<BaseHeros> _herosDispo;
-
+        int _maxNewHero;
         public Caravan(CaravanConfig b) : base(b)
         {
             HerosDispo = b.HerosDispo;
+            _maxNewHero = b.MaxNewHero;
         }
 
         public void Initialized()
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < _maxNewHero; i++)
             {
                 int heroEnum = Ctx.Rnd.Next(1, 5);
                 HerosEnum hero = (HerosEnum)heroEnum;
@@ -34,6 +35,12 @@ namespace S_M_D.Camp.Class
         {
             Ctx.PlayerInfo.MyHeros.Remove(hero);
         }
+        public void LevelUP()
+        {
+            Level++;
+            
+        }
+
         public List<BaseHeros> HerosDispo
         {
             get
@@ -44,6 +51,14 @@ namespace S_M_D.Camp.Class
             set
             {
                 _herosDispo = value;
+            }
+        }
+
+        public int MaxNewHero
+        {
+            get
+            {
+                return _maxNewHero;
             }
         }
     }

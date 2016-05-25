@@ -81,6 +81,7 @@
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
+    <Compile Include="Combat\IAMonster.cs" />
     <Compile Include="Combat\SpellManager.cs" />
     <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />

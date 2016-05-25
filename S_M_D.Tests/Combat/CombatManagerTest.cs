@@ -147,6 +147,7 @@ namespace S_M_D.Tests.Combat
             cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[3], 1 );
             Assert.AreEqual( 5, cbt.CharacterOrderAttack.Count );
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros.Count );
+            Assert.AreEqual( 3, ctx.PlayerInfo.DeadHero.Count );
             Assert.AreEqual( null, cbt.Heros[1] );
             Assert.AreEqual( null, cbt.Heros[2] );
             Assert.AreEqual( null, cbt.Heros[3] );

@@ -10,6 +10,7 @@ namespace S_M_D.Character
         abstract public void effect(BaseHeros heros);
 
         string name;
+        int price;
 
         public string Name
         {
@@ -21,6 +22,19 @@ namespace S_M_D.Character
             set
             {
                 name = value;
+            }
+        }
+
+        public int Price
+        {
+            get
+            {
+                return price;
+            }
+
+            set
+            {
+                price = value;
             }
         }
     }

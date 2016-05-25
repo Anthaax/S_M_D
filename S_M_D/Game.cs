@@ -37,8 +37,8 @@ namespace S_M_D
             _rnd = new Random();
             _herosManager = new HerosManager(this);
             _moneyManager = new MoneyManager( this );
-            _buildingManager = new BuildingManager(this);
             _playerInfo = new PlayerInformation( this );
+            _buildingManager = new BuildingManager(this);
             _dungeonManager = new DungeonManager( this );
             _allItemInGame = new List<BaseStatItem>();
             InitializedItems();
@@ -52,8 +52,8 @@ namespace S_M_D
             _rnd = new Random( rndSeed );
             _herosManager = new HerosManager( this );
             _moneyManager = new MoneyManager( this );
-            _buildingManager = new BuildingManager( this );
             _playerInfo = new PlayerInformation( this );
+            _buildingManager = new BuildingManager( this );
             _dungeonManager = new DungeonManager( this );
             _allItemInGame = new List<BaseStatItem>();
             InitializedItems();

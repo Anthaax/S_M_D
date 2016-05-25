@@ -7,14 +7,14 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Armory : BaseBuilding
+    public class Armory : BaseBuilding, ILevelUP
     {
-        private BaseHeros _hero;
-        GameContext _ctx;
+        BaseHeros _hero;
+        int _actionPrice;
         public Armory(ArmoryConfig b) : base(b)
         {
             _hero = b.Hero;
-            _ctx = b.Ctx;
+            _actionPrice = b.ActionPrice;
         }
         public void deleteHero()
         {
@@ -22,8 +22,16 @@ namespace S_M_D.Camp.Class
         }
         public void UpgrateItemOfAnHero(BaseItem HeroItem)
         {
-            HeroItem.LevelUp();  
+
+            HeroItem.LevelUp(); 
+             
         }
+        public void LevelUP()
+        {
+            Level++;
+            _actionPrice = _actionPrice / Level;
+        }
+
         public BaseHeros Hero
         {
             get
@@ -34,6 +42,14 @@ namespace S_M_D.Camp.Class
             set
             {
                 _hero = value;
+            }
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
             }
         }
     }

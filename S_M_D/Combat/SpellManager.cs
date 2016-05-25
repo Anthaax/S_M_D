@@ -121,7 +121,9 @@ namespace S_M_D.Combat
                     _combatManager.Monsters[position] = null;
             }
             _combatManager.CharacterOrderAttack.RemoveAll( c => c.HP <= 0 );
+            _combatManager.GameContext.PlayerInfo.MyHeros.Where(c => c.HP <= 0).ToList().ForEach( c => c.Die() );
             _combatManager.GameContext.PlayerInfo.MyHeros.RemoveAll( c => c.HP <= 0 );
+            
         }
     }
 }

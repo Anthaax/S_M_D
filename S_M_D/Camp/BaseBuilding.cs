@@ -8,7 +8,7 @@ namespace S_M_D.Camp
 {
     public abstract class BaseBuilding
     {
-        readonly BuildingName _name;
+        readonly BuildingNameEnum _name;
         private int _buildingCost;
         private int _level;
         readonly int _levelMax;
@@ -22,7 +22,7 @@ namespace S_M_D.Camp
             _ctx = b.Ctx;
         }
 
-        public BuildingName Name
+        public BuildingNameEnum Name
         {
             get
             {
@@ -55,7 +55,7 @@ namespace S_M_D.Camp
                 _level = value;
             }
         }
-
+        public abstract void LevelUp();
         public GameContext Ctx
         {
             get

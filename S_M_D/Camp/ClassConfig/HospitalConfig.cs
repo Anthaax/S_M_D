@@ -9,10 +9,12 @@ namespace S_M_D.Camp.ClassConfig
 {
     public class HospitalConfig : BuildingType
     {
-        private BaseHeros _hero;
-        public HospitalConfig(GameContext ctx) : base(BuildingName.Hospital, 1500,0, ctx)
+        readonly BaseHeros _hero;
+        readonly int _actionPrice;
+        public HospitalConfig( GameContext ctx ) : base(BuildingNameEnum.Hospital, 1500,0, ctx)
         {
             this._hero = null;
+            _actionPrice = 1000;
         }
         protected override BaseBuilding DoCreateBuilding()
         {
@@ -23,6 +25,14 @@ namespace S_M_D.Camp.ClassConfig
             get
             {
                 return _hero;
+            }
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
             }
         }
     }

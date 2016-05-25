@@ -8,7 +8,7 @@ namespace S_M_D.Character
     public class Priest : BaseHeros
     {
         public Priest(PriestConfiguration PriestConfig)
-            : base(PriestConfig.CharacterClassName, PriestConfig.Price, PriestConfig.IsMale, PriestConfig.Evilness, PriestConfig.Sickness, PriestConfig.Psycho,
+            : base(PriestConfig.GameContext, PriestConfig.CharacterClassName, PriestConfig.Price, PriestConfig.IsMale, PriestConfig.Evilness, PriestConfig.Sickness, PriestConfig.Psycho,
                  PriestConfig.Relation, PriestConfig.Equipement, PriestConfig.Xp, PriestConfig.XpMax, PriestConfig.CharacterName, 0, PriestConfig.HPmax, PriestConfig.ManaMax,
                  PriestConfig.Damage, PriestConfig.CritChance, PriestConfig.HitChance, PriestConfig.Speed, PriestConfig.AffectRes, PriestConfig.BleedingRes,
                  PriestConfig.MagicRes, PriestConfig.FireRes, PriestConfig.PoisonRes, PriestConfig.WaterRes, PriestConfig.Defense, PriestConfig.DodgeChance, PriestConfig.Spells)

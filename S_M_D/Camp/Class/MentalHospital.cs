@@ -7,12 +7,14 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class MentalHospital : BaseBuilding
+    public class MentalHospital : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero;
+        int _actionPrice;
         public MentalHospital(MentalHospitalConfig b) : base(b)
         {
             _hero = b.Hero;
+            _actionPrice = b.ActionPrice;
         }
         public void setHero(BaseHeros h)
         {
@@ -25,6 +27,12 @@ namespace S_M_D.Camp.Class
         public void HealHero(Psychology psycho)
         {
             _hero.DeletePsycho(psycho);
+        }
+
+        public void LevelUP()
+        {
+            Level++;
+            _actionPrice = _actionPrice / Level;
         }
     }
 }

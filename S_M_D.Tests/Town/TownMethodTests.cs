@@ -30,17 +30,17 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
 
-            Assert.AreEqual(1, ctx.PlayerInfo.GetBuilding(BuildingName.Caravan).Level);
-            TownHall townhall = ctx.PlayerInfo.GetBuilding(BuildingName.Townhall) as TownHall;
-            townhall.UpgradeBuilding(ctx.PlayerInfo.GetBuilding(BuildingName.Caravan));
+            Assert.AreEqual(1, ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan).Level);
+            TownHall townhall = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Townhall) as TownHall;
+            townhall.UpgradeBuilding(ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan));
 
-            Assert.AreEqual(2, ctx.PlayerInfo.GetBuilding(BuildingName.Caravan).Level);
+            Assert.AreEqual(2, ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan).Level);
         }
         [Test]
         public void PutAndDeleteAnHeroInArmory()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
+            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
             armory.deleteHero();
@@ -50,7 +50,7 @@ namespace S_M_D.Tests
         public void UseEffectAnHeroInArmory()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingName.Armory) as Armory;
+            Armory armory = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[1]);
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[0]);
@@ -65,7 +65,7 @@ namespace S_M_D.Tests
         public void PutAndDeleteAnHeroInBarAndGiveThemARelation()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Bar bar = ctx.PlayerInfo.GetBuilding(BuildingName.Bar) as Bar;
+            Bar bar = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Bar) as Bar;
             bar.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), bar.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], bar.Hero2);
@@ -84,9 +84,9 @@ namespace S_M_D.Tests
         public void AddDeadHeroTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Cemetery cemetery = ctx.PlayerInfo.GetBuilding(BuildingName.Cemetery) as Cemetery;
+            Cemetery cemetery = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Cemetery) as Cemetery;
             BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
-            cemetery.AddDeadHero(hero);
+            hero.Die();
             Assert.AreEqual(1, cemetery.GetDeadHeros.Count());
         }
         /*
@@ -96,7 +96,7 @@ namespace S_M_D.Tests
         public void InitTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
+            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan) as Caravan;
             caravan.Initialized();
             Assert.AreEqual(4, caravan.HerosDispo.Count());
         }
@@ -104,7 +104,7 @@ namespace S_M_D.Tests
         public void BuyHeroTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
-            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingName.Caravan) as Caravan;
+            Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan) as Caravan;
             caravan.Initialized();
             caravan.BuyHero(caravan.HerosDispo.First());
             Assert.AreEqual(5, ctx.PlayerInfo.MyHeros.Count());

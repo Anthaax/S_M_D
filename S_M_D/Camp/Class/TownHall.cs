@@ -13,15 +13,15 @@ namespace S_M_D.Camp.Class
         }
 
         public void BuyBuilding(BaseBuilding b)
-        { 
-            b.Level = 1;
+        {
+            ILevelUP bulding = b as ILevelUP;
+            bulding.LevelUP();
+            Ctx.MoneyManager.Buy( b.BuildingCost );
         }
         public void UpgradeBuilding(BaseBuilding b)
         {
             b.Level += 1;
             b.BuildingCost = b.BuildingCost + Level * 100;
         }
-
-        
     }
 }

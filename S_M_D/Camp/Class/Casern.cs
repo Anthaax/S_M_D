@@ -8,14 +8,13 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Casern : BaseBuilding
+    public class Casern : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero;
-        private Spells _spell;
+        int _actionPrice;
         public Casern(CasernConfig b) : base(b)
         {
             _hero = b.Hero;
-            _spell = b.Spell;
         }
         public void setHero(BaseHeros h)
         {
@@ -28,6 +27,27 @@ namespace S_M_D.Camp.Class
         public void buySpellToHero()
         {
             // ajoute le spell au héro
+        }
+        public void LevelUP()
+        {
+            Level++;
+            _actionPrice = _actionPrice / Level;
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
+            }
+        }
+
+        public BaseHeros Hero
+        {
+            get
+            {
+                return _hero;
+            }
         }
     }
 }

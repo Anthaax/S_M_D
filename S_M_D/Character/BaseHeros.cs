@@ -11,6 +11,7 @@ namespace S_M_D.Character
     public abstract class BaseHeros : BaseCharacter
     {
         readonly string _characterClassName;
+        readonly GameContext _ctx;
         int _price;
         bool _isMale;
         int _evilness;
@@ -23,11 +24,12 @@ namespace S_M_D.Character
         int _xp;
         int _xpMax;
 
-        public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, BaseItem[] equipement, int xp, int xpMax,
+        public BaseHeros( GameContext ctx, string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, BaseItem[] equipement, int xp, int xpMax,
             string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes, int magicRes, int fireRes, 
             int poisonRes, int waterRes, int defense, int dodgeChance, Spells[] spells)
         {
             _characterClassName = characterClassName;
+            _ctx = ctx;
             _price = price;
             _isMale = isMale;
             _evilness = evilness;
@@ -80,7 +82,10 @@ namespace S_M_D.Character
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
         }
-
+        public void Die()
+        {
+            _ctx.PlayerInfo.DeadHero.Add( this );
+        }
         public void RemoveItem(BaseItem item)
         {
 

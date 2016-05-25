@@ -10,12 +10,12 @@ namespace S_M_D.Camp.ClassConfig
 {
     public class CasernConfig : BuildingType
     {
-        private BaseHeros _hero;
-        private Spells _spell;
-        public CasernConfig(GameContext ctx) : base(BuildingName.Casern, 400,0, ctx)
+        readonly BaseHeros _hero;
+        readonly int _actionPrice;
+        public CasernConfig( GameContext ctx) : base(BuildingNameEnum.Casern, 400,0, ctx)
         {
             this._hero = null;
-            this._spell = null;
+            _actionPrice = 1000;
         }
         protected override BaseBuilding DoCreateBuilding()
         {
@@ -28,16 +28,11 @@ namespace S_M_D.Camp.ClassConfig
                 return _hero;
             }
         }
-        public Spells Spell
+        public int ActionPrice
         {
             get
             {
-                return _spell;
-            }
-
-            set
-            {
-                _spell = value;
+                return _actionPrice;
             }
         }
     }

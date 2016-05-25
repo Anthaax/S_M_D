@@ -9,12 +9,14 @@ namespace S_M_D.Camp.ClassConfig
 {
     public class HotelConfig : BuildingType
     {
-        private BaseHeros _hero1;
-        private BaseHeros _hero2;
-        public HotelConfig(GameContext ctx) : base(Class.BuildingName.Hotel, 1000,0, ctx)
+        readonly BaseHeros _hero1;
+        readonly BaseHeros _hero2;
+        readonly int _actionPrice;
+        public HotelConfig( GameContext ctx ) : base(Class.BuildingNameEnum.Hotel, 1000,0, ctx)
         {
             this._hero1 = null;
             this._hero2 = null;
+            _actionPrice = 1000;
         }
         protected override BaseBuilding DoCreateBuilding()
         {
@@ -32,6 +34,14 @@ namespace S_M_D.Camp.ClassConfig
             get
             {
                 return _hero2;
+            }
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
             }
         }
     }

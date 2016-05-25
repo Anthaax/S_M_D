@@ -9,10 +9,12 @@ namespace S_M_D.Camp.ClassConfig
 {
     public class CaravanConfig : BuildingType
     {
-        private List<BaseHeros> _herosDispo;
-        public CaravanConfig(GameContext ctx) : base(BuildingName.Caravan,500,1, ctx)
+        readonly List<BaseHeros> _herosDispo;
+        readonly int _maxNewHero;
+        public CaravanConfig( GameContext ctx ) : base(BuildingNameEnum.Caravan,500,1, ctx)
         {
             this._herosDispo = new List<BaseHeros>();
+            _maxNewHero = 3;
         }
         public List<BaseHeros> HerosDispo
         {
@@ -21,6 +23,15 @@ namespace S_M_D.Camp.ClassConfig
                 return _herosDispo;
             }
         }
+
+        public int MaxNewHero
+        {
+            get
+            {
+                return _maxNewHero;
+            }
+        }
+
         protected override BaseBuilding DoCreateBuilding()
         {
             return new Caravan(this);

@@ -8,12 +8,12 @@ namespace S_M_D.Camp
 {
     public abstract class BuildingType
     {
-        readonly BuildingName _name;
+        readonly BuildingNameEnum _name;
         readonly int _buildingCost;
         readonly int _level;
         readonly GameContext _ctx;
 
-        protected BuildingType(BuildingName name, int buildingCost,int level, GameContext ctx)
+        protected BuildingType(BuildingNameEnum name, int buildingCost,int level, GameContext ctx)
         {
             _name = name;
             _buildingCost = buildingCost;
@@ -30,7 +30,7 @@ namespace S_M_D.Camp
             get { return _level; }
         }
 
-        public BuildingName Name
+        public BuildingNameEnum Name
         {
             get { return _name; }
         }
