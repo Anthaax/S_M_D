@@ -34,5 +34,12 @@ namespace S_M_D.Camp.Class
             Level++;
             _actionPrice = _actionPrice / Level;
         }
+        public BaseHeros Hero
+        {
+            get
+            {
+                return _hero;
+            }
+        }
     }
 }

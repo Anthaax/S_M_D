@@ -30,6 +30,7 @@ namespace S_M_D.Camp.Class
         }
         public void CreateRelationHero()
         {
+            if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
             Array relationArray = Enum.GetValues( typeof( RelationEnum ) );
             RelationEnum relation = (RelationEnum)relationArray.GetValue(Ctx.Rnd.Next( relationArray.Length ));
             switch (relation)

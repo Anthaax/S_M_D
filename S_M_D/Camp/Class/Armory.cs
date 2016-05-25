@@ -24,7 +24,6 @@ namespace S_M_D.Camp.Class
         {
 
             HeroItem.LevelUp(); 
-             
         }
         public void LevelUP()
         {

@@ -60,6 +60,7 @@
     <Compile Include="Camp\Class\Cemetery.cs" />
     <Compile Include="Camp\Class\Hospital.cs" />
     <Compile Include="Camp\Class\Hotel.cs" />
+    <Compile Include="Camp\Class\ILevelUP.cs" />
     <Compile Include="Camp\Class\MentalHospital.cs" />
     <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
@@ -149,6 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DiagramHeros.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Armors.xml" />
+    <EmbeddedResource Include="Resources\Trinket.xml" />
+    <EmbeddedResource Include="Resources\Weapons.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

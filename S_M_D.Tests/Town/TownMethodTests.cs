@@ -98,7 +98,7 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Caravan caravan = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Caravan) as Caravan;
             caravan.Initialized();
-            Assert.AreEqual(4, caravan.HerosDispo.Count());
+            Assert.AreEqual(caravan.MaxNewHero, caravan.HerosDispo.Count());
         }
         [Test]
         public void BuyHeroTest()

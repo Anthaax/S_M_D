@@ -65,7 +65,7 @@ namespace CodeCake
                 .Does( () =>
                 {
                     // Avoids cleaning CodeCakeBuilder itself!
-                    //Cake.CleanDirectories( "**/bin/" + configuration, d => !d.Path.Segments.Contains( "CodeCakeBuilder" ) );
+                    Cake.CleanDirectories( "**/bin/" + configuration, d => !d.Path.Segments.Contains( "CodeCakeBuilder" ) );
                     Cake.CleanDirectories( "**/obj/" + configuration, d => !d.Path.Segments.Contains( "CodeCakeBuilder" ) );
                     Cake.CleanDirectories( releasesDir );
                 } );

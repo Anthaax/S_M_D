@@ -26,6 +26,7 @@ namespace S_M_D.Camp.Class
         }
         public void buySpellToHero()
         {
+            if (Ctx.MoneyManager.CanBuy( ActionPrice )) Ctx.MoneyManager.Buy( ActionPrice );
             // ajoute le spell au héro
         }
         public void LevelUP()

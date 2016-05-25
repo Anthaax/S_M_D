@@ -21,14 +21,16 @@ namespace S_M_D.Camp.Class
         {
             for (int i = 0; i < _maxNewHero; i++)
             {
-                int heroEnum = Ctx.Rnd.Next(1, 5);
-                HerosEnum hero = (HerosEnum)heroEnum;
+                Array heroEnum = Enum.GetValues( typeof( HerosEnum ) );
+                HerosEnum hero = (HerosEnum)heroEnum.GetValue( Ctx.Rnd.Next( heroEnum.Length ) );
                 HerosDispo.Add(Ctx.HeroManager.Find(hero.ToString()).CreateHeroToBuy());
             }
         }
 
         public void BuyHero(BaseHeros hero)
         {
+            if (Ctx.MoneyManager.CanBuy( hero.Price ))
+                Ctx.MoneyManager.Buy( hero.Price );
             Ctx.PlayerInfo.MyHeros.Add(hero);
         }
         public void SuppresAnHero(BaseHeros hero)
@@ -38,7 +40,7 @@ namespace S_M_D.Camp.Class
         public void LevelUP()
         {
             Level++;
-            
+            _maxNewHero++;
         }
 
         public List<BaseHeros> HerosDispo

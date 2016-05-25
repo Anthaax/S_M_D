@@ -55,7 +55,6 @@ namespace S_M_D.Camp
                 _level = value;
             }
         }
-        public abstract void LevelUp();
         public GameContext Ctx
         {
             get

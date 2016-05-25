@@ -112,26 +112,22 @@ namespace S_M_D
 
         private void InitializedItems()
         {
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            var uri = new Uri( path + @"\Armors.xml" );
-            using (FileStream myFileStream = new FileStream( uri.LocalPath, FileMode.Open ))
+            using (Stream Stream = GetType().Assembly.GetManifestResourceStream( "S_M_D.Resources.Armors.xml" ))
             {
                 XmlSerializer reader = new XmlSerializer( typeof( List<BaseArmor> ) );
-                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize( myFileStream );
+                List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize( Stream );
                 overview.ForEach( c => AllItemInGame.Add( c ) );
             }
-            uri = new Uri( path + @"\Weapons.xml" );
-            using (FileStream myFileStream = new FileStream( uri.LocalPath, FileMode.Open ))
+            using (Stream Stream = GetType().Assembly.GetManifestResourceStream( "S_M_D.Resources.Weapons.xml" ))
             {
                 XmlSerializer reader = new XmlSerializer( typeof( List<BaseWeapon> ) );
-                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize( myFileStream );
+                List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize( Stream );
                 overview.ForEach( c => AllItemInGame.Add( c ) );
             }
-            uri = new Uri( path + @"\Trinket.xml" );
-            using (FileStream myFileStream = new FileStream( uri.LocalPath, FileMode.Open ))
+            using (Stream Stream = GetType().Assembly.GetManifestResourceStream( "S_M_D.Resources.Trinket.xml" ))
             {
                 XmlSerializer reader = new XmlSerializer( typeof( List<BaseTrinket> ) );
-                List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize( myFileStream );
+                List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize( Stream );
                 overview.ForEach( c => AllItemInGame.Add( c ) );
             }
         }
