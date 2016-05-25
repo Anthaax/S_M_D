@@ -75,9 +75,12 @@ namespace S_M_D.Tests
             warrior.GetSickness(stap);
             int equipementValueSpeed = 0;
             warrior.Equipement.ToList().ForEach( c => equipementValueSpeed += c.Speed );
-            Assert.AreEqual(warrior.EffectivSpeed, 0 + equipementValueSpeed);
+            int newEquipementValueSpeed = equipementValueSpeed;
+            if (warrior.Speed + equipementValueSpeed - 5 < 0) newEquipementValueSpeed = -warrior.Speed + 5;
+            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed + newEquipementValueSpeed - 5 );
             warrior.DeleteSickness(stap);
-            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed + equipementValueSpeed);
+            if (warrior.Speed + equipementValueSpeed < 0) newEquipementValueSpeed = -warrior.Speed;
+            Assert.AreEqual(warrior.EffectivSpeed, warrior.Speed + newEquipementValueSpeed);
         }
 
         [Test]
