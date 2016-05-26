@@ -141,7 +141,7 @@ namespace S_M_D.Character
             foreach (Relationship relations in _relationship)
             {
                 if (heros1 == relations.HeroDuo[0] && heros2 == relations.HeroDuo[1]) throw new ArgumentException("dude, they cant have two relation at the same time");
-                if (heros1 == relations.HeroDuo[1] && heros2 == relations.HeroDuo[2]) throw new ArgumentException("dude, they cant have two relation at the same time"); 
+                if (heros1 == relations.HeroDuo[1] && heros2 == relations.HeroDuo[0]) throw new ArgumentException("dude, they cant have two relation at the same time"); 
             }
 
             _relationship.Add(relation);
@@ -169,7 +169,7 @@ namespace S_M_D.Character
 
         public void DeleteSickness(Sickness sickness)
         {
-               _sicknesses.Remove(sickness);
+            _sicknesses.Remove(sickness);
             UpdateHeroStats();
         }
 

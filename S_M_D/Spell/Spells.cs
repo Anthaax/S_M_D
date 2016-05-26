@@ -31,7 +31,7 @@ namespace S_M_D.Spell
         public abstract void UpdateSpell();
         public void LevelUp()
         {
-            if (Lvl <= 4) throw new InvalidOperationException( "The Spell cannot be upgrate more than 3 time" );
+            if (Lvl > 3) throw new InvalidOperationException( "The Spell cannot be upgrate more than 3 time" );
             Lvl++;
             UpdateSpell();
         }

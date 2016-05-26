@@ -19,7 +19,6 @@ namespace S_M_D.Camp.Class
         public void setHero(BaseHeros h)
         {
             _hero = h;
-            _hero.Sicknesses.ForEach( c => c.Price = 1000 / this.Level );
         }
         public void deleteHeros()
         {
@@ -27,8 +26,12 @@ namespace S_M_D.Camp.Class
         }
         public void HealHero(Sickness sickness)
         {
+            if (_hero == null) throw new ArgumentException( "You need an hero" );
+            if (_hero.Sicknesses.Count == 0) throw new ArgumentException( "You Need An sickness" );
+            if (_hero.Sicknesses.Where(c => c==sickness).Count() != 1) throw new ArgumentException( "Hero haven't this sickness" );
+            if (Ctx.MoneyManager.CanBuy( 1000 / Level )) Ctx.MoneyManager.Buy( 1000 / Level );
+            else throw new ArgumentException( "You Can't buy this thing" );
             _hero.DeleteSickness(sickness);
-            if (Ctx.MoneyManager.CanBuy( sickness.Price )) Ctx.MoneyManager.Buy(sickness.Price);
         }
         public void LevelUP()
         {

@@ -14,14 +14,17 @@ namespace S_M_D.Camp.Class
 
         public void BuyBuilding(BaseBuilding b)
         {
+            if (Ctx.MoneyManager.CanBuy( b.BuildingCost )) Ctx.MoneyManager.Buy( b.BuildingCost );
+            else throw new ArgumentException( "You Can't buy this thing" );
             ILevelUP bulding = b as ILevelUP;
             bulding.LevelUP();
-            Ctx.MoneyManager.Buy( b.BuildingCost );
         }
         public void UpgradeBuilding(BaseBuilding b)
         {
-            b.Level += 1;
-            b.BuildingCost = b.BuildingCost + Level * 100;
+            if (Ctx.MoneyManager.CanBuy( b.BuildingCost + Level * 100 )) Ctx.MoneyManager.Buy( b.BuildingCost + Level * 100 );
+            else throw new ArgumentException( "You Can't buy this thing" );
+            ILevelUP bulding = b as ILevelUP;
+            bulding.LevelUP();
         }
     }
 }

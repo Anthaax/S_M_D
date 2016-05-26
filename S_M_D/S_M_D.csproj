@@ -132,6 +132,8 @@
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
     <Compile Include="Spell\Mage\CockStorm.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
+    <Compile Include="Spell\Monsters\BasicAttack.cs" />
+    <Compile Include="Spell\Monsters\CerebralAttack.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
     <Compile Include="Spell\Paladin\GodDivination.cs" />
     <Compile Include="Spell\Paladin\GodHelp.cs" />

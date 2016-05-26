@@ -31,6 +31,7 @@ namespace S_M_D.Camp.Class
         {
             if (Ctx.MoneyManager.CanBuy( hero.Price ))
                 Ctx.MoneyManager.Buy( hero.Price );
+            else throw new ArgumentException( "You Can't buy this thing" );
             Ctx.PlayerInfo.MyHeros.Add(hero);
         }
         public void SuppresAnHero(BaseHeros hero)

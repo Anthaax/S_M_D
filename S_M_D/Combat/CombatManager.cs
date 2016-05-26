@@ -17,6 +17,7 @@ namespace S_M_D.Combat
         readonly Dictionary<BaseCharacter, KindOfEffect> _damageOnTime;
         readonly SpellManager _spellManager;
         readonly GameContext _gameContext;
+        readonly IAMonster _iaMonster;
         readonly Reward _reward;
         int _turn;
         public CombatManager(BaseHeros[] heros, GameContext gameContext)
@@ -35,7 +36,7 @@ namespace S_M_D.Combat
             InitiliazedDictionary();
             _spellManager = new SpellManager( this );
             _reward = new Reward(_monsters, _gameContext);
-
+            _iaMonster = new IAMonster( this );
             _turn = 0;
         }
         private void createMonster(MonsterConfiguration monsterCreation)
@@ -43,6 +44,7 @@ namespace S_M_D.Combat
             for (int x = 0; x < 4; x++)
             {
                 Monsters[x] = monsterCreation.CreateMonster((MonsterType)GameContext.Rnd.Next(1,5), Heros.Max(s => s.Lvl));
+                Monsters[x].Position = x;
             }
         }
 
@@ -73,7 +75,17 @@ namespace S_M_D.Combat
         public BaseCharacter NextTurn()
         {
             _turn++;
-            return GetCharacterTurn();
+            BaseCharacter b = GetCharacterTurn();
+            Type bType = b.GetType();
+            while( typeof( BaseMonster ) == bType)
+            {
+                BaseMonster monster = b as BaseMonster;
+                if (monster != null)
+                    return _iaMonster.MonsterTurnAndDoNextTurn( monster );
+                else
+                    return null;
+            }
+            return b;
         }
 
         public bool CheckIfTheCombatWasOver()

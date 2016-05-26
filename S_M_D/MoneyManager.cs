@@ -26,12 +26,11 @@ namespace S_M_D
         }
         public void ReciveMoney(int money)
         {
-            Money += money;
+            _money += money;
         }
         public int Money
         {
             get { return _money; }
-            set { _money = value; }
         }
     }
 }

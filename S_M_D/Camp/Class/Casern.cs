@@ -24,10 +24,21 @@ namespace S_M_D.Camp.Class
         {
             _hero = null;
         }
-        public void buySpellToHero()
+        public void BuySpellToHero(Spells spell)
         {
-            if (Ctx.MoneyManager.CanBuy( ActionPrice )) Ctx.MoneyManager.Buy( ActionPrice );
-            // ajoute le spell au héro
+            if (_hero == null) throw new ArgumentException( "You need an hero" );
+            if (spell.IsBuy) throw new ArgumentException( "Can't buy this spell he was already buy" );
+            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price );
+            else throw new ArgumentException( "You Can't buy this thing" );
+            spell.IsBuy = true;
+        }
+        public void UpgradeSpellToHero( Spells spell )
+        {
+            if (_hero == null) throw new ArgumentException( "You need an hero" );
+            if (!spell.IsBuy) throw new ArgumentException( "Can't upgrate this spell he wasn't buy" );
+            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price + (1000 / (Level+1)) + (100*(spell.Lvl+1)) );
+            else throw new ArgumentException( "You Can't buy this thing" );
+            spell.LevelUp();
         }
         public void LevelUP()
         {

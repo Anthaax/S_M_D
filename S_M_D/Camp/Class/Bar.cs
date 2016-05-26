@@ -18,19 +18,26 @@ namespace S_M_D.Camp.Class
             _hero2 = b.Hero2;
             _actionPrice = b.ActionPrice;
         }
-        public void setHeros(BaseHeros hero1, BaseHeros hero2)
+        public void SetHeros(BaseHeros hero1, BaseHeros hero2)
         {
             _hero1 = hero1;
             _hero2 = hero2;
         }
-        public void deleteHeros()
+        public void DeleteHeros()
         {
             _hero1 = null;
             _hero2 = null;
         }
         public void CreateRelationHero()
         {
+            if (_hero1 == null && _hero2 == null) throw new ArgumentException( "You need an hero" );
+            foreach (Relationship relations in _hero1.Relationship)
+            {
+                if (_hero1 == relations.HeroDuo[0] && _hero2 == relations.HeroDuo[1]) throw new ArgumentException( "dude, they cant have two relation at the same time" );
+                if (_hero1 == relations.HeroDuo[1] && _hero2 == relations.HeroDuo[0]) throw new ArgumentException( "dude, they cant have two relation at the same time" );
+            }
             if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
+            else throw new ArgumentException( "You Can't buy this thing" );
             Array relationArray = Enum.GetValues( typeof( RelationEnum ) );
             RelationEnum relation = (RelationEnum)relationArray.GetValue(Ctx.Rnd.Next( relationArray.Length ));
             switch (relation)

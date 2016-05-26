@@ -106,24 +106,21 @@ namespace S_M_D.Tests.Combat
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.GetCharacterTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.NextTurn());
             Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[7], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[7], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
+            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
         }
         [Test]
         public void EndOfCombat()

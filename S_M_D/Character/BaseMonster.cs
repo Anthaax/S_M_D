@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -10,7 +11,8 @@ namespace S_M_D.Character
     {
         protected int _giveXp;
         protected MonsterType _type;
-
+        List<Spells> _spells;
+        int _position;
 
         public int GiveXp
         {
@@ -25,6 +27,19 @@ namespace S_M_D.Character
             }
         }
 
+        public List<Spells> Spells
+        {
+            get
+            {
+                return _spells;
+            }
+
+            set
+            {
+                _spells = value;
+            }
+        }
+
         public MonsterType Type
         {
             get
@@ -35,6 +50,18 @@ namespace S_M_D.Character
             set
             {
                 _type = value;
+            }
+        }
+        public int Position
+        {
+            get
+            {
+                return _position;
+            }
+
+            set
+            {
+                _position = value;
             }
         }
     }

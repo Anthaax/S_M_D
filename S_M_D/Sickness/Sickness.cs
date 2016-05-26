@@ -24,18 +24,5 @@ namespace S_M_D.Character
                 name = value;
             }
         }
-
-        public int Price
-        {
-            get
-            {
-                return price;
-            }
-
-            set
-            {
-                price = value;
-            }
-        }
     }
 }

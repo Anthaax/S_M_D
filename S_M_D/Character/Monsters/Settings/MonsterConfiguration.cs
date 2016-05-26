@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using S_M_D.Spell;
 
 namespace S_M_D.Character.Monsters
 {
@@ -30,6 +31,8 @@ namespace S_M_D.Character.Monsters
                     Poco.Defense = 0;
                     Poco.DodgeChance = 0;
                     Poco.GiveXp = 2;
+                    Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.Type = MonsterType.ORC;
                     Poco.InitializedEffectiveStats();
                     return Poco;
@@ -53,6 +56,8 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 40;
                     Poco.GiveXp = 2;
                     Poco.Type = MonsterType.ELF;
+                    Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.GOBELIN:
@@ -74,6 +79,8 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 60;
                     Poco.GiveXp = 1;
                     Poco.Type = MonsterType.GOBELIN;
+                    Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.TROLL:
@@ -95,6 +102,8 @@ namespace S_M_D.Character.Monsters
                     Poco.DodgeChance = 10;
                     Poco.GiveXp = 8;
                     Poco.Type = MonsterType.TROLL;
+                    Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.InitializedEffectiveStats();
                     return Poco;
 
