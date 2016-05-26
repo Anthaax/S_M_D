@@ -20,6 +20,7 @@ namespace S_M_D.Character.Monsters
                     Poco.Mana = 20 + 5 * level;
                     Poco.Damage = 3 + 5 * level;
                     Poco.CritChance = 50;
+                    Poco.Lvl = level;
                     Poco.HitChance = 50;
                     Poco.Speed = 5;
                     Poco.AffectRes = 0;
@@ -31,10 +32,10 @@ namespace S_M_D.Character.Monsters
                     Poco.Defense = 0;
                     Poco.DodgeChance = 0;
                     Poco.GiveXp = 2;
+                    Poco.InitializedEffectiveStats();
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.Type = MonsterType.ORC;
-                    Poco.InitializedEffectiveStats();
                     return Poco;
 
                 case MonsterType.ELF:
@@ -46,6 +47,7 @@ namespace S_M_D.Character.Monsters
                     Poco.CritChance = 0;
                     Poco.HitChance = 80;
                     Poco.Speed = 9;
+                    Poco.Lvl = level;
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;
                     Poco.MagicRes = 0;
@@ -55,10 +57,10 @@ namespace S_M_D.Character.Monsters
                     Poco.Defense = 0;
                     Poco.DodgeChance = 40;
                     Poco.GiveXp = 2;
+                    Poco.InitializedEffectiveStats();
                     Poco.Type = MonsterType.ELF;
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
-                    Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.GOBELIN:
                     Poco.HPmax = 20 + 1 * level;
@@ -70,6 +72,7 @@ namespace S_M_D.Character.Monsters
                     Poco.HitChance = 80;
                     Poco.Speed = 9;
                     Poco.AffectRes = 0;
+                    Poco.Lvl = level;
                     Poco.BleedingRes = 0;
                     Poco.MagicRes = 0;
                     Poco.FireRes = 0;
@@ -78,10 +81,10 @@ namespace S_M_D.Character.Monsters
                     Poco.Defense = 0;
                     Poco.DodgeChance = 60;
                     Poco.GiveXp = 1;
+                    Poco.InitializedEffectiveStats();
                     Poco.Type = MonsterType.GOBELIN;
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
-                    Poco.InitializedEffectiveStats();
                     return Poco;
                 case MonsterType.TROLL:
                     Poco.HPmax = 20 + 8 * level;
@@ -95,16 +98,17 @@ namespace S_M_D.Character.Monsters
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;
                     Poco.MagicRes = 0;
+                    Poco.Lvl = level;
                     Poco.FireRes = 0;
                     Poco.PoisonRes = 0;
                     Poco.WaterRes = 0;
                     Poco.Defense = 0;
                     Poco.DodgeChance = 10;
                     Poco.GiveXp = 8;
+                    Poco.InitializedEffectiveStats();
                     Poco.Type = MonsterType.TROLL;
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
-                    Poco.InitializedEffectiveStats();
                     return Poco;
 
                 default:

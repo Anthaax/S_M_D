@@ -26,6 +26,10 @@ namespace S_M_D.Spell
         public void NewTurn()
         {
             Cooldown--;
+            if (Cooldown < 0)
+                Cooldown = 0;
+            if (Cooldown == 0)
+                IsOnCooldown = false;
         }
         public bool IsOnCooldown
         {

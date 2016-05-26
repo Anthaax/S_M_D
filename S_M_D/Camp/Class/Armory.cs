@@ -16,7 +16,7 @@ namespace S_M_D.Camp.Class
             _hero = b.Hero;
             _actionPrice = b.ActionPrice;
         }
-        public void deleteHero()
+        public void DeleteHero()
         {
             Hero = null;
         }

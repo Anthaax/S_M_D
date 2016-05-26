@@ -77,13 +77,21 @@ namespace S_M_D.Combat
             _turn++;
             BaseCharacter b = GetCharacterTurn();
             Type bType = b.GetType();
-            while( typeof( BaseMonster ) == bType)
+            if (!CheckIfTheCombatWasOver())
             {
-                BaseMonster monster = b as BaseMonster;
-                if (monster != null)
-                    return _iaMonster.MonsterTurnAndDoNextTurn( monster );
-                else
-                    return null;
+                while (typeof(BaseMonster) == bType)
+                {
+                    BaseMonster monster = b as BaseMonster;
+                    BaseCharacter NextCharacter;
+                    if (monster != null)
+                    {
+                        NextCharacter = _iaMonster.MonsterTurnAndDoNextTurn(monster);
+                        BaseHeros hero = NextCharacter as BaseHeros;
+                        if (hero != null)
+                            hero.Spells.Where(c => c != null).ToList().ForEach(c => c.CooldownManager.NewTurn());
+                        return NextCharacter;
+                    }
+                }
             }
             return b;
         }

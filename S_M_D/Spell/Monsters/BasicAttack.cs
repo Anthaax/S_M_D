@@ -14,7 +14,7 @@ namespace S_M_D.Spell
             :base("BasicAttack", 0, "BasicAttackMonster", 0, 0, true, true)
         {
             _monster = monster;
-            _rate = Lvl / 10;
+            _rate = (10+Monster.Lvl) / 10;
             CooldownManager = new CooldownManager( 1 );
             TargetManager = new TargetManager( 1, new bool[4] { true, true, false, false }, new bool[4] { true, true, true, true } );
             KindOfEffect = new KindOfEffect( Monster.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _rate );

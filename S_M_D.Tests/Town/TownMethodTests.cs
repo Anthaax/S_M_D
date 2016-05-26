@@ -43,7 +43,7 @@ namespace S_M_D.Tests
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Armory) as Armory;
             armory.Hero = ctx.PlayerInfo.MyHeros.First();
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
-            armory.deleteHero();
+            armory.DeleteHero();
             Assert.IsNull(armory.Hero);
         }
         [Test]
@@ -58,7 +58,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(1, armory.Hero.Equipement[1].Lvl);
             Assert.AreEqual(1, armory.Hero.Equipement[2].Lvl);
             Assert.AreEqual(1, armory.Hero.Equipement[0].Lvl);
-            armory.deleteHero();
+            armory.DeleteHero();
             Assert.IsNull(armory.Hero);
         }
         [Test]
