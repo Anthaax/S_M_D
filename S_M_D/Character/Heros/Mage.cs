@@ -16,7 +16,9 @@ namespace S_M_D.Character
            UpdateHeroStats();
 
         }
-
+        /// <summary>
+        /// Level up a paladin if is xpMax > Xp an exeption was throw
+        /// </summary>
         public override void LevelUp()
         {
             if (XpMax > Xp)

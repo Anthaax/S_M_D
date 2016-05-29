@@ -8,7 +8,7 @@ namespace S_M_D.Character
     public class BaseCharacterComparer : IComparer<BaseCharacter>
     {
         /// <summary>
-        /// Compare two base caracter of speed
+        /// Compare two base caracter of speed the character who have most speed
         /// </summary>
         /// <param name="x"> The first baseCharacter to compare </param>
         /// <param name="y"> The second baseCharacter to compare</param>
