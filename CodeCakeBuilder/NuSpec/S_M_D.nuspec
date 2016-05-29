@@ -19,6 +19,6 @@
     
   </metadata>
   <files>
-    <file src="S_M_D\bin\realese\S_M_D.dll" target="lib\net45" />
+    <file src="S_M_D\bin\Debug\S_M_D.dll" target="lib\net45" />
   </files>
 </package>
