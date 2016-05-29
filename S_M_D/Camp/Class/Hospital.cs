@@ -29,20 +29,28 @@ namespace S_M_D.Camp.Class
             if (_hero == null) throw new ArgumentException( "You need an hero" );
             if (_hero.Sicknesses.Count == 0) throw new ArgumentException( "You Need An sickness" );
             if (_hero.Sicknesses.Where(c => c==sickness).Count() != 1) throw new ArgumentException( "Hero haven't this sickness" );
-            if (Ctx.MoneyManager.CanBuy( 1000 / Level )) Ctx.MoneyManager.Buy( 1000 / Level );
+            if (Ctx.MoneyManager.CanBuy( ActionPrice )) Ctx.MoneyManager.Buy(ActionPrice );
             else throw new ArgumentException( "You Can't buy this thing" );
             _hero.DeleteSickness(sickness);
         }
         public void LevelUP()
         {
             Level++;
-            _actionPrice = _actionPrice / Level;
+            _actionPrice = _actionPrice / Level ;
         }
         public BaseHeros Hero
         {
             get
             {
                 return _hero;
+            }
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
             }
         }
     }

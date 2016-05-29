@@ -16,7 +16,7 @@ namespace S_M_D.Camp.Class
         {
             _hero1 = b.Hero1;
             _hero2 = b.Hero2;
-            _actionPrice = b.ActionPrice;
+            ActionPrice = b.ActionPrice;
         }
         public void SetHeros(BaseHeros hero1, BaseHeros hero2)
         {
@@ -36,7 +36,7 @@ namespace S_M_D.Camp.Class
                 if (_hero1 == relations.HeroDuo[0] && _hero2 == relations.HeroDuo[1]) throw new ArgumentException( "dude, they cant have two relation at the same time" );
                 if (_hero1 == relations.HeroDuo[1] && _hero2 == relations.HeroDuo[0]) throw new ArgumentException( "dude, they cant have two relation at the same time" );
             }
-            if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
+            if (Ctx.MoneyManager.CanBuy( ActionPrice )) Ctx.MoneyManager.Buy( ActionPrice );
             else throw new ArgumentException( "You Can't buy this thing" );
             Array relationArray = Enum.GetValues( typeof( RelationEnum ) );
             RelationEnum relation = (RelationEnum)relationArray.GetValue(Ctx.Rnd.Next( relationArray.Length ));
@@ -69,7 +69,7 @@ namespace S_M_D.Camp.Class
         public void LevelUP()
         {
             Level++;
-            _actionPrice = _actionPrice / Level;
+            ActionPrice = ActionPrice / Level;
         }
 
         public BaseHeros Hero1
@@ -85,6 +85,14 @@ namespace S_M_D.Camp.Class
             get
             {
                 return _hero2;
+            }
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
             }
         }
     }

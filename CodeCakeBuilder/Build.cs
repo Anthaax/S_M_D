@@ -147,7 +147,7 @@ namespace CodeCake
                         // Cake offers tools to extract the version number from a ReleaseNotes.txt.
                         // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
                         // manage Constrained Semantic Versions on Git repositories.
-                        Version = "1.0.0-alpha",
+                        Version = gitInfo.NuGetVersion,
                        BasePath = Cake.Environment.WorkingDirectory,
                        OutputDirectory = releasesDir
                    };

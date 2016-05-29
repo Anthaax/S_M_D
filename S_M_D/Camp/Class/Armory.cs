@@ -23,7 +23,7 @@ namespace S_M_D.Camp.Class
         public void UpgrateItemOfAnHero(BaseItem HeroItem)
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );
-            if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
+            if (Ctx.MoneyManager.CanBuy( ActionPrice )) Ctx.MoneyManager.Buy( ActionPrice );
             else throw new ArgumentException( "You Can't buy this thing" );
             HeroItem.LevelUp(); 
         }

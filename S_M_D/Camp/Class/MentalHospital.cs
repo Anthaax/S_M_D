@@ -46,5 +46,13 @@ namespace S_M_D.Camp.Class
                 return _hero;
             }
         }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
+            }
+        }
     }
 }
