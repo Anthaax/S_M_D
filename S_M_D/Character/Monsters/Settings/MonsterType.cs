@@ -5,6 +5,9 @@ using System.Text;
 
 namespace S_M_D.Character.Monsters
 {
+    /// <summary>
+    /// Enum  for all type of monsters
+    /// </summary>
     public enum MonsterType
     {
         ORC = 1,

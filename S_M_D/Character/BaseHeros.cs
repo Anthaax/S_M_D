@@ -60,7 +60,10 @@ namespace S_M_D.Character
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
         }
-
+        /// <summary>
+        /// Put a new item if the item slot wasn't empty return exeption 
+        /// </summary>
+        /// <param name="item">Item to add</param>
         public void GetNewItem (BaseItem item)
         {
             if (item.Itemtype == BaseItem.ItemTypes.Armor)
@@ -82,10 +85,18 @@ namespace S_M_D.Character
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
         }
+        /// <summary>
+        /// Add hero from deadhero list
+        /// </summary>
         public void Die()
         {
             _ctx.PlayerInfo.DeadHero.Add( this );
         }
+
+        /// <summary>
+        /// Remove item from a hero
+        /// </summary>
+        /// <param name="item">Item to remove</param>
         public void RemoveItem(BaseItem item)
         {
 
@@ -96,7 +107,10 @@ namespace S_M_D.Character
                 x++;
             }
         }
-
+        /// <summary>
+        /// Add Stats from Item
+        /// </summary>
+        /// <param name="item"></param>
         public void AddItemStats(BaseItem item)
         {
             EffectivHPMax += item.HP;
@@ -130,9 +144,11 @@ namespace S_M_D.Character
             EffectivWaterRes += item.WaterRes;
             if (EffectivWaterRes <= 0) EffectivWaterRes = 0;
         }
-
-
-
+        /// <summary>
+        /// Add a relation ship to an hero
+        /// </summary>
+        /// <param name="relation">The relation to add</param>
+        /// <exception cref="ArgumentException"> Can't add a relation if the two hero of the relation are alredy relation </exception>
         public void GetRelationship(Relationship relation)
         {
             BaseHeros heros1 = relation.HeroDuo[0];
@@ -147,7 +163,10 @@ namespace S_M_D.Character
             _relationship.Add(relation);
             UpdateHeroStats();
         }
-
+        /// <summary>
+        /// Delete a relation
+        /// </summary>
+        /// <param name="relation">Relation to delete</param>
         public void DeleteRelationship(Relationship relation)
         {
             _relationship.Remove(relation);

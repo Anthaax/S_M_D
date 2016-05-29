@@ -50,7 +50,11 @@ namespace S_M_D.Character
         int _dodgeChance;
         int _effectivDefense;
         int _effectivDodgeChance;
-
+        /// <summary>
+        /// Choose resitance for one kind damageTymeEnum
+        /// </summary>
+        /// <param name="damageType">DamageTypeEnum from the spell</param>
+        /// <returns></returns>
         public int Resist(DamageTypeEnum damageType)
         {
             int resitChance;
@@ -78,6 +82,9 @@ namespace S_M_D.Character
                     return 0;
             }
         }
+        /// <summary>
+        /// Initialize all effectife stats
+        /// </summary>
         public void InitializedEffectiveStats()
         {
             HP = HPmax;
@@ -97,7 +104,6 @@ namespace S_M_D.Character
             EffectivSpeed = Speed;
             EffectivWaterRes = WaterRes;
         } 
-
         public string CharacterName
         {
             get

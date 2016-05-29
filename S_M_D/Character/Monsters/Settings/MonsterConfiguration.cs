@@ -8,6 +8,12 @@ namespace S_M_D.Character.Monsters
 {
     public class MonsterConfiguration
     {
+        /// <summary>
+        /// Create a Monster and return this monster
+        /// </summary>
+        /// <param name="type">Need and monster type return exeption if null</param>
+        /// <param name="level">Need a level for create a monster with the good stats</param>
+        /// <returns></returns>
         public BaseMonster CreateMonster(MonsterType type, int level)
         {
             BaseMonster Poco = new BaseMonster();
