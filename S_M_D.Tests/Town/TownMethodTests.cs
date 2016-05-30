@@ -162,7 +162,7 @@ namespace S_M_D.Tests
             ctx.PlayerInfo.MyHeros.First().GetSickness( new Diarrhea() );
             hospital.HealHero( hospital.Hero.Sicknesses.First());
             Assert.AreEqual( 0, hospital.Hero.Sicknesses.Count );
-            Assert.AreEqual( 10000 - (MH.ActionPrice), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (hospital.ActionPrice), ctx.MoneyManager.Money );
         }
         [Test]
         public void AddRelationBetweenTwoHero()
@@ -177,7 +177,7 @@ namespace S_M_D.Tests
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[1].Relationship.Count );
             Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
             hotel.DeleteHeros();
-            Assert.AreEqual( 10000 - (MH.ActionPrice), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (hotel.ActionPrice), ctx.MoneyManager.Money );
             Assert.IsNull( hotel.Hero1 );
             Assert.IsNull( hotel.Hero2 );
         }
