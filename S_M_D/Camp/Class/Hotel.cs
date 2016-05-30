@@ -19,16 +19,31 @@ namespace S_M_D.Camp.Class
             _hero2 = b.Hero2;
             _actionPrice = b.ActionPrice;
         }
+        /// <summary>
+        /// Heros to add in the building
+        /// </summary>
+        /// <param name="hero1"></param>
+        /// <param name="hero2"></param>
         public void SetHeros( BaseHeros hero1, BaseHeros hero2 )
         {
             _hero1 = hero1;
+            _hero1.InBuilding = this;
             _hero2 = hero2;
+            _hero2.InBuilding = this;
         }
+        /// <summary>
+        /// Remove heros from the building
+        /// </summary>
         public void DeleteHeros()
         {
+            _hero1.InBuilding = null;
             _hero1 = null;
+            _hero2.InBuilding = null;
             _hero2 = null;
         }
+        /// <summary>
+        /// Create a relation bettween two hero
+        /// </summary>
         public void CreateRelationHeroHero()
         {
             if (_hero1 == null && _hero2 == null) throw new ArgumentException( "You need an hero" );

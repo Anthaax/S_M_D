@@ -9,14 +9,16 @@ namespace S_M_D.Camp.Class
 {
     public class Caravan : BaseBuilding, ILevelUP
     {
-        private List<BaseHeros> _herosDispo;
+        readonly List<BaseHeros> _herosDispo;
         int _maxNewHero;
         public Caravan(CaravanConfig b) : base(b)
         {
-            HerosDispo = b.HerosDispo;
+            _herosDispo = b.HerosDispo;
             _maxNewHero = b.MaxNewHero;
         }
-
+        /// <summary>
+        /// Initialized the list hero to buy
+        /// </summary>
         public void Initialized()
         {
             for (int i = 0; i < _maxNewHero; i++)
@@ -26,7 +28,10 @@ namespace S_M_D.Camp.Class
                 HerosDispo.Add(Ctx.HeroManager.Find(hero.ToString()).CreateHeroToBuy());
             }
         }
-
+        /// <summary>
+        /// Buy a hero
+        /// </summary>
+        /// <param name="hero">Hero to buy</param>
         public void BuyHero(BaseHeros hero)
         {
             if (Ctx.MoneyManager.CanBuy( hero.Price ))
@@ -34,10 +39,17 @@ namespace S_M_D.Camp.Class
             else throw new ArgumentException( "You Can't buy this thing" );
             Ctx.PlayerInfo.MyHeros.Add(hero);
         }
+        /// <summary>
+        /// Suppress an hero
+        /// </summary>
+        /// <param name="hero"></param>
         public void SuppresAnHero(BaseHeros hero)
         {
             Ctx.PlayerInfo.MyHeros.Remove(hero);
         }
+        /// <summary>
+        /// Level up the building
+        /// </summary>
         public void LevelUP()
         {
             Level++;
@@ -49,11 +61,6 @@ namespace S_M_D.Camp.Class
             get
             {
                 return _herosDispo;
-            }
-
-            set
-            {
-                _herosDispo = value;
             }
         }
 

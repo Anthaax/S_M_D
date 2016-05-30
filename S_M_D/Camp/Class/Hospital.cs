@@ -16,14 +16,27 @@ namespace S_M_D.Camp.Class
             _hero = b.Hero;
             _actionPrice = b.ActionPrice;
         }
+        /// <summary>
+        /// Put the hero in the building
+        /// </summary>
+        /// <param name="h"> The hero to add </param>
         public void setHero(BaseHeros h)
         {
             _hero = h;
+            _hero.InBuilding = this;
         }
+        /// <summary>
+        /// Remove the from the building
+        /// </summary>
         public void deleteHeros()
         {
+            _hero.InBuilding = null;
             _hero = null;
         }
+        /// <summary>
+        /// Remove the sickness from an hero.
+        /// </summary>
+        /// <param name="sickness">Sickness to remove</param>
         public void HealHero(Sickness sickness)
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );
@@ -33,6 +46,9 @@ namespace S_M_D.Camp.Class
             else throw new ArgumentException( "You Can't buy this thing" );
             _hero.DeleteSickness(sickness);
         }
+        /// <summary>
+        /// Level up the building
+        /// </summary>
         public void LevelUP()
         {
             Level++;

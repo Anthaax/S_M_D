@@ -26,6 +26,17 @@ namespace S_M_D.Tests
             Assert.AreEqual(9, ctx.PlayerInfo.MyBuildings.Count());
         }
         [Test]
+        public void BuyBuildingTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+
+            Assert.AreEqual( 1, ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Caravan ).Level );
+            TownHall townhall = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Townhall ) as TownHall;
+            townhall.BuyBuilding( ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Armory ) );
+
+            Assert.AreEqual( 1, ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Armory ).Level );
+        }
+        [Test]
         public void UpgradeBuildingTest()
         {
             GameContext ctx = GameContext.CreateNewGame();
@@ -41,7 +52,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Armory) as Armory;
-            armory.Hero = ctx.PlayerInfo.MyHeros.First();
+            armory.SetHero( ctx.PlayerInfo.MyHeros.First() );
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), armory.Hero);
             armory.DeleteHero();
             Assert.IsNull(armory.Hero);
@@ -51,7 +62,7 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             Armory armory = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Armory) as Armory;
-            armory.Hero = ctx.PlayerInfo.MyHeros.First();
+            armory.SetHero(ctx.PlayerInfo.MyHeros.First());
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[1]);
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[0]);
             armory.UpgrateItemOfAnHero(armory.Hero.Equipement[2]);
@@ -151,7 +162,7 @@ namespace S_M_D.Tests
             ctx.PlayerInfo.MyHeros.First().GetSickness( new Diarrhea() );
             hospital.HealHero( hospital.Hero.Sicknesses.First());
             Assert.AreEqual( 0, hospital.Hero.Sicknesses.Count );
-            Assert.AreEqual( 10000 - (1000/hospital.Level), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (MH.ActionPrice), ctx.MoneyManager.Money );
         }
         [Test]
         public void AddRelationBetweenTwoHero()
@@ -166,10 +177,11 @@ namespace S_M_D.Tests
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[1].Relationship.Count );
             Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
             hotel.DeleteHeros();
-            Assert.AreEqual( 10000 - (1000 / hotel.Level), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (MH.ActionPrice), ctx.MoneyManager.Money );
             Assert.IsNull( hotel.Hero1 );
             Assert.IsNull( hotel.Hero2 );
         }
+        [Test]
         public void DeletePsyco()
         {
             GameContext ctx = GameContext.CreateNewGame();
@@ -181,7 +193,7 @@ namespace S_M_D.Tests
             ctx.PlayerInfo.MyHeros[0].GetPsycho( new Agressivity() );
             MH.DeletePsychologyHero( MH.Hero.Psycho.First() );
             Assert.AreEqual( 0, MH.Hero.Psycho.Count );
-            Assert.AreEqual( 10000 - (1000 / MH.Level), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (MH.ActionPrice), ctx.MoneyManager.Money );
 
         }
     }

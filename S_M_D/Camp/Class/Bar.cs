@@ -16,18 +16,36 @@ namespace S_M_D.Camp.Class
         {
             _hero1 = b.Hero1;
             _hero2 = b.Hero2;
-            ActionPrice = b.ActionPrice;
+            _actionPrice = b.ActionPrice;
         }
+        /// <summary>
+        /// Set heros in the building
+        /// </summary>
+        /// <param name="hero1"></param>
+        /// <param name="hero2"></param>
         public void SetHeros(BaseHeros hero1, BaseHeros hero2)
         {
             _hero1 = hero1;
+            _hero1.InBuilding = this;
+
             _hero2 = hero2;
+            _hero2.InBuilding = this;
         }
+        /// <summary>
+        /// Delete hero in the building
+        /// </summary>
         public void DeleteHeros()
         {
+            _hero1.InBuilding = null;
             _hero1 = null;
+            _hero2.InBuilding = null;
             _hero2 = null;
         }
+        /// <summary>
+        /// Create the relation from two hero
+        /// </summary>
+        /// <exception cref="ArgumentException">Reurn exception if hero was null</exception>
+        /// <exception cref="ArgumentException">If they have already one relation between us</exception>
         public void CreateRelationHero()
         {
             if (_hero1 == null && _hero2 == null) throw new ArgumentException( "You need an hero" );
@@ -66,10 +84,13 @@ namespace S_M_D.Camp.Class
                     break;
             }
         }
+        /// <summary>
+        /// Level Up the building
+        /// </summary>
         public void LevelUP()
         {
             Level++;
-            ActionPrice = ActionPrice / Level;
+            _actionPrice = 1000 / Level;
         }
 
         public BaseHeros Hero1

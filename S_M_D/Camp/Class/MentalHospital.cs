@@ -16,14 +16,27 @@ namespace S_M_D.Camp.Class
             _hero = b.Hero;
             _actionPrice = b.ActionPrice;
         }
+        /// <summary>
+        /// Set the hero in the building
+        /// </summary>
+        /// <param name="h"></param>
         public void setHero(BaseHeros h)
         {
             _hero = h;
+            _hero.InBuilding = this;
         }
+        /// <summary>
+        /// Remove hero from this building
+        /// </summary>
         public void deleteHeros()
         {
+            _hero.InBuilding = null;
             _hero = null;
         }
+        /// <summary>
+        /// Delete a psycholigy from an hero
+        /// </summary>
+        /// <param name="psycho">Psycology to delete</param>
         public void DeletePsychologyHero(Psychology psycho)
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );

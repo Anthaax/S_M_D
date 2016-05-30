@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ArrayOfBaseWeapon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <BaseWeapon>
-    <ItemName> Bringer of Regret</ItemName>
+    <ItemName>Bringer of Regret</ItemName>
     <ItemDescription>my new armor</ItemDescription>
     <ItemId>113865</ItemId>
     <Itemtype>Weapon</Itemtype>
@@ -2761,7 +2761,7 @@
     <WeaponType1>Sword</WeaponType1>
   </BaseWeapon>
   <BaseWeapon>
-    <ItemName> Bringer of Regret</ItemName>
+    <ItemName>Bringer of Regret</ItemName>
     <ItemDescription>my new armor</ItemDescription>
     <ItemId>27575</ItemId>
     <Itemtype>Weapon</Itemtype>

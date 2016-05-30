@@ -16,12 +16,21 @@ namespace S_M_D.Camp.Class
         {
             _hero = b.Hero;
         }
+        /// <summary>
+        /// Set an hero in the building
+        /// </summary>
+        /// <param name="h"></param>
         public void setHero(BaseHeros h)
         {
             _hero = h;
+            _hero.InBuilding = this;
         }
+        /// <summary>
+        /// Delete the hero in the building
+        /// </summary>
         public void deleteHeros()
         {
+            _hero.InBuilding = null;
             _hero = null;
         }
         public void BuySpellToHero(Spells spell)

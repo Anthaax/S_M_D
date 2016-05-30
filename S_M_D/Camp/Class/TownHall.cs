@@ -11,7 +11,10 @@ namespace S_M_D.Camp.Class
         public TownHall(TownHallConfig b) : base(b)
         {
         }
-
+        /// <summary>
+        /// Buy a building
+        /// </summary>
+        /// <param name="b"></param>
         public void BuyBuilding(BaseBuilding b)
         {
             if (Ctx.MoneyManager.CanBuy( b.BuildingCost )) Ctx.MoneyManager.Buy( b.BuildingCost );
@@ -19,6 +22,10 @@ namespace S_M_D.Camp.Class
             ILevelUP bulding = b as ILevelUP;
             bulding.LevelUP();
         }
+        /// <summary>
+        /// Upgrate building
+        /// </summary>
+        /// <param name="b"></param>
         public void UpgradeBuilding(BaseBuilding b)
         {
             if (Ctx.MoneyManager.CanBuy( b.BuildingCost + Level * 100 )) Ctx.MoneyManager.Buy( b.BuildingCost + Level * 100 );

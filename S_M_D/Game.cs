@@ -44,7 +44,6 @@ namespace S_M_D
             InitializedItems();
             _playerInfo.InitializedBuilding();
             _playerInfo.InitializedHeros();
-
         }
 
         public GameContext( int rndSeed )
