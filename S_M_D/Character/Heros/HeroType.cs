@@ -30,8 +30,8 @@ namespace S_M_D.Character
         {
 
             string name;
-            Array valuesM = Enum.GetValues(typeof(HerosFemaleNameEnum));
-            Array valuesF = Enum.GetValues(typeof(HerosMaleNameEnum));
+            Array valuesM = Enum.GetValues(typeof(HerosMaleNameEnum));
+            Array valuesF = Enum.GetValues(typeof(HerosFemaleNameEnum));
 
             if (_isMale == true) name = valuesM.GetValue(_ctx.Rnd.Next(valuesM.Length)).ToString();
             else name = valuesF.GetValue(_ctx.Rnd.Next(valuesF.Length)).ToString();
@@ -64,9 +64,9 @@ namespace S_M_D.Character
             _isMale = ChooseSex();
             _characterName = ChooseCharacterName();
             BaseHeros Hero = DoCreateHero();
+            InitializedEquipment( Hero );
             InitilizedSpell( Hero );
             _ctx.PlayerInfo.MyHeros.Add( Hero );
-            //Enlever Argent
             return Hero;
         }
         /// <summary>
@@ -79,8 +79,8 @@ namespace S_M_D.Character
             _isMale = ChooseSex();
             _characterName = ChooseCharacterName();
             BaseHeros Hero = DoCreateHero();
+            InitializedEquipment( Hero );
             InitilizedSpell(Hero);
-            //Enlever Argent
             return Hero;
         }
         /// <summary>
@@ -93,6 +93,33 @@ namespace S_M_D.Character
         /// </summary>
         /// <param name="hero"> A paladin to initialize spell</param>
         protected abstract void InitilizedSpell( BaseHeros hero );
+        private void InitializedEquipment( BaseHeros hero )
+        {
+            int nbMatchItem = GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor )
+                                .Count();
+            hero.GetNewItem(GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor )
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+            nbMatchItem = GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon )
+                                .Count();
+            hero.GetNewItem(GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon )
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+            nbMatchItem = GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .Count();
+            hero.GetNewItem(GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+            nbMatchItem = GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .Count();
+            hero.GetNewItem(GameContext.AllItemInGame
+                                .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+        }
 
     }
 }

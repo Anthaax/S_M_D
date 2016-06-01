@@ -9,7 +9,7 @@ namespace S_M_D.Character
     {
 
         public Warrior(WarriorConfiguration WarriorConfig)
-            :base(WarriorConfig.CharacterClassName, WarriorConfig.Price, WarriorConfig.IsMale, WarriorConfig.Evilness, WarriorConfig.Sickness, WarriorConfig.Psycho, 
+            :base(WarriorConfig.GameContext, WarriorConfig.CharacterClassName, WarriorConfig.Price, WarriorConfig.IsMale, WarriorConfig.Evilness, WarriorConfig.Sickness, WarriorConfig.Psycho, 
                  WarriorConfig.Relation, WarriorConfig.Equipement, WarriorConfig.Xp, WarriorConfig.XpMax, WarriorConfig.CharacterName, 0, WarriorConfig.HPmax, WarriorConfig.ManaMax, 
                  WarriorConfig.Damage, WarriorConfig.CritChance, WarriorConfig.HitChance, WarriorConfig.Speed, WarriorConfig.AffectRes, WarriorConfig.BleedingRes, 
                  WarriorConfig.MagicRes, WarriorConfig.FireRes, WarriorConfig.PoisonRes, WarriorConfig.WaterRes, WarriorConfig.Defense, WarriorConfig.DodgeChance, WarriorConfig.Spells)

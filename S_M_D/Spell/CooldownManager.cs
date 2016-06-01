@@ -19,13 +19,17 @@ namespace S_M_D.Spell
 
         public void SpellsWasUsed()
         {
-            _isOnCooldown = true;
-            _cooldown = _baseCooldown;
+            IsOnCooldown = true;
+            Cooldown = _baseCooldown;
         }
 
         public void NewTurn()
         {
-            _cooldown--;
+            Cooldown--;
+            if (Cooldown < 0)
+                Cooldown = 0;
+            if (Cooldown == 0)
+                IsOnCooldown = false;
         }
         public bool IsOnCooldown
         {

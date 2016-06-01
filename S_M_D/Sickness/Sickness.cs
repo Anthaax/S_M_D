@@ -10,7 +10,6 @@ namespace S_M_D.Character
         abstract public void effect(BaseHeros heros);
 
         string name;
-
         public string Name
         {
             get

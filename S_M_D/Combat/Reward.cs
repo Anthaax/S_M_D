@@ -3,6 +3,7 @@ using S_M_D.Character;
 using S_M_D;
 using System.IO;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace S_M_D.Combat
 {
@@ -21,48 +22,38 @@ namespace S_M_D.Combat
             _money = _gameContext.Rnd.Next(10000);
 
         }
-
         private BaseItem getItem()
         {
-            string path;
             int rand = _gameContext.Rnd.Next(30);
-            int item = _gameContext.Rnd.Next(200);
             BaseItem result = null;
             if (_gameContext.Rnd.Next(20) > 9)
             {
                 if (rand > 19)
                 {
-                    path = "Items/Weapons.xml";
-                    using (FileStream myFileStream = new FileStream(path, FileMode.Open))
-                    {
-                        XmlSerializer reader = new XmlSerializer(typeof(List<BaseWeapon>));
-                        List<BaseWeapon> overview = (List<BaseWeapon>)reader.Deserialize(myFileStream);
-                        result = overview[item];
-
-                    }
+                    int nbMatchItem = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Armor )
+                                .Count();
+                    result = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Armor )
+                                .ToList()[_gameContext.Rnd.Next( nbMatchItem )];
                 }
                 else if (rand > 9)
                 {
-                    path = "Items/Armors.xml";
-                    using (FileStream myFileStream = new FileStream(path, FileMode.Open))
-                    {
-                        XmlSerializer reader = new XmlSerializer(typeof(List<BaseArmor>));
-                        List<BaseArmor> overview = (List<BaseArmor>)reader.Deserialize(myFileStream);
-                        result = overview[item];
-
-                    }
-
+                    int nbMatchItem = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Weapon )
+                                .Count();
+                    result = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Weapon )
+                                .ToList()[_gameContext.Rnd.Next( nbMatchItem )];
                 }
                 else
                 {
-                    path = "Items/Trinkets.xml";
-                    using (FileStream myFileStream = new FileStream(path, FileMode.Open))
-                    {
-                        XmlSerializer reader = new XmlSerializer(typeof(List<BaseTrinket>));
-                        List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize(myFileStream);
-                        result = overview[item];
-
-                    }
+                    int nbMatchItem = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .Count();
+                    result = _gameContext.AllItemInGame
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
+                                .ToList()[_gameContext.Rnd.Next( nbMatchItem )];
                 }
             }
                 
@@ -74,10 +65,7 @@ namespace S_M_D.Combat
         private int getXP(BaseMonster[] monsters)
         {
             int result = 0;
-            foreach(BaseMonster monster in monsters)
-            {
-                result += monster.GiveXp;
-            }
+            monsters.ToList().ForEach( m => result += m.GiveXp );
             return result;
         }
 

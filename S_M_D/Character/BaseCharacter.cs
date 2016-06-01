@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
@@ -49,7 +50,60 @@ namespace S_M_D.Character
         int _dodgeChance;
         int _effectivDefense;
         int _effectivDodgeChance;
-
+        /// <summary>
+        /// Choose resitance for one kind damageTymeEnum
+        /// </summary>
+        /// <param name="damageType">DamageTypeEnum from the spell</param>
+        /// <returns></returns>
+        public int Resist(DamageTypeEnum damageType)
+        {
+            int resitChance;
+            switch (damageType)
+            {
+                case DamageTypeEnum.Magical:
+                    resitChance = _effectivMagicRes;
+                    return resitChance;
+                case DamageTypeEnum.Bleeding:
+                    resitChance = _effectivBleedingRes;
+                    return resitChance;
+                case DamageTypeEnum.Poison:
+                    resitChance = _effectivPoisonRes;
+                    return resitChance;
+                case DamageTypeEnum.Fire:
+                    resitChance = _effectivFireRes;
+                    return resitChance;
+                case DamageTypeEnum.Affect:
+                    resitChance = _effectivAffectRes;
+                    return resitChance;
+                case DamageTypeEnum.Water:
+                    resitChance = _effectivWaterRes;
+                    return resitChance;
+                default:
+                    return 0;
+            }
+        }
+        /// <summary>
+        /// Initialize all effectife stats
+        /// </summary>
+        public void InitializedEffectiveStats()
+        {
+            HP = HPmax;
+            EffectivHPMax = HPmax;
+            Mana = ManaMax;
+            EffectivManaMax = ManaMax;
+            EffectCritChance = CritChance;
+            EffectivAffectRes = AffectRes;
+            EffectivBleedingRes = BleedingRes;
+            EffectivDamage = Damage;
+            EffectivDefense = Defense;
+            EffectivDodgeChance = DodgeChance;
+            EffectivFireRes = FireRes;
+            EffectivHitChance = HitChance;
+            EffectivMagicRes = MagicRes;
+            EffectivPoisonRes = PoisonRes;
+            EffectivSpeed = Speed;
+            EffectivWaterRes = WaterRes;
+        } 
         public string CharacterName
         {
             get

@@ -29,6 +29,12 @@ namespace S_M_D.Spell
         {
             KindOfEffect.Damage = Convert.ToInt32( Paladin.EffectivDamage * _damageRatioByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Paladin.EffectivDamage, DamageTypeEnum.Physical, 0, 0, _damageRatioByLvl[Lvl] );
+        }
+
         public Paladin Paladin
         {
             get

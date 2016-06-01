@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata >
+    <id>S_M_D</id>
+    <version>$version$</version>
+    <title>S_M_D</title>
+    <authors>SynoukCompany</authors>
+    <owners>SynoukCompany</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/Anthaax/S_M_D</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>
+      Dll for unity project
+    </summary>
+    <description>
+      All nonvisual method are in this dll
+    </description>
+    <language>en-US</language>
+    
+  </metadata>
+  <files>
+    <file src="S_M_D\bin\Debug\S_M_D.dll" target="lib\net45" />
+  </files>
+</package>

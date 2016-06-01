@@ -10,9 +10,9 @@ namespace S_M_D.Camp.ClassConfig
     public class CemeteryConfig : BuildingType
     {
         private List<BaseHeros> _herosDispo;
-        public CemeteryConfig(GameContext ctx) : base(BuildingName.Cemetery,0, 1,ctx)
+        public CemeteryConfig(GameContext ctx) : base(BuildingNameEnum.Cemetery,0, 1,ctx)
         {
-            this._herosDispo = new List<BaseHeros>();
+            this._herosDispo = ctx.PlayerInfo.DeadHero;
         }
         public List<BaseHeros> HerosDispo
         {

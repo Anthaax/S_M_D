@@ -75,8 +75,7 @@
     <None Include="NuSpec\nuspec.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="NuSpec\Sample.Library.Core.nuspec" />
-    <None Include="NuSpec\Sample.Library.nuspec" />
+    <None Include="NuSpec\S_M_D.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

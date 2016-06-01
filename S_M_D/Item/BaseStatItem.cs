@@ -17,6 +17,20 @@ namespace S_M_D.Character
             epic,
             legendary
         }
+        quality _quality;
+
+        public quality Quality
+        {
+            get
+            {
+                return _quality;
+            }
+
+            set
+            {
+                _quality = value;
+            }
+        }
 
         public enum stats
         {

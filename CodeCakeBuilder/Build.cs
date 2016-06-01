@@ -136,54 +136,54 @@ namespace CodeCake
                 }
                 );
 
-            //Task( "Create-NuGet-Packages" )
-            //    .IsDependentOn( "Build" )
-            //    .Does( () =>
-            //    {
-            //        Cake.CreateDirectory( releasesDir );
-            //        var settings = new NuGetPackSettings()
-            //        {
-            //            // Hard coded version!?
-            //            // Cake offers tools to extract the version number from a ReleaseNotes.txt.
-            //            // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
-            //            // manage Constrained Semantic Versions on Git repositories.
-            //            Version = "1.0.0-alpha",
-            //            BasePath = Cake.Environment.WorkingDirectory,
-            //            OutputDirectory = releasesDir
-            //        };
-            //        foreach (var nuspec in Cake.GetFiles( "CodeCakeBuilder/NuSpec/*.nuspec" ))
-            //        {
-            //            Cake.NuGetPack( nuspec, settings );
-            //        }
+            Task("Create-NuGet-Packages")
+                .IsDependentOn("Build")
+                .Does(() =>
+               {
+                   Cake.CreateDirectory(releasesDir);
+                   var settings = new NuGetPackSettings()
+                   {
+                        // Hard coded version!?
+                        // Cake offers tools to extract the version number from a ReleaseNotes.txt.
+                        // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
+                        // manage Constrained Semantic Versions on Git repositories.
+                        Version = gitInfo.NuGetVersion,
+                       BasePath = Cake.Environment.WorkingDirectory,
+                       OutputDirectory = releasesDir
+                   };
+                   foreach (var nuspec in Cake.GetFiles("CodeCakeBuilder/NuSpec/*.nuspec"))
+                   {
+                       Cake.NuGetPack(nuspec, settings);
+                   }
 
-            //    } );
+               });
 
-            //// We want to push on NuGet only the Release packages.
-            //Task( "Push-NuGet-Packages" )
-            //    .IsDependentOn( "Create-NuGet-Packages" )
-            //    .WithCriteria( () => configuration == "Release" )
-            //    .Does( () =>
-            //    {
-            //        // Resolve the API key: if the environment variable is not found
-            //        // AND CodeCakeBuilder is running in interactive mode (ie. no -nointeraction parameter),
-            //        // then the user is prompted to enter it.
-            //        // This is specific to CodeCake (in Code.Cake.dll).
-            //        var apiKey = Cake.InteractiveEnvironmentVariable( "NUGET_API_KEY" );
-            //        if (string.IsNullOrEmpty( apiKey )) throw new InvalidOperationException( "Could not resolve NuGet API key." );
+            // We want to push on NuGet only the Release packages.
+            Task("Push-NuGet-Packages")
+                .IsDependentOn("Create-NuGet-Packages")
+                .WithCriteria(() => configuration == "Release")
+                .Does(() =>
+               {
+                    // Resolve the API key: if the environment variable is not found
+                    // AND CodeCakeBuilder is running in interactive mode (ie. no -nointeraction parameter),
+                    // then the user is prompted to enter it.
+                    // This is specific to CodeCake (in Code.Cake.dll).
+                    var apiKey = Cake.InteractiveEnvironmentVariable("NUGET_API_KEY");
+                   if (string.IsNullOrEmpty(apiKey)) throw new InvalidOperationException("Could not resolve NuGet API key.");
 
-            //        var settings = new NuGetPushSettings
-            //        {
-            //            Source = "https://www.nuget.org/api/v2/package",
-            //            ApiKey = apiKey
-            //        };
+                   var settings = new NuGetPushSettings
+                   {
+                       Source = "https://www.myget.org/F/s_m_d-core/api/v2/package",
+                       ApiKey = apiKey
+                   };
 
-            //        foreach (var nupkg in Cake.GetFiles( releasesDir.Path + "/*.nupkg" ))
-            //        {
-            //            Cake.NuGetPush( nupkg, settings );
-            //        }
-            //    } );
+                   foreach (var nupkg in Cake.GetFiles(releasesDir.Path + "/*.nupkg"))
+                   {
+                       Cake.NuGetPush(nupkg, settings);
+                   }
+               });
 
-            Task( "Default" ).IsDependentOn( "Code-Coverage" );
+            Task( "Default" ).IsDependentOn("Push-NuGet-Packages");
 
         }
     }

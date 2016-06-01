@@ -8,26 +8,67 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Casern : BaseBuilding
+    public class Casern : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero;
-        private Spells _spell;
+        int _actionPrice;
         public Casern(CasernConfig b) : base(b)
         {
             _hero = b.Hero;
-            _spell = b.Spell;
         }
+        /// <summary>
+        /// Set an hero in the building
+        /// </summary>
+        /// <param name="h"></param>
         public void setHero(BaseHeros h)
         {
             _hero = h;
+            _hero.InBuilding = this;
         }
+        /// <summary>
+        /// Delete the hero in the building
+        /// </summary>
         public void deleteHeros()
         {
+            _hero.InBuilding = null;
             _hero = null;
         }
-        public void buySpellToHero()
+        public void BuySpellToHero(Spells spell)
         {
-            // ajoute le spell au héro
+            if (_hero == null) throw new ArgumentException( "You need an hero" );
+            if (spell.IsBuy) throw new ArgumentException( "Can't buy this spell he was already buy" );
+            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price );
+            else throw new ArgumentException( "You Can't buy this thing" );
+            spell.IsBuy = true;
+        }
+        public void UpgradeSpellToHero( Spells spell )
+        {
+            if (_hero == null) throw new ArgumentException( "You need an hero" );
+            if (!spell.IsBuy) throw new ArgumentException( "Can't upgrate this spell he wasn't buy" );
+            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price + (1000 / (Level+1)) + (100*(spell.Lvl+1)) );
+            else throw new ArgumentException( "You Can't buy this thing" );
+            spell.LevelUp();
+        }
+        public void LevelUP()
+        {
+            Level++;
+            _actionPrice = _actionPrice / Level;
+        }
+
+        public int ActionPrice
+        {
+            get
+            {
+                return _actionPrice;
+            }
+        }
+
+        public BaseHeros Hero
+        {
+            get
+            {
+                return _hero;
+            }
         }
     }
 }

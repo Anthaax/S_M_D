@@ -14,11 +14,15 @@ namespace S_M_D
         readonly GameContext _ctx;
         readonly List<BaseHeros> _myHeros;
         readonly List<BaseBuilding> _myBuildings;
+        readonly List<BaseItem> _myItems;
+        readonly List<BaseHeros> _deadHero;
         public PlayerInformation(GameContext ctx)
         {
             _ctx = ctx;
             _myHeros = new List<BaseHeros>();
+            _deadHero = new List<BaseHeros>();
             _myBuildings = new List<BaseBuilding>();
+            _myItems = new List<BaseItem>();
         }
 
         public GameContext Ctx
@@ -44,25 +48,49 @@ namespace S_M_D
 
             }
         }
-        public BaseBuilding GetBuilding(BuildingName name)
+
+        public List<BaseItem> MyItems
+        {
+            get
+            {
+                return _myItems;
+            }
+        }
+
+        public List<BaseHeros> DeadHero
+        {
+            get
+            {
+                return _deadHero;
+            }
+        }
+
+        public BaseBuilding GetBuilding(BuildingNameEnum name)
         {
             return _myBuildings.Find(t => t.Name == name);
         }
-        //public BaseHeros GetHeros(HerosEnum classHerosName)
-        //{
-        //    return _myHeros.Find(t => t.CharacterClassName == classHerosName.ToString());
-        //}
+        public BaseHeros GetHeros( string name )
+        {
+            return _myHeros.Find( t => t.CharacterName == name );
+        }
         public void InitializedBuilding()
         {
-            _ctx.BuildingManager.Find(BuildingName.Townhall).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Armory).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Bar).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Caravan).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Casern).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Cemetery).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Hospital).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.Hotel).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingName.MentalHospital).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Townhall).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Armory).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Bar).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Caravan).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Casern).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Cemetery).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Hospital).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.Hotel).CreateBuilding();
+            _ctx.BuildingManager.Find(BuildingNameEnum.MentalHospital).CreateBuilding();
+        }
+        public void InitializedHeros()
+        {
+            _ctx.HeroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+            _ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
         }
     }
 }

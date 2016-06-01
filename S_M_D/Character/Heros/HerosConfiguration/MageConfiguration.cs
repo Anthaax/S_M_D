@@ -89,8 +89,8 @@ namespace S_M_D.Character
             hero.Spells[0] = new BasicAttackMage(mage);
             hero.Spells[1] = new FireBall(mage);
             hero.Spells[2] = new ChaosBolt(mage);
+            hero.Spells[3] = new CockStorm( mage );
         }
-
         public int HPmax
         {
             get

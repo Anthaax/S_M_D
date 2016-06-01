@@ -20,7 +20,7 @@ namespace S_M_D.Spell
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 1 );
-            TargetManager = new TargetManager( 1, new bool[4] { false, false, true, true }, new bool[4] { false, true, true, true } );
+            TargetManager = new TargetManager( 1, new bool[4] { true, false, true, true }, new bool[4] { false, true, true, true } );
             KindOfEffect = new KindOfEffect( mage.EffectivDamage, DamageTypeEnum.Fire, _fireValueByLvl[0], 2, _damageRatioByLvl[Lvl] );
 
         }
@@ -29,6 +29,13 @@ namespace S_M_D.Spell
             KindOfEffect.Damage = Convert.ToInt32( Mage.EffectivDamage * _damageRatioByLvl[Lvl] );
             KindOfEffect.DamagePerTurn = Convert.ToInt32( _fireValueByLvl[Lvl] );
         }
+
+        public override KindOfEffect OnLaunchSpell()
+        {
+            return new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Fire, _fireValueByLvl[Lvl], 2, _damageRatioByLvl[Lvl] );
+
+        }
+
         public Mage Mage
         {
             get

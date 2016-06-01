@@ -7,6 +7,10 @@ namespace S_M_D.Character.Monsters
 {
     public class MonsterManager
     {
+        /// <summary>
+        /// Delete a monster from a list
+        /// </summary>
+        /// <param name="list"></param>
         public void DeleteDeadMonster(List<BaseMonster> list)
         {
             for (int i = 0; i < list.Count; i++)

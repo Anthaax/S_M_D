@@ -10,12 +10,12 @@ namespace S_M_D.Camp
     public class BuildingManager
     {
         readonly GameContext _ctx;
-        readonly Dictionary<BuildingName, BuildingType> _buildingTypes;
+        readonly Dictionary<BuildingNameEnum, BuildingType> _buildingTypes;
 
         public BuildingManager( GameContext ctx)
         {
             _ctx = ctx;
-            _buildingTypes = new Dictionary<BuildingName, BuildingType>();
+            _buildingTypes = new Dictionary<BuildingNameEnum, BuildingType>();
             Initialized();
         }
 
@@ -37,7 +37,7 @@ namespace S_M_D.Camp
             _buildingTypes.Add(building.Name, building);
         }
 
-        public BuildingType Find(BuildingName name)
+        public BuildingType Find(BuildingNameEnum name)
         {
             BuildingType b;
             _buildingTypes.TryGetValue(name, out b);

@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\BattleManager.cs" />
     <Compile Include="Camp\BaseBuilding.cs" />
     <Compile Include="Camp\BuildingManager.cs" />
     <Compile Include="Camp\BuildingType.cs" />
@@ -61,9 +60,11 @@
     <Compile Include="Camp\Class\Cemetery.cs" />
     <Compile Include="Camp\Class\Hospital.cs" />
     <Compile Include="Camp\Class\Hotel.cs" />
+    <Compile Include="Camp\Class\ILevelUP.cs" />
     <Compile Include="Camp\Class\MentalHospital.cs" />
     <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />
+    <Compile Include="Character\BaseCharacterComparer.cs" />
     <Compile Include="Character\BaseHeros.cs" />
     <Compile Include="Character\BaseMonster.cs" />
     <Compile Include="Character\HerosFemaleNameEnum.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Character\Heros\Warrior.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterConfiguration.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterManager.cs" />
+    <Compile Include="Combat\IAMonster.cs" />
+    <Compile Include="Combat\SpellManager.cs" />
     <Compile Include="Dungeon\CircularRoom.cs" />
     <Compile Include="Character\Monsters\Settings\MonsterType.cs" />
     <Compile Include="Combat\CombatManager.cs" />
@@ -128,17 +131,33 @@
     <Compile Include="Spell\DamageTypeEnum.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
+    <Compile Include="Spell\Mage\CockStorm.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
+    <Compile Include="Spell\Monsters\BasicAttack.cs" />
+    <Compile Include="Spell\Monsters\CerebralAttack.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
+    <Compile Include="Spell\Paladin\GodDivination.cs" />
+    <Compile Include="Spell\Paladin\GodHelp.cs" />
+    <Compile Include="Spell\Paladin\JusticeHammer.cs" />
+    <Compile Include="Spell\Priest\ChurchSanction.cs" />
+    <Compile Include="Spell\Priest\DarknessEradication.cs" />
+    <Compile Include="Spell\Priest\HeartPurification.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\KindOfEffect.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
+    <Compile Include="Spell\Warrior\HearthAttack.cs" />
+    <Compile Include="Spell\Warrior\MultipleHit.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DiagramHeros.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Armors.xml" />
+    <EmbeddedResource Include="Resources\Trinket.xml" />
+    <EmbeddedResource Include="Resources\Weapons.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

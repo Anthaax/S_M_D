@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Spell;
+using S_M_D.Camp;
 
 
 namespace S_M_D.Character
@@ -10,6 +11,7 @@ namespace S_M_D.Character
     public abstract class BaseHeros : BaseCharacter
     {
         readonly string _characterClassName;
+        readonly GameContext _ctx;
         int _price;
         bool _isMale;
         int _evilness;
@@ -17,15 +19,17 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
+        BaseBuilding _inBuilding;
         BaseItem[] _equipement;
         int _xp;
         int _xpMax;
 
-        public BaseHeros( string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, BaseItem[] equipement, int xp, int xpMax,
+        public BaseHeros( GameContext ctx, string characterClassName, int price, bool isMale, int evilness, string sickness, string psycho, string relation, BaseItem[] equipement, int xp, int xpMax,
             string characterName, int lvl, int hpMax, int manaMax, int damage, int critChance, int hitChance, int speed, int affectRes, int bleedingRes, int magicRes, int fireRes, 
             int poisonRes, int waterRes, int defense, int dodgeChance, Spells[] spells)
         {
             _characterClassName = characterClassName;
+            _ctx = ctx;
             _price = price;
             _isMale = isMale;
             _evilness = evilness;
@@ -49,21 +53,25 @@ namespace S_M_D.Character
             PoisonRes = poisonRes;
             Speed = speed;
             WaterRes = waterRes;
+            _inBuilding = null;
             _spells = new Spells[8];
             Equipement = new BaseItem[4];
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
         }
-
+        /// <summary>
+        /// Put a new item if the item slot wasn't empty return exeption 
+        /// </summary>
+        /// <param name="item">Item to add</param>
         public void GetNewItem (BaseItem item)
         {
-            if (item.Itemtype == BaseItem.ItemTypes.Weapon)
+            if (item.Itemtype == BaseItem.ItemTypes.Armor)
             {
                 if (Equipement[0] == null) Equipement[0] = item;
                 else throw new ArgumentException("You already have an armor!");
             }
-            else if (item.Itemtype == BaseItem.ItemTypes.Armor)
+            else if (item.Itemtype == BaseItem.ItemTypes.Weapon)
             {
                 if (Equipement[1] == null) Equipement[1] = item;
                 else throw new ArgumentException("You already have a weapon!");
@@ -71,12 +79,24 @@ namespace S_M_D.Character
             else if (item.Itemtype == BaseItem.ItemTypes.Trinket)
             {
                 if (Equipement[2] == null) Equipement[2] = item;
-                else throw new ArgumentException("You already have a Trinket!");
+                else if (Equipement[3] == null) Equipement[3] = item;
+                else throw new ArgumentException( "You already have a Trinket!" );
             }
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
         }
+        /// <summary>
+        /// Add hero from deadhero list
+        /// </summary>
+        public void Die()
+        {
+            _ctx.PlayerInfo.DeadHero.Add( this );
+        }
 
+        /// <summary>
+        /// Remove item from a hero
+        /// </summary>
+        /// <param name="item">Item to remove</param>
         public void RemoveItem(BaseItem item)
         {
 
@@ -84,29 +104,51 @@ namespace S_M_D.Character
             foreach (BaseItem equip in Equipement)
             {
                 if (equip == item) Equipement[x] = null;
+                x++;
             }
         }
-
+        /// <summary>
+        /// Add Stats from Item
+        /// </summary>
+        /// <param name="item"></param>
         public void AddItemStats(BaseItem item)
         {
             EffectivHPMax += item.HP;
+            HP += item.HP;
+            if (EffectivHPMax <= 1) EffectivHPMax = 1;
             EffectivManaMax += item.Mana;
+            Mana += item.Mana;
+            if (EffectivManaMax <= 1) EffectivManaMax = 1;
             EffectCritChance += item.CritChance;
+            if (EffectCritChance <= 0) EffectCritChance = 0;
             EffectivAffectRes += item.AffectRes;
+            if (EffectivAffectRes <= 0) EffectivAffectRes = 0;
             EffectivBleedingRes += item.BleedingRes;
+            if (EffectivBleedingRes <= 0) EffectivBleedingRes = 0;
             EffectivDamage += item.Damage;
+            if (EffectivDamage <= 0) EffectivDamage = 0;
             EffectivDefense += item.Defense;
+            if (EffectivDefense <= 0) EffectivDefense = 0;
             EffectivDodgeChance += item.DodgeChance;
+            if (EffectivDodgeChance <= 0) EffectivDodgeChance = 0;
             EffectivFireRes += item.FireRes;
+            if (EffectivFireRes <= 0) EffectivFireRes = 0;
             EffectivHitChance += item.HitChance;
+            if (EffectivHitChance <= 0) EffectivHitChance = 0;
             EffectivMagicRes += item.MagicRes;
+            if (EffectivMagicRes <= 0) EffectivMagicRes = 0;
             EffectivPoisonRes += item.PoisonRes;
+            if (EffectivPoisonRes <= 0) EffectivPoisonRes = 0;
             EffectivSpeed += item.Speed;
+            if (EffectivSpeed <= 0) EffectivSpeed = 0;
             EffectivWaterRes += item.WaterRes;
+            if (EffectivWaterRes <= 0) EffectivWaterRes = 0;
         }
-
-        
-
+        /// <summary>
+        /// Add a relation ship to an hero
+        /// </summary>
+        /// <param name="relation">The relation to add</param>
+        /// <exception cref="ArgumentException"> Can't add a relation if the two hero of the relation are alredy relation </exception>
         public void GetRelationship(Relationship relation)
         {
             BaseHeros heros1 = relation.HeroDuo[0];
@@ -115,13 +157,16 @@ namespace S_M_D.Character
             foreach (Relationship relations in _relationship)
             {
                 if (heros1 == relations.HeroDuo[0] && heros2 == relations.HeroDuo[1]) throw new ArgumentException("dude, they cant have two relation at the same time");
-                if (heros1 == relations.HeroDuo[1] && heros2 == relations.HeroDuo[2]) throw new ArgumentException("dude, they cant have two relation at the same time"); 
+                if (heros1 == relations.HeroDuo[1] && heros2 == relations.HeroDuo[0]) throw new ArgumentException("dude, they cant have two relation at the same time"); 
             }
 
             _relationship.Add(relation);
             UpdateHeroStats();
         }
-
+        /// <summary>
+        /// Delete a relation
+        /// </summary>
+        /// <param name="relation">Relation to delete</param>
         public void DeleteRelationship(Relationship relation)
         {
             _relationship.Remove(relation);
@@ -143,7 +188,7 @@ namespace S_M_D.Character
 
         public void DeleteSickness(Sickness sickness)
         {
-               _sicknesses.Remove(sickness);
+            _sicknesses.Remove(sickness);
             UpdateHeroStats();
         }
 
@@ -168,21 +213,7 @@ namespace S_M_D.Character
 
         public void UpdateHeroStats()
         {
-            EffectivHPMax = HPmax;
-            EffectivManaMax = ManaMax;
-            EffectCritChance = CritChance;
-            EffectivAffectRes = AffectRes;
-            EffectivBleedingRes = BleedingRes;
-            EffectivDamage = Damage;
-            EffectivDefense = Defense;
-            EffectivDodgeChance = DodgeChance;
-            EffectivFireRes = FireRes;
-            EffectivHitChance = HitChance;
-            EffectivMagicRes = MagicRes;
-            EffectivPoisonRes = PoisonRes;
-            EffectivSpeed = Speed;
-            EffectivWaterRes = WaterRes;
-
+            InitializedEffectiveStats();
             foreach (Sickness sick in _sicknesses)
             {
                 sick.effect(this);
@@ -333,6 +364,19 @@ namespace S_M_D.Character
             get
             {
                 return _psycho;
+            }
+        }
+
+        public BaseBuilding InBuilding
+        {
+            get
+            {
+                return _inBuilding;
+            }
+
+            set
+            {
+                _inBuilding = value;
             }
         }
     }

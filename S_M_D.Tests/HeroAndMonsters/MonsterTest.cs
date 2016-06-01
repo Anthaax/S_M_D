@@ -50,7 +50,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(12, orcMonster.Damage);
             Assert.AreEqual(0, orcMonster.CritChance);
             Assert.AreEqual(80, orcMonster.HitChance);
-            Assert.AreEqual(10, orcMonster.Speed);
+            Assert.AreEqual(9, orcMonster.Speed);
             Assert.AreEqual(0, orcMonster.AffectRes);
             Assert.AreEqual(0, orcMonster.BleedingRes);
             Assert.AreEqual(0, orcMonster.MagicRes);
@@ -75,7 +75,7 @@ namespace S_M_D.Tests
             Assert.AreEqual(4, orcMonster.Damage);
             Assert.AreEqual(0, orcMonster.CritChance);
             Assert.AreEqual(80, orcMonster.HitChance);
-            Assert.AreEqual(10, orcMonster.Speed);
+            Assert.AreEqual(9, orcMonster.Speed);
             Assert.AreEqual(0, orcMonster.AffectRes);
             Assert.AreEqual(0, orcMonster.BleedingRes);
             Assert.AreEqual(0, orcMonster.MagicRes);

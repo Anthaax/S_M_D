@@ -9,7 +9,7 @@ namespace S_M_D.Character
     public class Paladin : BaseHeros
     {
         public Paladin(PaladinConfiguration PaladinConfig)
-            : base( PaladinConfig.CharacterClassName, PaladinConfig.Price, PaladinConfig.IsMale, PaladinConfig.Evilness, PaladinConfig.Sickness, PaladinConfig.Psycho,
+            : base( PaladinConfig.GameContext, PaladinConfig.CharacterClassName, PaladinConfig.Price, PaladinConfig.IsMale, PaladinConfig.Evilness, PaladinConfig.Sickness, PaladinConfig.Psycho,
                  PaladinConfig.Relation, PaladinConfig.Equipement, PaladinConfig.Xp, PaladinConfig.XpMax, PaladinConfig.CharacterName, 0, PaladinConfig.HPmax, PaladinConfig.ManaMax,
                  PaladinConfig.Damage, PaladinConfig.CritChance, PaladinConfig.HitChance, PaladinConfig.Speed, PaladinConfig.AffectRes, PaladinConfig.BleedingRes,
                  PaladinConfig.MagicRes, PaladinConfig.FireRes, PaladinConfig.PoisonRes, PaladinConfig.WaterRes, PaladinConfig.Defense, PaladinConfig.DodgeChance, PaladinConfig.Spells )

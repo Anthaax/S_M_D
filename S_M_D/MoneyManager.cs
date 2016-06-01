@@ -24,12 +24,13 @@ namespace S_M_D
             if (cost <= _money)
                 _money -= cost;
         }
+        public void ReciveMoney(int money)
+        {
+            _money += money;
+        }
         public int Money
         {
-            get
-            {
-                return _money;
-            }
+            get { return _money; }
         }
     }
 }
