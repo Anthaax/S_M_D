@@ -36,6 +36,84 @@ namespace S_M_D.Dungeon
             this.HeroPosition = this.Rooms[0].Center;
         }
 
+        public Map(string descriptor)
+        {
+            string[] desc = descriptor.Split('\n');
+            this.Width = int.Parse(desc[0]);
+            this.Height = int.Parse(desc[1]);
+            this.Grid = new MapItem[Width, Height];
+            this.Rooms = new List<Room>();
+            this.Corridors = new List<Corridor>();
+            int nbRoom = int.Parse(desc[2]);
+            int idx = 3;
+            while (idx < desc.Length)
+            {
+                
+                if (desc[idx] == "CircularRoom")
+                {
+                    CircularRoom cr = new CircularRoom();
+                    
+                    string[] coords = desc[idx + 1].Split(' ');
+                    
+                    cr.Path.Add(new Point(int.Parse(coords[0]), int.Parse(coords[1])));
+                    cr.Center = cr.Path[0];
+                    cr.Radius = int.Parse(desc[idx + 2]);
+                    this.Rooms.Add(cr);
+                    idx += 3;
+                }
+               else if (desc[idx] == "PolygonRoom")
+                {
+                    int nbPoint = int.Parse(desc[idx + 1]);
+                    List<Point> pts = new List<Point>();
+                    for (int i = 0; i < nbPoint; i++)
+                    {
+                        string[] coords = desc[idx + 2 + i].Split(' ');
+                        pts.Add(new Point(int.Parse(coords[0]), int.Parse(coords[1])));
+                    }
+                    PolygonRoom pr = new PolygonRoom(pts);
+                    string[] coordCenter = desc[idx + 2 + nbPoint].Split(' ');
+                    pr.Center = new Point(int.Parse(coordCenter[0]), int.Parse(coordCenter[1]));
+                    idx += 3 + nbPoint;
+                    this.Rooms.Add(pr);
+                }
+                else if (desc[idx] == "RectangularRoom" )
+                {
+
+                    List<Point> pts = new List<Point>( );
+
+                    string[ ] coords = desc[ idx + 1 ].Split( ' ' );
+                    Point center = new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) );
+                    for (int i = 0; i < 4; i++ )
+                    {
+                        coords = desc[ idx + 2 + i ].Split( ' ' );
+                        pts.Add( new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
+                    }
+                    RectangularRoom rectroom = new RectangularRoom( pts );
+                    rectroom.Center = center;
+                    this.Rooms.Add(rectroom);
+                    idx += 4;
+                }
+                else
+                    idx++;
+            }
+            for (int i = 0; i < this.Rooms.Count; i++)
+            {
+                this.Rooms[i].placeRoom(this.Grid, this.Width, this.Height);
+            }
+            
+            MapGenerator mapGen = new MapGenerator();
+            IEventGenerator eventGen = new EventGenerator();
+            ICorridorGenerator corGen = new CorridorGenerator();
+
+            corGen.Generate(this);
+            mapGen.setNeighbors(this);
+
+            this.Visited = new List<MapItem>();
+            this.Visited.Add(this.Rooms[0]);
+            this.NotVisited = this.Rooms[0].Neighbor;
+            this.HeroPosition = this.Rooms[0].Center;    
+        }
+
         public bool isNotVisited(MapItem room)
         {
             for (int i = 0; i < this.NotVisited.Count; i++)
@@ -55,7 +133,6 @@ namespace S_M_D.Dungeon
             }
             return false;
         }
-
 
         public List<Point> leeAlgorithm(Point posA, Point posB)
         {

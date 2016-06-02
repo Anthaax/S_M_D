@@ -9,14 +9,13 @@ namespace S_M_D.Dungeon
     [Serializable]
     public class CircularRoom : Room
     {
-        private int radius;
-
+        public int Radius { get; set; }
 
         public CircularRoom()
         {
             Random rand = new Random();
 
-            radius = rand.Next(2, 10);
+            Radius = rand.Next(2, 10);
 
             Path = new List<Point>();
 
@@ -25,6 +24,10 @@ namespace S_M_D.Dungeon
             IsCorridor = false;
 
             Neighbor = new List<MapItem>();
+
+            this.events = new List<string>( );
+
+            this.chest = new List<Character.BaseItem>( );
         }
 
         /// <summary>
@@ -38,7 +41,7 @@ namespace S_M_D.Dungeon
 
             Path.Clear();
 
-            Point center = new Point(rand.Next(radius, width-radius) , rand.Next(radius, height-radius));
+            Point center = new Point(rand.Next(Radius, width-Radius) , rand.Next(Radius, height-Radius));
 
             Path.Add(center);
 
@@ -55,7 +58,7 @@ namespace S_M_D.Dungeon
         /// <returns></returns>
         public override bool pointIsInsideRoom(int x, int y)
         {
-            if(Math.Pow((x - Path[0].X), 2) + Math.Pow((y - Path[0].Y), 2) <= Math.Pow(radius, 2))
+            if(Math.Pow((x - Path[0].X), 2) + Math.Pow((y - Path[0].Y), 2) <= Math.Pow(Radius, 2))
             {
                 return true;
             }
@@ -63,6 +66,11 @@ namespace S_M_D.Dungeon
             {
                 return false;
             }
+        }
+
+        public override string ToString()
+        {
+            return "CircularRoom" + '\n' + Center.X.ToString() + ' ' + Center.Y.ToString() + '\n' + Radius.ToString() + '\n';
         }
     }
 }
