@@ -167,26 +167,25 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Xp, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].XpMax, 100);
         }
-        [Test]
         public void HerosSexTest()
         {
             GameContext ctx = GameContext.CreateNewGame(1);
             FullList(ctx.HeroManager);
             Random rnd = new Random(1);
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[0].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[1].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[2].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[3].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[4].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[5].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[6].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[7].IsMale);
             UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[8].IsMale);

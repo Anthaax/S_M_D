@@ -97,7 +97,7 @@ namespace S_M_D.Tests
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
             Hotel h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hotel) as Hotel;
-            //h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
+            h.SetHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], h.Hero2);
             h.CreateRelationHero();

@@ -18,9 +18,11 @@ namespace S_M_D.Dungeon
         public List<MapItem> NotVisited { get; set; }
         public List<MapItem> Visited { get; set; }
         public Point HeroPosition { get; set; }
+        public GameContext Ctx { get; }
 
-        public Map()
+        public Map(GameContext ctx)
         {
+            Ctx = ctx;
             this.Width = 50;
             this.Height = 50;
             this.Rooms = new List<Room>();
@@ -36,7 +38,7 @@ namespace S_M_D.Dungeon
             this.HeroPosition = this.Rooms[0].Center;
         }
 
-        public Map(string descriptor)
+        public Map(GameContext ctx ,string descriptor)
         {
             string[] desc = descriptor.Split('\n');
             this.Width = int.Parse(desc[0]);

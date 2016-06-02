@@ -57,7 +57,7 @@ namespace S_M_D
             _mapCatalogue.Clear();
             for (int i = 0; i < 4; i++)
             {
-                _mapCatalogue.Add( new Map() );
+                _mapCatalogue.Add( new Map(Ctx) );
             }
         }
         public void CreateDungeon(BaseHeros[] heros, Map dungeon)

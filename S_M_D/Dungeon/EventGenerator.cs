@@ -23,7 +23,7 @@ namespace S_M_D.Dungeon
             return selection;
         }
 
-        private BaseItem FillChest( )
+        private BaseItem FillChest( GameContext ctx )
         {
             int item = rand.Next( 200 );
             string path;
@@ -34,33 +34,30 @@ namespace S_M_D.Dungeon
             switch(selection)
             {
                 case 1 :
-                    path = "Items/Armors.xml";
-                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
-                    {
-                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseArmor> ) );
-                        List<Character.BaseArmor> overview = ( List<Character.BaseArmor> ) reader.Deserialize( myFileStream );
-                        result = overview[ item ];
-                    }
+                    int nbMatchItem = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor)
+                                .Count();
+                    result = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor)
+                                .ToList()[ctx.Rnd.Next(nbMatchItem)];
                     break;
 
                 case 2 :
-                    path = "Items/Weapons.xml";
-                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
-                    {
-                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseWeapon> ) );
-                        List<Character.BaseWeapon> overview = ( List<Character.BaseWeapon> ) reader.Deserialize( myFileStream );
-                        result = overview[ item ];
-                    }
+                    nbMatchItem = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon)
+                                .Count();
+                    result = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon)
+                                .ToList()[ctx.Rnd.Next(nbMatchItem)];
                     break;
 
                 case 3 :
-                    path = "Items/Trinkets.xml";
-                    using ( FileStream myFileStream = new FileStream( path, FileMode.Open ) )
-                    {
-                        XmlSerializer reader = new XmlSerializer( typeof( List<Character.BaseTrinket> ) );
-                        List<Character.BaseTrinket> overview = ( List<Character.BaseTrinket> ) reader.Deserialize( myFileStream );
-                        result = overview[ item ];
-                    }
+                    nbMatchItem = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket)
+                                .Count();
+                    result = ctx.AllItemInGame
+                                .Where(c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket)
+                                .ToList()[ctx.Rnd.Next(nbMatchItem)];
                     break;
             }
 
@@ -86,7 +83,7 @@ namespace S_M_D.Dungeon
             for ( int j = 0; j < chestNb; j++)
             {
                 map.Rooms[ monsterNb + j ].events.Add( "Chest" );
-                map.Rooms[ monsterNb + j ].chest.Add( FillChest( ) );
+                map.Rooms[ monsterNb + j ].chest.Add( FillChest( map.Ctx) );
             }
             for ( int k = 0; k < trapNb; k++ )
             {

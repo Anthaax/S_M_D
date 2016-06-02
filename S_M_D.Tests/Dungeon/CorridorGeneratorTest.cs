@@ -82,7 +82,7 @@ namespace S_M_D.Dungeon.Tests
         public void Connect_every_summit_every_summit_is_connected()
         {
             // Arrange
-            Map testMap = new Map();
+            Map testMap = new Map(GameContext.CreateNewGame());
             CorridorGenerator corGen = new CorridorGenerator();
 
             // Act
@@ -152,7 +152,7 @@ namespace S_M_D.Dungeon.Tests
         public void draw_corridors_Test()
         {
             // Arrange
-            Map testMap = new Map();
+            Map testMap = new Map(GameContext.CreateNewGame());
             CircularRoom rCenter = new CircularRoom();
             rCenter.Center = new Point(20, 20);
             CircularRoom rTopLeft = new CircularRoom();
