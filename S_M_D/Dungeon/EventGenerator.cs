@@ -79,7 +79,7 @@ namespace S_M_D.Dungeon
             int trapNb = ( int ) ( ( float ) map.Rooms.Count * trapPercentage );
             //int noEventNb = ( int ) ( ( float ) map.Rooms.Count * noEventPercentage );
 
-            for (int i = 0; i < monsterNb; i++ )
+            for (int i = 1; i < monsterNb; i++ )
             {
                 map.Rooms[ i ].events.Add( "Combat" );
             }
