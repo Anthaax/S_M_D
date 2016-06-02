@@ -29,7 +29,7 @@ namespace S_M_D.Dungeon
             string path;
             Character.BaseItem result = null;
 
-            int selection = rand.Next( 1, 3 );
+            int selection = rand.Next( 1, 4 );
 
             switch(selection)
             {
@@ -69,7 +69,32 @@ namespace S_M_D.Dungeon
 
         public void Generate(Map map)
         {
-            foreach(Room r in map.Rooms)
+            float monsterPercentage = 60f / 100f;
+            float chestPercentage = 20f / 100f;
+            float trapPercentage = 10f / 100f;
+            //float noEventPercentage = 10 / 100;
+
+            int monsterNb = (int)((float)map.Rooms.Count * monsterPercentage);
+            int chestNb = ( int ) ( ( float ) map.Rooms.Count * chestPercentage );
+            int trapNb = ( int ) ( ( float ) map.Rooms.Count * trapPercentage );
+            //int noEventNb = ( int ) ( ( float ) map.Rooms.Count * noEventPercentage );
+
+            for (int i = 0; i < monsterNb; i++ )
+            {
+                map.Rooms[ i ].events.Add( "Combat" );
+            }
+            for ( int j = 0; j < chestNb; j++)
+            {
+                map.Rooms[ monsterNb + j ].events.Add( "Chest" );
+                map.Rooms[ monsterNb + j ].chest.Add( FillChest( ) );
+            }
+            for ( int k = 0; k < trapNb; k++ )
+            {
+                map.Rooms[ monsterNb + chestNb + k ].events.Add( "Trap" );
+            }
+
+            /*
+            foreach (Room r in map.Rooms)
             {
                 AttachEvent( r );
                 if(r.events.Contains("Chest"))
@@ -77,6 +102,7 @@ namespace S_M_D.Dungeon
                     r.chest.Add( FillChest( ) );
                 }
             }
+            */
         }
 
         public void AttachEvent( Room selectedRoom )
