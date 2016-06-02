@@ -46,5 +46,20 @@ namespace S_M_D.Combat
             spellToLaunch.CooldownManager.NewTurn();
             return _cbt.NextTurn();
         }
+        public void MonsterTurn(BaseMonster monster)
+        {
+            if (_mosterAction.Count == 4)
+                _mosterAction.Clear();
+            List<Spells> canLauncSpell = monster.Spells
+                                    .Where(c => c.TargetManager.WhoCanBeTargetable(monster.Position) != new bool[4] { false, false, false, false })
+                                    .Where(c => c.CooldownManager.IsOnCooldown == false)
+                                    .ToList();
+            Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next(canLauncSpell.Count)];
+            int position = _cbt.GameContext.Rnd.Next(4);
+            if (canLauncSpell.Count > 0)
+                _cbt.SpellManager.MonsterLaunchSpell(spellToLaunch, position);
+            MosterAction.Add(spellToLaunch, position);
+            spellToLaunch.CooldownManager.NewTurn();
+        }
     }
 }

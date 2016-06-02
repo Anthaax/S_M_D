@@ -116,10 +116,7 @@ namespace S_M_D.Combat
             BaseCharacter charac = GetTheCharacter(typeOfT,position);
             if(charac.HP <= 0)
             {
-                if (typeOfT == typeof( BaseHeros ))
-                    _combatManager.Heros[position] = null;
-                else
-                    _combatManager.Monsters[position] = null;
+                charac.IsDead = true;
             }
             _combatManager.CharacterOrderAttack.RemoveAll( c => c.HP <= 0 );
             _combatManager.GameContext.PlayerInfo.MyHeros.Where(c => c.HP <= 0).ToList().ForEach( c => c.Die() );

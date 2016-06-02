@@ -14,6 +14,7 @@ namespace S_M_D.Character
         protected MonsterType _type;
         List<Spells> _spells;
         int _position;
+        int _id;
 
         public int GiveXp
         {
@@ -63,6 +64,19 @@ namespace S_M_D.Character
             set
             {
                 _position = value;
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                _id = value;
             }
         }
     }

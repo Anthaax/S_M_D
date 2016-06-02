@@ -46,6 +46,7 @@ namespace S_M_D.Combat
             {
                 Monsters[x] = monsterCreation.CreateMonster((MonsterType)GameContext.Rnd.Next(1,5), Heros.Max(s => s.Lvl));
                 Monsters[x].Position = x;
+                Monsters[x].Id = GameContext.Rnd.Next();
             }
         }
 
@@ -73,33 +74,55 @@ namespace S_M_D.Combat
             }
         }
 
-        public BaseCharacter NextTurn()
+        public BaseCharacter AutomaticNextTurn()
         {
             _turn++;
             BaseCharacter b = GetCharacterTurn();
+            int count = 0;
             Type bType = b.GetType();
             if (!CheckIfTheCombatWasOver())
             {
                 while (typeof(BaseMonster) == bType)
                 {
-                    BaseMonster monster = b as BaseMonster;
+                    BaseMonster monster;
+                    if (count == 0)
+                        monster = b as BaseMonster;
+                    else
+                        monster = GetCharacterTurn() as BaseMonster;
                     BaseCharacter NextCharacter;
                     if (monster != null)
                     {
                         NextCharacter = _iaMonster.MonsterTurnAndDoNextTurn(monster);
                         BaseHeros hero = NextCharacter as BaseHeros;
                         if (hero != null)
+                        {
                             hero.Spells.Where(c => c != null).ToList().ForEach(c => c.CooldownManager.NewTurn());
-                        return NextCharacter;
+                            return NextCharacter;
+                        }
+                        else
+                        {
+                            monster = NextCharacter as BaseMonster;
+                            count++;
+                        }
                     }
                 }
             }
             return b;
         }
+        /// <summary>
+        /// Methode non automatique Clément utilise la methode MonsterTurn dans IAMonster
+        /// Avant de lance cette methode verifie que le combat n'est fini
+        /// </summary>
+        /// <returns></returns>
+        public BaseCharacter NextTurn()
+        {
+            _turn++;
+            return GetCharacterTurn();
+        }
 
         public bool CheckIfTheCombatWasOver()
         {
-            return _heros.Where(c => c == null).Count() == 4 || _monsters.Where(c => c == null).Count() == 4;
+            return _heros.Where(c => c.IsDead == true).Count() == 4 || _monsters.Where(c => c.IsDead == true).Count() == 4;
         }
 
         public BaseCharacter GetCharacterTurn()

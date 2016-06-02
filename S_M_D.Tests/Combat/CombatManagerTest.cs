@@ -106,21 +106,21 @@ namespace S_M_D.Tests.Combat
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.GetCharacterTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.NextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.NextTurn());
-            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[2], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[3], cbt.NextTurn() );
-            Assert.AreEqual( cbt.CharacterOrderAttack[5], cbt.NextTurn() );
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
+            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
         }
         [Test]
         public void EndOfCombat()
@@ -145,9 +145,9 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual( 5, cbt.CharacterOrderAttack.Count );
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros.Count );
             Assert.AreEqual( 3, ctx.PlayerInfo.DeadHero.Count );
-            Assert.AreEqual( null, cbt.Heros[1] );
-            Assert.AreEqual( null, cbt.Heros[2] );
-            Assert.AreEqual( null, cbt.Heros[3] );
+            Assert.AreEqual( true, cbt.Heros[1].IsDead );
+            Assert.AreEqual( true, cbt.Heros[2].IsDead );
+            Assert.AreEqual( true, cbt.Heros[3].IsDead );
         }
 
         [Test]
@@ -157,13 +157,13 @@ namespace S_M_D.Tests.Combat
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Random rnd = new Random(1);
             cbt.ApplyRewward();
-            UseRndMultipleTime( rnd, 29);
+            UseRndMultipleTime( rnd, 34);
             int i = rnd.Next( 30 );
             int nbMatchItem = ctx.AllItemInGame
-                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Armor )
+                                .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
                                 .Count();
             BaseItem result = ctx.AllItemInGame
-                        .Where( c => c.Itemtype == BaseItem.ItemTypes.Armor )
+                        .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
                         .ToList()[rnd.Next( nbMatchItem )];
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[0].Xp, cbt.Reward.Xp / 4 );
             Assert.AreEqual( result, cbt.Reward.Item );

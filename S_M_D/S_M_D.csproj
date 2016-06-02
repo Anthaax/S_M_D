@@ -54,7 +54,7 @@
     <Compile Include="Camp\ClassConfig\TownHallConfig.cs" />
     <Compile Include="Camp\Class\Armory.cs" />
     <Compile Include="Camp\Class\Bar.cs" />
-    <Compile Include="Camp\Class\BuildingNames.cs" />
+    <Compile Include="Camp\Class\BuildingNamesEnum.cs" />
     <Compile Include="Camp\Class\Caravan.cs" />
     <Compile Include="Camp\Class\Casern.cs" />
     <Compile Include="Camp\Class\Cemetery.cs" />

@@ -50,11 +50,6 @@ namespace S_M_D
             {
                 return _cbtManager;
             }
-
-            set
-            {
-                _cbtManager = value;
-            }
         }
 
         public void InitializedCatalogue()

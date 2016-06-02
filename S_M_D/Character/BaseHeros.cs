@@ -60,6 +60,7 @@ namespace S_M_D.Character
             _sicknesses = new List<Sickness>();
             _psycho = new List<Psychology>();
             _relationship = new List<Relationship>();
+            IsDead = false;
         }
         /// <summary>
         /// Put a new item if the item slot wasn't empty return exeption 
