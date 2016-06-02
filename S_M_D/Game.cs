@@ -7,9 +7,13 @@ using S_M_D.Camp;
 using System.Reflection;
 using System.IO;
 using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Diagnostics;
 
 namespace S_M_D
 {
+    [Serializable]
     public class GameContext
     {
         readonly Random _rnd;
@@ -19,6 +23,7 @@ namespace S_M_D
         readonly MoneyManager _moneyManager;
         readonly List<BaseStatItem> _allItemInGame;
         readonly DungeonManager _dungeonManager;
+        readonly string _saveName;
 
         public GameContext(GameContext gameContext)
             :this()
@@ -30,9 +35,10 @@ namespace S_M_D
             _buildingManager = gameContext.BuildingManager;
             _dungeonManager = gameContext.DungeonManager;
             _playerInfo = gameContext.PlayerInfo;
+            _saveName = gameContext.SaveName;
         }
 
-        public GameContext()
+        private GameContext()
         {
             _rnd = new Random();
             _herosManager = new HerosManager(this);
@@ -44,6 +50,8 @@ namespace S_M_D
             InitializedItems();
             _playerInfo.InitializedBuilding();
             _playerInfo.InitializedHeros();
+            _saveName = Rnd.Next().ToString();
+
         }
 
         public GameContext( int rndSeed )
@@ -58,6 +66,7 @@ namespace S_M_D
             InitializedItems();
             _playerInfo.InitializedBuilding();
             _playerInfo.InitializedHeros();
+            _saveName = Rnd.Next().ToString();
         }
 
         /// <summary>
@@ -73,6 +82,16 @@ namespace S_M_D
             return new GameContext(rndSeed);
         }
 
+        public void Save(string folderName)
+        {
+            if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
+            string pathString = Path.Combine(folderName, SaveName);
+            using (Stream fileStream = new FileStream(pathString, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fileStream, this);
+            }
+        }
         public Random Rnd { get { return _rnd; } } 
         public PlayerInformation PlayerInfo { get { return _playerInfo; } }
         public HerosManager HeroManager { get { return _herosManager; } }
@@ -109,6 +128,14 @@ namespace S_M_D
             }
         }
 
+        public string SaveName
+        {
+            get
+            {
+                return _saveName;
+            }
+        }
+
         private void InitializedItems()
         {
             using (Stream Stream = GetType().Assembly.GetManifestResourceStream( "S_M_D.Resources.Armors.xml" ))
@@ -129,6 +156,45 @@ namespace S_M_D
                 List<BaseTrinket> overview = (List<BaseTrinket>)reader.Deserialize( Stream );
                 overview.ForEach( c => AllItemInGame.Add( c ) );
             }
+        }
+        public class LoadResult
+        {
+            public GameContext LoadedGame { get; private set; }
+            public string ErrorMessage { get; private set; }
+
+            public LoadResult(GameContext c, string error)
+            {
+                Debug.Assert(c == null ^ error == null);
+                LoadedGame = c;
+                ErrorMessage = error;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Null on error.</returns>
+        public static LoadResult LoadGame(string path)
+        {
+            GameContext g;
+            Stream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                g = (GameContext)formatter.Deserialize(fileStream);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fileStream.Close();
+            }
+            return new LoadResult(new GameContext(g), null);
         }
     }
 }

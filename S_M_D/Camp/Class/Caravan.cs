@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public class Caravan : BaseBuilding, ILevelUP
     {
         readonly List<BaseHeros> _herosDispo;

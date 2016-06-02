@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class HearthAttack : Spells
     {
         float[] _damageRatioByLvl = new float[4] { 1.5f, 2f, 2.5f, 3f };

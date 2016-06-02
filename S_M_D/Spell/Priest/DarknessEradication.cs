@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class DarknessEradication : Spells
     {
         Priest _priest;

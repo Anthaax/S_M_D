@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D
 {
+    [Serializable]
     public class MoneyManager
     {
         private GameContext _gameContext;

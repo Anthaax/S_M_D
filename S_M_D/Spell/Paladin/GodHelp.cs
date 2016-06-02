@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class GodHelp : Spells
     {
         int[] _healPerTurn = new int[4] { 2, 4, 8, 10 };

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public abstract class HerosType
     {
         readonly GameContext _ctx;

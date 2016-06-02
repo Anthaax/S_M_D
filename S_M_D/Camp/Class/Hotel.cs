@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public class Hotel : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero1;
@@ -44,7 +45,7 @@ namespace S_M_D.Camp.Class
         /// <summary>
         /// Create a relation bettween two hero
         /// </summary>
-        public void CreateRelationHeroHero()
+        public void CreateRelationHero()
         {
             if (_hero1 == null && _hero2 == null) throw new ArgumentException( "You need an hero" );
             foreach (Relationship relations in _hero1.Relationship)

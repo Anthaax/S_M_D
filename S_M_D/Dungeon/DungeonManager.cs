@@ -8,6 +8,7 @@ using S_M_D.Combat;
 
 namespace S_M_D
 {
+    [Serializable]
     public class DungeonManager
     {
         readonly GameContext _ctx;

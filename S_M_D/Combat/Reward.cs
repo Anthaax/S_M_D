@@ -4,9 +4,11 @@ using S_M_D;
 using System.IO;
 using System.Xml.Serialization;
 using System.Linq;
+using System;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class Reward
     {
         readonly int _xp;

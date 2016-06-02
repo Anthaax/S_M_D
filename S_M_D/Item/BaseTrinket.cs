@@ -7,6 +7,7 @@ using System.Text;
 namespace S_M_D.Character
 {
 
+    [Serializable]
     public class BaseTrinket : BaseStatItem
     {
         public enum trinketType

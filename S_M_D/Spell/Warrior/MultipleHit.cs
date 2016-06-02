@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class MultipleHit : Spells
     {
         float[] _damageRatioByLvl = new float[4] { 2.5f, 5f, 7.5f, 10f };

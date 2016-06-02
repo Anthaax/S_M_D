@@ -8,6 +8,7 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
+    [Serializable]
     public class CasernConfig : BuildingType
     {
         readonly BaseHeros _hero;

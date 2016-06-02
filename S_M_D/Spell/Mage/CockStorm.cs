@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class CockStorm : Spells
     {
         Mage _mage;

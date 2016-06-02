@@ -8,6 +8,7 @@ namespace S_M_D.Character
     /// <summary>
     /// Manage hero creation
     /// </summary>
+    [Serializable]
     public class HerosManager
     {
         readonly Dictionary<string, HerosType> _types;

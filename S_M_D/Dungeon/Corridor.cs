@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 namespace S_M_D.Dungeon
 {
+    [Serializable]
     public class Corridor : MapItem
     {
         public Corridor()

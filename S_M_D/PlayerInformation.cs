@@ -9,6 +9,7 @@ using S_M_D.Camp.Class;
 
 namespace S_M_D
 {
+    [Serializable]
     public class PlayerInformation
     {
         readonly GameContext _ctx;

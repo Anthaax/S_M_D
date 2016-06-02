@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public class MentalHospital : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero;

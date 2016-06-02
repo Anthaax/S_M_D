@@ -6,6 +6,7 @@ using System.Drawing;
 
 namespace S_M_D.Dungeon
 {
+    [Serializable]
     public class Map
     {
 

@@ -8,6 +8,7 @@ using S_M_D.Camp;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public abstract class BaseHeros : BaseCharacter
     {
         readonly string _characterClassName;

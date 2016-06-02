@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class IAMonster
     {
         readonly CombatManager _cbt;

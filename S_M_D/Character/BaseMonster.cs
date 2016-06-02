@@ -7,6 +7,7 @@ using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public class BaseMonster : BaseCharacter
     {
         protected int _giveXp;

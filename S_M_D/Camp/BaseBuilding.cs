@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Camp
 {
+    [Serializable]
     public abstract class BaseBuilding
     {
         readonly BuildingNameEnum _name;

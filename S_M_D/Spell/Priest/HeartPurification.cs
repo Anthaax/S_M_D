@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class HeartPurification : Spells
     {
         int[] _healRatioByLvl = new int[4] { 3, 5, 7, 9 };

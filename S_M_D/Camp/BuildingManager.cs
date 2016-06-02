@@ -7,6 +7,7 @@ using S_M_D.Camp.Class;
 
 namespace S_M_D.Camp
 {
+    [Serializable]
     public class BuildingManager
     {
         readonly GameContext _ctx;

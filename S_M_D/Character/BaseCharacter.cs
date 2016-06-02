@@ -6,6 +6,7 @@ using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public abstract class BaseCharacter
     {
         //Info Character

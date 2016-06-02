@@ -7,6 +7,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class SpellManager
     {
         readonly CombatManager _combatManager;

@@ -8,6 +8,7 @@ namespace S_M_D.Character.Monsters
     /// <summary>
     /// Enum  for all type of monsters
     /// </summary>
+    [Serializable]
     public enum MonsterType
     {
         ORC = 1,

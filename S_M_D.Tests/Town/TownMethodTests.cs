@@ -96,14 +96,14 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Hotel h = ctx.PlayerInfo.GetBuilding(BuildingName.Hotel) as Hotel;
+            Hotel h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hotel) as Hotel;
             //h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], h.Hero2);
             h.CreateRelationHero();
             Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.First().Relationship.Count);
             Assert.AreEqual(1, ctx.PlayerInfo.MyHeros[1].Relationship.Count);
-            h.deleteHeros();
+            h.DeleteHeros();
             Assert.IsNull(h.Hero1);
             Assert.IsNull(h.Hero2);
         }
@@ -113,10 +113,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Casern casern = ctx.PlayerInfo.GetBuilding(BuildingName.Casern) as Casern;
-            casern.Hero = ctx.PlayerInfo.MyHeros.First();
+            Casern casern = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Casern) as Casern;
+            casern.setHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), casern.Hero);
-            casern.deleteHero();
+            casern.deleteHeros();
             Assert.IsNull(casern.Hero);
         }
         //Hospital
@@ -125,10 +125,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Hospital h = ctx.PlayerInfo.GetBuilding(BuildingName.Hospital) as Hospital;
-            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            Hospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hospital) as Hospital;
+            h.setHero(ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHero();
+            h.deleteHeros();
             Assert.IsNull(h.Hero);
         }
         //MentalHospital
@@ -137,10 +137,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingName.MentalHospital) as MentalHospital;
-            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.MentalHospital) as MentalHospital;
+            h.setHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHero();
+            h.deleteHeros();
             Assert.IsNull(h.Hero);
         }
         /**
@@ -226,12 +226,12 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Hotel hotel = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Hotel ) as Hotel;
             hotel.LevelUP();
-            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
+            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHero() );
             hotel.SetHeros( ctx.PlayerInfo.MyHeros[0], ctx.PlayerInfo.MyHeros[1] );
-            hotel.CreateRelationHeroHero();
+            hotel.CreateRelationHero();
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[0].Relationship.Count );
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[1].Relationship.Count );
-            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
+            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHero() );
             hotel.DeleteHeros();
             Assert.AreEqual( 10000 - (hotel.ActionPrice), ctx.MoneyManager.Money );
             Assert.IsNull( hotel.Hero1 );

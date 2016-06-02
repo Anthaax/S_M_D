@@ -7,6 +7,7 @@ using S_M_D.Camp.Class;
 
 namespace S_M_D.Camp.ClassConfig
 {
+    [Serializable]
     public class TownHallConfig : BuildingType
     {
         public TownHallConfig( GameContext ctx) : base(BuildingNameEnum.Townhall,500,1, ctx)

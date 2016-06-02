@@ -9,6 +9,7 @@ using System.Text;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class CombatManager
     {
         readonly BaseMonster[] _monsters;

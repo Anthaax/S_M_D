@@ -8,6 +8,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public class Casern : BaseBuilding, ILevelUP
     {
         private BaseHeros _hero;
