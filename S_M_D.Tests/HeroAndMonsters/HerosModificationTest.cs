@@ -336,6 +336,20 @@ namespace S_M_D.Tests
         }
 
         [Test]
+        public void SwitchItems()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            BaseItem item = ctx.AllItemInGame.Where( c => c.Itemtype == BaseItem.ItemTypes.Armor ).First();
+            ctx.PlayerInfo.MyItems.Add( item );
+            BaseItem itemToChange = ctx.PlayerInfo.MyHeros[0].Equipement.Where( c => c.Itemtype == BaseItem.ItemTypes.Armor ).First();
+            ctx.PlayerInfo.MyHeros.First().RemoveAndAddAnItem( itemToChange, item );
+            Assert.AreEqual( true, ctx.PlayerInfo.MyItems.Contains( itemToChange ) );
+            Assert.AreEqual( false, ctx.PlayerInfo.MyItems.Contains( item ) );
+            Assert.AreEqual( true, ctx.PlayerInfo.MyHeros[0].Equipement.Contains( item ) );
+            Assert.AreEqual( false, ctx.PlayerInfo.MyHeros[0].Equipement.Contains( itemToChange ) );
+        }
+
+        [Test]
         public void WarriorUpdate()
         {
             GameContext ctx = GameContext.CreateNewGame(1);

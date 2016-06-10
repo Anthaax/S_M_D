@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using S_M_D.Spell;
+using S_M_D.Spell.Monsters;
 
 namespace S_M_D.Character.Monsters
 {
@@ -41,7 +42,9 @@ namespace S_M_D.Character.Monsters
                     Poco.GiveXp = 2;
                     Poco.InitializedEffectiveStats();
                     Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
+
                     Poco.Type = MonsterType.ORC;
                     return Poco;
 
@@ -67,6 +70,7 @@ namespace S_M_D.Character.Monsters
                     Poco.InitializedEffectiveStats();
                     Poco.Type = MonsterType.ELF;
                     Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
                     return Poco;
                 case MonsterType.GOBELIN:
@@ -91,6 +95,7 @@ namespace S_M_D.Character.Monsters
                     Poco.InitializedEffectiveStats();
                     Poco.Type = MonsterType.GOBELIN;
                     Poco.Spells = new List<Spells>();
+                    Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
                     return Poco;
                 case MonsterType.TROLL:
@@ -116,6 +121,7 @@ namespace S_M_D.Character.Monsters
                     Poco.Type = MonsterType.TROLL;
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
+                    Poco.Spells.Add( new CerebralAttack( Poco ) );
                     return Poco;
 
                 default:

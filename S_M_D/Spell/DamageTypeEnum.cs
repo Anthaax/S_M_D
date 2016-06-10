@@ -17,6 +17,7 @@ namespace S_M_D.Spell
         Fire = 5,
         Affect = 6,
         Water = 7,
-        Heal = 8
+        Heal = 8,
+        Move = 9
     }
 }

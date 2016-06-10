@@ -170,6 +170,20 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual( ctx.PlayerInfo.MyItems.First(), cbt.Reward.Item );
             Assert.AreEqual( ctx.MoneyManager.Money, cbt.Reward.Money + 10000 );
         }
+        [Test]
+        public void MovePlayer()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+            string herosName = ctx.PlayerInfo.MyHeros[0].CharacterName;
+            string herosName1 = ctx.PlayerInfo.MyHeros[3].CharacterName;
+            Assert.AreEqual( herosName, cbt.Heros[0].CharacterName );
+            Assert.AreEqual( herosName1, cbt.Heros[3].CharacterName );
+            cbt.SpellManager.MoveCharacter<BaseHeros>( 0, 3 );
+            Assert.AreEqual( herosName, cbt.Heros[3].CharacterName );
+            Assert.AreEqual( herosName1, cbt.Heros[0].CharacterName );
+        }   
+
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {
             for (int i = 0; i < nbTime; i++)

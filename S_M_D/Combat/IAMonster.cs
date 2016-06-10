@@ -34,32 +34,46 @@ namespace S_M_D.Combat
         {
             if (_mosterAction.Count == 4)
                 _mosterAction.Clear();
-            List<Spells> canLauncSpell = monster.Spells
-                                    .Where(c => c.TargetManager.WhoCanBeTargetable(monster.Position) != new bool[4] { false, false, false, false })
-                                    .Where(c => c.CooldownManager.IsOnCooldown == false)
-                                    .ToList();
-            Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next( canLauncSpell.Count )];
-            int position = _cbt.GameContext.Rnd.Next( 4 );
-            if (canLauncSpell.Count > 0)
-                _cbt.SpellManager.MonsterLaunchSpell( spellToLaunch, position );
-            MosterAction.Add(spellToLaunch, position);
-            spellToLaunch.CooldownManager.NewTurn();
+            if (_cbt.GameContext.Rnd.Next( 3 ) != 0)
+                LaunchSpell( monster );
+            else
+                MoveHero();
             return _cbt.NextTurn();
         }
         public void MonsterTurn(BaseMonster monster)
         {
             if (_mosterAction.Count == 4)
                 _mosterAction.Clear();
+           
+        }
+        private void LaunchSpell(BaseMonster monster)
+        {
             List<Spells> canLauncSpell = monster.Spells
-                                    .Where(c => c.TargetManager.WhoCanBeTargetable(monster.Position) != new bool[4] { false, false, false, false })
-                                    .Where(c => c.CooldownManager.IsOnCooldown == false)
-                                    .ToList();
-            Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next(canLauncSpell.Count)];
-            int position = _cbt.GameContext.Rnd.Next(4);
+                                   .Where( c => c.TargetManager.WhoCanBeTargetable( monster.Position ) != new bool[4] { false, false, false, false } )
+                                   .Where( c => c.CooldownManager.IsOnCooldown == false )
+                                   .ToList();
             if (canLauncSpell.Count > 0)
-                _cbt.SpellManager.MonsterLaunchSpell(spellToLaunch, position);
-            MosterAction.Add(spellToLaunch, position);
-            spellToLaunch.CooldownManager.NewTurn();
+            {
+                Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next( canLauncSpell.Count )];
+                int position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+                _cbt.SpellManager.MonsterLaunchSpell( spellToLaunch, position );
+                MosterAction.Add( spellToLaunch, position );
+            }
+            else
+            {
+                MoveHero();
+            }
+
+        }
+        private void MoveHero()
+        {
+            int first = _cbt.GameContext.Rnd.Next( 4 );
+            int second = _cbt.GameContext.Rnd.Next( 4 );
+            while (second == first)
+            {
+                second = _cbt.GameContext.Rnd.Next( 4 );
+            }
+            _cbt.SpellManager.MoveCharacter<BaseHeros>( first, second );
         }
     }
 }

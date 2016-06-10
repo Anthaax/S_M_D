@@ -87,6 +87,21 @@ namespace S_M_D.Character
             else throw new ArgumentException("Type of item non reconize!");
             UpdateHeroStats();
         }
+        public void RemoveAndAddAnItem(BaseItem itemToRemove, BaseItem itemToAdd)
+        {
+            int x = 0;
+            foreach (BaseItem equip in Equipement)
+            {
+                if (equip == itemToRemove)
+                {
+                    _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
+                    _ctx.PlayerInfo.MyItems.Add( itemToRemove );
+                    Equipement[x] = itemToAdd;
+                }
+                x++;
+            }
+
+        }
         /// <summary>
         /// Add hero from deadhero list
         /// </summary>
@@ -105,7 +120,11 @@ namespace S_M_D.Character
             int x = 0;
             foreach (BaseItem equip in Equipement)
             {
-                if (equip == item) Equipement[x] = null;
+                if (equip == item)
+                {
+                    Equipement[x] = null;
+                    _ctx.PlayerInfo.MyItems.Add( item );
+                }
                 x++;
             }
         }

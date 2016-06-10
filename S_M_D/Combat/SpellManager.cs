@@ -101,6 +101,23 @@ namespace S_M_D.Combat
                 i++;
             }
         }
+        public void MoveCharacter<T>( int initialPosition, int newPosition)
+        {
+            BaseCharacter character;
+            Type typeOfT = typeof( T );
+            if (typeOfT == typeof(BaseHeros))
+            {
+                character = _combatManager.Heros[initialPosition];
+                _combatManager.Heros[initialPosition] = _combatManager.Heros[newPosition];
+                _combatManager.Heros[newPosition] = character as BaseHeros;
+            }
+            else
+            {
+                character = _combatManager.Monsters[initialPosition];
+                _combatManager.Monsters[initialPosition] = _combatManager.Monsters[newPosition];
+                _combatManager.Monsters[newPosition] = character as BaseMonster;
+            }
+        }
         private BaseCharacter GetTheCharacter(Type t, int position)
         {
             BaseCharacter character;
