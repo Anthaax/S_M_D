@@ -18,7 +18,7 @@ namespace S_M_D.Tests
             string folderName = @"C:\SauvegardeS_M_D";
             string nameSave = ctx.SaveName;
             ctx.Save(folderName);
-            GameContext.LoadResult load = GameContext.LoadGame(Path.Combine(folderName, nameSave));
+            LoadResult load = GameContext.LoadGame(Path.Combine(folderName, nameSave));
             GameContext ctx2 = load.LoadedGame;
             Assert.AreEqual(ctx.SaveName, ctx2.SaveName);
         }
