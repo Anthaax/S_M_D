@@ -15,6 +15,7 @@ using Cake.Core.Diagnostics;
 using Cake.Common.Tools.NuGet.Push;
 using Cake.Core.IO;
 using SimpleGitVersion;
+using System.Collections.Generic;
 
 namespace CodeCake
 {
@@ -143,13 +144,14 @@ namespace CodeCake
                    Cake.CreateDirectory(releasesDir);
                    var settings = new NuGetPackSettings()
                    {
-                        // Hard coded version!?
-                        // Cake offers tools to extract the version number from a ReleaseNotes.txt.
-                        // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
-                        // manage Constrained Semantic Versions on Git repositories.
-                        Version = gitInfo.NuGetVersion,
+                       // Hard coded version!?
+                       // Cake offers tools to extract the version number from a ReleaseNotes.txt.
+                       // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
+                       // manage Constrained Semantic Versions on Git repositories.
+                       Version = gitInfo.NuGetVersion,
                        BasePath = Cake.Environment.WorkingDirectory,
-                       OutputDirectory = releasesDir
+                       OutputDirectory = releasesDir,
+                       Properties = new Dictionary<string, string> { { "configuration", configuration } }
                    };
                    foreach (var nuspec in Cake.GetFiles("CodeCakeBuilder/NuSpec/*.nuspec"))
                    {
