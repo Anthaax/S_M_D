@@ -16,6 +16,7 @@ using Cake.Common.Tools.NuGet.Push;
 using Cake.Core.IO;
 using SimpleGitVersion;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CodeCake
 {
@@ -187,6 +188,13 @@ namespace CodeCake
 
             Task( "Default" ).IsDependentOn("Push-NuGet-Packages");
 
+        }
+        private void WriteVersionOnADoc(string version)
+        {
+            //using (FileStream fs = new FileStream(Cak)
+            //{
+
+            //}
         }
     }
 }

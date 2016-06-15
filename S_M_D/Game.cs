@@ -25,8 +25,8 @@ namespace S_M_D
         readonly DungeonManager _dungeonManager;
         readonly string _saveName;
 
-        public GameContext(GameContext gameContext)
-            :this()
+        public GameContext( GameContext gameContext )
+            : this()
         {
             _rnd = gameContext.Rnd;
             _allItemInGame = gameContext.AllItemInGame;
@@ -41,10 +41,10 @@ namespace S_M_D
         private GameContext()
         {
             _rnd = new Random();
-            _herosManager = new HerosManager(this);
+            _herosManager = new HerosManager( this );
             _moneyManager = new MoneyManager( this );
             _playerInfo = new PlayerInformation( this );
-            _buildingManager = new BuildingManager(this);
+            _buildingManager = new BuildingManager( this );
             _dungeonManager = new DungeonManager( this );
             _allItemInGame = new List<BaseStatItem>();
             InitializedItems();
@@ -77,22 +77,22 @@ namespace S_M_D
         {
             return new GameContext();
         }
-        public static GameContext CreateNewGame(int rndSeed)
+        public static GameContext CreateNewGame( int rndSeed )
         {
-            return new GameContext(rndSeed);
+            return new GameContext( rndSeed );
         }
 
-        public void Save(string folderName)
+        public void Save( string folderName )
         {
-            if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
-            string pathString = Path.Combine(folderName, SaveName);
-            using (Stream fileStream = new FileStream(pathString, FileMode.Create, FileAccess.Write, FileShare.None))
+            if (!Directory.Exists( folderName )) Directory.CreateDirectory( folderName );
+            string pathString = Path.Combine( folderName, SaveName );
+            using (Stream fileStream = new FileStream( pathString, FileMode.Create, FileAccess.Write, FileShare.None ))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fileStream, this);
+                formatter.Serialize( fileStream, this );
             }
         }
-        public Random Rnd { get { return _rnd; } } 
+        public Random Rnd { get { return _rnd; } }
         public PlayerInformation PlayerInfo { get { return _playerInfo; } }
         public HerosManager HeroManager { get { return _herosManager; } }
 
@@ -157,44 +157,44 @@ namespace S_M_D
                 overview.ForEach( c => AllItemInGame.Add( c ) );
             }
         }
-        public class LoadResult
-        {
-            public GameContext LoadedGame { get; private set; }
-            public string ErrorMessage { get; private set; }
-
-            public LoadResult(GameContext c, string error)
-            {
-                Debug.Assert(c == null ^ error == null);
-                LoadedGame = c;
-                ErrorMessage = error;
-            }
-
-        }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="path"></param>
         /// <returns>Null on error.</returns>
-        public static LoadResult LoadGame(string path)
+        public static LoadResult LoadGame( string path )
         {
             GameContext g;
-            Stream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Stream fileStream = new FileStream( path, FileMode.Open, FileAccess.Read, FileShare.Read );
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                g = (GameContext)formatter.Deserialize(fileStream);
+                g = (GameContext)formatter.Deserialize( fileStream );
             }
             catch (SerializationException e)
             {
-                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                Console.WriteLine( "Failed to deserialize. Reason: " + e.Message );
                 throw;
             }
             finally
             {
                 fileStream.Close();
             }
-            return new LoadResult(new GameContext(g), null);
+            return new LoadResult( new GameContext( g ), null );
         }
     }
+    public class LoadResult
+    {
+        public GameContext LoadedGame { get; private set; }
+        public string ErrorMessage { get; private set; }
+
+        public LoadResult(GameContext c, string error)
+        {
+            Debug.Assert(c == null ^ error == null);
+            LoadedGame = c;
+            ErrorMessage = error;
+        }
+
+    }
 }
+
