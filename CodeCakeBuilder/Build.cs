@@ -154,6 +154,7 @@ namespace CodeCake
                        OutputDirectory = releasesDir,
                        Properties = new Dictionary<string, string> { { "configuration", configuration } }
                    };
+                   settings.BasePath = Cake.Environment.WorkingDirectory;
                    foreach (var nuspec in Cake.GetFiles("CodeCakeBuilder/NuSpec/*.nuspec"))
                    {
                        Cake.NuGetPack(nuspec, settings);
