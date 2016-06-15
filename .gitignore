@@ -236,3 +236,6 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 Codecoverage.txt
+get_specific_files_from_zip.ps1
+S_M_D.0.0.2.zip
+S_M_D/S_M_D.dll
