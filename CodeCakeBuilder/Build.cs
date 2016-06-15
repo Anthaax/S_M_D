@@ -17,6 +17,7 @@ using Cake.Core.IO;
 using SimpleGitVersion;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace CodeCake
 {
@@ -154,7 +155,7 @@ namespace CodeCake
                        OutputDirectory = releasesDir,
                        Properties = new Dictionary<string, string> { { "configuration", configuration } }
                    };
-                   settings.BasePath = Cake.Environment.WorkingDirectory;
+                   WriteVersionOnADoc( settings.Version );
                    foreach (var nuspec in Cake.GetFiles("CodeCakeBuilder/NuSpec/*.nuspec"))
                    {
                        Cake.NuGetPack(nuspec, settings);
@@ -192,10 +193,16 @@ namespace CodeCake
         }
         private void WriteVersionOnADoc(string version)
         {
-            //using (FileStream fs = new FileStream(Cak)
-            //{
+            DirectoryPath dir = Cake.Environment.WorkingDirectory;
+            string path = dir.FullPath + "/version.txt";
 
-            //}
+            byte[] bytes = new byte[version.Length * sizeof( char )];
+            System.Buffer.BlockCopy( version.ToCharArray(), 0, bytes, 0, bytes.Length );
+
+            using (FileStream fs = new FileStream( path, FileMode.Create ))
+            {
+                fs.Write( bytes, 0, bytes.Length );
+            }
         }
     }
 }
