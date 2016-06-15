@@ -5,7 +5,7 @@ branches:
   - develop
 environment:
   MYGET_API_KEY:
-    secure: 87c7971f-6933-459f-bfb7-8b52044ed1b6
+    secure: 3IXUZ5bfngHbmUCNkrxbZfKwLR/SlFEN9Zvna57W8Dn0YhjZU5U4fi5dOkJQAMbe
 install:
 - ps: CodeCakeBuilder\Bootstrap.ps1
 build_script:
