@@ -63,14 +63,17 @@ namespace S_M_D.Tests.Combat
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
+
             cbt.Monsters[1].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.Monsters[1].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.Monsters[2].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.Monsters[2].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.Monsters[3].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
             cbt.Monsters[3].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+
             Assert.AreEqual( cbt.Monsters[1].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage*2), cbt.Monsters[1].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn * 2, cbt.DamageOnTime[cbt.Monsters[1]].EffectiveDamagePerTurn );
@@ -78,6 +81,25 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual( cbt.Monsters[2].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage), cbt.Monsters[2].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn, cbt.DamageOnTime[cbt.Monsters[2]].EffectiveDamagePerTurn );
+        }
+        [Test]
+        public void ApplyDammageOnTime()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+            cbt.SpellManager.MoveCharacter<BaseHeros>( 0, 3 );
+            S_M_D.Spell.Spells spell = cbt.Heros[0].Spells[3];
+            cbt.Monsters.ToList().ForEach( m =>
+                                             {
+                                                 m.HP = spell.KindOfEffect.Damage + spell.KindOfEffect.DamagePerTurn + 5;
+                                                 m.EffectivHPMax = spell.KindOfEffect.Damage + spell.KindOfEffect.DamagePerTurn + 5;
+                                             } );
+            cbt.SpellManager.HeroLaunchSpell( spell, 0 );
+            for (int i = 0; i < 4; i++)
+            {
+                cbt.AutomaticNextTurn();
+            }
+            Assert.AreEqual( 5, cbt.Monsters[0].HP );
         }
         [Test]
         public void HealHeroOrMonster()
@@ -154,10 +176,13 @@ namespace S_M_D.Tests.Combat
         public void RewardTest()
         {
             GameContext ctx = GameContext.CreateNewGame( 1 );
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
+            ctx.DungeonManager.InitializedCatalogue();
+            ctx.DungeonManager.CreateDungeon( ctx.PlayerInfo.MyHeros.ToArray(), ctx.DungeonManager.MapCatalogue.First() );
+            ctx.DungeonManager.LaunchCombat();
+            CombatManager cbt = ctx.DungeonManager.CbtManager;
             Random rnd = new Random(1);
             cbt.ApplyRewward();
-            UseRndMultipleTime( rnd, 34);
+            UseRndMultipleTime( rnd, 38);
             int i = rnd.Next( 30 );
             int nbMatchItem = ctx.AllItemInGame
                                 .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
@@ -165,10 +190,11 @@ namespace S_M_D.Tests.Combat
             BaseItem result = ctx.AllItemInGame
                         .Where( c => c.Itemtype == BaseItem.ItemTypes.Trinket )
                         .ToList()[rnd.Next( nbMatchItem )];
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[0].Xp, cbt.Reward.Xp / 4 );
-            Assert.AreEqual( result, cbt.Reward.Item );
-            Assert.AreEqual( ctx.PlayerInfo.MyItems.First(), cbt.Reward.Item );
-            Assert.AreEqual( ctx.MoneyManager.Money, cbt.Reward.Money + 10000 );
+            int xp = 0;
+            cbt.Monsters.ToList().ForEach( h => xp += h.GiveXp );
+            Assert.AreEqual( xp, ctx.DungeonManager.Reward.Xp);
+            Assert.AreEqual( result, ctx.DungeonManager.Reward.Items.First() );
+            Assert.AreEqual( 100, ctx.DungeonManager.Reward.Money );
         }
         [Test]
         public void MovePlayer()

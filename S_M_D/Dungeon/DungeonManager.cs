@@ -16,10 +16,12 @@ namespace S_M_D
         Map _curentDungeon;
         BaseHeros[] _heros;
         CombatManager _cbtManager;
+        Reward _reward;
         public DungeonManager( GameContext ctx)
         {
             _ctx = ctx;
             _mapCatalogue = new List<Map>();
+            _reward = new Reward( _ctx );
         }
 
         public GameContext Ctx
@@ -52,6 +54,14 @@ namespace S_M_D
             }
         }
 
+        public Reward Reward
+        {
+            get
+            {
+                return _reward;
+            }
+        }
+
         public void InitializedCatalogue()
         {
             _mapCatalogue.Clear();
@@ -69,6 +79,17 @@ namespace S_M_D
         {
             if (_curentDungeon == null) throw new InvalidOperationException( "Impossible to launch CombatWithout a Map" );
             _cbtManager = new CombatManager( Heros, Ctx );
+        }
+        public void EndOfTheDuengon()
+        {
+            int numbersHeros = _heros.Count( h => h.IsDead == false );
+            if(numbersHeros != 0)
+            {
+                _heros.Where( h => h.IsDead == false ).ToList().ForEach( h => h.Xp += _reward.Xp / numbersHeros );
+                _ctx.PlayerInfo.MyItems.AddRange( _reward.Items );
+                _ctx.MoneyManager.ReciveMoney( _reward.Money );
+            }
+            _ctx.PlayerInfo.NewWeek();
         }
     }
 }

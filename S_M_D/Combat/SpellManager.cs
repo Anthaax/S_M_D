@@ -33,6 +33,19 @@ namespace S_M_D.Combat
             else
                 LaunchDamageSpellOnHero( spell, position );
         }
+        public void ApplyDamageOnTime()
+        {
+            BaseCharacter charac = _combatManager.GetCharacterTurn();
+            KindOfEffect effect;
+            _combatManager.DamageOnTime.TryGetValue( charac, out effect );
+            if(effect != null)
+            {
+                charac.HP -= effect.EffectiveDamagePerTurn;
+                effect.EffectiveTurn--;
+                if (effect.EffectiveTurn == 0)
+                    _combatManager.DamageOnTime.Remove( charac );
+            }
+        }
         private void LaunchDamageSpellOnMonster(Spells spell, int position)
         {
             ApplyDamage<BaseMonster>( spell, position );
@@ -72,7 +85,10 @@ namespace S_M_D.Combat
                         if (existentSpellEffect == null)
                             _combatManager.DamageOnTime[character] = spellEffect;
                         else if (spellEffect.DamageType == existentSpellEffect.DamageType)
+                        {
                             existentSpellEffect.EffectiveDamagePerTurn += spellEffect.DamagePerTurn;
+                            existentSpellEffect.EffectiveTurn = Math.Max( spellEffect.Turn, existentSpellEffect.EffectiveTurn);
+                        }
                         else
                             _combatManager.DamageOnTime[character] = spellEffect;
                     }

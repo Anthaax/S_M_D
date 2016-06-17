@@ -32,6 +32,7 @@ namespace S_M_D.Combat
         /// <returns></returns>
         public BaseCharacter MonsterTurnAndDoNextTurn(BaseMonster monster)
         {
+            _cbt.SpellManager.ApplyDamageOnTime();
             if (_mosterAction.Count == 4)
                 _mosterAction.Clear();
             if (_cbt.GameContext.Rnd.Next( 3 ) != 0)

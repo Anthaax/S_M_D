@@ -17,6 +17,7 @@ namespace S_M_D
         readonly List<BaseBuilding> _myBuildings;
         readonly List<BaseItem> _myItems;
         readonly List<BaseHeros> _deadHero;
+        int _numberOfWeek;
         public PlayerInformation(GameContext ctx)
         {
             _ctx = ctx;
@@ -24,6 +25,7 @@ namespace S_M_D
             _deadHero = new List<BaseHeros>();
             _myBuildings = new List<BaseBuilding>();
             _myItems = new List<BaseItem>();
+            _numberOfWeek = 0;
         }
 
         public GameContext Ctx
@@ -66,6 +68,21 @@ namespace S_M_D
             }
         }
 
+        public int NumberOfWeek
+        {
+            get
+            {
+                return _numberOfWeek;
+            }
+        }
+
+        public void NewWeek()
+        {
+            _numberOfWeek++;
+            _myHeros.ForEach( h => h.InBuilding = null );
+            RemoveAllHeroInBuildings();
+        }
+
         public BaseBuilding GetBuilding(BuildingNameEnum name)
         {
             return _myBuildings.Find(t => t.Name == name);
@@ -92,6 +109,19 @@ namespace S_M_D
             _ctx.HeroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             _ctx.HeroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
             _ctx.HeroManager.Find( HerosEnum.Warrior.ToString() ).CreateHero();
+        }
+        private void RemoveAllHeroInBuildings()
+        {
+            foreach (var building in _myBuildings)
+            {
+                var SingleHero = building as ISingleHero;
+                var MultipleHeros = building as IMultipleHero;
+
+                if (SingleHero != null)
+                    SingleHero.DeleteHero();
+                else if(MultipleHeros != null)
+                    MultipleHeros.DeleteHeros();
+            }
         }
     }
 }

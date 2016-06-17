@@ -61,6 +61,8 @@
     <Compile Include="Camp\Class\Hospital.cs" />
     <Compile Include="Camp\Class\Hotel.cs" />
     <Compile Include="Camp\Class\ILevelUP.cs" />
+    <Compile Include="Camp\Class\IMultipleHero.cs" />
+    <Compile Include="Camp\Class\ISingleHero.cs" />
     <Compile Include="Camp\Class\MentalHospital.cs" />
     <Compile Include="Camp\Class\TownHall.cs" />
     <Compile Include="Character\BaseCharacter.cs" />

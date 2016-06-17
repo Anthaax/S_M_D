@@ -19,7 +19,6 @@ namespace S_M_D.Combat
         readonly SpellManager _spellManager;
         readonly GameContext _gameContext;
         readonly IAMonster _iaMonster;
-        readonly Reward _reward;
         int _turn;
         public CombatManager(BaseHeros[] heros, GameContext gameContext)
         {
@@ -29,6 +28,7 @@ namespace S_M_D.Combat
             _monsters = new BaseMonster[4];
             MonsterConfiguration monsterCreation = new MonsterConfiguration();
             createMonster(monsterCreation);
+
             //Initialization of character order of attack
             _characterOrderAttack = new List<BaseCharacter>();
             InitializedOderAttack();
@@ -36,7 +36,6 @@ namespace S_M_D.Combat
             _damageOnTime = new Dictionary<BaseCharacter, KindOfEffect>();
             InitiliazedDictionary();
             _spellManager = new SpellManager( this );
-            _reward = new Reward(_monsters, _gameContext);
             _iaMonster = new IAMonster( this );
             _turn = 0;
         }
@@ -131,19 +130,10 @@ namespace S_M_D.Combat
         }
         public void ApplyRewward()
         {
-            foreach (var hero in Heros)
-            {
-                hero.Xp += Reward.Xp / Heros.Where( c => c.HP > 0 ).Count();
-            }
-            _gameContext.MoneyManager.ReciveMoney( Reward.Money );
-            _gameContext.PlayerInfo.MyItems.Add( _reward.Item );
+            _gameContext.DungeonManager.Reward.AddXpCombat( _monsters );
+            _gameContext.DungeonManager.Reward.AddItemToLoot();
+            _gameContext.DungeonManager.Reward.AddGold();
         }
-
-        public Reward Reward
-        {
-            get { return _reward; }
-        }
-
         public BaseHeros[] Heros
         {
             get { return _heros; }
