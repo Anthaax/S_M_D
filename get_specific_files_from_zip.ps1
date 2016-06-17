@@ -100,6 +100,7 @@ Function GetVersion
 		Write-Host $UneLigne
 		$version = $UneLigne
 	}
+	Write-Host $UneLigne
 	DowloadZip $version
 }
 #----------------------------------------------------------
@@ -109,6 +110,8 @@ Function DowloadZip
 {
 	Param([string]$version)
 	
+	Write-Host "https://www.myget.org/F/s_m_d-core/api/v2/package/S_M_D/$version"
+
 	$url = "https://www.myget.org/F/s_m_d-core/api/v2/package/S_M_D/$version"
 	Invoke-WebRequest -Uri $url -OutFile "$zips/S_M_D.zip"
 }
