@@ -109,11 +109,13 @@ Function GetVersion
 Function DowloadZip
 {
 	Param([string]$version)
-	
-	Write-Host "https://www.myget.org/F/s_m_d-core/api/v2/package/S_M_D/$version"
 
-	$url = "https://www.myget.org/F/s_m_d-core/api/v2/package/S_M_D/$version"
-	Invoke-WebRequest -Uri $url -OutFile "$zips/S_M_D.zip"
+	$url = "https://www.myget.org/F/s_m_d-core/api/v2/package/S_M_D/$version";
+	Write-Host "$url";
+	$output = "$zips/S_M_D.zip";
+	
+	Invoke-WebRequest -Uri $url -OutFile $output;
+	#Invoke-WebRequest -Uri $url -OutFile "$zips/S_M_D.zip"
 }
 #----------------------------------------------------------
 #FUNCTION SuppressZip

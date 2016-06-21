@@ -132,76 +132,74 @@ namespace CodeCake
                 .Does( () =>
                 {
                     Cake.OpenCover(
-                        c => c.NUnit("*.Tests/bin/" + configuration + "/*.Tests.dll", new NUnitSettings { Framework = "v4.5" } ),
+                        c => c.NUnit( "*.Tests/bin/" + configuration + "/*.Tests.dll", new NUnitSettings { Framework = "v4.5" } ),
                         new FilePath( "/CoverageResult.txt" ),
                         new OpenCoverSettings()
                             .WithFilter( "+[S_M_D]*" ) );
                 }
                 );
 
-            Task("Create-NuGet-Packages")
-                .IsDependentOn("Build")
-                .Does(() =>
-               {
-                   Cake.CreateDirectory(releasesDir);
-                   var settings = new NuGetPackSettings()
-                   {
+            Task( "Create-NuGet-Packages" )
+                .IsDependentOn( "Build" )
+                .Does( () =>
+                {
+                    Cake.CreateDirectory( releasesDir );
+                    var settings = new NuGetPackSettings()
+                    {
                        // Hard coded version!?
                        // Cake offers tools to extract the version number from a ReleaseNotes.txt.
                        // But other tools exist: have a look at SimpleGitVersion.Cake to easily 
                        // manage Constrained Semantic Versions on Git repositories.
                        Version = gitInfo.NuGetVersion,
-                       BasePath = Cake.Environment.WorkingDirectory,
-                       OutputDirectory = releasesDir,
-                       Properties = new Dictionary<string, string> { { "configuration", configuration } }
-                   };
-                   WriteVersionOnADoc( settings.Version );
-                   foreach (var nuspec in Cake.GetFiles("CodeCakeBuilder/NuSpec/*.nuspec"))
-                   {
-                       Cake.NuGetPack(nuspec, settings);
-                   }
+                        BasePath = Cake.Environment.WorkingDirectory,
+                        OutputDirectory = releasesDir,
+                        Properties = new Dictionary<string, string> { { "configuration", configuration } }
+                    };
+                    WriteVersionOnADoc( settings.Version );
+                    foreach (var nuspec in Cake.GetFiles( "CodeCakeBuilder/NuSpec/*.nuspec" ))
+                    {
+                        Cake.NuGetPack( nuspec, settings );
+                    }
 
-               });
+                } );
 
             // We want to push on NuGet only the Release packages.
-            Task("Push-NuGet-Packages")
-                .IsDependentOn("Create-NuGet-Packages")
-                .WithCriteria(() => configuration == "Release")
-                .Does(() =>
-               {
-                    // Resolve the API key: if the environment variable is not found
-                    // AND CodeCakeBuilder is running in interactive mode (ie. no -nointeraction parameter),
-                    // then the user is prompted to enter it.
-                    // This is specific to CodeCake (in Code.Cake.dll).
-                    var apiKey = Cake.InteractiveEnvironmentVariable("MYGET_API_KEY");
-                   if (string.IsNullOrEmpty(apiKey)) throw new InvalidOperationException("Could not resolve NuGet API key.");
+            Task( "Push-NuGet-Packages" )
+                .IsDependentOn( "Create-NuGet-Packages" )
+                .WithCriteria( () => configuration == "Release" )
+                .Does( () =>
+                {
+                   // Resolve the API key: if the environment variable is not found
+                   // AND CodeCakeBuilder is running in interactive mode (ie. no -nointeraction parameter),
+                   // then the user is prompted to enter it.
+                   // This is specific to CodeCake (in Code.Cake.dll).
+                   var apiKey = Cake.InteractiveEnvironmentVariable( "MYGET_API_KEY" );
+                    if (string.IsNullOrEmpty( apiKey )) throw new InvalidOperationException( "Could not resolve NuGet API key." );
 
-                   var settings = new NuGetPushSettings
-                   {
-                       Source = "https://www.myget.org/F/s_m_d-core/api/v2/package",
-                       ApiKey = apiKey
-                   };
+                    var settings = new NuGetPushSettings
+                    {
+                        Source = "https://www.myget.org/F/s_m_d-core/api/v2/package",
+                        ApiKey = apiKey
+                    };
 
-                   foreach (var nupkg in Cake.GetFiles(releasesDir.Path + "/*.nupkg"))
-                   {
-                       Cake.NuGetPush(nupkg, settings);
-                   }
-               });
+                    foreach (var nupkg in Cake.GetFiles( releasesDir.Path + "/*.nupkg" ))
+                    {
+                        Cake.NuGetPush( nupkg, settings );
+                    }
+                } );
 
-            Task( "Default" ).IsDependentOn("Push-NuGet-Packages");
+            Task( "Default" ).IsDependentOn( "Push-NuGet-Packages" );
 
         }
-        private void WriteVersionOnADoc(string version)
+        private void WriteVersionOnADoc( string version )
         {
             DirectoryPath dir = Cake.Environment.WorkingDirectory;
             string path = dir.FullPath + "/version.txt";
 
-            byte[] bytes = new byte[version.Length * sizeof( char )];
-            System.Buffer.BlockCopy( version.ToCharArray(), 0, bytes, 0, bytes.Length );
-
             using (FileStream fs = new FileStream( path, FileMode.Create ))
+            using (TextWriter tw = new StreamWriter( fs, Encoding.UTF8 ))
             {
-                fs.Write( bytes, 0, bytes.Length );
+                tw.Write( version );
             }
         }
     }
