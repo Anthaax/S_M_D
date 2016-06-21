@@ -44,18 +44,29 @@ namespace S_M_D.Tests.Combat
         {
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
-            cbt.Monsters[0].EffectivHPMax = ctx.PlayerInfo.MyHeros[0].Spells[0].KindOfEffect.Damage + 5;
-            cbt.Monsters[0].HP = ctx.PlayerInfo.MyHeros[0].Spells[0].KindOfEffect.Damage + 5;
-            cbt.Monsters[1].EffectivHPMax = ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage + 5;
-            cbt.Monsters[1].HP = ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage + 5;
+
+            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros.First().Spells.First(), 1 );
+
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells.First(), 0 );
-            Assert.AreEqual( 5, cbt.Monsters.First().HP );
+            Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros.First().Mana );
+            Assert.AreEqual( 20, cbt.Monsters.First().HP );
             Assert.AreEqual( true, ctx.PlayerInfo.MyHeros.First().Spells.First().CooldownManager.IsOnCooldown );
             Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros.First().Spells.First() );
+            Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 0 ) );
+            cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[0], 1 );
+            Assert.AreEqual( 20, cbt.Monsters[1].HP );
+        }
+        [Test]
+        public void ManaUtilisationTest()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+
+            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
-            Assert.AreEqual( 5, cbt.Monsters[1].HP );
-            Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
+            Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 ));
         }
         [Test]
         public void MultipleEffectOnOneMonster()
@@ -64,21 +75,22 @@ namespace S_M_D.Tests.Combat
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First(), cbt.CharacterOrderAttack.First() );
 
-            cbt.Monsters[1].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
-            cbt.Monsters[1].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
-            cbt.Monsters[2].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
-            cbt.Monsters[2].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
-            cbt.Monsters[3].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
-            cbt.Monsters[3].HP = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 5;
+            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros.First().Spells[1], 2 );
+            
+            cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros.First().Spells[1] );
 
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
-            cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros.First().Spells[1] );
 
-            Assert.AreEqual( cbt.Monsters[1].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage*2), cbt.Monsters[1].HP );
+            Assert.AreEqual( 20 + ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn * 2, cbt.Monsters[1].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn * 2, cbt.DamageOnTime[cbt.Monsters[1]].EffectiveDamagePerTurn );
+
+            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros.First().Spells[1], 1 );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 2 );
-            Assert.AreEqual( cbt.Monsters[2].EffectivHPMax - (ctx.PlayerInfo.MyHeros[0].Spells[1].KindOfEffect.Damage), cbt.Monsters[2].HP );
+
+            Assert.AreEqual( 20 + ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn , cbt.Monsters[2].HP );
             Assert.AreEqual( DamageTypeEnum.Fire, cbt.DamageOnTime[cbt.Monsters[1]].DamageType );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros.First().Spells[1].KindOfEffect.DamagePerTurn, cbt.DamageOnTime[cbt.Monsters[2]].EffectiveDamagePerTurn );
         }
@@ -89,35 +101,43 @@ namespace S_M_D.Tests.Combat
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             cbt.SpellManager.MoveCharacter<BaseHeros>( 0, 3 );
             S_M_D.Spell.Spells spell = cbt.Heros[0].Spells[3];
-            cbt.Monsters.ToList().ForEach( m =>
-                                             {
-                                                 m.HP = spell.KindOfEffect.Damage + spell.KindOfEffect.DamagePerTurn + 5;
-                                                 m.EffectivHPMax = spell.KindOfEffect.Damage + spell.KindOfEffect.DamagePerTurn + 5;
-                                             } );
+            AdjustManaAndHp( cbt, spell, 1 );
+
             cbt.SpellManager.HeroLaunchSpell( spell, 0 );
             for (int i = 0; i < 4; i++)
             {
                 cbt.AutomaticNextTurn();
             }
-            Assert.AreEqual( 5, cbt.Monsters[0].HP );
+            Assert.AreEqual( 20, cbt.Monsters[0].HP );
         }
         [Test]
         public void HealHeroOrMonster()
         {
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
+            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros[1].Spells[2], 4 );
             ctx.PlayerInfo.MyHeros[1].HP -= 5;
+
             Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].EffectivHPMax, cbt.Heros[1].HP );
+
             ctx.PlayerInfo.MyHeros[1].HP -= ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1;
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
+
             cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
+
             Assert.AreEqual( cbt.Heros[1].EffectivHPMax - 1, cbt.Heros[1].HP );
             cbt.Monsters[0].HP = 1;
             cbt.Monsters[0].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 2;
             cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
+
             Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1, cbt.Monsters[0].HP );
             cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );
+            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
+
             Assert.AreEqual( cbt.Monsters[0].EffectivHPMax, cbt.Monsters[0].HP );
 
 
@@ -216,6 +236,20 @@ namespace S_M_D.Tests.Combat
             {
                 rnd.Next();
             }
+        }
+        private void AdjustManaAndHp(CombatManager cbt, S_M_D.Spell.Spells spell, int numberTimeUseSpell)
+        {
+            cbt.CharacterOrderAttack.ForEach( m =>
+                                        {
+                                            m.Mana = 1 + spell.ManaCost * numberTimeUseSpell;
+                                            m.EffectivHPMax = 1 + spell.ManaCost * numberTimeUseSpell;
+                                            m.HP = 20 + spell.KindOfEffect.Damage*numberTimeUseSpell + spell.KindOfEffect.DamagePerTurn * numberTimeUseSpell ;
+                                            m.EffectivHPMax = 20 + spell.KindOfEffect.Damage * numberTimeUseSpell + spell.KindOfEffect.DamagePerTurn * numberTimeUseSpell;
+                                        } );
+        }
+        private void SetIsOnCooldownFasle(Spell.Spells spell)
+        {
+            spell.CooldownManager.IsOnCooldown = false;
         }
     }
 }

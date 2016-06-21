@@ -50,8 +50,11 @@ namespace S_M_D.Combat
         private void LaunchSpell(BaseMonster monster)
         {
             List<Spells> canLauncSpell = monster.Spells
-                                   .Where( c => c.TargetManager.WhoCanBeTargetable( monster.Position ) != new bool[4] { false, false, false, false } )
-                                   .Where( c => c.CooldownManager.IsOnCooldown == false )
+                                    .Where  ( c =>
+                                                c.TargetManager.WhoCanBeTargetable( monster.Position ) != new bool[4] { false, false, false, false } &&
+                                                c.CooldownManager.IsOnCooldown == false &&
+                                                c.ManaCost <= monster.Mana
+                                            )
                                    .ToList();
             if (canLauncSpell.Count > 0)
             {
