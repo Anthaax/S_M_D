@@ -114,9 +114,9 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Casern casern = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Casern) as Casern;
-            casern.setHero( ctx.PlayerInfo.MyHeros.First());
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), casern.Hero);
-            casern.deleteHeros();
+            casern.DeleteHero();
             Assert.IsNull(casern.Hero);
         }
         //Hospital
@@ -126,9 +126,9 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             Hospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hospital) as Hospital;
-            h.setHero(ctx.PlayerInfo.MyHeros.First());
+            h.SetHero(ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHeros();
+            h.DeleteHero();
             Assert.IsNull(h.Hero);
         }
         //MentalHospital
@@ -138,9 +138,9 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.MentalHospital) as MentalHospital;
-            h.setHero( ctx.PlayerInfo.MyHeros.First());
+            h.SetHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHeros();
+            h.DeleteHero();
             Assert.IsNull(h.Hero);
         }
         /**
@@ -182,7 +182,7 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Casern casern = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Casern ) as Casern;
             Assert.Throws<ArgumentException>( () => casern.BuySpellToHero( ctx.PlayerInfo.MyHeros.First().Spells.First() ) );
-            casern.setHero( ctx.PlayerInfo.MyHeros.First() );
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First() );
             Assert.NotNull( casern.Hero );
             Assert.Throws<ArgumentException>( () => casern.BuySpellToHero( casern.Hero.Spells.First() ) );
             casern.Hero.Spells.First().IsBuy = false;
@@ -196,7 +196,7 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Casern casern = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Casern ) as Casern;
             Assert.Throws<ArgumentException>( () => casern.UpgradeSpellToHero( ctx.PlayerInfo.MyHeros.First().Spells.First() ) );
-            casern.setHero( ctx.PlayerInfo.MyHeros.First() );
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First() );
             casern.Hero.Spells.First().IsBuy = false;
             casern.LevelUP();
             Assert.Throws<ArgumentException>( () => casern.UpgradeSpellToHero( casern.Hero.Spells.First() ) );
@@ -213,7 +213,7 @@ namespace S_M_D.Tests
             Hospital hospital = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Hospital ) as Hospital;
             hospital.LevelUP();
             Assert.Throws<ArgumentException>( () => hospital.HealHero( new Diarrhea() ) );
-            hospital.setHero( ctx.PlayerInfo.MyHeros.First() );
+            hospital.SetHero( ctx.PlayerInfo.MyHeros.First() );
             Assert.Throws<ArgumentException>( () => hospital.HealHero( new Diarrhea() ) );
             ctx.PlayerInfo.MyHeros.First().GetSickness( new Diarrhea() );
             hospital.HealHero( hospital.Hero.Sicknesses.First());
@@ -244,7 +244,7 @@ namespace S_M_D.Tests
             MentalHospital MH = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.MentalHospital ) as MentalHospital;
             MH.LevelUP();
             Assert.Throws<ArgumentException>( () => MH.DeletePsychologyHero( new Agressivity() ) );
-            MH.setHero( ctx.PlayerInfo.MyHeros[0] );
+            MH.SetHero( ctx.PlayerInfo.MyHeros[0] );
             Assert.Throws<ArgumentException>( () => MH.DeletePsychologyHero( new Agressivity() ) );
             ctx.PlayerInfo.MyHeros[0].GetPsycho( new Agressivity() );
             MH.DeletePsychologyHero( MH.Hero.Psycho.First() );

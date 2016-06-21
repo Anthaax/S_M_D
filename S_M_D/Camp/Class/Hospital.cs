@@ -21,7 +21,7 @@ namespace S_M_D.Camp.Class
         /// Put the hero in the building
         /// </summary>
         /// <param name="h"> The hero to add </param>
-        public void setHero(BaseHeros h)
+        public void SetHero(BaseHeros h)
         {
             _hero = h;
             _hero.InBuilding = this;
@@ -29,9 +29,10 @@ namespace S_M_D.Camp.Class
         /// <summary>
         /// Remove the from the building
         /// </summary>
-        public void deleteHeros()
+        public void DeleteHero()
         {
-            _hero.InBuilding = null;
+            if(_hero != null)
+                _hero.InBuilding = null;
             _hero = null;
         }
         /// <summary>

@@ -21,6 +21,9 @@ namespace S_M_D.Combat
         }
         public void HeroLaunchSpell( Spells spell, int position )
         {
+            if (spell.ManaCost > _combatManager.GetCharacterTurn().Mana) throw new ArgumentException( "Spell can't be launch hero haven't enought mana", "Mana" );
+            if (spell.CooldownManager.IsOnCooldown) throw new ArgumentException( "Spell can't be launch he is on cooldown", "Cooldow" );
+            _combatManager.GetCharacterTurn().Mana -= spell.ManaCost;
             if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
                 LaunchHealOnHero( spell, position );
             else
@@ -28,10 +31,24 @@ namespace S_M_D.Combat
         }
         public void MonsterLaunchSpell( Spells spell, int position )
         {
+            _combatManager.GetCharacterTurn().Mana -= spell.ManaCost;
             if (spell.KindOfEffect.DamageType == DamageTypeEnum.Heal)
                 LaunchHealOnMonster( spell, position );
             else
                 LaunchDamageSpellOnHero( spell, position );
+        }
+        public void ApplyDamageOnTime()
+        {
+            BaseCharacter charac = _combatManager.GetCharacterTurn();
+            KindOfEffect effect;
+            _combatManager.DamageOnTime.TryGetValue( charac, out effect );
+            if(effect != null)
+            {
+                charac.HP -= effect.EffectiveDamagePerTurn;
+                effect.EffectiveTurn--;
+                if (effect.EffectiveTurn == 0)
+                    _combatManager.DamageOnTime.Remove( charac );
+            }
         }
         private void LaunchDamageSpellOnMonster(Spells spell, int position)
         {
@@ -72,13 +89,16 @@ namespace S_M_D.Combat
                         if (existentSpellEffect == null)
                             _combatManager.DamageOnTime[character] = spellEffect;
                         else if (spellEffect.DamageType == existentSpellEffect.DamageType)
+                        {
                             existentSpellEffect.EffectiveDamagePerTurn += spellEffect.DamagePerTurn;
+                            existentSpellEffect.EffectiveTurn = Math.Max( spellEffect.Turn, existentSpellEffect.EffectiveTurn);
+                        }
                         else
                             _combatManager.DamageOnTime[character] = spellEffect;
                     }
                     else if (spell.KindOfEffect.CanBeBlock)
                         character.HP += spellEffect.Damage;
-                    suppresDeadCharacter<T>( i + position );
+                    SuppresDeadCharacter<T>( i + position );
                 }
                 i++;
             }
@@ -127,7 +147,7 @@ namespace S_M_D.Combat
                 character = _combatManager.Monsters[position];
             return character;
         }
-        private void suppresDeadCharacter<T>(int position)
+        private void SuppresDeadCharacter<T>(int position)
         {
             Type typeOfT = typeof( T );
             BaseCharacter charac = GetTheCharacter(typeOfT,position);
@@ -138,7 +158,6 @@ namespace S_M_D.Combat
             _combatManager.CharacterOrderAttack.RemoveAll( c => c.HP <= 0 );
             _combatManager.GameContext.PlayerInfo.MyHeros.Where(c => c.HP <= 0).ToList().ForEach( c => c.Die() );
             _combatManager.GameContext.PlayerInfo.MyHeros.RemoveAll( c => c.HP <= 0 );
-            
         }
     }
 }
