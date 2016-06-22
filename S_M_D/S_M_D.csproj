@@ -131,9 +131,13 @@
     <Compile Include="Sickness\Staphyloccocus.cs" />
     <Compile Include="Spell\CooldownManager.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />
+    <Compile Include="Spell\Mage\ThunderBolt.cs" />
     <Compile Include="Spell\Mage\BasicAttackMage.cs" />
+    <Compile Include="Spell\Mage\ShootingStars.cs" />
     <Compile Include="Spell\Mage\ChaosBolt.cs" />
+    <Compile Include="Spell\Mage\Toxic.cs" />
     <Compile Include="Spell\Mage\CockStorm.cs" />
+    <Compile Include="Spell\Mage\Hydrobast.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Monsters\BasicAttack.cs" />
     <Compile Include="Spell\Monsters\CerebralAttack.cs" />

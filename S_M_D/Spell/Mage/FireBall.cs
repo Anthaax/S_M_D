@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public FireBall(Mage mage)
-            : base("FireBall", 400, "Boule de feu", 5, 0, true, false)
+            : base("FireBall", 400, "Boule de feu", 5, 0, true, true)
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 1 );
