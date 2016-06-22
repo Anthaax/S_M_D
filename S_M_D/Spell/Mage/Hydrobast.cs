@@ -33,7 +33,7 @@ namespace S_M_D.Spell
 
         public override KindOfEffect OnLaunchSpell()
         {
-            return new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Fire, WaterDamage[Lvl], 2, _damageRatioByLvl[Lvl] );
+            return new KindOfEffect( Mage.EffectivDamage, DamageTypeEnum.Fire, _waterDamage[Lvl], 2, _damageRatioByLvl[Lvl] );
 
         }
 
