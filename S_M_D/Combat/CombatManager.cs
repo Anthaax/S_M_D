@@ -101,6 +101,7 @@ namespace S_M_D.Combat
                         else
                         {
                             monster = NextCharacter as BaseMonster;
+                            monster.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
                             count++;
                         }
                     }
@@ -115,6 +116,7 @@ namespace S_M_D.Combat
         /// <returns></returns>
         public BaseCharacter NextTurn()
         {
+            UpdateCooldown();
             _turn++;
             return GetCharacterTurn();
         }
@@ -161,6 +163,19 @@ namespace S_M_D.Combat
         public List<BaseCharacter> CharacterOrderAttack
         {
             get { return _characterOrderAttack; }
+        }
+        private void UpdateCooldown()
+        {
+            BaseHeros hero = GetCharacterTurn() as BaseHeros;
+            if (hero != null)
+            {
+                hero.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
+            }
+            else
+            {
+                BaseMonster monster = GetCharacterTurn() as BaseMonster;
+                monster.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
+            }
         }
     }
 }

@@ -229,6 +229,16 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual( herosName, cbt.Heros[3].CharacterName );
             Assert.AreEqual( herosName1, cbt.Heros[0].CharacterName );
         }   
+        [Test]
+        public void UpdateCooldown()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+            BaseHeros heros = cbt.GetCharacterTurn() as BaseHeros;
+            cbt.SpellManager.HeroLaunchSpell( heros.Spells.First(), 0 );
+            cbt.NextTurn();
+            Assert.AreEqual( false, heros.Spells.First().CooldownManager.IsOnCooldown );
+        }
 
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {
