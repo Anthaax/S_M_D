@@ -65,28 +65,49 @@ namespace S_M_D.Character
         /// <summary>
         /// Put a new item if the item slot wasn't empty return exeption 
         /// </summary>
-        /// <param name="item">Item to add</param>
-        public void GetNewItem (BaseItem item)
+        /// <param name="itemToAdd">Item to add</param>
+        public void GetNewItem (BaseItem itemToAdd)
         {
-            if (item.Itemtype == BaseItem.ItemTypes.Armor)
+            if (itemToAdd.Itemtype == BaseItem.ItemTypes.Armor)
             {
-                if (Equipement[0] == null) Equipement[0] = item;
-                else throw new ArgumentException("You already have an armor!");
+                if (Equipement[0] == null)
+                {
+                    Equipement[0] = itemToAdd;
+                    _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
+                }
+                else throw new ArgumentException( "You already have an armor!" );
             }
-            else if (item.Itemtype == BaseItem.ItemTypes.Weapon)
+            else if (itemToAdd.Itemtype == BaseItem.ItemTypes.Weapon)
             {
-                if (Equipement[1] == null) Equipement[1] = item;
-                else throw new ArgumentException("You already have a weapon!");
+                if (Equipement[1] == null)
+                {
+                    Equipement[1] = itemToAdd;
+                    _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
+                }
+                else throw new ArgumentException( "You already have a weapon!" );
             }
-            else if (item.Itemtype == BaseItem.ItemTypes.Trinket)
+            else if (itemToAdd.Itemtype == BaseItem.ItemTypes.Trinket)
             {
-                if (Equipement[2] == null) Equipement[2] = item;
-                else if (Equipement[3] == null) Equipement[3] = item;
+                if (Equipement[2] == null)
+                {
+                    Equipement[2] = itemToAdd;
+                    _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
+                }
+                else if (Equipement[3] == null)
+                {
+                    Equipement[3] = itemToAdd;
+                    _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
+                }
                 else throw new ArgumentException( "You already have a Trinket!" );
             }
-            else throw new ArgumentException("Type of item non reconize!");
+            else throw new ArgumentException( "Type of item non reconize!" );
             UpdateHeroStats();
         }
+        /// <summary>
+        /// Remove an item from an hero and add an item from inventory
+        /// </summary>
+        /// <param name="itemToRemove">Item from the Hero</param>
+        /// <param name="itemToAdd">Item from the inventory</param>
         public void RemoveAndAddAnItem(BaseItem itemToRemove, BaseItem itemToAdd)
         {
             int x = 0;
@@ -97,10 +118,10 @@ namespace S_M_D.Character
                     _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
                     _ctx.PlayerInfo.MyItems.Add( itemToRemove );
                     Equipement[x] = itemToAdd;
+                    UpdateHeroStats();
                 }
                 x++;
             }
-
         }
         /// <summary>
         /// Add hero from deadhero list
@@ -124,6 +145,7 @@ namespace S_M_D.Character
                 {
                     Equipement[x] = null;
                     _ctx.PlayerInfo.MyItems.Add( item );
+                    UpdateHeroStats();
                 }
                 x++;
             }

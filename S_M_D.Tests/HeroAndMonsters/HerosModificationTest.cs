@@ -247,6 +247,7 @@ namespace S_M_D.Tests
             warrior.RemoveItem( warrior.Equipement[2] );
             warrior.RemoveItem( warrior.Equipement[3] );
             Assert.AreEqual( 4, ctx.PlayerInfo.MyItems.Count );
+            ctx.PlayerInfo.MyItems.Add( item );
             warrior.GetNewItem( item );
             Assert.AreEqual(item, warrior.Equipement[0]);
             Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += item.CritChance);

@@ -99,27 +99,36 @@ namespace S_M_D.Character
             int nbMatchItem = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor )
                                 .Count();
-            hero.GetNewItem(GameContext.AllItemInGame
+            BaseItem item = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Armor )
-                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )];
+            AddItem( item, hero );
             nbMatchItem = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon )
                                 .Count();
-            hero.GetNewItem(GameContext.AllItemInGame
+            item = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Weapon )
-                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )];
+            AddItem( item, hero );
             nbMatchItem = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
                                 .Count();
-            hero.GetNewItem(GameContext.AllItemInGame
+            item = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
-                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )];
+            AddItem( item, hero );
             nbMatchItem = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
                                 .Count();
-            hero.GetNewItem(GameContext.AllItemInGame
+            item = GameContext.AllItemInGame
                                 .Where( c => c.Quality == BaseStatItem.quality.common && c.Itemtype == BaseItem.ItemTypes.Trinket )
-                                .ToList()[GameContext.Rnd.Next( nbMatchItem )]);
+                                .ToList()[GameContext.Rnd.Next( nbMatchItem )];
+            AddItem( item, hero );
+        }
+        private void AddItem(BaseItem itemToAdd, BaseHeros hero)
+        {
+            _ctx.PlayerInfo.MyItems.Add( itemToAdd );
+            hero.GetNewItem( itemToAdd );
         }
 
     }
