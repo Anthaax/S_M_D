@@ -241,10 +241,12 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Armor);
             Assert.Throws<ArgumentException>(() => warrior.GetNewItem(item));
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyItems.Count );
             warrior.RemoveItem( warrior.Equipement[0] );
             warrior.RemoveItem( warrior.Equipement[1] );
             warrior.RemoveItem( warrior.Equipement[2] );
             warrior.RemoveItem( warrior.Equipement[3] );
+            Assert.AreEqual( 4, ctx.PlayerInfo.MyItems.Count );
             warrior.GetNewItem( item );
             Assert.AreEqual(item, warrior.Equipement[0]);
             Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += item.CritChance);

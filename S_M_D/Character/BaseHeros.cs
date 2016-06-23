@@ -92,7 +92,7 @@ namespace S_M_D.Character
             int x = 0;
             foreach (BaseItem equip in Equipement)
             {
-                if (equip == itemToRemove)
+                if (equip == itemToRemove && itemToRemove.Itemtype == itemToAdd.Itemtype)
                 {
                     _ctx.PlayerInfo.MyItems.Remove( itemToAdd );
                     _ctx.PlayerInfo.MyItems.Add( itemToRemove );

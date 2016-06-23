@@ -236,8 +236,17 @@ namespace S_M_D.Tests.Combat
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             BaseHeros heros = cbt.GetCharacterTurn() as BaseHeros;
             cbt.SpellManager.HeroLaunchSpell( heros.Spells.First(), 0 );
-            cbt.NextTurn();
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
             Assert.AreEqual( false, heros.Spells.First().CooldownManager.IsOnCooldown );
+            cbt.SpellManager.HeroLaunchSpell( heros.Spells[1], 1 );
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
+            Assert.AreEqual( false, heros.Spells[1].CooldownManager.IsOnCooldown );
         }
 
         private void UseRndMultipleTime( Random rnd, int nbTime )

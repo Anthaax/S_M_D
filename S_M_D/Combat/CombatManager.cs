@@ -91,7 +91,7 @@ namespace S_M_D.Combat
                     BaseCharacter NextCharacter;
                     if (monster != null)
                     {
-                        NextCharacter = _iaMonster.MonsterTurnAndDoNextTurn(monster);
+                        NextCharacter = IaMonster.MonsterTurnAndDoNextTurn(monster);
                         BaseHeros hero = NextCharacter as BaseHeros;
                         if (hero != null)
                         {
@@ -164,6 +164,15 @@ namespace S_M_D.Combat
         {
             get { return _characterOrderAttack; }
         }
+
+        public IAMonster IaMonster
+        {
+            get
+            {
+                return _iaMonster;
+            }
+        }
+
         private void UpdateCooldown()
         {
             BaseHeros hero = GetCharacterTurn() as BaseHeros;

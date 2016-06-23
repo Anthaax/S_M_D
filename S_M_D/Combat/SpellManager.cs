@@ -159,5 +159,9 @@ namespace S_M_D.Combat
             _combatManager.GameContext.PlayerInfo.MyHeros.Where(c => c.HP <= 0).ToList().ForEach( c => c.Die() );
             _combatManager.GameContext.PlayerInfo.MyHeros.RemoveAll( c => c.HP <= 0 );
         }
+        private bool CriticalHit()
+        {
+            return _combatManager.GameContext.Rnd.Next( 100 ) < _combatManager.GetCharacterTurn().EffectCritChance;
+        }
     }
 }

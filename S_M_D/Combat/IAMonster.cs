@@ -33,9 +33,8 @@ namespace S_M_D.Combat
         public BaseCharacter MonsterTurnAndDoNextTurn(BaseMonster monster)
         {
             _cbt.SpellManager.ApplyDamageOnTime();
-            if (_mosterAction.Count == 4)
-                _mosterAction.Clear();
-            if (_cbt.GameContext.Rnd.Next( 3 ) != 0)
+            MonsterAlreadyAttack( monster );
+            if (_cbt.GameContext.Rnd.Next( 4 ) != 0)
                 LaunchSpell( monster );
             else
                 MoveHero();
@@ -78,6 +77,14 @@ namespace S_M_D.Combat
                 second = _cbt.GameContext.Rnd.Next( 4 );
             }
             _cbt.SpellManager.MoveCharacter<BaseHeros>( first, second );
+        }
+        private void MonsterAlreadyAttack(BaseMonster monster)
+        {
+            foreach (var spell in monster.Spells)
+            {
+                if (_mosterAction.ContainsKey( spell ))
+                    _mosterAction.Remove( spell );
+            }
         }
     }
 }
