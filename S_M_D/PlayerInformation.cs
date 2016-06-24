@@ -17,14 +17,16 @@ namespace S_M_D
         readonly List<BaseBuilding> _myBuildings;
         readonly List<BaseItem> _myItems;
         readonly List<BaseHeros> _deadHero;
+        readonly List<BaseHeros> _onlineDude;
         int _numberOfWeek;
-        public PlayerInformation(GameContext ctx)
+        public PlayerInformation( GameContext ctx )
         {
             _ctx = ctx;
             _myHeros = new List<BaseHeros>();
             _deadHero = new List<BaseHeros>();
             _myBuildings = new List<BaseBuilding>();
             _myItems = new List<BaseItem>();
+            _onlineDude = new List<BaseHeros>();
             _numberOfWeek = 0;
         }
 
@@ -76,6 +78,14 @@ namespace S_M_D
             }
         }
 
+        public List<BaseHeros> OnlineDude
+        {
+            get
+            {
+                return _onlineDude;
+            }
+        }
+
         public void NewWeek()
         {
             _numberOfWeek++;
@@ -83,9 +93,9 @@ namespace S_M_D
             RemoveAllHeroInBuildings();
         }
 
-        public BaseBuilding GetBuilding(BuildingNameEnum name)
+        public BaseBuilding GetBuilding( BuildingNameEnum name )
         {
-            return _myBuildings.Find(t => t.Name == name);
+            return _myBuildings.Find( t => t.Name == name );
         }
         public BaseHeros GetHeros( string name )
         {
@@ -93,15 +103,15 @@ namespace S_M_D
         }
         public void InitializedBuilding()
         {
-            _ctx.BuildingManager.Find(BuildingNameEnum.Townhall).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Armory).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Bar).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Caravan).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Casern).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Cemetery).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Hospital).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.Hotel).CreateBuilding();
-            _ctx.BuildingManager.Find(BuildingNameEnum.MentalHospital).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Townhall ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Armory ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Bar ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Caravan ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Casern ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Cemetery ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Hospital ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.Hotel ).CreateBuilding();
+            _ctx.BuildingManager.Find( BuildingNameEnum.MentalHospital ).CreateBuilding();
         }
         public void InitializedHeros()
         {
@@ -119,9 +129,19 @@ namespace S_M_D
 
                 if (SingleHero != null)
                     SingleHero.DeleteHero();
-                else if(MultipleHeros != null)
+                else if (MultipleHeros != null)
                     MultipleHeros.DeleteHeros();
             }
+        }
+        public void CreateHeroForMulti( string className, string name, int isMale, int iDWeapon0, int iDWeapon1, int iDWeapon2, int iDWeapon3, int level )
+        {
+            List<int> ID = new List<int>();
+            ID.Add( iDWeapon0 );
+            ID.Add( iDWeapon1 );
+            ID.Add( iDWeapon2 );
+            ID.Add( iDWeapon3 );
+            BaseHeros hero = _ctx.HeroManager.Find( className ).CreateHeroWithLeve( level, isMale == 0, name, ID.ToArray() );
+            _onlineDude.Add( hero );
         }
     }
 }

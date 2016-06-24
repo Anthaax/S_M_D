@@ -9,15 +9,15 @@ namespace S_M_D.Character
     [Serializable]
     public class WarriorConfiguration : HerosType
     {
-        readonly int _HPmax;
-        readonly int _HP;
-        readonly int _manaMax;
-        readonly int _mana;
+        int _HPmax;
+        int _HP;
+        int _manaMax;
+        int _mana;
 
         // Attacks stats
-        readonly int _damage;
+        int _damage;
         readonly int _critChance;
-        readonly int _hitChance;
+        int _hitChance;
         readonly int _speed;
 
         // Resistances stats
@@ -30,7 +30,7 @@ namespace S_M_D.Character
 
         //Defense stats
         readonly int _defense;
-        readonly int _dodgeChance;
+        int _dodgeChance;
         readonly int _evilness;
         readonly string _sickness;
         readonly string _psycho;
@@ -39,7 +39,6 @@ namespace S_M_D.Character
         readonly Spells[] _spells;
         readonly int _xp;
         readonly int _xpMax;
-
         /// <summary>
         /// Warrior configuration for create a paladin with the good configuration
         /// </summary>
@@ -93,7 +92,15 @@ namespace S_M_D.Character
             hero.Spells[2] = new HearthAttack( warrior );
             hero.Spells[3] = new MultipleHit( warrior );
         }
-
+        protected override BaseHeros ApplyLevelAndCreateHero( int level )
+        {
+            _HPmax += 10 * level;
+            _manaMax += 10 * level;
+            _damage += 2 * level;
+            _hitChance += 30 * level;
+            _dodgeChance += 3 * level;
+            return DoCreateHero();
+        }
         public int HPmax
         {
             get

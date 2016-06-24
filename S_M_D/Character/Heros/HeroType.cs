@@ -70,6 +70,16 @@ namespace S_M_D.Character
             _ctx.PlayerInfo.MyHeros.Add( Hero );
             return Hero;
         }
+        public BaseHeros CreateHeroWithLeve(int level, bool isMale, string characterName, int[] IDItem)
+        {
+            _isMale = isMale;
+            _characterName = characterName;
+            BaseHeros Hero = ApplyLevelAndCreateHero( level );
+            Hero.Lvl = level;
+            InitilizedSpell(Hero);
+            EquipedItemWithID( IDItem, Hero );
+            return Hero;
+        }
         /// <summary>
         /// Create an hero with is good configuration
         /// </summary>
@@ -89,6 +99,7 @@ namespace S_M_D.Character
         /// </summary>
         /// <returns> Return the new hero </returns>
         protected abstract BaseHeros DoCreateHero();
+        protected abstract BaseHeros ApplyLevelAndCreateHero( int level );
         /// <summary>
         /// Initialize all spell of an paladin
         /// </summary>
@@ -130,6 +141,17 @@ namespace S_M_D.Character
             _ctx.PlayerInfo.MyItems.Add( itemToAdd );
             hero.GetNewItem( itemToAdd );
         }
-
+        private void EquipedItemWithID(int[] ID, BaseHeros hero)
+        {
+            foreach (var id in ID)
+            {
+                if(id != 0)
+                {
+                    BaseItem item = GameContext.AllItemInGame
+                                .First( c => c.ItemId == id );
+                    AddItem( item, hero );
+                }
+            }
+        }
     }
 }
