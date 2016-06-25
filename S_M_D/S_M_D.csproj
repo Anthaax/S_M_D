@@ -150,6 +150,7 @@
     <Compile Include="Spell\Priest\HeartPurification.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\KindOfEffect.cs" />
+    <Compile Include="Spell\SpellComparer.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\TargetManager.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />

@@ -290,6 +290,15 @@ namespace S_M_D.Character
             }
 
         }
+        public void ChangeSpellToEquip(Spells spellToEquip, Spells spellToUnequip)
+        {
+            if (!Spells.Contains(spellToEquip) || !Spells.Contains(spellToUnequip)) throw new ArgumentException("One of these spell wasn't to this hero");
+            if (spellToEquip.IsEquiped || !spellToUnequip.IsEquiped) throw new ArgumentException("Spells doesn't have the condition requierd to continue", "IsEquiped");
+            spellToEquip.IsEquiped = true;
+            spellToUnequip.IsEquiped = false;
+            SpellComparer compare = new SpellComparer();
+            Array.Sort(Spells, compare);
+        }
         public abstract void LevelUp();
         public int Evilness
         {

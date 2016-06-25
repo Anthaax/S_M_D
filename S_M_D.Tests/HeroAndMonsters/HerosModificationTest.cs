@@ -390,6 +390,14 @@ namespace S_M_D.Tests
             Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
             Assert.AreEqual(warrior.EffectivDefense, warrior.Defense + equipementValueDef);
         }
-
+        [Test]
+        public void equipedASpell()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            Mage mage = ctx.PlayerInfo.MyHeros.First() as Mage;
+            Spell.Spells spellToequip = mage.Spells.Last();
+            mage.ChangeSpellToEquip(spellToequip, mage.Spells.First());
+            Assert.AreNotEqual(spellToequip, mage.Spells.Last());
+        }
     }
 }
