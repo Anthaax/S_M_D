@@ -171,7 +171,9 @@
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Camp\BatiementDiagram.cd" />
     <None Include="DiagramHeros.cd" />
+    <None Include="Dungeon\DungeonDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Armors.xml" />

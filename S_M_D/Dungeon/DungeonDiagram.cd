@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="S_M_D.Dungeon.CircularRoom" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAABAAEAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Dungeon\CircularRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Dungeon.Corridor" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dungeon\Corridor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Dungeon.CorridorGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAABIAAAEEAAAEAAAAA=</HashCode>
+      <FileName>Dungeon\CorridorGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="S_M_D.Dungeon.EventGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAQIAAAAAAAAAAAAAAAAAAACAAAACAAAAAAEAAQAA=</HashCode>
+      <FileName>Dungeon\EventGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="S_M_D.Dungeon.Map" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Rooms" Type="S_M_D.Dungeon.Room" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="0.781" />
+        <Point X="6.75" Y="0.781" />
+        <Point X="6.75" Y="2.338" />
+        <Point X="3.5" Y="2.338" />
+        <Point X="3.5" Y="1.875" />
+        <Point X="3" Y="1.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Corridors" Type="S_M_D.Dungeon.Corridor" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="0.688" />
+        <Point X="6.156" Y="0.688" />
+        <Point X="6.156" Y="1.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAgAARAAAAAAgAgAAAEACACBgBABAAAAAAAAAAQA=</HashCode>
+      <FileName>Dungeon\Map.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Rooms" />
+      <Property Name="Grid" />
+      <Property Name="Corridors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="S_M_D.Dungeon.MapGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAEAAAAQAAAAAAAAAQgAAAABABCQAAAAAAEAAAAE=</HashCode>
+      <FileName>Dungeon\MapGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="S_M_D.Dungeon.MapItem" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAIBAAACAAAAIAAgAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Dungeon\MapItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Dungeon.PolygonRoom" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAACAAABAAEAAAAAAgAAAAAAACAAEACAEAAAAA=</HashCode>
+      <FileName>Dungeon\PolygonRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Dungeon.RectangularRoom" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEQAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Dungeon\RectangularRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Dungeon.Room" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABAAAAQBAAAAAAAAAAAAAAAAAIAAAECAAAIAAA=</HashCode>
+      <FileName>Dungeon\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.DungeonManager" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="Ctx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAEAAAAAACAAIAAIAAAAhAACAAACwAABAgQI=</HashCode>
+      <FileName>Dungeon\DungeonManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurentDungeon" />
+      <Property Name="Ctx" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="S_M_D.GameContext" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAIAEAqAAABAAAgAAgAAgIAAAAAAAQAAAIAATBAk=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DungeonManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="S_M_D.Dungeon.WeightedEdge" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <Members>
+      <Property Name="Room1" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Dungeon\CorridorGenerator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Room1" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="S_M_D.Dungeon.Edge" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <Members>
+      <Property Name="Room1" Hidden="true" />
+      <Property Name="Room2" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Dungeon\CorridorGenerator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Room1" />
+      <Property Name="Room2" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="S_M_D.Dungeon.Point" Collapsed="true">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Dungeon\Point.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="S_M_D.Dungeon.ICorridorGenerator" Collapsed="true">
+    <Position X="11" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Dungeon\ICorridorGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="S_M_D.Dungeon.IEventGenerator" Collapsed="true">
+    <Position X="9.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Dungeon\IEventGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="S_M_D.Dungeon.IMapGenerator" Collapsed="true">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Dungeon\IMapGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

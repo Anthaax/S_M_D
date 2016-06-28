@@ -91,6 +91,10 @@ namespace S_M_D.Character
             hero.Spells[1] = new GodDivination( paladin );
             hero.Spells[2] = new GodHelp( paladin );
             hero.Spells[3] = new JusticeHammer( paladin );
+            hero.Spells[4] = new DivineStorm( paladin );
+            hero.Spells[5] = new DivineWrath( paladin );
+            hero.Spells[6] = new SealOfWrath( paladin );
+            hero.Spells[7] = new WrathHammer( paladin );
         }
         protected override BaseHeros ApplyLevelAndCreateHero( int level )
         {

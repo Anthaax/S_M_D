@@ -8,7 +8,7 @@ using System.Text;
 namespace S_M_D.Camp.Class
 {
     [Serializable]
-    public class Hospital : BaseBuilding, ILevelUP
+    public class Hospital : BaseBuilding, ILevelUP, ISingleHero
     {
         private BaseHeros _hero;
         int _actionPrice;
