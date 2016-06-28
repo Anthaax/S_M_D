@@ -7,7 +7,7 @@ using S_M_D.Character;
 namespace S_M_D.Spell
 {
     [Serializable]
-    public class MultipleHit : Spells
+    public class HeroicRush : Spells
     {
         float[] _damageRatioByLvl = new float[4] { 2.5f, 5f, 7.5f, 10f };
         readonly Warrior _warrior;
@@ -15,8 +15,8 @@ namespace S_M_D.Spell
         /// 
         /// </summary>
         /// <param name="warrior"></param>
-        public MultipleHit( Warrior warrior)
-            : base( "MultipleHit", 600, "Multiple Assaults sur un meme ennemis ", 5, 0, true, true)
+        public HeroicRush( Warrior warrior)
+            : base( "HeroicRush", 400, "Charge héroïquement sur l'ennemi", 10, 0, false, false)
         {
             _warrior = warrior;
             CooldownManager = new CooldownManager( 1 );

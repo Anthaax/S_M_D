@@ -73,31 +73,7 @@ namespace S_M_D.Character.Monsters
                     Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
                     return Poco;
-                case MonsterType.GOBELIN:
-                    Poco.HPmax = 20 + 1 * level;
-                    Poco.HP = 20 + 1 * level;
-                    Poco.ManaMax = 40 + 5 * level;
-                    Poco.Mana = 40 + 5 * level;
-                    Poco.Damage = 2 + 2 * level;
-                    Poco.CritChance = 0;
-                    Poco.HitChance = 80;
-                    Poco.Speed = 9;
-                    Poco.AffectRes = 0;
-                    Poco.Lvl = level;
-                    Poco.BleedingRes = 0;
-                    Poco.MagicRes = 0;
-                    Poco.FireRes = 0;
-                    Poco.PoisonRes = 0;
-                    Poco.WaterRes = 0;
-                    Poco.Defense = 0;
-                    Poco.DodgeChance = 60;
-                    Poco.GiveXp = 1;
-                    Poco.InitializedEffectiveStats();
-                    Poco.Type = MonsterType.GOBELIN;
-                    Poco.Spells = new List<Spells>();
-                    Poco.Spells.Add( new CerebralAttack( Poco ) );
-                    Poco.Spells.Add( new BasicAttack( Poco ) );
-                    return Poco;
+                
                 case MonsterType.TROLL:
                     Poco.HPmax = 20 + 8 * level;
                     Poco.HP = 20 + 8 * level;

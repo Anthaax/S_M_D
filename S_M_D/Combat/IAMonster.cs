@@ -58,7 +58,7 @@ namespace S_M_D.Combat
             if (canLauncSpell.Count > 0)
             {
                 Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next( canLauncSpell.Count )];
-                int position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+                int position = SelectHero();
                 _cbt.SpellManager.MonsterLaunchSpell( spellToLaunch, position );
                 MosterAction.Add( spellToLaunch, position );
             }
@@ -72,7 +72,7 @@ namespace S_M_D.Combat
         {
             int first = _cbt.GameContext.Rnd.Next( 4 );
             int second = _cbt.GameContext.Rnd.Next( 4 );
-            while (second == first)
+            while (second == first || _cbt.Heros[second].IsDead)
             {
                 second = _cbt.GameContext.Rnd.Next( 4 );
             }
@@ -85,6 +85,15 @@ namespace S_M_D.Combat
                 if (_mosterAction.ContainsKey( spell ))
                     _mosterAction.Remove( spell );
             }
+        }
+        private int SelectHero()
+        {
+            int position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+            while (_cbt.Heros[position].IsDead)
+            {
+                position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+            }
+            return position;
         }
     }
 }

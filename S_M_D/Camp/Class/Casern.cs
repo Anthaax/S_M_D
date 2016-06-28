@@ -47,7 +47,7 @@ namespace S_M_D.Camp.Class
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );
             if (!spell.IsBuy) throw new ArgumentException( "Can't upgrate this spell he wasn't buy" );
-            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price + (1000 / (Level+1)) + (100*(spell.Lvl+1)) );
+            if (Ctx.MoneyManager.CanBuy( _actionPrice / Level )) Ctx.MoneyManager.Buy( _actionPrice / Level );
             else throw new ArgumentException( "You Can't buy this thing" );
             spell.LevelUp();
         }

@@ -89,7 +89,7 @@ namespace S_M_D.Combat
                     else
                         monster = GetCharacterTurn() as BaseMonster;
                     BaseCharacter NextCharacter;
-                    if (monster != null)
+                    if (monster != null || !monster.IsDead)
                     {
                         NextCharacter = IaMonster.MonsterTurnAndDoNextTurn(monster);
                         BaseHeros hero = NextCharacter as BaseHeros;
@@ -118,6 +118,8 @@ namespace S_M_D.Combat
         {
             UpdateCooldown();
             _turn++;
+            if (GetCharacterTurn().IsDead == true)
+                NextTurn();
             return GetCharacterTurn();
         }
 
