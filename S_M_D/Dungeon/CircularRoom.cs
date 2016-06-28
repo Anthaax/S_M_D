@@ -71,6 +71,8 @@ namespace S_M_D.Dungeon
         public override string ToString()
         {
             string s = "CircularRoom" + '\n' + Center.X.ToString() + ' ' + Center.Y.ToString() + '\n' + Radius.ToString() + '\n';
+            if (this.events.Count == 0)
+                return s;
             s += this.events[0] + '\n';
             if (this.events[0] == "Chest")
             {

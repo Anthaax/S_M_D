@@ -60,18 +60,22 @@ namespace S_M_D.Dungeon
                     cr.Path.Add(new Point(int.Parse(coords[0]), int.Parse(coords[1])));
                     cr.Center = cr.Path[0];
                     cr.Radius = int.Parse(desc[idx + 2]);
-                    cr.events.Add(desc[idx + 3]);
-                    if (desc[idx + 3] == "Chest")
+                    if (idx + 3 < desc.Length)
                     {
-                        int chestCount = int.Parse(desc[idx + 4]);
-                        string[] chestContents = desc[idx + 5].Split(' ');
-                        for (int i = 0; i < chestCount; i++)
-                            cr.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
-                        idx += 5;
-                    } 
-                    else
-                    {
-                        idx += 3;
+                        if (desc[idx + 3] == "Chest" || desc[idx + 3] == "Combat")
+                        cr.events.Add(desc[idx + 3]);
+                        if (desc[idx + 3] == "Chest")
+                        {
+                            int chestCount = int.Parse(desc[idx + 4]);
+                            string[] chestContents = desc[idx + 5].Split(' ');
+                            for (int i = 0; i < chestCount; i++)
+                                cr.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
+                            idx += 5;
+                        }
+                        else
+                        {
+                            idx += 3;
+                        }
                     }
                     this.Rooms.Add(cr);
                 }
@@ -103,18 +107,26 @@ namespace S_M_D.Dungeon
                         pts.Add( new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
                     }
                     RectangularRoom rectroom = new RectangularRoom( pts );
-                    rectroom.events.Add(desc[idx + 6]);
-                    if (desc[idx + 6] == "Chest")
+                    if (idx + 6 < desc.Length)
                     {
-                        int chestCount = int.Parse(desc[idx + 7]);
-                        string[] chestContents = desc[idx + 8].Split(' ');
-                        for (int i = 0; i < chestCount; i++)
-                            rectroom.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
-                        idx += 8;
+                        if (desc[idx + 6] == "Chest" || desc[idx + 6] == "Combat")
+                            rectroom.events.Add(desc[idx + 6]);
+                        if (desc[idx + 6] == "Chest")
+                        {
+                            int chestCount = int.Parse(desc[idx + 7]);
+                            string[] chestContents = desc[idx + 8].Split(' ');
+                            for (int i = 0; i < chestCount; i++)
+                                rectroom.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
+                            idx += 8;
+                        }
+                        else
+                        {
+
+                            idx += 4;
+                        }
                     }
                     rectroom.Center = center;
                     this.Rooms.Add(rectroom);
-                    idx += 4;
                 }
                 else
                     idx++;
