@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Dungeon
 {
+    [Serializable]
     public class RectangularRoom : PolygonRoom
     {
 
