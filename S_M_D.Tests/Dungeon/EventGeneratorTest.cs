@@ -18,11 +18,12 @@ namespace S_M_D.Tests.Dungeon
             //Arrange
             EventGenerator testEventGen = new EventGenerator( );
             RectangularRoom testRoom = new RectangularRoom( );
-            Map testMap = new Map( );
+            Map testMap = new Map(GameContext.CreateNewGame());
 
             //Act
             testEventGen.AttachChestEvent( testRoom );
-            testMap.Rooms.Add( testRoom );
+            int monsterNb = (int)((float)(testMap.Rooms.Count + 1) * (60f / 100f));
+            testMap.Rooms.Insert(monsterNb, testRoom );
             testEventGen.Generate( testMap );
 
             //Assert

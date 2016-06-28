@@ -6,6 +6,7 @@ using System.Text;
 namespace S_M_D.Character
 {
 
+    [Serializable]
     public class BaseWeapon : BaseStatItem
     {
         public enum WeaponType

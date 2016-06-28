@@ -9,6 +9,7 @@ using System.Text;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class CombatManager
     {
         readonly BaseMonster[] _monsters;
@@ -18,7 +19,6 @@ namespace S_M_D.Combat
         readonly SpellManager _spellManager;
         readonly GameContext _gameContext;
         readonly IAMonster _iaMonster;
-        readonly Reward _reward;
         int _turn;
         public CombatManager(BaseHeros[] heros, GameContext gameContext)
         {
@@ -28,6 +28,7 @@ namespace S_M_D.Combat
             _monsters = new BaseMonster[4];
             MonsterConfiguration monsterCreation = new MonsterConfiguration();
             createMonster(monsterCreation);
+
             //Initialization of character order of attack
             _characterOrderAttack = new List<BaseCharacter>();
             InitializedOderAttack();
@@ -35,7 +36,6 @@ namespace S_M_D.Combat
             _damageOnTime = new Dictionary<BaseCharacter, KindOfEffect>();
             InitiliazedDictionary();
             _spellManager = new SpellManager( this );
-            _reward = new Reward(_monsters, _gameContext);
             _iaMonster = new IAMonster( this );
             _turn = 0;
         }
@@ -43,8 +43,11 @@ namespace S_M_D.Combat
         {
             for (int x = 0; x < 4; x++)
             {
-                Monsters[x] = monsterCreation.CreateMonster((MonsterType)GameContext.Rnd.Next(1,5), Heros.Max(s => s.Lvl));
+
+                Array valuesM = Enum.GetValues(typeof( MonsterType ) );
+                Monsters[x] = monsterCreation.CreateMonster( (MonsterType)valuesM.GetValue( _gameContext.Rnd.Next( valuesM.Length ) ), Heros.Max(s => s.Lvl));
                 Monsters[x].Position = x;
+                Monsters[x].Id = GameContext.Rnd.Next();
             }
         }
 
@@ -72,33 +75,64 @@ namespace S_M_D.Combat
             }
         }
 
-        public BaseCharacter NextTurn()
+        public BaseCharacter AutomaticNextTurn()
         {
             _turn++;
             BaseCharacter b = GetCharacterTurn();
+            BaseHeros heros = b as BaseHeros;
+            int count = 0;
             Type bType = b.GetType();
+            if(heros != null)
+            {
+                heros.Spells.Where(c => c != null).ToList().ForEach(c => c.CooldownManager.NewTurn());
+            }
             if (!CheckIfTheCombatWasOver())
             {
                 while (typeof(BaseMonster) == bType)
                 {
-                    BaseMonster monster = b as BaseMonster;
+                    BaseMonster monster;
+                    if (count == 0)
+                        monster = b as BaseMonster;
+                    else
+                        monster = GetCharacterTurn() as BaseMonster;
                     BaseCharacter NextCharacter;
-                    if (monster != null)
+                    if (monster != null || !monster.IsDead)
                     {
-                        NextCharacter = _iaMonster.MonsterTurnAndDoNextTurn(monster);
+                        NextCharacter = IaMonster.MonsterTurnAndDoNextTurn(monster);
                         BaseHeros hero = NextCharacter as BaseHeros;
                         if (hero != null)
+                        {
                             hero.Spells.Where(c => c != null).ToList().ForEach(c => c.CooldownManager.NewTurn());
-                        return NextCharacter;
+                            return NextCharacter;
+                        }
+                        else
+                        {
+                            monster = NextCharacter as BaseMonster;
+                            monster.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
+                            count++;
+                        }
                     }
                 }
             }
             return b;
         }
+        /// <summary>
+        /// Methode non automatique Clément utilise la methode MonsterTurn dans IAMonster
+        /// Avant de lance cette methode verifie que le combat n'est fini
+        /// </summary>
+        /// <returns></returns>
+        public BaseCharacter NextTurn()
+        {
+            UpdateCooldown();
+            _turn++;
+            if (GetCharacterTurn().IsDead == true)
+                NextTurn();
+            return GetCharacterTurn();
+        }
 
         public bool CheckIfTheCombatWasOver()
         {
-            return _heros.Where(c => c == null).Count() == 4 || _monsters.Where(c => c == null).Count() == 4;
+            return _heros.Where(c => c.IsDead == true).Count() == 4 || _monsters.Where(c => c.IsDead == true).Count() == 4;
         }
 
         public BaseCharacter GetCharacterTurn()
@@ -107,19 +141,10 @@ namespace S_M_D.Combat
         }
         public void ApplyRewward()
         {
-            foreach (var hero in Heros)
-            {
-                hero.Xp += Reward.Xp / Heros.Where( c => c.HP > 0 ).Count();
-            }
-            _gameContext.MoneyManager.ReciveMoney( Reward.Money );
-            _gameContext.PlayerInfo.MyItems.Add( _reward.Item );
+            _gameContext.DungeonManager.Reward.AddXpCombat( _monsters );
+            _gameContext.DungeonManager.Reward.AddItemToLoot();
+            _gameContext.DungeonManager.Reward.AddGold();
         }
-
-        public Reward Reward
-        {
-            get { return _reward; }
-        }
-
         public BaseHeros[] Heros
         {
             get { return _heros; }
@@ -147,6 +172,28 @@ namespace S_M_D.Combat
         public List<BaseCharacter> CharacterOrderAttack
         {
             get { return _characterOrderAttack; }
+        }
+
+        public IAMonster IaMonster
+        {
+            get
+            {
+                return _iaMonster;
+            }
+        }
+
+        private void UpdateCooldown()
+        {
+            BaseHeros hero = GetCharacterTurn() as BaseHeros;
+            if (hero != null)
+            {
+                hero.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
+            }
+            else
+            {
+                BaseMonster monster = GetCharacterTurn() as BaseMonster;
+                monster.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
+            }
         }
     }
 }

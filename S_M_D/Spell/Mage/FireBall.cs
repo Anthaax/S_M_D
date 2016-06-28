@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class FireBall : Spells
     {
         int[] _fireValueByLvl = new int[4] { 2, 4, 8, 10 };
@@ -16,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public FireBall(Mage mage)
-            : base("FireBall", 400, "Boule de feu", 5, 0, true, false)
+            : base("FireBall", 400, "Boule de feu", 5, 0, true, true)
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 1 );

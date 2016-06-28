@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
+    [Serializable]
    public abstract class Relationship
     {
         string _name;

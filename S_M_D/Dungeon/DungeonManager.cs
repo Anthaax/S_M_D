@@ -8,6 +8,7 @@ using S_M_D.Combat;
 
 namespace S_M_D
 {
+    [Serializable]
     public class DungeonManager
     {
         readonly GameContext _ctx;
@@ -15,10 +16,12 @@ namespace S_M_D
         Map _curentDungeon;
         BaseHeros[] _heros;
         CombatManager _cbtManager;
+        Reward _reward;
         public DungeonManager( GameContext ctx)
         {
             _ctx = ctx;
             _mapCatalogue = new List<Map>();
+            _reward = new Reward( _ctx );
         }
 
         public GameContext Ctx
@@ -49,20 +52,20 @@ namespace S_M_D
             {
                 return _cbtManager;
             }
+        }
 
-            set
+        public Reward Reward
+        {
+            get
             {
-                _cbtManager = value;
+                return _reward;
             }
         }
 
         public void InitializedCatalogue()
         {
             _mapCatalogue.Clear();
-            for (int i = 0; i < 4; i++)
-            {
-                _mapCatalogue.Add( new Map() );
-            }
+            _mapCatalogue.Add( new Map(Ctx) );
         }
         public void CreateDungeon(BaseHeros[] heros, Map dungeon)
         {
@@ -73,6 +76,17 @@ namespace S_M_D
         {
             if (_curentDungeon == null) throw new InvalidOperationException( "Impossible to launch CombatWithout a Map" );
             _cbtManager = new CombatManager( Heros, Ctx );
+        }
+        public void EndOfTheDuengon()
+        {
+            int numbersHeros = _heros.Count( h => h.IsDead == false );
+            if(numbersHeros != 0)
+            {
+                _heros.Where( h => h.IsDead == false ).ToList().ForEach( h => h.Xp += _reward.Xp / numbersHeros );
+                _ctx.PlayerInfo.MyItems.AddRange( _reward.Items );
+                _ctx.MoneyManager.ReciveMoney( _reward.Money );
+            }
+            _ctx.PlayerInfo.NewWeek();
         }
     }
 }

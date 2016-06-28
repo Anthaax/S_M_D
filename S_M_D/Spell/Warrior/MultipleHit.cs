@@ -6,6 +6,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class MultipleHit : Spells
     {
         float[] _damageRatioByLvl = new float[4] { 2.5f, 5f, 7.5f, 10f };
@@ -15,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="warrior"></param>
         public MultipleHit( Warrior warrior)
-            : base( "MultipleHit", 400, "Frappe avec le marteau de la justice", 5, 0, true, true)
+            : base( "MultipleHit", 600, "Multiple Assaults sur un meme ennemis ", 5, 0, true, true)
         {
             _warrior = warrior;
             CooldownManager = new CooldownManager( 1 );

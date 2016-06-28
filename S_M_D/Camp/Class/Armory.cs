@@ -7,7 +7,8 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Armory : BaseBuilding, ILevelUP
+    [Serializable]
+    public class Armory : BaseBuilding, ILevelUP, ISingleHero
     {
         BaseHeros _hero;
         int _actionPrice;
@@ -34,7 +35,8 @@ namespace S_M_D.Camp.Class
         /// </summary>
         public void DeleteHero()
         {
-            _hero.InBuilding = null;
+            if(_hero != null)
+                _hero.InBuilding = null;
             _hero = null;
         }
         /// <summary>

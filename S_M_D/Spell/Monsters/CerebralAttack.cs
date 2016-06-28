@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Spell.Monsters
 {
+    [Serializable]
     public class CerebralAttack : Spells
     {
         readonly BaseMonster _monster;

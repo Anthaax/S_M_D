@@ -96,14 +96,14 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
             ctx.HeroManager.Find(HerosEnum.Mage.ToString()).CreateHero();
-            Hotel h = ctx.PlayerInfo.GetBuilding(BuildingName.Hotel) as Hotel;
-            //h.setHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
+            Hotel h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hotel) as Hotel;
+            h.SetHeros(ctx.PlayerInfo.MyHeros.First(), ctx.PlayerInfo.MyHeros[1]);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero1);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[1], h.Hero2);
             h.CreateRelationHero();
             Assert.AreEqual(1, ctx.PlayerInfo.MyHeros.First().Relationship.Count);
             Assert.AreEqual(1, ctx.PlayerInfo.MyHeros[1].Relationship.Count);
-            h.deleteHeros();
+            h.DeleteHeros();
             Assert.IsNull(h.Hero1);
             Assert.IsNull(h.Hero2);
         }
@@ -113,10 +113,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Casern casern = ctx.PlayerInfo.GetBuilding(BuildingName.Casern) as Casern;
-            casern.Hero = ctx.PlayerInfo.MyHeros.First();
+            Casern casern = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Casern) as Casern;
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), casern.Hero);
-            casern.deleteHero();
+            casern.DeleteHero();
             Assert.IsNull(casern.Hero);
         }
         //Hospital
@@ -125,10 +125,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            Hospital h = ctx.PlayerInfo.GetBuilding(BuildingName.Hospital) as Hospital;
-            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            Hospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.Hospital) as Hospital;
+            h.SetHero(ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHero();
+            h.DeleteHero();
             Assert.IsNull(h.Hero);
         }
         //MentalHospital
@@ -137,10 +137,10 @@ namespace S_M_D.Tests
         {
             GameContext ctx = GameContext.CreateNewGame();
             ctx.HeroManager.Find(HerosEnum.Warrior.ToString()).CreateHero();
-            MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingName.MentalHospital) as MentalHospital;
-            h.Hero = ctx.PlayerInfo.MyHeros.First();
+            MentalHospital h = ctx.PlayerInfo.GetBuilding(BuildingNameEnum.MentalHospital) as MentalHospital;
+            h.SetHero( ctx.PlayerInfo.MyHeros.First());
             Assert.AreEqual(ctx.PlayerInfo.MyHeros.First(), h.Hero);
-            h.deleteHero();
+            h.DeleteHero();
             Assert.IsNull(h.Hero);
         }
         /**
@@ -182,7 +182,7 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Casern casern = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Casern ) as Casern;
             Assert.Throws<ArgumentException>( () => casern.BuySpellToHero( ctx.PlayerInfo.MyHeros.First().Spells.First() ) );
-            casern.setHero( ctx.PlayerInfo.MyHeros.First() );
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First() );
             Assert.NotNull( casern.Hero );
             Assert.Throws<ArgumentException>( () => casern.BuySpellToHero( casern.Hero.Spells.First() ) );
             casern.Hero.Spells.First().IsBuy = false;
@@ -196,14 +196,14 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Casern casern = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Casern ) as Casern;
             Assert.Throws<ArgumentException>( () => casern.UpgradeSpellToHero( ctx.PlayerInfo.MyHeros.First().Spells.First() ) );
-            casern.setHero( ctx.PlayerInfo.MyHeros.First() );
+            casern.SetHero( ctx.PlayerInfo.MyHeros.First() );
             casern.Hero.Spells.First().IsBuy = false;
             casern.LevelUP();
             Assert.Throws<ArgumentException>( () => casern.UpgradeSpellToHero( casern.Hero.Spells.First() ) );
             casern.Hero.Spells.First().IsBuy = true;
             casern.UpgradeSpellToHero( casern.Hero.Spells.First() );
             Assert.AreEqual( 1, casern.Hero.Spells.First().Lvl );
-            Assert.AreEqual( 10000 - (casern.Hero.Spells.First().Price + (1000 / (casern.Level + 1)) + (100 * casern.Hero.Spells.First().Lvl)), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (casern.ActionPrice) , ctx.MoneyManager.Money );
 
         }
         [Test]
@@ -213,7 +213,7 @@ namespace S_M_D.Tests
             Hospital hospital = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Hospital ) as Hospital;
             hospital.LevelUP();
             Assert.Throws<ArgumentException>( () => hospital.HealHero( new Diarrhea() ) );
-            hospital.setHero( ctx.PlayerInfo.MyHeros.First() );
+            hospital.SetHero( ctx.PlayerInfo.MyHeros.First() );
             Assert.Throws<ArgumentException>( () => hospital.HealHero( new Diarrhea() ) );
             ctx.PlayerInfo.MyHeros.First().GetSickness( new Diarrhea() );
             hospital.HealHero( hospital.Hero.Sicknesses.First());
@@ -226,12 +226,12 @@ namespace S_M_D.Tests
             GameContext ctx = GameContext.CreateNewGame();
             Hotel hotel = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.Hotel ) as Hotel;
             hotel.LevelUP();
-            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
+            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHero() );
             hotel.SetHeros( ctx.PlayerInfo.MyHeros[0], ctx.PlayerInfo.MyHeros[1] );
-            hotel.CreateRelationHeroHero();
+            hotel.CreateRelationHero();
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[0].Relationship.Count );
             Assert.AreEqual( 1, ctx.PlayerInfo.MyHeros[1].Relationship.Count );
-            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHeroHero() );
+            Assert.Throws<ArgumentException>( () => hotel.CreateRelationHero() );
             hotel.DeleteHeros();
             Assert.AreEqual( 10000 - (hotel.ActionPrice), ctx.MoneyManager.Money );
             Assert.IsNull( hotel.Hero1 );
@@ -244,7 +244,7 @@ namespace S_M_D.Tests
             MentalHospital MH = ctx.PlayerInfo.GetBuilding( BuildingNameEnum.MentalHospital ) as MentalHospital;
             MH.LevelUP();
             Assert.Throws<ArgumentException>( () => MH.DeletePsychologyHero( new Agressivity() ) );
-            MH.setHero( ctx.PlayerInfo.MyHeros[0] );
+            MH.SetHero( ctx.PlayerInfo.MyHeros[0] );
             Assert.Throws<ArgumentException>( () => MH.DeletePsychologyHero( new Agressivity() ) );
             ctx.PlayerInfo.MyHeros[0].GetPsycho( new Agressivity() );
             MH.DeletePsychologyHero( MH.Hero.Psycho.First() );

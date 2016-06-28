@@ -7,6 +7,7 @@ using S_M_D.Camp.Class;
 
 namespace S_M_D.Camp.ClassConfig
 {
+    [Serializable]
     public class CaravanConfig : BuildingType
     {
         readonly List<BaseHeros> _herosDispo;

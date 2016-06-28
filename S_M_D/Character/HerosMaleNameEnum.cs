@@ -8,6 +8,7 @@ namespace S_M_D.Character
     /// <summary>
     /// Contain all heroes male names
     /// </summary>
+    [Serializable]
     public enum HerosMaleNameEnum
     {
         Arsène, Charles, Diego, Dylan, Eli,Elie, Joseph, Marcel, Pablo, Rémi,Rémy, Yacine,Yassin,Yassine, Yann,

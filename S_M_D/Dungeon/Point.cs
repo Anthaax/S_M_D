@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Dungeon
 {
+    [Serializable]
     public struct Point
     {
         public Point(int x, int y)

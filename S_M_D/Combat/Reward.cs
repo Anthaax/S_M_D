@@ -4,25 +4,24 @@ using S_M_D;
 using System.IO;
 using System.Xml.Serialization;
 using System.Linq;
+using System;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class Reward
     {
-        readonly int _xp;
-        readonly BaseItem _item;
-        readonly int _money;
+        int _xp;
+        readonly List<BaseItem> _items;
+        int _money;
         readonly GameContext _gameContext;
 
-        public Reward(BaseMonster[] monsters, GameContext gameContext)
+        public Reward( GameContext gameContext)
         {
             _gameContext = gameContext;
-            _xp = getXP(monsters);
-            _item = getItem();
-            _money = _gameContext.Rnd.Next(10000);
-
+            _items = new List<BaseItem>();
         }
-        private BaseItem getItem()
+        private BaseItem GetItem()
         {
             int rand = _gameContext.Rnd.Next(30);
             BaseItem result = null;
@@ -56,17 +55,22 @@ namespace S_M_D.Combat
                                 .ToList()[_gameContext.Rnd.Next( nbMatchItem )];
                 }
             }
-                
-
-             
             return result;
         }
 
-        private int getXP(BaseMonster[] monsters)
+        public void AddXpCombat(BaseMonster[] monsters)
         {
-            int result = 0;
-            monsters.ToList().ForEach( m => result += m.GiveXp );
-            return result;
+            monsters.ToList().ForEach( m => _xp += m.GiveXp );
+        }
+
+        public void AddItemToLoot()
+        {
+            _items.Add( GetItem());
+        }
+
+        public void AddGold()
+        {
+            _money += 100;
         }
 
         public int Money
@@ -77,11 +81,11 @@ namespace S_M_D.Combat
             }
         }
 
-        public BaseItem Item
+        public List<BaseItem> Items
         {
             get
             {
-                return _item;
+                return _items;
             }
         }
 
@@ -92,7 +96,5 @@ namespace S_M_D.Combat
                 return _xp;
             }
         }
-
-        
     }
 }

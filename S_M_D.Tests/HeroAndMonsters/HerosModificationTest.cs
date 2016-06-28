@@ -241,10 +241,13 @@ namespace S_M_D.Tests
             Warrior warrior = ctx.PlayerInfo.MyHeros[3] as Warrior;
             BaseStatItem item = ctx.AllItemInGame.First( c => c.Itemtype == BaseItem.ItemTypes.Armor);
             Assert.Throws<ArgumentException>(() => warrior.GetNewItem(item));
+            Assert.AreEqual( 0, ctx.PlayerInfo.MyItems.Count );
             warrior.RemoveItem( warrior.Equipement[0] );
             warrior.RemoveItem( warrior.Equipement[1] );
             warrior.RemoveItem( warrior.Equipement[2] );
             warrior.RemoveItem( warrior.Equipement[3] );
+            Assert.AreEqual( 4, ctx.PlayerInfo.MyItems.Count );
+            ctx.PlayerInfo.MyItems.Add( item );
             warrior.GetNewItem( item );
             Assert.AreEqual(item, warrior.Equipement[0]);
             Assert.AreEqual(warrior.EffectCritChance, warrior.CritChance += item.CritChance);
@@ -336,6 +339,20 @@ namespace S_M_D.Tests
         }
 
         [Test]
+        public void SwitchItems()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            BaseItem item = ctx.AllItemInGame.Where( c => c.Itemtype == BaseItem.ItemTypes.Armor ).First();
+            ctx.PlayerInfo.MyItems.Add( item );
+            BaseItem itemToChange = ctx.PlayerInfo.MyHeros[0].Equipement.Where( c => c.Itemtype == BaseItem.ItemTypes.Armor ).First();
+            ctx.PlayerInfo.MyHeros.First().RemoveAndAddAnItem( itemToChange, item );
+            Assert.AreEqual( true, ctx.PlayerInfo.MyItems.Contains( itemToChange ) );
+            Assert.AreEqual( false, ctx.PlayerInfo.MyItems.Contains( item ) );
+            Assert.AreEqual( true, ctx.PlayerInfo.MyHeros[0].Equipement.Contains( item ) );
+            Assert.AreEqual( false, ctx.PlayerInfo.MyHeros[0].Equipement.Contains( itemToChange ) );
+        }
+
+        [Test]
         public void WarriorUpdate()
         {
             GameContext ctx = GameContext.CreateNewGame(1);
@@ -373,6 +390,22 @@ namespace S_M_D.Tests
             Assert.AreEqual(warrior.EffectivDamage, warrior.Damage + equipementValueDmg);
             Assert.AreEqual(warrior.EffectivDefense, warrior.Defense + equipementValueDef);
         }
-
+        [Test]
+        public void equipedASpell()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            Mage mage = ctx.PlayerInfo.MyHeros.First() as Mage;
+            Spell.Spells spellToequip = mage.Spells.Last();
+            mage.ChangeSpellToEquip(spellToequip, mage.Spells.First());
+            Assert.AreNotEqual(spellToequip, mage.Spells.Last());
+        }
+        [Test]
+        public void SelectItemByID()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            BaseItem item = ctx.AllItemInGame[400];
+            BaseItem item2 = ctx.PlayerInfo.SelectItemById( item.ItemId );
+            Assert.AreEqual( item.HP, item2.HP );
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     class ShieldRush : Spells
     {
         readonly Warrior _warrior;

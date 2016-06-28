@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public class Cemetery : BaseBuilding
     {
         private List<BaseHeros> _herosDispo;

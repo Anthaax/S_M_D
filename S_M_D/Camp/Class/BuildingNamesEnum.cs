@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
+    [Serializable]
     public enum BuildingNameEnum
     {
         Armory,

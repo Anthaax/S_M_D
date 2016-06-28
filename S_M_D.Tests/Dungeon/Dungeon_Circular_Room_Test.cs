@@ -29,7 +29,7 @@ namespace S_M_D.Dungeon.Tests
         public void Init_Place_Center_within_Map_Border()
         {
             //Arrange
-            Map testMap = new Map();
+            Map testMap = new Map(GameContext.CreateNewGame());
             Room testRoom;
             testRoom = new CircularRoom();
 

@@ -16,7 +16,7 @@ namespace S_M_D.Dungeon.Tests
         public void GenerateRoom_Put_Rooms_On_The_Grid()
         {
             //Arrange
-            Map testMap = new Map();
+            Map testMap = new Map(GameContext.CreateNewGame());
 
             //Act           
 

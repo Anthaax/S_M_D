@@ -7,6 +7,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public enum DamageTypeEnum
     {
         Physical = 1,
@@ -16,6 +17,7 @@ namespace S_M_D.Spell
         Fire = 5,
         Affect = 6,
         Water = 7,
-        Heal = 8
+        Heal = 8,
+        Move = 9
     }
 }

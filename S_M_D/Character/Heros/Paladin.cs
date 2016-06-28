@@ -6,6 +6,7 @@ using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public class Paladin : BaseHeros
     {
         public Paladin(PaladinConfiguration PaladinConfig)
@@ -28,7 +29,11 @@ namespace S_M_D.Character
             XpMax = XpMax * 2;
 
             HPmax += 10;
+            EffectivHPMax += 10;
+            HP += 10;
             ManaMax += 10;
+            EffectivManaMax += 10;
+            Mana += 10;
             Damage += 2;
             HitChance += 30;
             DodgeChance += 3;

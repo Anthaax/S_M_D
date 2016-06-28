@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public class Friendship : Relationship
     {
         public Friendship(BaseHeros first, BaseHeros second)

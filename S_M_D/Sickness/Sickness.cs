@@ -5,7 +5,8 @@ using System.Text;
 
 namespace S_M_D.Character
 {
-    public abstract class Sickness 
+    [Serializable]
+    public abstract class Sickness
     {
         abstract public void effect(BaseHeros heros);
 

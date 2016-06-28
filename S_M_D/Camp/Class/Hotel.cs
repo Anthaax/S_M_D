@@ -7,7 +7,8 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Hotel : BaseBuilding, ILevelUP
+    [Serializable]
+    public class Hotel : BaseBuilding, ILevelUP, IMultipleHero
     {
         private BaseHeros _hero1;
         private BaseHeros _hero2;
@@ -36,15 +37,17 @@ namespace S_M_D.Camp.Class
         /// </summary>
         public void DeleteHeros()
         {
-            _hero1.InBuilding = null;
+            if (_hero1 != null)
+                _hero1.InBuilding = null;
             _hero1 = null;
-            _hero2.InBuilding = null;
+            if (_hero2 != null)
+                _hero2.InBuilding = null;
             _hero2 = null;
         }
         /// <summary>
         /// Create a relation bettween two hero
         /// </summary>
-        public void CreateRelationHeroHero()
+        public void CreateRelationHero()
         {
             if (_hero1 == null && _hero2 == null) throw new ArgumentException( "You need an hero" );
             foreach (Relationship relations in _hero1.Relationship)

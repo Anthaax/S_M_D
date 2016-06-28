@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Camp.ClassConfig
 {
+    [Serializable]
     public class HotelConfig : BuildingType
     {
         readonly BaseHeros _hero1;

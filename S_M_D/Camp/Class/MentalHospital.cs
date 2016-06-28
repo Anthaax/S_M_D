@@ -7,7 +7,8 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class MentalHospital : BaseBuilding, ILevelUP
+    [Serializable]
+    public class MentalHospital : BaseBuilding, ILevelUP, ISingleHero
     {
         private BaseHeros _hero;
         int _actionPrice;
@@ -20,7 +21,7 @@ namespace S_M_D.Camp.Class
         /// Set the hero in the building
         /// </summary>
         /// <param name="h"></param>
-        public void setHero(BaseHeros h)
+        public void SetHero(BaseHeros h)
         {
             _hero = h;
             _hero.InBuilding = this;
@@ -28,9 +29,10 @@ namespace S_M_D.Camp.Class
         /// <summary>
         /// Remove hero from this building
         /// </summary>
-        public void deleteHeros()
+        public void DeleteHero()
         {
-            _hero.InBuilding = null;
+            if(_hero != null)
+                _hero.InBuilding = null;
             _hero = null;
         }
         /// <summary>

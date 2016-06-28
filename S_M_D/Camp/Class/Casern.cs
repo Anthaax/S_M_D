@@ -8,19 +8,21 @@ using System.Text;
 
 namespace S_M_D.Camp.Class
 {
-    public class Casern : BaseBuilding, ILevelUP
+    [Serializable]
+    public class Casern : BaseBuilding, ILevelUP, ISingleHero
     {
         private BaseHeros _hero;
         int _actionPrice;
         public Casern(CasernConfig b) : base(b)
         {
             _hero = b.Hero;
+            _actionPrice = b.ActionPrice;
         }
         /// <summary>
         /// Set an hero in the building
         /// </summary>
         /// <param name="h"></param>
-        public void setHero(BaseHeros h)
+        public void SetHero(BaseHeros h)
         {
             _hero = h;
             _hero.InBuilding = this;
@@ -28,9 +30,10 @@ namespace S_M_D.Camp.Class
         /// <summary>
         /// Delete the hero in the building
         /// </summary>
-        public void deleteHeros()
+        public void DeleteHero()
         {
-            _hero.InBuilding = null;
+            if(_hero != null)
+                _hero.InBuilding = null;
             _hero = null;
         }
         public void BuySpellToHero(Spells spell)
@@ -45,7 +48,7 @@ namespace S_M_D.Camp.Class
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );
             if (!spell.IsBuy) throw new ArgumentException( "Can't upgrate this spell he wasn't buy" );
-            if (Ctx.MoneyManager.CanBuy( spell.Price )) Ctx.MoneyManager.Buy( spell.Price + (1000 / (Level+1)) + (100*(spell.Lvl+1)) );
+            if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
             else throw new ArgumentException( "You Can't buy this thing" );
             spell.LevelUp();
         }

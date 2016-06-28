@@ -7,6 +7,7 @@ using System.Text;
 
 namespace S_M_D.Combat
 {
+    [Serializable]
     public class IAMonster
     {
         readonly CombatManager _cbt;
@@ -31,19 +32,68 @@ namespace S_M_D.Combat
         /// <returns></returns>
         public BaseCharacter MonsterTurnAndDoNextTurn(BaseMonster monster)
         {
+            _cbt.SpellManager.ApplyDamageOnTime();
+            MonsterAlreadyAttack( monster );
+            if (_cbt.GameContext.Rnd.Next( 4 ) != 0)
+                LaunchSpell( monster );
+            else
+                MoveHero();
+            return _cbt.NextTurn();
+        }
+        public void MonsterTurn(BaseMonster monster)
+        {
             if (_mosterAction.Count == 4)
                 _mosterAction.Clear();
+           
+        }
+        private void LaunchSpell(BaseMonster monster)
+        {
             List<Spells> canLauncSpell = monster.Spells
-                                    .Where(c => c.TargetManager.WhoCanBeTargetable(monster.Position) != new bool[4] { false, false, false, false })
-                                    .Where(c => c.CooldownManager.IsOnCooldown == false)
-                                    .ToList();
-            Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next( canLauncSpell.Count )];
-            int position = _cbt.GameContext.Rnd.Next( 4 );
+                                    .Where  ( c =>
+                                                c.TargetManager.WhoCanBeTargetable( monster.Position ) != new bool[4] { false, false, false, false } &&
+                                                c.CooldownManager.IsOnCooldown == false &&
+                                                c.ManaCost <= monster.Mana
+                                            )
+                                   .ToList();
             if (canLauncSpell.Count > 0)
+            {
+                Spells spellToLaunch = canLauncSpell[_cbt.GameContext.Rnd.Next( canLauncSpell.Count )];
+                int position = SelectHero();
                 _cbt.SpellManager.MonsterLaunchSpell( spellToLaunch, position );
-            MosterAction.Add(spellToLaunch, position);
-            spellToLaunch.CooldownManager.NewTurn();
-            return _cbt.NextTurn();
+                MosterAction.Add( spellToLaunch, position );
+            }
+            else
+            {
+                MoveHero();
+            }
+
+        }
+        private void MoveHero()
+        {
+            int first = _cbt.GameContext.Rnd.Next( 4 );
+            int second = _cbt.GameContext.Rnd.Next( 4 );
+            while (second == first || _cbt.Heros[second].IsDead)
+            {
+                second = _cbt.GameContext.Rnd.Next( 4 );
+            }
+            _cbt.SpellManager.MoveCharacter<BaseHeros>( first, second );
+        }
+        private void MonsterAlreadyAttack(BaseMonster monster)
+        {
+            foreach (var spell in monster.Spells)
+            {
+                if (_mosterAction.ContainsKey( spell ))
+                    _mosterAction.Remove( spell );
+            }
+        }
+        private int SelectHero()
+        {
+            int position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+            while (_cbt.Heros[position].IsDead)
+            {
+                position = _cbt.GameContext.Rnd.Next( _cbt.Heros.Count() );
+            }
+            return position;
         }
     }
 }

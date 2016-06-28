@@ -6,10 +6,12 @@ using S_M_D.Spell;
 
 namespace S_M_D.Character
 {
+    [Serializable]
     public abstract class BaseCharacter
     {
         //Info Character
         string _characterName;
+        bool _isDead;
         // Character stats
         int _lvl;
 
@@ -513,6 +515,19 @@ namespace S_M_D.Character
             set
             {
                 _effectivHitChance = value;
+            }
+        }
+
+        public bool IsDead
+        {
+            get
+            {
+                return _isDead;
+            }
+
+            set
+            {
+                _isDead = value;
             }
         }
     }

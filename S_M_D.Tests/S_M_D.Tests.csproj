@@ -55,6 +55,7 @@
     <Compile Include="Dungeon\MapTest.cs" />
     <Compile Include="Dungeon\PolygonRoomTest.cs" />
     <Compile Include="Dungeon\RoomTest.cs" />
+    <Compile Include="GameContext\GameContextTest.cs" />
     <Compile Include="Town\TownCreationTests.cs" />
     <Compile Include="HeroAndMonsters\HerosCreationTest.cs" />
     <Compile Include="HeroAndMonsters\HerosModificationTest.cs" />

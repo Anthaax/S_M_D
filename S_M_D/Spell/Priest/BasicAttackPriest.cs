@@ -7,6 +7,7 @@ using S_M_D.Character;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class BasicAttackPriest : Spells
     {
         readonly Priest _priest;

@@ -167,26 +167,25 @@ namespace S_M_D.Tests
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].Xp, 0);
             Assert.AreEqual(ctx.PlayerInfo.MyHeros[ctx.PlayerInfo.MyHeros.Count-1].XpMax, 100);
         }
-        [Test]
         public void HerosSexTest()
         {
             GameContext ctx = GameContext.CreateNewGame(1);
             FullList(ctx.HeroManager);
             Random rnd = new Random(1);
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[0].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual(rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[1].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[2].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[3].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[4].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[5].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[6].IsMale);
-            UseRndMultipleTime( rnd, 5 );
+            UseRndMultipleTime( rnd, 4 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[7].IsMale);
             UseRndMultipleTime( rnd, 5 );
             Assert.AreEqual( rnd.Next(2) == 0, ctx.PlayerInfo.MyHeros[8].IsMale);
@@ -288,6 +287,38 @@ namespace S_M_D.Tests
             heroManager.Find( HerosEnum.Mage.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Paladin.ToString() ).CreateHero();
             heroManager.Find( HerosEnum.Priest.ToString() ).CreateHero();
+        }
+        [Test]
+        public void CreateHeroViaOnlyPrimitive()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
+            hero.Xp = hero.XpMax;
+            hero.LevelUp();
+            //hero.Xp = hero.XpMax;
+            //hero.LevelUp();
+            //hero.Xp = hero.XpMax;
+            //hero.LevelUp();
+            //hero.Xp = hero.XpMax;
+            //hero.LevelUp();
+            int isMale = 1;
+            if (hero.IsMale)
+            {
+                isMale = 0;
+            }
+            ctx.PlayerInfo.CreateHeroForMulti( hero.CharacterClassName, hero.CharacterName, isMale, 
+                hero.Equipement[0].ItemId, hero.Equipement[1].ItemId, hero.Equipement[2].ItemId, hero.Equipement[3].ItemId, hero.Lvl);
+            BaseHeros hero1 = ctx.PlayerInfo.OnlineDude.First();
+            Assert.AreEqual( hero1.CharacterClassName, hero.CharacterClassName );
+            Assert.AreEqual( hero1.Damage, hero.Damage );
+            Assert.AreEqual( hero1.DodgeChance, hero.DodgeChance );
+            Assert.AreEqual( hero1.HitChance, hero.HitChance );
+            Assert.AreEqual( hero1.HP, hero.HP );
+            Assert.AreEqual( hero1.HPmax, hero.HPmax );
+            Assert.AreEqual( hero1.Lvl, hero.Lvl );
+            Assert.AreEqual( hero1.Mana, hero.Mana );
+            Assert.AreEqual( hero1.ManaMax, hero.ManaMax );
+
         }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {

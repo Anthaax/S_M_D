@@ -5,6 +5,7 @@ using System.Text;
 
 namespace S_M_D.Spell
 {
+    [Serializable]
     public class CooldownManager
     {
         bool _isOnCooldown;
