@@ -66,7 +66,7 @@ namespace S_M_D.Dungeon
                         int chestCount = int.Parse(desc[idx + 4]);
                         string[] chestContents = desc[idx + 5].Split(' ');
                         for (int i = 0; i < chestCount; i++)
-                            cr.chest.Add((int.Parse(chestContents[i])));
+                            cr.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
                         idx += 5;
                     } 
                     else
@@ -109,7 +109,7 @@ namespace S_M_D.Dungeon
                         int chestCount = int.Parse(desc[idx + 7]);
                         string[] chestContents = desc[idx + 8].Split(' ');
                         for (int i = 0; i < chestCount; i++)
-                            rectroom.chest.Add((int.Parse(chestContents[i])));
+                            rectroom.chest.Add(ctx.PlayerInfo.SelectItemById(int.Parse(chestContents[i])));
                         idx += 8;
                     }
                     rectroom.Center = center;
