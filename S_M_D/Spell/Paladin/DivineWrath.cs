@@ -13,7 +13,7 @@ namespace S_M_D.Spell
         float[] _damageRatioByLvl = new float[4] { 6, 12f, 18f, 24f };
 
         public DivineWrath( Paladin paladin )
-            : base( "DivineWrath", 1000, "Invoque la puissance divine pour sanctionner la fraude", 15, 0, false, false)
+            : base( "DivineWrath", 1000, "Courroux destructeur des dieux", 10, 0, false, false)
         {
 
             _paladin = paladin;

@@ -13,7 +13,6 @@ namespace S_M_D.Character.Monsters
     {
         ORC = 1,
         ELF = 2,
-        GOBELIN = 3,
-        TROLL = 4 
+        TROLL = 3
     }
 }

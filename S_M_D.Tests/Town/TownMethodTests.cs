@@ -203,7 +203,7 @@ namespace S_M_D.Tests
             casern.Hero.Spells.First().IsBuy = true;
             casern.UpgradeSpellToHero( casern.Hero.Spells.First() );
             Assert.AreEqual( 1, casern.Hero.Spells.First().Lvl );
-            Assert.AreEqual( 10000 - (casern.Hero.Spells.First().Price + (1000 / (casern.Level + 1)) + (100 * casern.Hero.Spells.First().Lvl)), ctx.MoneyManager.Money );
+            Assert.AreEqual( 10000 - (casern.ActionPrice) , ctx.MoneyManager.Money );
 
         }
         [Test]

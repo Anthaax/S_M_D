@@ -63,31 +63,6 @@ namespace S_M_D.Tests
             Assert.AreEqual(MonsterType.ELF, orcMonster.Type);
         }
         [Test]
-        public void CreationGobelincTest()
-        {
-            MonsterConfiguration config = new MonsterConfiguration();
-            BaseMonster orcMonster = config.CreateMonster(MonsterType.GOBELIN, 1);
-
-            Assert.AreEqual(21, orcMonster.HPmax);
-            Assert.AreEqual(21, orcMonster.HP);
-            Assert.AreEqual(45, orcMonster.ManaMax);
-            Assert.AreEqual(45, orcMonster.Mana);
-            Assert.AreEqual(4, orcMonster.Damage);
-            Assert.AreEqual(0, orcMonster.CritChance);
-            Assert.AreEqual(80, orcMonster.HitChance);
-            Assert.AreEqual(9, orcMonster.Speed);
-            Assert.AreEqual(0, orcMonster.AffectRes);
-            Assert.AreEqual(0, orcMonster.BleedingRes);
-            Assert.AreEqual(0, orcMonster.MagicRes);
-            Assert.AreEqual(0, orcMonster.FireRes);
-            Assert.AreEqual(0, orcMonster.PoisonRes);
-            Assert.AreEqual(0, orcMonster.WaterRes);
-            Assert.AreEqual(0, orcMonster.Defense);
-            Assert.AreEqual(60, orcMonster.DodgeChance);
-            Assert.AreEqual(1, orcMonster.GiveXp);
-            Assert.AreEqual(MonsterType.GOBELIN, orcMonster.Type);
-        }
-        [Test]
         public void CreationTrollTest()
         {
             MonsterConfiguration config = new MonsterConfiguration();

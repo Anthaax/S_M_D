@@ -399,5 +399,13 @@ namespace S_M_D.Tests
             mage.ChangeSpellToEquip(spellToequip, mage.Spells.First());
             Assert.AreNotEqual(spellToequip, mage.Spells.Last());
         }
+        [Test]
+        public void SelectItemByID()
+        {
+            GameContext ctx = GameContext.CreateNewGame();
+            BaseItem item = ctx.AllItemInGame[400];
+            BaseItem item2 = ctx.PlayerInfo.SelectItemById( item.ItemId );
+            Assert.AreEqual( item.HP, item2.HP );
+        }
     }
 }

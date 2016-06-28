@@ -111,58 +111,26 @@ namespace S_M_D.Tests.Combat
             Assert.AreEqual( 20, cbt.Monsters[0].HP );
         }
         [Test]
-        public void HealHeroOrMonster()
-        {
-            GameContext ctx = GameContext.CreateNewGame(1);
-            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
-            AdjustManaAndHp( cbt, ctx.PlayerInfo.MyHeros[1].Spells[2], 4 );
-            ctx.PlayerInfo.MyHeros[1].HP -= 5;
-
-            Assert.Throws<ArgumentException>( () => cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros.First().Spells[1], 0) );
-            cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].EffectivHPMax, cbt.Heros[1].HP );
-
-            ctx.PlayerInfo.MyHeros[1].HP -= ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1;
-            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
-
-            cbt.SpellManager.HeroLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 1 );
-            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
-
-            Assert.AreEqual( cbt.Heros[1].EffectivHPMax - 1, cbt.Heros[1].HP );
-            cbt.Monsters[0].HP = 1;
-            cbt.Monsters[0].EffectivHPMax = ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 2;
-            cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );
-            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
-
-            Assert.AreEqual( ctx.PlayerInfo.MyHeros[1].Spells[2].KindOfEffect.Damage + 1, cbt.Monsters[0].HP );
-            cbt.SpellManager.MonsterLaunchSpell( ctx.PlayerInfo.MyHeros[1].Spells[2], 0 );
-            SetIsOnCooldownFasle( ctx.PlayerInfo.MyHeros[1].Spells[2] );
-
-            Assert.AreEqual( cbt.Monsters[0].EffectivHPMax, cbt.Monsters[0].HP );
-
-
-        }
-        [Test]
         public void ChangeTurn()
         {
             GameContext ctx = GameContext.CreateNewGame(1);
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx);
             Assert.AreEqual(cbt.CharacterOrderAttack[0], cbt.GetCharacterTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.AutomaticNextTurn());
             Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.AutomaticNextTurn());
             Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.AutomaticNextTurn());
             Assert.AreEqual( cbt.CharacterOrderAttack[0], cbt.AutomaticNextTurn() );
-            Assert.AreEqual(cbt.CharacterOrderAttack[3], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[4], cbt.AutomaticNextTurn());
-            Assert.AreEqual(cbt.CharacterOrderAttack[5], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[1], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[2], cbt.AutomaticNextTurn());
+            Assert.AreEqual(cbt.CharacterOrderAttack[6], cbt.AutomaticNextTurn());
         }
         [Test]
         public void EndOfCombat()
@@ -240,8 +208,10 @@ namespace S_M_D.Tests.Combat
             cbt.AutomaticNextTurn();
             cbt.AutomaticNextTurn();
             cbt.AutomaticNextTurn();
+            cbt.AutomaticNextTurn();
             Assert.AreEqual( false, heros.Spells.First().CooldownManager.IsOnCooldown );
             cbt.SpellManager.HeroLaunchSpell( heros.Spells[1], 1 );
+            cbt.AutomaticNextTurn();
             cbt.AutomaticNextTurn();
             cbt.AutomaticNextTurn();
             cbt.AutomaticNextTurn();

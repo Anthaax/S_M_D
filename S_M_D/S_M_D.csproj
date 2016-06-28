@@ -141,21 +141,33 @@
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Monsters\BasicAttack.cs" />
     <Compile Include="Spell\Monsters\CerebralAttack.cs" />
+    <Compile Include="Spell\Paladin\DivineStorm.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
+    <Compile Include="Spell\Paladin\DivineWrath.cs" />
     <Compile Include="Spell\Paladin\GodDivination.cs" />
+    <Compile Include="Spell\Paladin\SealOfWrath.cs" />
     <Compile Include="Spell\Paladin\GodHelp.cs" />
+    <Compile Include="Spell\Paladin\WrathHammer.cs" />
     <Compile Include="Spell\Paladin\JusticeHammer.cs" />
+    <Compile Include="Spell\Priest\MindBlast.cs" />
+    <Compile Include="Spell\Priest\ShadowWordDeath.cs" />
     <Compile Include="Spell\Priest\ChurchSanction.cs" />
+    <Compile Include="Spell\Priest\ShadowWordPain.cs" />
     <Compile Include="Spell\Priest\DarknessEradication.cs" />
+    <Compile Include="Spell\Priest\VampireTouch.cs" />
     <Compile Include="Spell\Priest\HeartPurification.cs" />
     <Compile Include="Spell\Priest\BasicAttackPriest.cs" />
     <Compile Include="Spell\KindOfEffect.cs" />
     <Compile Include="Spell\SpellComparer.cs" />
     <Compile Include="Spell\Spells.cs" />
     <Compile Include="Spell\TargetManager.cs" />
+    <Compile Include="Spell\Warrior\Tourbillon.cs" />
     <Compile Include="Spell\Warrior\BasicAttackWarrior.cs" />
+    <Compile Include="Spell\Warrior\Brawl.cs" />
     <Compile Include="Spell\Warrior\HearthAttack.cs" />
+    <Compile Include="Spell\Warrior\HeroicRush.cs" />
     <Compile Include="Spell\Warrior\MultipleHit.cs" />
+    <Compile Include="Spell\Warrior\Devastate.cs" />
     <Compile Include="Spell\Warrior\ShieldRush.cs" />
   </ItemGroup>
   <ItemGroup>

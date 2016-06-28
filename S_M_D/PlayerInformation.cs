@@ -143,5 +143,9 @@ namespace S_M_D
             BaseHeros hero = _ctx.HeroManager.Find( className ).CreateHeroWithLeve( level, isMale == 0, name, ID.ToArray() );
             _onlineDude.Add( hero );
         }
+        public BaseItem SelectItemById(int ItemID)
+        {
+            return _ctx.AllItemInGame.First( c => c.ItemId == ItemID );
+        }
     }
 }

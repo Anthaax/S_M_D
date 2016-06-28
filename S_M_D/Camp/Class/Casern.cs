@@ -16,6 +16,7 @@ namespace S_M_D.Camp.Class
         public Casern(CasernConfig b) : base(b)
         {
             _hero = b.Hero;
+            _actionPrice = b.ActionPrice;
         }
         /// <summary>
         /// Set an hero in the building
@@ -47,7 +48,7 @@ namespace S_M_D.Camp.Class
         {
             if (_hero == null) throw new ArgumentException( "You need an hero" );
             if (!spell.IsBuy) throw new ArgumentException( "Can't upgrate this spell he wasn't buy" );
-            if (Ctx.MoneyManager.CanBuy( _actionPrice / Level )) Ctx.MoneyManager.Buy( _actionPrice / Level );
+            if (Ctx.MoneyManager.CanBuy( _actionPrice )) Ctx.MoneyManager.Buy( _actionPrice );
             else throw new ArgumentException( "You Can't buy this thing" );
             spell.LevelUp();
         }

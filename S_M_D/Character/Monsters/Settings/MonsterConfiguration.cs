@@ -44,7 +44,6 @@ namespace S_M_D.Character.Monsters
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
-
                     Poco.Type = MonsterType.ORC;
                     return Poco;
 

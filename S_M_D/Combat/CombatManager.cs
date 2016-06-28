@@ -43,7 +43,9 @@ namespace S_M_D.Combat
         {
             for (int x = 0; x < 4; x++)
             {
-                Monsters[x] = monsterCreation.CreateMonster((MonsterType)GameContext.Rnd.Next(1,5), Heros.Max(s => s.Lvl));
+
+                Array valuesM = Enum.GetValues(typeof( MonsterType ) );
+                Monsters[x] = monsterCreation.CreateMonster( (MonsterType)valuesM.GetValue( _gameContext.Rnd.Next( valuesM.Length ) ), Heros.Max(s => s.Lvl));
                 Monsters[x].Position = x;
                 Monsters[x].Id = GameContext.Rnd.Next();
             }
@@ -77,8 +79,13 @@ namespace S_M_D.Combat
         {
             _turn++;
             BaseCharacter b = GetCharacterTurn();
+            BaseHeros heros = b as BaseHeros;
             int count = 0;
             Type bType = b.GetType();
+            if(heros != null)
+            {
+                heros.Spells.Where(c => c != null).ToList().ForEach(c => c.CooldownManager.NewTurn());
+            }
             if (!CheckIfTheCombatWasOver())
             {
                 while (typeof(BaseMonster) == bType)
