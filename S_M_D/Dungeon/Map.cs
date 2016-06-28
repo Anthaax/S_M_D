@@ -35,7 +35,7 @@ namespace S_M_D.Dungeon
             this.HeroPosition = this.Rooms[0].Center;
         }
 
-        public Map(string descriptor)
+        public Map(string descriptor, GameContext gtx)
         {
             string[] desc = descriptor.Split('\n');
             this.Width = int.Parse(desc[0]);
@@ -57,8 +57,20 @@ namespace S_M_D.Dungeon
                     cr.Path.Add(new Point(int.Parse(coords[0]), int.Parse(coords[1])));
                     cr.Center = cr.Path[0];
                     cr.Radius = int.Parse(desc[idx + 2]);
+                    cr.events.Add(desc[idx + 3]);
+                    if (desc[idx + 3] == "Chest")
+                    {
+                        int chestCount = int.Parse(desc[idx + 4]);
+                        string[] chestContents = desc[idx + 5].Split(' ');
+                        for (int i = 0; i < chestCount; i++)
+                            cr.chest.Add((int.Parse(chestContents[i])));
+                        idx += 5;
+                    } 
+                    else
+                    {
+                        idx += 3;
+                    }
                     this.Rooms.Add(cr);
-                    idx += 3;
                 }
                else if (desc[idx] == "PolygonRoom")
                 {
@@ -88,6 +100,15 @@ namespace S_M_D.Dungeon
                         pts.Add( new Point( int.Parse( coords[ 0 ] ), int.Parse( coords[ 1 ] ) ) );
                     }
                     RectangularRoom rectroom = new RectangularRoom( pts );
+                    rectroom.events.Add(desc[idx + 6]);
+                    if (desc[idx + 6] == "Chest")
+                    {
+                        int chestCount = int.Parse(desc[idx + 7]);
+                        string[] chestContents = desc[idx + 8].Split(' ');
+                        for (int i = 0; i < chestCount; i++)
+                            rectroom.chest.Add((int.Parse(chestContents[i])));
+                        idx += 8;
+                    }
                     rectroom.Center = center;
                     this.Rooms.Add(rectroom);
                     idx += 4;

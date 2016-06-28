@@ -65,6 +65,16 @@ namespace S_M_D.Dungeon
             {
                 s += Path[ i ].X.ToString( ) + ' ' + Path[ i ].Y.ToString( ) + '\n';
             }
+            s += this.events[0] + '\n';
+            if (this.events[0] == "Chest")
+            {
+                s += this.chest.Count.ToString() + '\n';
+                for (int i = 0; i < this.chest.Count; i++)
+                {
+                    s += this.chest[i].ItemId.ToString() + " ";
+                }
+                s += '\n';
+            }
             return s;
         }
 

@@ -69,7 +69,18 @@ namespace S_M_D.Dungeon
 
         public override string ToString()
         {
-            return "CircularRoom" + '\n' + Center.X.ToString() + ' ' + Center.Y.ToString() + '\n' + Radius.ToString() + '\n';
+            string s = "CircularRoom" + '\n' + Center.X.ToString() + ' ' + Center.Y.ToString() + '\n' + Radius.ToString() + '\n';
+            s += this.events[0] + '\n';
+            if (this.events[0] == "Chest")
+            {
+                s += this.chest.Count.ToString() + '\n';
+                for (int i = 0; i < this.chest.Count; i++)
+                {
+                    s += this.chest[i].ItemId.ToString() + " ";
+                }
+                s += '\n';
+            }
+            return s;
         }
     }
 }
