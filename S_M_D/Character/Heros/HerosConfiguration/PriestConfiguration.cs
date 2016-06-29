@@ -91,6 +91,10 @@ namespace S_M_D.Character
             hero.Spells[1] = new ChurchSanction( priest );
             hero.Spells[2] = new DarknessEradication( priest );
             hero.Spells[3] = new HeartPurification( priest );
+            hero.Spells[4] = new MindBlast( priest );
+            hero.Spells[5] = new ShadowWordDeath( priest );
+            hero.Spells[6] = new ShadowWordPain( priest );
+            hero.Spells[7] = new VampireTouch( priest );
         }
         protected override BaseHeros ApplyLevelAndCreateHero( int level )
         {

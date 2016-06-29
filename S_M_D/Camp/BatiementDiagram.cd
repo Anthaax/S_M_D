@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="S_M_D.Camp.Class.Armory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="3" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.361" />
+        <Point X="9.25" Y="2.361" />
+        <Point X="9.25" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAAEAAAAAAAAAAAACAAAAAAJEEAA=</HashCode>
+      <FileName>Camp\Class\Armory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.769" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Bar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.34" />
+        <Point X="11" Y="2.34" />
+        <Point X="11" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAQAAEAAAAAAAAAAAAQAAAAAAJAmAA=</HashCode>
+      <FileName>Camp\Class\Bar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.159" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Caravan" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="3" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.361" />
+        <Point X="12.75" Y="2.361" />
+        <Point X="12.75" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAACAEQAAEAAAAAkAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Camp\Class\Caravan.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.146" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Casern" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.387" />
+        <Point X="8.25" Y="2.387" />
+        <Point X="8.25" Y="4.071" />
+        <Point X="9.25" Y="4.071" />
+        <Point X="9.25" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAABEAAABAAAEAAAAAAAAAAAAAAAAAAAJEEAA=</HashCode>
+      <FileName>Camp\Class\Casern.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.126" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Cemetery" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Camp\Class\Cemetery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Hospital" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAAUAAAAAAAAAAAAAAAAAAAJEEAA=</HashCode>
+      <FileName>Camp\Class\Hospital.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.19" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.Hotel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="3" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.417" />
+        <Point X="15.75" Y="2.417" />
+        <Point X="15.75" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAQAAEAAAAAAAAAAAAQAAAAAAJAmAA=</HashCode>
+      <FileName>Camp\Class\Hotel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.776" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.MentalHospital" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.35" />
+        <Point X="14.244" Y="2.35" />
+        <Point X="14.244" Y="3.759" />
+        <Point X="15.75" Y="3.759" />
+        <Point X="15.75" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAAEAAAAAAAAAAAAAAAAAAAJkEAA=</HashCode>
+      <FileName>Camp\Class\MentalHospital.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.755" />
+  </Class>
+  <Class Name="S_M_D.Camp.Class.TownHall" Collapsed="true">
+    <Position X="13.5" Y="4" Width="1.5" />
+    <InheritanceLine Type="S_M_D.Camp.BaseBuilding" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.75" Y="2.062" />
+        <Point X="11.75" Y="2.417" />
+        <Point X="14.25" Y="2.417" />
+        <Point X="14.25" Y="4" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Camp\Class\TownHall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.ArmoryConfig" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAJAEAA=</HashCode>
+      <FileName>Camp\ClassConfig\ArmoryConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.BarConfig" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAJAkAA=</HashCode>
+      <FileName>Camp\ClassConfig\BarConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.CaravanConfig" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAQAAAAAAAAECAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Camp\ClassConfig\CaravanConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.CasernConfig" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAJAEAA=</HashCode>
+      <FileName>Camp\ClassConfig\CasernConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.CemeteryConfig" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Camp\ClassConfig\CemeteryConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.HospitalConfig" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAJAEAA=</HashCode>
+      <FileName>Camp\ClassConfig\HospitalConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.HotelConfig" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAJAkAA=</HashCode>
+      <FileName>Camp\ClassConfig\HotelConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.MentalHospitalConfig" Collapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAAAJAEAA=</HashCode>
+      <FileName>Camp\ClassConfig\MentalHospitalConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.ClassConfig.TownHallConfig" Collapsed="true">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Camp\ClassConfig\TownHallConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.BaseBuilding" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEAAAAAAAAAAAAQQYAAAAhAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Camp\BaseBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.Camp.BuildingManager" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_buildingTypes" Hidden="true" />
+      <Field Name="_ctx" Hidden="true" />
+      <Method Name="BuildingManager" Hidden="true" />
+      <Method Name="Find" Hidden="true" />
+      <Method Name="Initialized" Hidden="true" />
+      <Method Name="RegisterTypes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAQAAAAAAAAAAAAAAAAAAJAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Camp\BuildingManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_ctx" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllTypes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="S_M_D.Camp.BuildingType" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEAAAAAAAAAAAAAQYAASAhAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Camp\BuildingType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S_M_D.GameContext" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAIAEAqAAABAAAgAAgAAgIAAAAAAAQAAAIAATBAk=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PlayerInfo" />
+      <Property Name="BuildingManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="S_M_D.PlayerInformation" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACJCAAAAQAAAggAQAAFwRBgAAAhAAIBAIAAAAAQAAA=</HashCode>
+      <FileName>PlayerInformation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MyBuildings" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="S_M_D.Camp.Class.ILevelUP" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Camp\Class\ILevelUP.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="S_M_D.Camp.Class.IMultipleHero" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Camp\Class\IMultipleHero.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="S_M_D.Camp.Class.ISingleHero" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Camp\Class\ISingleHero.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="S_M_D.Camp.Class.BuildingNameEnum" Collapsed="true">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAEAAAAgAAAAAAAAAIgAAAAAAAAQAEAAAABAAAAA=</HashCode>
+      <FileName>Camp\Class\BuildingNamesEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

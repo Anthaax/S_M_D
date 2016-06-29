@@ -22,15 +22,15 @@ namespace S_M_D.Camp
 
         private void Initialized()
         {
-            RegisterTypes(new TownHallConfig(_ctx));
-            RegisterTypes(new ArmoryConfig(_ctx));
-            RegisterTypes(new BarConfig(_ctx));
-            RegisterTypes(new CaravanConfig(_ctx));
-            RegisterTypes(new CasernConfig(_ctx));
-            RegisterTypes(new CemeteryConfig(_ctx));
-            RegisterTypes(new HospitalConfig(_ctx));
-            RegisterTypes(new HotelConfig(_ctx));
-            RegisterTypes(new MentalHospitalConfig(_ctx));
+            RegisterTypes(new TownHallConfig(Ctx));
+            RegisterTypes(new ArmoryConfig(Ctx));
+            RegisterTypes(new BarConfig(Ctx));
+            RegisterTypes(new CaravanConfig(Ctx));
+            RegisterTypes(new CasernConfig(Ctx));
+            RegisterTypes(new CemeteryConfig(Ctx));
+            RegisterTypes(new HospitalConfig(Ctx));
+            RegisterTypes(new HotelConfig(Ctx));
+            RegisterTypes(new MentalHospitalConfig(Ctx));
         }
 
         private void RegisterTypes(BuildingType building)
@@ -48,6 +48,14 @@ namespace S_M_D.Camp
         public IEnumerable<BuildingType> AllTypes
         {
             get { return _buildingTypes.Values; }
+        }
+
+        public GameContext Ctx
+        {
+            get
+            {
+                return _ctx;
+            }
         }
     }
 }

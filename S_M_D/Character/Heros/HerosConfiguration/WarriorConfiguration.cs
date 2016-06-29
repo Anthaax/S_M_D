@@ -91,6 +91,10 @@ namespace S_M_D.Character
             hero.Spells[1] = new ShieldRush(warrior);
             hero.Spells[2] = new HearthAttack( warrior );
             hero.Spells[3] = new MultipleHit( warrior );
+            hero.Spells[4] = new Brawl( warrior );
+            hero.Spells[5] = new Devastate( warrior );
+            hero.Spells[6] = new HeroicRush( warrior );
+            hero.Spells[7] = new Tourbillon( warrior );
         }
         protected override BaseHeros ApplyLevelAndCreateHero( int level )
         {
