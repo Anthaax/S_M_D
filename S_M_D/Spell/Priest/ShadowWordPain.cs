@@ -13,7 +13,7 @@ namespace S_M_D.Spell
         float[] _damageRatioByLvl = new float[4] { 6, 12f, 18f, 24f };
 
         public ShadowWordPain( Priest priest )
-            : base( "DarknessEradication", 1000, "Eradique les ténèbres", 10, 0, true, true)
+            : base( "ShadowWordPain", 1000, "Mot diabolique qui fait souffrir les ennemis", 10, 0, false, false)
         {
             _priest = priest;
             CooldownManager = new CooldownManager( 1 );
