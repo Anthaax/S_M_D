@@ -76,9 +76,12 @@ namespace S_M_D.Combat
             int i = 0;
             spell.CooldownManager.SpellsWasUsed();
             KindOfEffect spellEffect = spell.OnLaunchSpell();
-            while (i < spell.TargetManager.Radius & i + position <= _combatManager.Heros.Count())
+            while (i < spell.TargetManager.Radius & i + position < _combatManager.Heros.Count())
             {
-                character = GetTheCharacter( typeOfT, position + i );
+                if (position + i < 4)
+                    character = GetTheCharacter( typeOfT, position + i );
+                else
+                    character = GetTheCharacter( typeOfT, 3 );
                 if( character != null)
                 {
                     character.HP -= spellEffect.Damage;
