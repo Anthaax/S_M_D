@@ -118,6 +118,7 @@
     <Compile Include="Psychology\Crazyness.cs" />
     <Compile Include="Psychology\Fragil.cs" />
     <Compile Include="Psychology\Psychology.cs" />
+    <Compile Include="Psychology\RelationEnum.cs" />
     <Compile Include="Relationship\RelationEnum.cs" />
     <Compile Include="Relationship\Desir.cs" />
     <Compile Include="Relationship\Friendship.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Sickness\Diarrhea.cs" />
     <Compile Include="Sickness\Fever.cs" />
     <Compile Include="Sickness\Sickness.cs" />
+    <Compile Include="Sickness\SicknessEnum.cs" />
     <Compile Include="Sickness\Staphyloccocus.cs" />
     <Compile Include="Spell\CooldownManager.cs" />
     <Compile Include="Spell\DamageTypeEnum.cs" />

@@ -11,9 +11,9 @@ namespace S_M_D.Combat
     [Serializable]
     public class Reward
     {
-        int _xp;
+        int _xp = 0;
         readonly List<BaseItem> _items;
-        int _money;
+        int _money = 0;
         readonly GameContext _gameContext;
 
         public Reward( GameContext gameContext)

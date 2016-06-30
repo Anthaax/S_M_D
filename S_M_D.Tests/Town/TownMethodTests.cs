@@ -155,6 +155,7 @@ namespace S_M_D.Tests
             BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
             hero.Die();
             Assert.AreEqual(1, cemetery.GetDeadHeros.Count());
+            Assert.AreEqual( 3, ctx.PlayerInfo.MyHeros.Count );
         }
         /*
         *caravane

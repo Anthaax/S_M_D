@@ -10,7 +10,7 @@ namespace S_M_D.Character
     {
         public Friendship(BaseHeros first, BaseHeros second)
         {
-            Name = "Desir";
+            Name = "Friendship";
             HeroDuo = new BaseHeros[2];
             HeroDuo[0] = first;
             HeroDuo[1] = second;

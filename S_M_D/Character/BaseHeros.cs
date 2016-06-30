@@ -129,6 +129,7 @@ namespace S_M_D.Character
         public void Die()
         {
             _ctx.PlayerInfo.DeadHero.Add( this );
+            _ctx.PlayerInfo.MyHeros.Remove( this );
         }
 
         /// <summary>
