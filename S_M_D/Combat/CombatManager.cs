@@ -139,6 +139,20 @@ namespace S_M_D.Combat
         {
             return CharacterOrderAttack[_turn % _characterOrderAttack.Count];
         }
+        public int GetCharacterTurnPosition()
+        {
+            BaseCharacter charac = GetCharacterTurn();
+            BaseHeros hero = charac as BaseHeros;
+            if (hero != null)
+            {
+                return Array.IndexOf( _heros, hero );
+            }
+            else
+            {
+                BaseMonster monster = charac as BaseMonster;
+                return Array.IndexOf( _monsters, monster );
+            }
+        }
         public void ApplyRewward()
         {
             _gameContext.DungeonManager.Reward.AddXpCombat( _monsters );

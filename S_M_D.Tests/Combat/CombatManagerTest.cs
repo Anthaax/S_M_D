@@ -218,7 +218,28 @@ namespace S_M_D.Tests.Combat
             cbt.AutomaticNextTurn();
             Assert.AreEqual( false, heros.Spells[1].CooldownManager.IsOnCooldown );
         }
-
+        [Test]
+        public void PositionAsTrue()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+            Assert.AreEqual( 0, cbt.GetCharacterTurnPosition() );
+        }
+        [Test]
+        public void LaunchSpellWithMultipleMethod()
+        {
+            GameContext ctx = GameContext.CreateNewGame( 1 );
+            CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
+            List<Spell.Spells> spells = cbt.IaMonster.SpellsToLaunch( cbt.Monsters.First() );
+            Spell.Spells spell = null;
+            if (spells.Count != 0)
+            {
+                spell = spells.First();
+                int[] position = cbt.IaMonster.GetPositionsHeros();
+                cbt.IaMonster.LauchSpell( spell, position[0] );
+                Assert.AreEqual( cbt.Heros[position[0]].EffectivHPMax - cbt.Heros[position[0]].HP, spell.KindOfEffect.Damage );
+            }            
+        }
         private void UseRndMultipleTime( Random rnd, int nbTime )
         {
             for (int i = 0; i < nbTime; i++)

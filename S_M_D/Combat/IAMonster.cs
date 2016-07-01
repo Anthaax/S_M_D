@@ -40,11 +40,36 @@ namespace S_M_D.Combat
                 MoveHero();
             return _cbt.NextTurn();
         }
+        public List<Spells> SpellsToLaunch( BaseMonster monster )
+        {
+            List<Spells> canLauncSpell = monster.Spells
+                                    .Where( c =>
+                                              c.TargetManager.WhoCanBeTargetable( monster.Position ) != new bool[4] { false, false, false, false } &&
+                                              c.CooldownManager.IsOnCooldown == false &&
+                                              c.ManaCost <= monster.Mana
+                                            )
+                                   .ToList();
+            return canLauncSpell;
+        }
+        public int[] GetPositionsHeros()
+        {
+            int[] tableau = new int[2];
+            tableau[0] = _cbt.GameContext.Rnd.Next( 4 );
+            tableau[1] = _cbt.GameContext.Rnd.Next( 4 );
+            while (tableau[1] == tableau[0] || _cbt.Heros[tableau[1]].IsDead)
+            {
+                tableau[1] = _cbt.GameContext.Rnd.Next( 4 );
+            }
+            return tableau;
+        }
+        public void LauchSpell(Spells spell, int position)
+        {
+            _cbt.SpellManager.MonsterLaunchSpell( spell, position );
+        }
         public void MonsterTurn(BaseMonster monster)
         {
             if (_mosterAction.Count == 4)
                 _mosterAction.Clear();
-           
         }
         private void LaunchSpell(BaseMonster monster)
         {
