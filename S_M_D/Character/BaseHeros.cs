@@ -20,6 +20,7 @@ namespace S_M_D.Character
         readonly List<Sickness> _sicknesses;
         readonly List<Psychology> _psycho;
         readonly List<Relationship> _relationship;
+        string _owner;
         BaseBuilding _inBuilding;
         BaseItem[] _equipement;
         int _xp;
@@ -430,6 +431,19 @@ namespace S_M_D.Character
             set
             {
                 _inBuilding = value;
+            }
+        }
+
+        public string Owner
+        {
+            get
+            {
+                return _owner;
+            }
+
+            set
+            {
+                _owner = value;
             }
         }
     }
