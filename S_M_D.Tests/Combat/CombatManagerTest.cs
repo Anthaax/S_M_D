@@ -100,15 +100,25 @@ namespace S_M_D.Tests.Combat
             GameContext ctx = GameContext.CreateNewGame( 1 );
             CombatManager cbt = new CombatManager( ctx.PlayerInfo.MyHeros.ToArray(), ctx );
             cbt.SpellManager.MoveCharacter<BaseHeros>( 0, 3 );
-            S_M_D.Spell.Spells spell = cbt.Heros[0].Spells[3];
+            S_M_D.Spell.Spells spell = cbt.Heros[0].Spells[2];
             AdjustManaAndHp( cbt, spell, 1 );
 
             cbt.SpellManager.HeroLaunchSpell( spell, 0 );
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
-                cbt.AutomaticNextTurn();
+                cbt.NextTurn();
             }
             Assert.AreEqual( 20, cbt.Monsters[0].HP );
+            KindOfEffect effect;
+            cbt.DamageOnTime.TryGetValue( cbt.Monsters[0], out effect );
+            Assert.AreEqual( spell.KindOfEffect.Turn - 1, effect.EffectiveTurn );
+            Assert.AreEqual( spell.KindOfEffect.Turn, effect.Turn );
+            for (int i = 0; i < 3*8; i++)
+            {
+                cbt.NextTurn();
+            }
+            cbt.DamageOnTime.TryGetValue( cbt.Monsters[0], out effect );
+            Assert.IsNull( effect );
         }
         [Test]
         public void ChangeTurn()

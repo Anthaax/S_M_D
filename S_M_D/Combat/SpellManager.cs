@@ -47,7 +47,7 @@ namespace S_M_D.Combat
                 charac.HP -= effect.EffectiveDamagePerTurn;
                 effect.EffectiveTurn--;
                 if (effect.EffectiveTurn == 0)
-                    _combatManager.DamageOnTime.Remove( charac );
+                    _combatManager.DamageOnTime[charac] = null;
             }
         }
         private void LaunchDamageSpellOnMonster(Spells spell, int position)

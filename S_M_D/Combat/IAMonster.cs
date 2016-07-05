@@ -32,7 +32,6 @@ namespace S_M_D.Combat
         /// <returns></returns>
         public BaseCharacter MonsterTurnAndDoNextTurn(BaseMonster monster)
         {
-            _cbt.SpellManager.ApplyDamageOnTime();
             MonsterAlreadyAttack( monster );
             if (_cbt.GameContext.Rnd.Next( 4 ) != 0)
                 LaunchSpell( monster );

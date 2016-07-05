@@ -199,6 +199,7 @@ namespace S_M_D.Combat
         private void UpdateCooldown()
         {
             BaseHeros hero = GetCharacterTurn() as BaseHeros;
+            SpellManager.ApplyDamageOnTime();
             if (hero != null)
             {
                 hero.Spells.Where( c => c != null ).ToList().ForEach( c => c.CooldownManager.NewTurn() );
