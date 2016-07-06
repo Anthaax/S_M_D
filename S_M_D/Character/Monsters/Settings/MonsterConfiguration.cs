@@ -44,6 +44,8 @@ namespace S_M_D.Character.Monsters
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
+                    Poco.Spells.Add( new BlackPlague( Poco ) );
+                    Poco.Spells.Add( new FlameThrower( Poco ) );
                     Poco.Type = MonsterType.ORC;
                     return Poco;
 
@@ -71,6 +73,8 @@ namespace S_M_D.Character.Monsters
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new CerebralAttack( Poco ) );
                     Poco.Spells.Add( new BasicAttack( Poco ) );
+                    Poco.Spells.Add( new BlackPlague( Poco ) );
+                    Poco.Spells.Add( new FlameThrower( Poco ) );
                     return Poco;
                 
                 case MonsterType.TROLL:
@@ -97,6 +101,8 @@ namespace S_M_D.Character.Monsters
                     Poco.Spells = new List<Spells>();
                     Poco.Spells.Add( new BasicAttack( Poco ) );
                     Poco.Spells.Add( new CerebralAttack( Poco ) );
+                    Poco.Spells.Add( new BlackPlague( Poco ) );
+                    Poco.Spells.Add( new FlameThrower( Poco ) );
                     return Poco;
 
                 default:
