@@ -30,10 +30,5 @@ namespace S_M_D.Character
                 armoType = value;
             }
         }
-
-        public override void LevelUp()
-        {
-            Lvl++;
-        }
     }
 }

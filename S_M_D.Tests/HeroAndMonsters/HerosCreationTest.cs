@@ -295,8 +295,8 @@ namespace S_M_D.Tests
             BaseHeros hero = ctx.PlayerInfo.MyHeros.First();
             hero.Xp = hero.XpMax;
             hero.LevelUp();
-            //hero.Xp = hero.XpMax;
-            //hero.LevelUp();
+            hero.Xp = hero.XpMax;
+            hero.LevelUp();
             //hero.Xp = hero.XpMax;
             //hero.LevelUp();
             //hero.Xp = hero.XpMax;

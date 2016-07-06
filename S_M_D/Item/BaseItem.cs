@@ -37,14 +37,168 @@ namespace S_M_D.Character
         public enum ItemTypes
         {
             Trinket,
-            Potion,
             Armor,
             Weapon
         }
         ItemTypes itemtype;
 
-        public abstract void LevelUp();
-
+        public void LevelUp()
+        {
+            Lvl++;
+            for (int i = 1; i < 15; i++)
+            {
+                ChangeStat(i);
+            }
+        }
+        private void ChangeStat(int indice)
+        {
+            BaseStatItem.stats stats = (BaseStatItem.stats)indice;
+            switch (stats)
+            {
+                case BaseStatItem.stats.hp:
+                    if (HP < 0)
+                    {
+                        HP--;
+                    }
+                    else if (HP > 0)
+                    {
+                        HP++;
+                    }
+                    break;
+                case BaseStatItem.stats.mana:
+                    if (Mana < 0)
+                    {
+                        Mana--;
+                    }
+                    else if (Mana > 0)
+                    {
+                        Mana++;
+                    }
+                    break;
+                case BaseStatItem.stats.damage:
+                    if (Damage < 0)
+                    {
+                        Damage--;
+                    }
+                    else if (Damage > 0)
+                    {
+                        Damage++;
+                    }
+                    break;
+                case BaseStatItem.stats.critChance:
+                    if (CritChance < 0)
+                    {
+                        CritChance--;
+                    }
+                    else if (CritChance > 0)
+                    {
+                        CritChance++;
+                    }
+                    break;
+                case BaseStatItem.stats.hitChance:
+                    if (HitChance < 0)
+                    {
+                        HitChance--;
+                    }
+                    else if (HitChance > 0)
+                    {
+                        HitChance++;
+                    }
+                    break;
+                case BaseStatItem.stats.speed:
+                    if (Speed < 0)
+                    {
+                        Speed--;
+                    }
+                    else if (Speed > 0)
+                    {
+                        Speed++;
+                    }
+                    break;
+                case BaseStatItem.stats.affectRes:
+                    if (AffectRes < 0)
+                    {
+                        AffectRes--;
+                    }
+                    else if (AffectRes > 0)
+                    {
+                        AffectRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.bleedingRes:
+                    if (BleedingRes < 0)
+                    {
+                        BleedingRes--;
+                    }
+                    else if (BleedingRes > 0)
+                    {
+                        BleedingRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.magicRes:
+                    if (MagicRes < 0)
+                    {
+                        MagicRes--;
+                    }
+                    else if (MagicRes > 0)
+                    {
+                        MagicRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.fireRes:
+                    if (FireRes < 0)
+                    {
+                        FireRes--;
+                    }
+                    else if (FireRes > 0)
+                    {
+                        FireRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.poisonRes:
+                    if (PoisonRes < 0)
+                    {
+                        PoisonRes--;
+                    }
+                    else if (PoisonRes > 0)
+                    {
+                        PoisonRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.waterRes:
+                    if (WaterRes < 0)
+                    {
+                        WaterRes--;
+                    }
+                    else if (WaterRes > 0)
+                    {
+                        WaterRes++;
+                    }
+                    break;
+                case BaseStatItem.stats.defense:
+                    if (Defense < 0)
+                    {
+                        Defense--;
+                    }
+                    else if (Defense > 0)
+                    {
+                        Defense++;
+                    }
+                    break;
+                case BaseStatItem.stats.dodgeChance:
+                    if (DodgeChance < 0)
+                    {
+                        DodgeChance--;
+                    }
+                    else if (DodgeChance > 0)
+                    {
+                        DodgeChance++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         public string ItemName
         {
             get

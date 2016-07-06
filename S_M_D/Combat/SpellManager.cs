@@ -85,7 +85,7 @@ namespace S_M_D.Combat
                 if( character != null)
                 {
                     character.HP -= spellEffect.Damage;
-                    if (spell.KindOfEffect.CanBeBlock && _combatManager.GameContext.Rnd.Next( 100 ) >= character.Resist( spell.KindOfEffect.DamageType ))
+                    if (spell.KindOfEffect.CanBeBlock && _combatManager.GameContext.Rnd.Next( 100,200 ) >= character.Resist( spell.KindOfEffect.DamageType ))
                     {
                         KindOfEffect existentSpellEffect = null;
                         _combatManager.DamageOnTime.TryGetValue( character, out existentSpellEffect );

@@ -18,13 +18,13 @@ namespace S_M_D.Tests
             MonsterConfiguration config = new MonsterConfiguration();
             BaseMonster orcMonster = config.CreateMonster( MonsterType.ORC, 1 );
 
-            Assert.AreEqual( 25, orcMonster.HPmax );
-            Assert.AreEqual( 25, orcMonster.HP );
+            Assert.AreEqual( 105, orcMonster.HPmax );
+            Assert.AreEqual( 105, orcMonster.HP );
             Assert.AreEqual( 25, orcMonster.ManaMax );
             Assert.AreEqual( 25, orcMonster.Mana );
-            Assert.AreEqual( 8, orcMonster.Damage );
+            Assert.AreEqual( 10, orcMonster.Damage );
             Assert.AreEqual( 50, orcMonster.CritChance );
-            Assert.AreEqual( 50, orcMonster.HitChance );
+            Assert.AreEqual( 1000, orcMonster.HitChance );
             Assert.AreEqual( 5, orcMonster.Speed );
             Assert.AreEqual( 0, orcMonster.AffectRes );
             Assert.AreEqual( 0, orcMonster.BleedingRes );
@@ -43,13 +43,13 @@ namespace S_M_D.Tests
             MonsterConfiguration config = new MonsterConfiguration();
             BaseMonster orcMonster = config.CreateMonster(MonsterType.ELF, 2);
 
-            Assert.AreEqual(24, orcMonster.HPmax);
-            Assert.AreEqual(24, orcMonster.HP);
+            Assert.AreEqual(104, orcMonster.HPmax);
+            Assert.AreEqual(104, orcMonster.HP);
             Assert.AreEqual(50, orcMonster.ManaMax);
             Assert.AreEqual(50, orcMonster.Mana);
-            Assert.AreEqual(12, orcMonster.Damage);
+            Assert.AreEqual(15, orcMonster.Damage);
             Assert.AreEqual(0, orcMonster.CritChance);
-            Assert.AreEqual(80, orcMonster.HitChance);
+            Assert.AreEqual(1000, orcMonster.HitChance);
             Assert.AreEqual(9, orcMonster.Speed);
             Assert.AreEqual(0, orcMonster.AffectRes);
             Assert.AreEqual(0, orcMonster.BleedingRes);
@@ -68,13 +68,13 @@ namespace S_M_D.Tests
             MonsterConfiguration config = new MonsterConfiguration();
             BaseMonster orcMonster = config.CreateMonster(MonsterType.TROLL, 1);
 
-            Assert.AreEqual(28, orcMonster.HPmax);
-            Assert.AreEqual(28, orcMonster.HP);
+            Assert.AreEqual(108, orcMonster.HPmax);
+            Assert.AreEqual(108, orcMonster.HP);
             Assert.AreEqual(43, orcMonster.ManaMax);
             Assert.AreEqual(43, orcMonster.Mana);
-            Assert.AreEqual(12, orcMonster.Damage);
+            Assert.AreEqual(15, orcMonster.Damage);
             Assert.AreEqual(30, orcMonster.CritChance);
-            Assert.AreEqual(70, orcMonster.HitChance);
+            Assert.AreEqual(1000, orcMonster.HitChance);
             Assert.AreEqual(5, orcMonster.Speed);
             Assert.AreEqual(0, orcMonster.AffectRes);
             Assert.AreEqual(0, orcMonster.BleedingRes);

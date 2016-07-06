@@ -22,14 +22,14 @@ namespace S_M_D.Character.Monsters
             switch(type)
             {
                 case MonsterType.ORC:
-                    Poco.HPmax = 20+5*level;
-                    Poco.HP = 20 + 5 * level;
+                    Poco.HPmax = 100+5*level;
+                    Poco.HP = 100 + 5 * level;
                     Poco.ManaMax = 20 + 5 * level;
                     Poco.Mana = 20 + 5 * level;
-                    Poco.Damage = 3 + 5 * level;
+                    Poco.Damage = 5 + 5 * level;
                     Poco.CritChance = 50;
                     Poco.Lvl = level;
-                    Poco.HitChance = 50;
+                    Poco.HitChance = 1000;
                     Poco.Speed = 5;
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;
@@ -50,13 +50,13 @@ namespace S_M_D.Character.Monsters
                     return Poco;
 
                 case MonsterType.ELF:
-                    Poco.HPmax = 20 + 2 * level;
-                    Poco.HP = 20 + 2 * level;
+                    Poco.HPmax = 100 + 2 * level;
+                    Poco.HP = 100 + 2 * level;
                     Poco.ManaMax = 40 + 5 * level;
                     Poco.Mana = 40 + 5 * level;
-                    Poco.Damage = 2 + 5 * level;
+                    Poco.Damage = 5 + 5 * level;
                     Poco.CritChance = 0;
-                    Poco.HitChance = 80;
+                    Poco.HitChance = 1000;
                     Poco.Speed = 9;
                     Poco.Lvl = level;
                     Poco.AffectRes = 0;
@@ -78,13 +78,13 @@ namespace S_M_D.Character.Monsters
                     return Poco;
                 
                 case MonsterType.TROLL:
-                    Poco.HPmax = 20 + 8 * level;
-                    Poco.HP = 20 + 8 * level;
+                    Poco.HPmax = 100 + 8 * level;
+                    Poco.HP = 100 + 8 * level;
                     Poco.ManaMax = 40 + 3 * level;
                     Poco.Mana = 40 +3 * level;
-                    Poco.Damage = 2 + 10 * level;
+                    Poco.Damage = 5 + 10 * level;
                     Poco.CritChance = 30;
-                    Poco.HitChance = 70;
+                    Poco.HitChance = 1000;
                     Poco.Speed = 5;
                     Poco.AffectRes = 0;
                     Poco.BleedingRes = 0;

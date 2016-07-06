@@ -143,14 +143,28 @@ namespace S_M_D.Character
         }
         private void EquipedItemWithID(int[] ID, BaseHeros hero)
         {
+            int count = 0;
             foreach (var id in ID)
             {
-                if(id != 0)
+                if(id != 0 && count == 0)
                 {
                     BaseItem item = GameContext.AllItemInGame
-                                .First( c => c.ItemId == id );
+                                .First( c => c.ItemId == id && c.Itemtype == BaseItem.ItemTypes.Armor);
                     AddItem( item, hero );
                 }
+                else if (id != 0 && count == 1)
+                {
+                    BaseItem item = GameContext.AllItemInGame
+                                .First( c => c.ItemId == id && c.Itemtype == BaseItem.ItemTypes.Weapon );
+                    AddItem( item, hero );
+                }
+                else if(id != 0)
+                {
+                    BaseItem item = GameContext.AllItemInGame
+                                .First( c => c.ItemId == id && c.Itemtype == BaseItem.ItemTypes.Trinket );
+                    AddItem( item, hero );
+                }
+                count++;
             }
         }
     }
