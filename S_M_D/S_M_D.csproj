@@ -142,6 +142,8 @@
     <Compile Include="Spell\Mage\Hydrobast.cs" />
     <Compile Include="Spell\Mage\FireBall.cs" />
     <Compile Include="Spell\Monsters\BasicAttack.cs" />
+    <Compile Include="Spell\Monsters\FlameThrower.cs" />
+    <Compile Include="Spell\Monsters\BlackPlague.cs" />
     <Compile Include="Spell\Monsters\CerebralAttack.cs" />
     <Compile Include="Spell\Paladin\DivineStorm.cs" />
     <Compile Include="Spell\Paladin\BasicAttackPaladin.cs" />
