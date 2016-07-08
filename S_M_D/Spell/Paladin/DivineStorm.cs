@@ -18,7 +18,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public DivineStorm( Paladin paladin)
-            :base( "DivineStorm", 800, "Une tempete divine", 5, 0, false, false)
+            :base( "DivineStorm", 800, "Une tempête divine", 5, 0, false, false)
         {
             _paladin = paladin;
             CooldownManager = new CooldownManager( 1 );

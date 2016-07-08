@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="priest"></param>
         public ShadowWordDeath( Priest priest)
-            : base( "ShadowWordDeath", 400, "Mot diabolique qui detruit les ennemis", 20, 0, false, false)
+            : base( "ShadowWordDeath", 400, "Mot diabolique qui détruit les ennemis", 20, 0, false, false)
         {
             _priest = priest;
             CooldownManager = new CooldownManager( 2 );

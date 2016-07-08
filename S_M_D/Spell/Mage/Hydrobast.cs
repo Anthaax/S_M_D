@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public Hydrobast( Mage mage)
-            : base( "Hydrobast", 600, "Attaque ultime eau", 10, 0, false, false)
+            : base( "Hydrobast", 600, "Attaque ultime d'eau", 10, 0, true, true)
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 2 );

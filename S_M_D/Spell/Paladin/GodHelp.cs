@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public GodHelp( Paladin paladin)
-            : base( "GodHelp", 800, "Invoque l'aide de dieux pour chatier les monstres pendant 2 tours", 5, 0, true, true)
+            : base( "GodHelp", 800, "Invoque l'aide de dieu pour châtier les monstres pendant 2 tours", 5, 0, true, true)
         {
             _paladin = paladin;
             CooldownManager = new CooldownManager( 2 );

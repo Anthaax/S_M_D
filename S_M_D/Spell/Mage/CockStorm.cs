@@ -14,7 +14,7 @@ namespace S_M_D.Spell
         float[] _damageRatioByLvl = new float[4] { 4, 6f, 8f, 10f };
 
         public CockStorm( Mage mage )
-            : base( "CockStorm", 1000, "Une tempête de bite", 20, 0, true, true)
+            : base( "CockStorm", 1000, "Envoie la bassecour sur les ennemmis", 20, 0, false, false)
         {
 
             _mage = mage;

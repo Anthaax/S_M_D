@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="priest"></param>
         public HeartPurification( Priest priest)
-            : base( "HeartPurification", 400, "Purifie le couer de votre allié", 5, 0, true, true)
+            : base( "HeartPurification", 400, "Purifie le coeur des ennemis", 5, 0, true, true)
         {
             _priset = priest;
             CooldownManager = new CooldownManager( 1 );

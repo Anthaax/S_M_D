@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public SealOfWrath( Paladin paladin)
-            : base( "SealOfWrath", 900, "Invoque la colere des dieux pour combatre les ténebres", 10, 0, false, false)
+            : base( "SealOfWrath", 900, "Invoque la colere des dieux pour combattre les ténebres", 10, 0, false, false)
         {
             _paladin = paladin;
             CooldownManager = new CooldownManager( 2 );

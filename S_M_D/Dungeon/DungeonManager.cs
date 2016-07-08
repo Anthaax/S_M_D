@@ -95,6 +95,9 @@ namespace S_M_D
             _heros.Where( h => h.IsDead == true ).ToList().ForEach( h => h.Die() );
             ChangeHeroMind();
             _ctx.PlayerInfo.NewWeek();
+            List<BaseHeros> dead = _ctx.PlayerInfo.DeadHero.Distinct( ).ToList();
+            _ctx.PlayerInfo.DeadHero.Clear( );
+            _ctx.PlayerInfo.DeadHero.AddRange( dead );
         }
         private void ChangeHeroMind()
         {

@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="warrior"></param>
         public MultipleHit( Warrior warrior)
-            : base( "MultipleHit", 600, "Multiple Assaults sur un meme ennemis ", 5, 0, true, true)
+            : base( "MultipleHit", 600, "Multiples assauts sur un même ennemis ", 5, 0, true, true)
         {
             _warrior = warrior;
             CooldownManager = new CooldownManager( 1 );

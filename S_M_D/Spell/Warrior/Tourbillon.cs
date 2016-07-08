@@ -13,7 +13,7 @@ namespace S_M_D.Spell
         int[] _damageRatioByLvl = new int[4] { 2, 3, 4, 5 };
 
         public Tourbillon( Warrior warrior )
-            :base( "Tourbillon", 500, "Attaque avancé du warrior", 1, 0, false, false)
+            :base( "Tourbillon", 500, "Attaque avancée du guerrier", 1, 0, false, false)
         {
             _warrior = warrior;
             CooldownManager = new CooldownManager( 1 );

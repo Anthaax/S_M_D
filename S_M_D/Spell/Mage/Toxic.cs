@@ -14,7 +14,7 @@ namespace S_M_D.Spell
         float[] _damageRatioByLvl = new float[4] { 1.5f, 2.5f, 3.5f, 5f };
 
         public Toxic( Mage mage )
-            : base( "Toxic", 1000, "Empoisone violament l'ennemi", 12, 0, false, false)
+            : base( "Toxic", 1000, "Empoisonne violemment l'ennemi", 12, 0, false, false)
         {
 
             _mage = mage;

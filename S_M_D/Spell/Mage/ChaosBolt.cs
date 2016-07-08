@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public ChaosBolt(Mage mage)
-            : base("ChaosBolt", 400, "Une tempête de foudre s'abat violament sur deux ennemis", 20, 0, true, true)
+            : base("ChaosBolt", 400, "Une tempête de foudre s'abat violemment sur deux ennemis", 20, 0, true, true)
         {
             _mage = mage;
             CooldownManager = new CooldownManager( 3 );

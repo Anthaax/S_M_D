@@ -16,7 +16,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public WrathHammer( Paladin paladin)
-            : base( "WrathHammer", 500, "COurrou du marteau punnissant les ennimis", 15, 0, false, false)
+            : base( "WrathHammer", 500, "Courroux du marteau punissant les ennemis", 15, 0, false, false)
         {
             _paladin = paladin;
             CooldownManager = new CooldownManager( 1 );

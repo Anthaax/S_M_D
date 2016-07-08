@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public ThunderBolt( Mage mage)
-            : base( "ThunderBolt", 500, "Eclair s'abatant sur un ennemi", 0, 0, false, false)
+            : base( "ThunderBolt", 500, "Eclair s'abattant sur un ennemi", 0, 0, false, false)
         {
             
             _mage = mage;

@@ -17,7 +17,7 @@ namespace S_M_D.Spell
         /// </summary>
         /// <param name="paladin"></param>
         public MindBlast( Priest priest)
-            : base( "MindBlast", 800, "Controle l'espri du montre pour le faire souffir", 10, 0, false, false)
+            : base( "MindBlast", 800, "Controle l'esprit du monstre pour le faire souffrir", 10, 0, false, false)
         {
             _priest = priest;
             CooldownManager = new CooldownManager( 1 );
